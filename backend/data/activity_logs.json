@@ -1,0 +1,44 @@
+[
+  {
+    "id": "d14e0c47-05ca-46f7-b446-1ca4da6d3cc1",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "action": "UPLOAD",
+    "fileName": "Screenshot 2026-03-30 215315.png",
+    "timestamp": "2026-06-04T11:46:20.442Z"
+  },
+  {
+    "id": "c80fc8be-7416-4fa9-9450-1e44f32e6411",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "action": "DELETE",
+    "fileName": "Screenshot 2026-03-30 215315.png",
+    "timestamp": "2026-06-04T11:47:25.253Z"
+  },
+  {
+    "id": "e2553436-bce6-4e0a-92f3-bf98e502d4d4",
+    "userId": "driver-test-uuid-12345",
+    "action": "UPLOAD",
+    "fileName": "e2e_test_doc.pdf",
+    "timestamp": "2026-06-04T11:48:05.107Z"
+  },
+  {
+    "id": "c0569af8-d1ae-45df-a807-33bca615786b",
+    "userId": "driver-test-uuid-12345",
+    "action": "UPLOAD",
+    "fileName": "e2e_test_img.png",
+    "timestamp": "2026-06-04T11:48:05.142Z"
+  },
+  {
+    "id": "7904d355-4bd5-410c-8b43-fec9b623d3e7",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "action": "UPLOAD",
+    "fileName": "Screenshot 2026-03-30 215315.png",
+    "timestamp": "2026-06-04T12:52:14.368Z"
+  },
+  {
+    "id": "8a42977c-4850-43b7-8614-5c4f68a503fa",
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "action": "UPLOAD",
+    "fileName": "Screenshot 2026-03-30 215315.png",
+    "timestamp": "2026-06-08T18:30:01.443Z"
+  }
+]

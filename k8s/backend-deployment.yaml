@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jini-backend
+  labels:
+    app: jini-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: jini-backend
+  template:
+    metadata:
+      labels:
+        app: jini-backend
+    spec:
+      containers:
+      - name: backend
+        image: jnisolutions/backend:latest
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: DATABASE_URL
+          value: "postgresql://jini_user:jini_secure_pass@postgres-service:5432/jini_db?schema=public"
+        - name: REDIS_HOST
+          value: "redis-service"
+        - name: REDIS_PORT
+          value: "6379"
+        - name: PORT
+          value: "5000"
+        ports:
+        - containerPort: 5000
+          name: http
+        resources:
+          limits:
+            cpu: "1"
+            memory: 1Gi
+          requests:
+            cpu: "500m"
+            memory: 512Mi
+        readinessProbe:
+          httpGet:
+            path: /api/docs
+            port: 5000
+          initialDelaySeconds: 15
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /api/docs
+            port: 5000
+          initialDelaySeconds: 20
+          periodSeconds: 15
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: jini-backend
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000

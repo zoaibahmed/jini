@@ -1,0 +1,44 @@
+[
+  {
+    "id": "basic",
+    "name": "Basic Support",
+    "priceMonthly": 0,
+    "priceYearly": 0,
+    "features": [
+      "DOCUMENTS",
+      "NOTIFICATIONS"
+    ],
+    "active": true
+  },
+  {
+    "id": "premium",
+    "name": "Premium Driver Pro",
+    "priceMonthly": 49,
+    "priceYearly": 490,
+    "features": [
+      "DOCUMENTS",
+      "NOTIFICATIONS",
+      "AI_COPILOT",
+      "COMPLIANCE",
+      "SUPPORT_TICKETS"
+    ],
+    "active": true
+  },
+  {
+    "id": "enterprise",
+    "name": "Enterprise Team",
+    "priceMonthly": 99,
+    "priceYearly": 990,
+    "features": [
+      "DOCUMENTS",
+      "NOTIFICATIONS",
+      "AI_COPILOT",
+      "COMPLIANCE",
+      "SUPPORT_TICKETS",
+      "FLEET_DISPATCH",
+      "VOICE_AGENT",
+      "WHATSAPP"
+    ],
+    "active": true
+  }
+]

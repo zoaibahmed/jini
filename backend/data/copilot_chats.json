@@ -1,0 +1,44 @@
+[
+  {
+    "id": "7f670924-ba0f-4945-9b6d-64329d734349",
+    "driverId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "title": "Default Conversation",
+    "createdAt": "2026-06-04T13:05:45.289Z",
+    "updatedAt": "2026-06-04T13:08:02.804Z"
+  },
+  {
+    "id": "e38e9c50-1c43-4542-a39c-de65fd4bbf3c",
+    "driverId": "0e414663-3ba0-423e-b273-60b37bd7d2f1",
+    "title": "Copilot chat #1",
+    "createdAt": "2026-06-04T13:11:37.241Z",
+    "updatedAt": "2026-06-04T13:11:37.241Z"
+  },
+  {
+    "id": "b038dd70-ad22-45d6-84f3-812baab908fc",
+    "driverId": "0e414663-3ba0-423e-b273-60b37bd7d2f1",
+    "title": "Copilot chat #1",
+    "createdAt": "2026-06-04T13:11:37.254Z",
+    "updatedAt": "2026-06-04T13:12:01.091Z"
+  },
+  {
+    "id": "1e20e725-fa9c-49b8-bc5f-e2170491c4bb",
+    "driverId": "2d50b050-f023-4f10-940f-398d965ecad8",
+    "title": "Copilot chat #1",
+    "createdAt": "2026-06-04T15:06:53.120Z",
+    "updatedAt": "2026-06-04T15:06:53.120Z"
+  },
+  {
+    "id": "cd6e41d3-a9f0-45ff-a1ef-301c66554d86",
+    "driverId": "2d50b050-f023-4f10-940f-398d965ecad8",
+    "title": "Copilot chat #1",
+    "createdAt": "2026-06-04T15:06:53.137Z",
+    "updatedAt": "2026-06-04T15:06:53.137Z"
+  },
+  {
+    "id": "32d3d38d-fa21-4c8a-927b-b348150bb749",
+    "driverId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "title": "Copilot chat #1",
+    "createdAt": "2026-06-08T17:52:15.944Z",
+    "updatedAt": "2026-06-08T17:53:50.921Z"
+  }
+]

@@ -1,0 +1,68 @@
+[
+  {
+    "id": "49d7c9fa-3d75-45a9-90a4-286d5aa8b625",
+    "name": "e2e_test_doc.pdf",
+    "categoryName": "TLC License",
+    "size": "0.08 KB",
+    "s3Key": "uploads/driver-test-uuid-12345/1780573685102_e2e_test_doc.pdf",
+    "status": "SAFE",
+    "expiryDate": "2026-07-04T11:48:05.025Z",
+    "notes": "E2E testing PDF upload",
+    "tags": [
+      "e2e",
+      "pdf",
+      "test"
+    ],
+    "driverId": "driver-test-uuid-12345",
+    "createdAt": "2026-06-04T11:48:05.085Z"
+  },
+  {
+    "id": "6814ba6e-dddf-4ccf-a292-caed6c8afe0e",
+    "name": "e2e_test_img.png",
+    "categoryName": "Drug Test",
+    "size": "0.08 KB",
+    "s3Key": "uploads/driver-test-uuid-12345/1780573685137_e2e_test_img.png",
+    "status": "URGENT",
+    "expiryDate": "2026-06-14T11:48:05.131Z",
+    "notes": "E2E testing Image upload",
+    "tags": [
+      "e2e",
+      "image",
+      "test"
+    ],
+    "driverId": "driver-test-uuid-12345",
+    "createdAt": "2026-06-04T11:48:05.137Z"
+  },
+  {
+    "id": "00fc1450-a624-4415-ad75-893e1f4f3f96",
+    "name": "Screenshot 2026-03-30 215315.png",
+    "categoryName": "Custom Files",
+    "size": "0.4 MB",
+    "s3Key": "uploads/a7791a5d-fb58-4e28-a96c-b1f52767abd8/1780577534363_Screenshot 2026-03-30 215315.png",
+    "status": "SAFE",
+    "expiryDate": "2026-09-02",
+    "notes": "Successfully scanned via secure S3 upload tunnel.",
+    "tags": [
+      "uploaded",
+      "vault"
+    ],
+    "driverId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "createdAt": "2026-06-04T12:52:14.359Z"
+  },
+  {
+    "id": "84bc9aaf-c69e-47cd-a436-6a96cfe84ec1",
+    "name": "Screenshot 2026-03-30 215315.png",
+    "categoryName": "Custom Files",
+    "size": "0.4 MB",
+    "s3Key": "uploads/a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e/1780943401440_Screenshot 2026-03-30 215315.png",
+    "status": "SAFE",
+    "expiryDate": "2026-09-06",
+    "notes": "Successfully scanned via secure S3 upload tunnel.",
+    "tags": [
+      "uploaded",
+      "vault"
+    ],
+    "driverId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "createdAt": "2026-06-08T18:30:01.431Z"
+  }
+]

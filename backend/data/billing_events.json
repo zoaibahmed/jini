@@ -1,0 +1,982 @@
+[
+  {
+    "id": "EVT-3698",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:09:51.080Z"
+  },
+  {
+    "id": "EVT-3922",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:09:51.855Z"
+  },
+  {
+    "id": "EVT-7337",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:09:52.585Z"
+  },
+  {
+    "id": "EVT-7813",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:09:53.241Z"
+  },
+  {
+    "id": "EVT-7446",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:09:54.003Z"
+  },
+  {
+    "id": "EVT-7596",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:09:54.788Z"
+  },
+  {
+    "id": "EVT-3419",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:09:56.675Z"
+  },
+  {
+    "id": "EVT-7735",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:09:57.299Z"
+  },
+  {
+    "id": "EVT-4224",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:09:57.823Z"
+  },
+  {
+    "id": "EVT-6511",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:09:58.341Z"
+  },
+  {
+    "id": "EVT-9770",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:09:59.096Z"
+  },
+  {
+    "id": "EVT-7502",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:09:59.759Z"
+  },
+  {
+    "id": "EVT-4236",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:10:00.629Z"
+  },
+  {
+    "id": "EVT-1811",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:10:01.365Z"
+  },
+  {
+    "id": "EVT-4361",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:10:02.196Z"
+  },
+  {
+    "id": "EVT-1169",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:10:03.102Z"
+  },
+  {
+    "id": "EVT-4743",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:10:04.309Z"
+  },
+  {
+    "id": "EVT-1786",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:10:05.062Z"
+  },
+  {
+    "id": "EVT-4500",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:10:05.812Z"
+  },
+  {
+    "id": "EVT-5998",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:10:06.519Z"
+  },
+  {
+    "id": "EVT-9489",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:10:07.250Z"
+  },
+  {
+    "id": "EVT-7904",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:10:08.310Z"
+  },
+  {
+    "id": "EVT-3052",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:10:09.179Z"
+  },
+  {
+    "id": "EVT-2003",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:10:10.567Z"
+  },
+  {
+    "id": "EVT-7654",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:10:11.898Z"
+  },
+  {
+    "id": "EVT-8822",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:10:12.651Z"
+  },
+  {
+    "id": "EVT-2589",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:16:07.899Z"
+  },
+  {
+    "id": "EVT-8041",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:16:53.980Z"
+  },
+  {
+    "id": "EVT-2178",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:16:54.613Z"
+  },
+  {
+    "id": "EVT-7532",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:16:55.282Z"
+  },
+  {
+    "id": "EVT-8332",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:16:55.879Z"
+  },
+  {
+    "id": "EVT-8262",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:16:56.550Z"
+  },
+  {
+    "id": "EVT-2634",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:16:57.118Z"
+  },
+  {
+    "id": "EVT-5623",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:16:57.622Z"
+  },
+  {
+    "id": "EVT-3325",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:16:58.730Z"
+  },
+  {
+    "id": "EVT-7726",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:16:59.304Z"
+  },
+  {
+    "id": "EVT-3361",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:16:59.857Z"
+  },
+  {
+    "id": "EVT-1214",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:00.595Z"
+  },
+  {
+    "id": "EVT-4993",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:01.161Z"
+  },
+  {
+    "id": "EVT-3084",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:01.749Z"
+  },
+  {
+    "id": "EVT-9196",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:02.341Z"
+  },
+  {
+    "id": "EVT-6886",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:03.102Z"
+  },
+  {
+    "id": "EVT-9629",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:03.736Z"
+  },
+  {
+    "id": "EVT-2887",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:04.659Z"
+  },
+  {
+    "id": "EVT-3141",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:05.218Z"
+  },
+  {
+    "id": "EVT-4806",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:05.879Z"
+  },
+  {
+    "id": "EVT-3158",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:06.519Z"
+  },
+  {
+    "id": "EVT-8308",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:07.236Z"
+  },
+  {
+    "id": "EVT-7612",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:07.827Z"
+  },
+  {
+    "id": "EVT-2045",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:08.278Z"
+  },
+  {
+    "id": "EVT-9081",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:08.909Z"
+  },
+  {
+    "id": "EVT-7973",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:09.546Z"
+  },
+  {
+    "id": "EVT-2668",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:10.304Z"
+  },
+  {
+    "id": "EVT-6634",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:10.980Z"
+  },
+  {
+    "id": "EVT-6973",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:11.615Z"
+  },
+  {
+    "id": "EVT-9455",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:12.264Z"
+  },
+  {
+    "id": "EVT-6143",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:12.915Z"
+  },
+  {
+    "id": "EVT-6102",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:13.688Z"
+  },
+  {
+    "id": "EVT-3678",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:14.385Z"
+  },
+  {
+    "id": "EVT-1244",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:15.089Z"
+  },
+  {
+    "id": "EVT-2716",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:16.193Z"
+  },
+  {
+    "id": "EVT-2129",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:17.053Z"
+  },
+  {
+    "id": "EVT-5655",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:17.882Z"
+  },
+  {
+    "id": "EVT-6417",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:18.710Z"
+  },
+  {
+    "id": "EVT-3727",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:19.577Z"
+  },
+  {
+    "id": "EVT-4151",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:20.240Z"
+  },
+  {
+    "id": "EVT-9766",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:21.306Z"
+  },
+  {
+    "id": "EVT-9601",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:22.153Z"
+  },
+  {
+    "id": "EVT-6388",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:22.941Z"
+  },
+  {
+    "id": "EVT-8517",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:24.425Z"
+  },
+  {
+    "id": "EVT-5968",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:25.872Z"
+  },
+  {
+    "id": "EVT-3145",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:26.867Z"
+  },
+  {
+    "id": "EVT-9212",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:17:27.818Z"
+  },
+  {
+    "id": "EVT-1918",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:21.653Z"
+  },
+  {
+    "id": "EVT-5059",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:22.806Z"
+  },
+  {
+    "id": "EVT-7582",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:23.657Z"
+  },
+  {
+    "id": "EVT-7695",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:24.573Z"
+  },
+  {
+    "id": "EVT-7857",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:25.292Z"
+  },
+  {
+    "id": "EVT-4662",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:26.269Z"
+  },
+  {
+    "id": "EVT-6443",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:27.339Z"
+  },
+  {
+    "id": "EVT-6530",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:28.153Z"
+  },
+  {
+    "id": "EVT-1999",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:28.983Z"
+  },
+  {
+    "id": "EVT-2527",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:29.890Z"
+  },
+  {
+    "id": "EVT-7978",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:30.775Z"
+  },
+  {
+    "id": "EVT-7464",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:32.402Z"
+  },
+  {
+    "id": "EVT-7713",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:33.132Z"
+  },
+  {
+    "id": "EVT-2646",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:34.132Z"
+  },
+  {
+    "id": "EVT-6029",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:35.661Z"
+  },
+  {
+    "id": "EVT-4201",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:36.540Z"
+  },
+  {
+    "id": "EVT-2221",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:37.268Z"
+  },
+  {
+    "id": "EVT-7474",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:38.275Z"
+  },
+  {
+    "id": "EVT-6135",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:38.990Z"
+  },
+  {
+    "id": "EVT-3089",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:40.052Z"
+  },
+  {
+    "id": "EVT-1543",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:41.016Z"
+  },
+  {
+    "id": "EVT-1364",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:41.868Z"
+  },
+  {
+    "id": "EVT-1158",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:42.585Z"
+  },
+  {
+    "id": "EVT-2566",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:43.376Z"
+  },
+  {
+    "id": "EVT-8269",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:44.060Z"
+  },
+  {
+    "id": "EVT-9207",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:44.975Z"
+  },
+  {
+    "id": "EVT-9781",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:45.708Z"
+  },
+  {
+    "id": "EVT-8679",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:46.476Z"
+  },
+  {
+    "id": "EVT-4791",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:47.182Z"
+  },
+  {
+    "id": "EVT-3166",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:48.069Z"
+  },
+  {
+    "id": "EVT-6587",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:48.792Z"
+  },
+  {
+    "id": "EVT-8142",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:49.551Z"
+  },
+  {
+    "id": "EVT-8840",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:50.421Z"
+  },
+  {
+    "id": "EVT-8241",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:51.576Z"
+  },
+  {
+    "id": "EVT-8816",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:52.472Z"
+  },
+  {
+    "id": "EVT-8625",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:53.458Z"
+  },
+  {
+    "id": "EVT-1224",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:54.456Z"
+  },
+  {
+    "id": "EVT-1725",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:55.662Z"
+  },
+  {
+    "id": "EVT-2084",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:56.694Z"
+  },
+  {
+    "id": "EVT-2098",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:58.079Z"
+  },
+  {
+    "id": "EVT-7698",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:23:59.217Z"
+  },
+  {
+    "id": "EVT-5368",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:24:00.096Z"
+  },
+  {
+    "id": "EVT-6949",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:24:00.890Z"
+  },
+  {
+    "id": "EVT-9891",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:24:01.721Z"
+  },
+  {
+    "id": "EVT-8165",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:24:02.485Z"
+  },
+  {
+    "id": "EVT-7534",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:24:03.344Z"
+  },
+  {
+    "id": "EVT-4626",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:24:04.238Z"
+  },
+  {
+    "id": "EVT-3396",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:24:05.168Z"
+  },
+  {
+    "id": "EVT-3509",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:24:05.987Z"
+  },
+  {
+    "id": "EVT-1701",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:24:06.862Z"
+  },
+  {
+    "id": "EVT-2006",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:24:07.855Z"
+  },
+  {
+    "id": "EVT-3480",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:24:08.467Z"
+  },
+  {
+    "id": "EVT-6127",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:24:09.252Z"
+  },
+  {
+    "id": "EVT-2727",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:24:10.432Z"
+  },
+  {
+    "id": "EVT-9475",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:24:11.183Z"
+  },
+  {
+    "id": "EVT-6861",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:24:11.899Z"
+  },
+  {
+    "id": "EVT-3644",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:24:12.934Z"
+  },
+  {
+    "id": "EVT-6782",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:24:14.449Z"
+  },
+  {
+    "id": "EVT-2001",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-04T15:30:28.017Z"
+  },
+  {
+    "id": "EVT-1683",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "CANCELLED",
+    "metadata": "{\"planName\":\"Enterprise Team\"}",
+    "createdAt": "2026-06-04T15:41:42.366Z"
+  },
+  {
+    "id": "EVT-7053",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "RESUMED",
+    "metadata": "{\"planName\":\"Enterprise Team\"}",
+    "createdAt": "2026-06-04T15:41:47.887Z"
+  },
+  {
+    "id": "EVT-6676",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-07T18:41:56.674Z"
+  },
+  {
+    "id": "EVT-9954",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Basic Support\",\"price\":0,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-07T18:42:27.363Z"
+  },
+  {
+    "id": "EVT-4348",
+    "subscriptionId": "sub-cxsm5ye",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":990,\"billingPeriod\":\"yearly\"}",
+    "createdAt": "2026-06-07T18:42:32.538Z"
+  },
+  {
+    "id": "EVT-5858",
+    "subscriptionId": "sub-gzshrsr",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-07T18:48:48.409Z"
+  },
+  {
+    "id": "EVT-2072",
+    "subscriptionId": "sub-isjz34e",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-08T17:52:12.359Z"
+  },
+  {
+    "id": "EVT-1246",
+    "subscriptionId": "sub-isjz34e",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":490,\"billingPeriod\":\"yearly\"}",
+    "createdAt": "2026-06-08T17:54:09.883Z"
+  }
+]

@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jini-worker
+  namespace: jini-prod
+  labels:
+    app: jini-worker
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: jini-worker
+  template:
+    metadata:
+      labels:
+        app: jini-worker
+    spec:
+      containers:
+        - name: jini-worker
+          image: 123456789012.dkr.ecr.us-east-1.amazonaws.com/jini-worker:latest
+          imagePullPolicy: Always
+          envFrom:
+            - secretRef:
+                name: jini-secrets
+            - configMapRef:
+                name: jini-config
+          resources:
+            limits:
+              cpu: "1"
+              memory: 1024Mi
+            requests:
+              cpu: "500m"
+              memory: 512Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jini-worker-headless
+  namespace: jini-prod
+spec:
+  clusterIP: None
+  selector:
+    app: jini-worker
+  ports:
+    - port: 5000
+      name: dummy

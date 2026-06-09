@@ -1,0 +1,42 @@
+[
+  {
+    "id": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "planId": "enterprise",
+    "status": "ACTIVE",
+    "billingPeriod": "yearly",
+    "currentPeriodStart": "2026-06-07T18:42:32.535Z",
+    "currentPeriodEnd": "2027-06-07T18:42:32.535Z",
+    "cancelAtPeriodEnd": false,
+    "createdAt": "2026-06-04T15:09:46.391Z",
+    "updatedAt": "2026-06-07T18:42:32.535Z",
+    "stripeSubscriptionId": "sub_sim_ru2gug",
+    "stripeCustomerId": "cus_test_123"
+  },
+  {
+    "id": "sub-gzshrsr",
+    "userId": "eb41100f-9f12-4c74-8568-3caa40948150",
+    "planId": "enterprise",
+    "status": "ACTIVE",
+    "billingPeriod": "monthly",
+    "currentPeriodStart": "2026-06-07T18:48:48.405Z",
+    "currentPeriodEnd": "2026-07-07T18:48:48.405Z",
+    "cancelAtPeriodEnd": false,
+    "createdAt": "2026-06-07T18:48:44.379Z",
+    "updatedAt": "2026-06-07T18:48:48.405Z",
+    "stripeSubscriptionId": "sub_sim_d4yujp"
+  },
+  {
+    "id": "sub-isjz34e",
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "planId": "premium",
+    "status": "ACTIVE",
+    "billingPeriod": "yearly",
+    "currentPeriodStart": "2026-06-08T17:54:09.875Z",
+    "currentPeriodEnd": "2027-06-08T17:54:09.875Z",
+    "cancelAtPeriodEnd": false,
+    "createdAt": "2026-06-08T17:52:08.704Z",
+    "updatedAt": "2026-06-08T17:54:09.875Z",
+    "stripeSubscriptionId": "sub_sim_wyj69w"
+  }
+]

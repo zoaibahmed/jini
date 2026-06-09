@@ -1,0 +1,134 @@
+[
+  {
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "provider": "OpenAI",
+    "modelName": "claude-3-5-sonnet",
+    "promptTokens": 127,
+    "completionTokens": 71,
+    "durationMs": 3411,
+    "cost": 0.0017000000000000001,
+    "id": "eb3b885f-0d76-45c5-9a74-9e4bf15b8200",
+    "createdAt": "2026-06-04T13:05:48.707Z"
+  },
+  {
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "provider": "OpenAI",
+    "modelName": "claude-3-5-sonnet",
+    "promptTokens": 121,
+    "completionTokens": 17,
+    "durationMs": 791,
+    "cost": 0.0008600000000000001,
+    "id": "d7ff65b0-c9e6-4ee8-8e62-db86cf0c990b",
+    "createdAt": "2026-06-04T13:08:00.921Z"
+  },
+  {
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "provider": "OpenAI",
+    "modelName": "claude-3-5-sonnet",
+    "promptTokens": 121,
+    "completionTokens": 17,
+    "durationMs": 793,
+    "cost": 0.0008600000000000001,
+    "id": "ace6c398-536d-4fda-933c-91250568e883",
+    "createdAt": "2026-06-04T13:08:03.600Z"
+  },
+  {
+    "userId": "0e414663-3ba0-423e-b273-60b37bd7d2f1",
+    "provider": "OpenAI",
+    "modelName": "claude-3-5-sonnet",
+    "promptTokens": 121,
+    "completionTokens": 17,
+    "durationMs": 787,
+    "cost": 0.0008600000000000001,
+    "id": "22ee8195-cfc7-4eeb-8946-8afe9250b11f",
+    "createdAt": "2026-06-04T13:11:42.443Z"
+  },
+  {
+    "userId": "0e414663-3ba0-423e-b273-60b37bd7d2f1",
+    "provider": "OpenAI",
+    "modelName": "claude-3-5-sonnet",
+    "promptTokens": 121,
+    "completionTokens": 17,
+    "durationMs": 788,
+    "cost": 0.0008600000000000001,
+    "id": "7e0e1f80-b450-459f-9352-ccd2f1a66f78",
+    "createdAt": "2026-06-04T13:11:48.654Z"
+  },
+  {
+    "userId": "0e414663-3ba0-423e-b273-60b37bd7d2f1",
+    "provider": "OpenAI",
+    "modelName": "claude-3-5-sonnet",
+    "promptTokens": 121,
+    "completionTokens": 17,
+    "durationMs": 791,
+    "cost": 0.0008600000000000001,
+    "id": "2f84da0f-ec33-409e-8688-67c39a83a581",
+    "createdAt": "2026-06-04T13:11:50.624Z"
+  },
+  {
+    "userId": "0e414663-3ba0-423e-b273-60b37bd7d2f1",
+    "provider": "OpenAI",
+    "modelName": "claude-3-5-sonnet",
+    "promptTokens": 124,
+    "completionTokens": 33,
+    "durationMs": 1579,
+    "cost": 0.001115,
+    "id": "8e2989de-1e67-4a38-94e5-3bef8bcf9c3c",
+    "createdAt": "2026-06-04T13:11:56.069Z"
+  },
+  {
+    "userId": "0e414663-3ba0-423e-b273-60b37bd7d2f1",
+    "provider": "OpenAI",
+    "modelName": "claude-3-5-sonnet",
+    "promptTokens": 122,
+    "completionTokens": 33,
+    "durationMs": 1570,
+    "cost": 0.001105,
+    "id": "d33ef15a-6b46-461f-a44e-e22695ab37b7",
+    "createdAt": "2026-06-04T13:11:59.395Z"
+  },
+  {
+    "userId": "0e414663-3ba0-423e-b273-60b37bd7d2f1",
+    "provider": "OpenAI",
+    "modelName": "claude-3-5-sonnet",
+    "promptTokens": 121,
+    "completionTokens": 17,
+    "durationMs": 784,
+    "cost": 0.0008600000000000001,
+    "id": "91122475-b177-45cb-8bdd-e017d6c12822",
+    "createdAt": "2026-06-04T13:12:01.879Z"
+  },
+  {
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "provider": "OpenAI",
+    "modelName": "claude-3-5-sonnet",
+    "promptTokens": 127,
+    "completionTokens": 71,
+    "durationMs": 3332,
+    "cost": 0.0017000000000000001,
+    "id": "8a14395c-6920-45ef-ae81-80825c0409ba",
+    "createdAt": "2026-06-08T17:53:36.735Z"
+  },
+  {
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "provider": "OpenAI",
+    "modelName": "claude-3-5-sonnet",
+    "promptTokens": 121,
+    "completionTokens": 17,
+    "durationMs": 783,
+    "cost": 0.0008600000000000001,
+    "id": "3d8d3418-f4c1-462f-8121-458c871226ce",
+    "createdAt": "2026-06-08T17:53:51.709Z"
+  },
+  {
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "provider": "OpenAI",
+    "modelName": "claude-3-5-sonnet",
+    "promptTokens": 123,
+    "completionTokens": 51,
+    "durationMs": 2305,
+    "cost": 0.0013800000000000002,
+    "id": "73ef9ca4-9ac5-4b72-80ff-88b1dd05ec72",
+    "createdAt": "2026-06-08T18:12:06.295Z"
+  }
+]

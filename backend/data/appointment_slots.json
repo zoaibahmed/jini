@@ -1,0 +1,42 @@
+[
+  {
+    "id": "2db766e8-138d-44ce-bc92-7d9dbdddea96",
+    "agentId": "agent-123",
+    "startTime": "2026-06-09T05:00:00.000Z",
+    "endTime": "2026-06-09T06:00:00.000Z",
+    "isBooked": false,
+    "createdAt": "2026-06-08T17:19:56.445Z"
+  },
+  {
+    "id": "757527b6-3293-41fb-b244-6ae3803988ff",
+    "agentId": "agent-123",
+    "startTime": "2026-06-10T05:00:00.000Z",
+    "endTime": "2026-06-10T06:00:00.000Z",
+    "isBooked": false,
+    "createdAt": "2026-06-08T17:19:56.445Z"
+  },
+  {
+    "id": "43c0b72a-518b-4a74-8aff-42279697dd38",
+    "agentId": "agent-123",
+    "startTime": "2026-06-11T05:00:00.000Z",
+    "endTime": "2026-06-11T06:00:00.000Z",
+    "isBooked": false,
+    "createdAt": "2026-06-08T17:19:56.445Z"
+  },
+  {
+    "id": "fd038a38-dbe0-4ed5-9c98-2d04db751f44",
+    "agentId": "agent-123",
+    "startTime": "2026-06-12T05:00:00.000Z",
+    "endTime": "2026-06-12T06:00:00.000Z",
+    "isBooked": false,
+    "createdAt": "2026-06-08T17:19:56.445Z"
+  },
+  {
+    "id": "be34d53d-6f4e-49e2-a338-9c249fdf4fe4",
+    "agentId": "agent-123",
+    "startTime": "2026-06-13T05:00:00.000Z",
+    "endTime": "2026-06-13T06:00:00.000Z",
+    "isBooked": false,
+    "createdAt": "2026-06-08T17:19:56.445Z"
+  }
+]

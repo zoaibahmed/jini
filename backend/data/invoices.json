@@ -1,0 +1,1244 @@
+[
+  {
+    "id": "INV-1000",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780585791072.pdf",
+    "createdAt": "2026-06-04T15:09:51.072Z"
+  },
+  {
+    "id": "INV-1001",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780585791850.pdf",
+    "createdAt": "2026-06-04T15:09:51.850Z"
+  },
+  {
+    "id": "INV-1002",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780585792581.pdf",
+    "createdAt": "2026-06-04T15:09:52.581Z"
+  },
+  {
+    "id": "INV-1003",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780585793238.pdf",
+    "createdAt": "2026-06-04T15:09:53.238Z"
+  },
+  {
+    "id": "INV-1004",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780585793999.pdf",
+    "createdAt": "2026-06-04T15:09:53.999Z"
+  },
+  {
+    "id": "INV-1005",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780585794783.pdf",
+    "createdAt": "2026-06-04T15:09:54.783Z"
+  },
+  {
+    "id": "INV-1006",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780585796672.pdf",
+    "createdAt": "2026-06-04T15:09:56.672Z"
+  },
+  {
+    "id": "INV-1007",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780585797295.pdf",
+    "createdAt": "2026-06-04T15:09:57.295Z"
+  },
+  {
+    "id": "INV-1008",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780585797820.pdf",
+    "createdAt": "2026-06-04T15:09:57.820Z"
+  },
+  {
+    "id": "INV-1009",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780585798338.pdf",
+    "createdAt": "2026-06-04T15:09:58.338Z"
+  },
+  {
+    "id": "INV-1010",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780585799092.pdf",
+    "createdAt": "2026-06-04T15:09:59.092Z"
+  },
+  {
+    "id": "INV-1011",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780585799751.pdf",
+    "createdAt": "2026-06-04T15:09:59.751Z"
+  },
+  {
+    "id": "INV-1012",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780585800624.pdf",
+    "createdAt": "2026-06-04T15:10:00.624Z"
+  },
+  {
+    "id": "INV-1013",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780585801360.pdf",
+    "createdAt": "2026-06-04T15:10:01.360Z"
+  },
+  {
+    "id": "INV-1014",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780585802193.pdf",
+    "createdAt": "2026-06-04T15:10:02.193Z"
+  },
+  {
+    "id": "INV-1015",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780585803099.pdf",
+    "createdAt": "2026-06-04T15:10:03.099Z"
+  },
+  {
+    "id": "INV-1016",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780585804299.pdf",
+    "createdAt": "2026-06-04T15:10:04.299Z"
+  },
+  {
+    "id": "INV-1017",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780585805056.pdf",
+    "createdAt": "2026-06-04T15:10:05.056Z"
+  },
+  {
+    "id": "INV-1018",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780585805807.pdf",
+    "createdAt": "2026-06-04T15:10:05.807Z"
+  },
+  {
+    "id": "INV-1019",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780585806515.pdf",
+    "createdAt": "2026-06-04T15:10:06.516Z"
+  },
+  {
+    "id": "INV-1020",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780585807238.pdf",
+    "createdAt": "2026-06-04T15:10:07.238Z"
+  },
+  {
+    "id": "INV-1021",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780585808297.pdf",
+    "createdAt": "2026-06-04T15:10:08.297Z"
+  },
+  {
+    "id": "INV-1022",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780585809167.pdf",
+    "createdAt": "2026-06-04T15:10:09.167Z"
+  },
+  {
+    "id": "INV-1023",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780585810561.pdf",
+    "createdAt": "2026-06-04T15:10:10.561Z"
+  },
+  {
+    "id": "INV-1024",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780585811894.pdf",
+    "createdAt": "2026-06-04T15:10:11.894Z"
+  },
+  {
+    "id": "INV-1025",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780585812647.pdf",
+    "createdAt": "2026-06-04T15:10:12.647Z"
+  },
+  {
+    "id": "INV-1026",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586167895.pdf",
+    "createdAt": "2026-06-04T15:16:07.895Z"
+  },
+  {
+    "id": "INV-1027",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586213977.pdf",
+    "createdAt": "2026-06-04T15:16:53.977Z"
+  },
+  {
+    "id": "INV-1028",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586214608.pdf",
+    "createdAt": "2026-06-04T15:16:54.608Z"
+  },
+  {
+    "id": "INV-1029",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586215278.pdf",
+    "createdAt": "2026-06-04T15:16:55.278Z"
+  },
+  {
+    "id": "INV-1030",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586215874.pdf",
+    "createdAt": "2026-06-04T15:16:55.874Z"
+  },
+  {
+    "id": "INV-1031",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586216545.pdf",
+    "createdAt": "2026-06-04T15:16:56.545Z"
+  },
+  {
+    "id": "INV-1032",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586217114.pdf",
+    "createdAt": "2026-06-04T15:16:57.114Z"
+  },
+  {
+    "id": "INV-1033",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586217618.pdf",
+    "createdAt": "2026-06-04T15:16:57.618Z"
+  },
+  {
+    "id": "INV-1034",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586218726.pdf",
+    "createdAt": "2026-06-04T15:16:58.726Z"
+  },
+  {
+    "id": "INV-1035",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586219300.pdf",
+    "createdAt": "2026-06-04T15:16:59.300Z"
+  },
+  {
+    "id": "INV-1036",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586219852.pdf",
+    "createdAt": "2026-06-04T15:16:59.852Z"
+  },
+  {
+    "id": "INV-1037",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586220592.pdf",
+    "createdAt": "2026-06-04T15:17:00.592Z"
+  },
+  {
+    "id": "INV-1038",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586221158.pdf",
+    "createdAt": "2026-06-04T15:17:01.158Z"
+  },
+  {
+    "id": "INV-1039",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586221747.pdf",
+    "createdAt": "2026-06-04T15:17:01.747Z"
+  },
+  {
+    "id": "INV-1040",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586222337.pdf",
+    "createdAt": "2026-06-04T15:17:02.337Z"
+  },
+  {
+    "id": "INV-1041",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586223096.pdf",
+    "createdAt": "2026-06-04T15:17:03.096Z"
+  },
+  {
+    "id": "INV-1042",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586223731.pdf",
+    "createdAt": "2026-06-04T15:17:03.731Z"
+  },
+  {
+    "id": "INV-1043",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586224649.pdf",
+    "createdAt": "2026-06-04T15:17:04.649Z"
+  },
+  {
+    "id": "INV-1044",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586225214.pdf",
+    "createdAt": "2026-06-04T15:17:05.214Z"
+  },
+  {
+    "id": "INV-1045",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586225875.pdf",
+    "createdAt": "2026-06-04T15:17:05.875Z"
+  },
+  {
+    "id": "INV-1046",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586226514.pdf",
+    "createdAt": "2026-06-04T15:17:06.514Z"
+  },
+  {
+    "id": "INV-1047",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586227232.pdf",
+    "createdAt": "2026-06-04T15:17:07.232Z"
+  },
+  {
+    "id": "INV-1048",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586227824.pdf",
+    "createdAt": "2026-06-04T15:17:07.824Z"
+  },
+  {
+    "id": "INV-1049",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586228273.pdf",
+    "createdAt": "2026-06-04T15:17:08.273Z"
+  },
+  {
+    "id": "INV-1050",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586228905.pdf",
+    "createdAt": "2026-06-04T15:17:08.905Z"
+  },
+  {
+    "id": "INV-1051",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586229542.pdf",
+    "createdAt": "2026-06-04T15:17:09.542Z"
+  },
+  {
+    "id": "INV-1052",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586230300.pdf",
+    "createdAt": "2026-06-04T15:17:10.300Z"
+  },
+  {
+    "id": "INV-1053",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586230975.pdf",
+    "createdAt": "2026-06-04T15:17:10.975Z"
+  },
+  {
+    "id": "INV-1054",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586231611.pdf",
+    "createdAt": "2026-06-04T15:17:11.611Z"
+  },
+  {
+    "id": "INV-1055",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586232260.pdf",
+    "createdAt": "2026-06-04T15:17:12.260Z"
+  },
+  {
+    "id": "INV-1056",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586232909.pdf",
+    "createdAt": "2026-06-04T15:17:12.909Z"
+  },
+  {
+    "id": "INV-1057",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586233683.pdf",
+    "createdAt": "2026-06-04T15:17:13.683Z"
+  },
+  {
+    "id": "INV-1058",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586234381.pdf",
+    "createdAt": "2026-06-04T15:17:14.381Z"
+  },
+  {
+    "id": "INV-1059",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586235083.pdf",
+    "createdAt": "2026-06-04T15:17:15.083Z"
+  },
+  {
+    "id": "INV-1060",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586236188.pdf",
+    "createdAt": "2026-06-04T15:17:16.188Z"
+  },
+  {
+    "id": "INV-1061",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586237047.pdf",
+    "createdAt": "2026-06-04T15:17:17.047Z"
+  },
+  {
+    "id": "INV-1062",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586237874.pdf",
+    "createdAt": "2026-06-04T15:17:17.874Z"
+  },
+  {
+    "id": "INV-1063",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586238701.pdf",
+    "createdAt": "2026-06-04T15:17:18.701Z"
+  },
+  {
+    "id": "INV-1064",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586239572.pdf",
+    "createdAt": "2026-06-04T15:17:19.572Z"
+  },
+  {
+    "id": "INV-1065",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586240234.pdf",
+    "createdAt": "2026-06-04T15:17:20.234Z"
+  },
+  {
+    "id": "INV-1066",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586241300.pdf",
+    "createdAt": "2026-06-04T15:17:21.300Z"
+  },
+  {
+    "id": "INV-1067",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586242144.pdf",
+    "createdAt": "2026-06-04T15:17:22.144Z"
+  },
+  {
+    "id": "INV-1068",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586242937.pdf",
+    "createdAt": "2026-06-04T15:17:22.937Z"
+  },
+  {
+    "id": "INV-1069",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586244419.pdf",
+    "createdAt": "2026-06-04T15:17:24.419Z"
+  },
+  {
+    "id": "INV-1070",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586245838.pdf",
+    "createdAt": "2026-06-04T15:17:25.838Z"
+  },
+  {
+    "id": "INV-1071",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586246858.pdf",
+    "createdAt": "2026-06-04T15:17:26.858Z"
+  },
+  {
+    "id": "INV-1072",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586247811.pdf",
+    "createdAt": "2026-06-04T15:17:27.811Z"
+  },
+  {
+    "id": "INV-1073",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586601642.pdf",
+    "createdAt": "2026-06-04T15:23:21.642Z"
+  },
+  {
+    "id": "INV-1074",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586602773.pdf",
+    "createdAt": "2026-06-04T15:23:22.773Z"
+  },
+  {
+    "id": "INV-1075",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586603651.pdf",
+    "createdAt": "2026-06-04T15:23:23.651Z"
+  },
+  {
+    "id": "INV-1076",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586604569.pdf",
+    "createdAt": "2026-06-04T15:23:24.569Z"
+  },
+  {
+    "id": "INV-1077",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586605287.pdf",
+    "createdAt": "2026-06-04T15:23:25.287Z"
+  },
+  {
+    "id": "INV-1078",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586606229.pdf",
+    "createdAt": "2026-06-04T15:23:26.229Z"
+  },
+  {
+    "id": "INV-1079",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586607335.pdf",
+    "createdAt": "2026-06-04T15:23:27.335Z"
+  },
+  {
+    "id": "INV-1080",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586608150.pdf",
+    "createdAt": "2026-06-04T15:23:28.150Z"
+  },
+  {
+    "id": "INV-1081",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586608978.pdf",
+    "createdAt": "2026-06-04T15:23:28.978Z"
+  },
+  {
+    "id": "INV-1082",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586609885.pdf",
+    "createdAt": "2026-06-04T15:23:29.885Z"
+  },
+  {
+    "id": "INV-1083",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586610769.pdf",
+    "createdAt": "2026-06-04T15:23:30.769Z"
+  },
+  {
+    "id": "INV-1084",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586612398.pdf",
+    "createdAt": "2026-06-04T15:23:32.398Z"
+  },
+  {
+    "id": "INV-1085",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586613128.pdf",
+    "createdAt": "2026-06-04T15:23:33.128Z"
+  },
+  {
+    "id": "INV-1086",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586614128.pdf",
+    "createdAt": "2026-06-04T15:23:34.128Z"
+  },
+  {
+    "id": "INV-1087",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586615656.pdf",
+    "createdAt": "2026-06-04T15:23:35.656Z"
+  },
+  {
+    "id": "INV-1088",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586616535.pdf",
+    "createdAt": "2026-06-04T15:23:36.535Z"
+  },
+  {
+    "id": "INV-1089",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586617264.pdf",
+    "createdAt": "2026-06-04T15:23:37.264Z"
+  },
+  {
+    "id": "INV-1090",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586618269.pdf",
+    "createdAt": "2026-06-04T15:23:38.269Z"
+  },
+  {
+    "id": "INV-1091",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586618983.pdf",
+    "createdAt": "2026-06-04T15:23:38.983Z"
+  },
+  {
+    "id": "INV-1092",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586620047.pdf",
+    "createdAt": "2026-06-04T15:23:40.047Z"
+  },
+  {
+    "id": "INV-1093",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586621010.pdf",
+    "createdAt": "2026-06-04T15:23:41.010Z"
+  },
+  {
+    "id": "INV-1094",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586621861.pdf",
+    "createdAt": "2026-06-04T15:23:41.861Z"
+  },
+  {
+    "id": "INV-1095",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586622580.pdf",
+    "createdAt": "2026-06-04T15:23:42.580Z"
+  },
+  {
+    "id": "INV-1096",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586623372.pdf",
+    "createdAt": "2026-06-04T15:23:43.372Z"
+  },
+  {
+    "id": "INV-1097",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586624053.pdf",
+    "createdAt": "2026-06-04T15:23:44.053Z"
+  },
+  {
+    "id": "INV-1098",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586624970.pdf",
+    "createdAt": "2026-06-04T15:23:44.970Z"
+  },
+  {
+    "id": "INV-1099",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586625702.pdf",
+    "createdAt": "2026-06-04T15:23:45.702Z"
+  },
+  {
+    "id": "INV-1100",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586626471.pdf",
+    "createdAt": "2026-06-04T15:23:46.471Z"
+  },
+  {
+    "id": "INV-1101",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586627176.pdf",
+    "createdAt": "2026-06-04T15:23:47.176Z"
+  },
+  {
+    "id": "INV-1102",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586628063.pdf",
+    "createdAt": "2026-06-04T15:23:48.063Z"
+  },
+  {
+    "id": "INV-1103",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586628788.pdf",
+    "createdAt": "2026-06-04T15:23:48.788Z"
+  },
+  {
+    "id": "INV-1104",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586629546.pdf",
+    "createdAt": "2026-06-04T15:23:49.546Z"
+  },
+  {
+    "id": "INV-1105",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586630415.pdf",
+    "createdAt": "2026-06-04T15:23:50.415Z"
+  },
+  {
+    "id": "INV-1106",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586631571.pdf",
+    "createdAt": "2026-06-04T15:23:51.571Z"
+  },
+  {
+    "id": "INV-1107",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586632465.pdf",
+    "createdAt": "2026-06-04T15:23:52.465Z"
+  },
+  {
+    "id": "INV-1108",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586633451.pdf",
+    "createdAt": "2026-06-04T15:23:53.451Z"
+  },
+  {
+    "id": "INV-1109",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586634451.pdf",
+    "createdAt": "2026-06-04T15:23:54.451Z"
+  },
+  {
+    "id": "INV-1110",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586635656.pdf",
+    "createdAt": "2026-06-04T15:23:55.656Z"
+  },
+  {
+    "id": "INV-1111",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586636689.pdf",
+    "createdAt": "2026-06-04T15:23:56.689Z"
+  },
+  {
+    "id": "INV-1112",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586638074.pdf",
+    "createdAt": "2026-06-04T15:23:58.074Z"
+  },
+  {
+    "id": "INV-1113",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586639209.pdf",
+    "createdAt": "2026-06-04T15:23:59.209Z"
+  },
+  {
+    "id": "INV-1114",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586640091.pdf",
+    "createdAt": "2026-06-04T15:24:00.091Z"
+  },
+  {
+    "id": "INV-1115",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586640885.pdf",
+    "createdAt": "2026-06-04T15:24:00.885Z"
+  },
+  {
+    "id": "INV-1116",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586641716.pdf",
+    "createdAt": "2026-06-04T15:24:01.716Z"
+  },
+  {
+    "id": "INV-1117",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586642478.pdf",
+    "createdAt": "2026-06-04T15:24:02.478Z"
+  },
+  {
+    "id": "INV-1118",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586643338.pdf",
+    "createdAt": "2026-06-04T15:24:03.338Z"
+  },
+  {
+    "id": "INV-1119",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586644233.pdf",
+    "createdAt": "2026-06-04T15:24:04.233Z"
+  },
+  {
+    "id": "INV-1120",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586645163.pdf",
+    "createdAt": "2026-06-04T15:24:05.163Z"
+  },
+  {
+    "id": "INV-1121",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586645983.pdf",
+    "createdAt": "2026-06-04T15:24:05.983Z"
+  },
+  {
+    "id": "INV-1122",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586646857.pdf",
+    "createdAt": "2026-06-04T15:24:06.857Z"
+  },
+  {
+    "id": "INV-1123",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586647848.pdf",
+    "createdAt": "2026-06-04T15:24:07.848Z"
+  },
+  {
+    "id": "INV-1124",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586648462.pdf",
+    "createdAt": "2026-06-04T15:24:08.462Z"
+  },
+  {
+    "id": "INV-1125",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586649247.pdf",
+    "createdAt": "2026-06-04T15:24:09.247Z"
+  },
+  {
+    "id": "INV-1126",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586650425.pdf",
+    "createdAt": "2026-06-04T15:24:10.425Z"
+  },
+  {
+    "id": "INV-1127",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586651176.pdf",
+    "createdAt": "2026-06-04T15:24:11.176Z"
+  },
+  {
+    "id": "INV-1128",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586651893.pdf",
+    "createdAt": "2026-06-04T15:24:11.893Z"
+  },
+  {
+    "id": "INV-1129",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586652929.pdf",
+    "createdAt": "2026-06-04T15:24:12.929Z"
+  },
+  {
+    "id": "INV-1130",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780586654444.pdf",
+    "createdAt": "2026-06-04T15:24:14.444Z"
+  },
+  {
+    "id": "INV-1131",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780587028009.pdf",
+    "createdAt": "2026-06-04T15:30:28.009Z"
+  },
+  {
+    "id": "INV-8006",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780857716671.pdf",
+    "createdAt": "2026-06-07T18:41:56.671Z"
+  },
+  {
+    "id": "INV-5227",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 0,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780857747360.pdf",
+    "createdAt": "2026-06-07T18:42:27.360Z"
+  },
+  {
+    "id": "INV-3147",
+    "subscriptionId": "sub-cxsm5ye",
+    "userId": "a7791a5d-fb58-4e28-a96c-b1f52767abd8",
+    "amount": 990,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-cxsm5ye_inv_1780857752536.pdf",
+    "createdAt": "2026-06-07T18:42:32.536Z"
+  },
+  {
+    "id": "INV-1550",
+    "subscriptionId": "sub-gzshrsr",
+    "userId": "eb41100f-9f12-4c74-8568-3caa40948150",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-gzshrsr_inv_1780858128407.pdf",
+    "createdAt": "2026-06-07T18:48:48.407Z"
+  },
+  {
+    "id": "INV-9120",
+    "subscriptionId": "sub-isjz34e",
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-isjz34e_inv_1780941132356.pdf",
+    "createdAt": "2026-06-08T17:52:12.356Z"
+  },
+  {
+    "id": "INV-4629",
+    "subscriptionId": "sub-isjz34e",
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "amount": 490,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-isjz34e_inv_1780941249876.pdf",
+    "createdAt": "2026-06-08T17:54:09.876Z"
+  }
+]

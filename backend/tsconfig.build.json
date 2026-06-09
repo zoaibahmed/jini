@@ -1,0 +1,35 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src/main.ts",
+    "src/app.module.ts",
+    "src/prisma/**/*.ts",
+    "src/health/**/*.ts",
+    "src/compliance/**/*.ts",
+    "src/auth/**/*.ts",
+    "src/email/**/*.ts",
+    "src/notification/**/*.ts",
+    "src/reminder/**/*.ts",
+    "src/sms/**/*.ts",
+    "src/mock.controller.ts",
+    "src/workers/**/*.ts",
+    "src/copilot/**/*.ts",
+    "src/crm/**/*.ts",
+    "src/billing/**/*.ts",
+    "src/driver/**/*.ts",
+    "src/support/**/*.ts",
+    "src/appointment/**/*.ts",
+    "src/whatsapp/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "test",
+    "dist",
+    "**/*spec.ts",
+    "prisma",
+    "src/voice",
+    "src/admin",
+    "src/callback",
+    "src/resources"
+  ]
+}

@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #ffffff;
+  --foreground: #111111;
+  
+  --primary: #F5C400;
+  --primary-hover: #D9A300;
+  --primary-glow: rgba(245, 196, 0, 0.08);
+  
+  --accent: #D9A300;
+  --accent-hover: #b88a00;
+  
+  --muted: #7A7A7A;
+  --muted-background: #F5F5F5;
+  --border: #E5E5E5;
+  
+  --card: #ffffff;
+  --card-foreground: #111111;
+}
+
+/* Maintain dark variables for private driver dashboard specifically - refined for premium Stripe/Linear style dark mode */
+.dark {
+  --background: #141414; /* Matches logo background */
+  --foreground: #f4f4f5; /* zinc-100 */
+  --card: #1c1c1e;       /* slightly lighter gray for dashboard cards */
+  --card-foreground: #f4f4f5;
+  --border: #2c2c2e;     /* border color */
+  --primary: #F5C400;
+  --primary-hover: #D9A300;
+  --primary-light: #D9A300;
+  --primary-glow: rgba(245, 196, 0, 0.10);
+  --muted: #a1a1aa;      /* zinc-400 */
+  --muted-background: #1c1c1e;
+}
+
+@theme {
+  --font-sans: 'Inter', sans-serif;
+  --font-heading: 'Inter', sans-serif;
+  
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-muted-background: var(--muted-background);
+  
+  --color-brand-primary: #F5C400;
+  --color-brand-secondary: #0B0B0B;
+  --color-brand-accent: #D9A300;
+  --color-brand-neutral: #F5F5F5;
+  
+  --color-gold-primary: #F5C400;
+  --color-gold-hover: #D9A300;
+  --color-gold-glow: rgba(245, 196, 0, 0.12);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.5);
+}
+
+.dark .glass {
+  background: rgba(17, 17, 19, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* Subtle Shimmer Animation */
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.04) 20%,
+    rgba(255, 255, 255, 0.08) 60%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 2s infinite;
+  content: '';
+}

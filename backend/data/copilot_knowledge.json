@@ -1,0 +1,67 @@
+[
+  {
+    "title": "TLC License Renewal Guidelines",
+    "category": "TLC",
+    "tags": [
+      "renew",
+      "renewal",
+      "tlc",
+      "license",
+      "requirement"
+    ],
+    "content": "To renew your NYC TLC Driver License:\n1. Submit renewal application online via LARS (TLC License Renewal Application System).\n2. Take the 24-hour TLC Driver License renewal course.\n3. Pass a drug test at an approved TLC facility (expires yearly).\n4. Pay the renewal fee.\nEnsure you upload proof of your drug screening and course certificate to your JNI documents portal.",
+    "id": "216aa64d-8223-4fd7-bda6-f28387789016",
+    "isActive": true,
+    "createdAt": "2026-06-04T13:02:47.214Z",
+    "updatedAt": "2026-06-04T13:02:47.214Z"
+  },
+  {
+    "title": "DMV Woodside Safety Inspections",
+    "category": "DMV",
+    "tags": [
+      "inspection",
+      "woodside",
+      "dmv",
+      "vehicle",
+      "safety"
+    ],
+    "content": "TLC vehicles require safety and emissions inspections every 4 months (3 times a year). \nThe primary inspection hub is at DMV Woodside (Queens, NY). \nPlease make an appointment via LARS, keep your vehicle clean, and check all lights, tires, and brake pads beforehand. \nFailure to pass leads to an immediate TLC suspension and a $200 fine.",
+    "id": "369af854-68e7-4caf-b16e-7b531972435d",
+    "isActive": true,
+    "createdAt": "2026-06-04T13:02:47.215Z",
+    "updatedAt": "2026-06-04T13:02:47.215Z"
+  },
+  {
+    "title": "JNI Subscription Billing Help",
+    "category": "BILLING",
+    "tags": [
+      "billing",
+      "subscription",
+      "price",
+      "payment",
+      "premium",
+      "basic"
+    ],
+    "content": "JNI Solutions offers three tiers:\n1. Basic Plan ($29/mo) - Document scanner and compliance tracker.\n2. Premium Plan ($49/mo) - Adds AI Co-pilot assistant, surge alerts, and template dispatcher.\n3. Enterprise Plan ($99/mo) - Fully dedicated support agent dispatch.\nManage payment methods, billing intervals, or cancel your subscription at the Billing Portal.",
+    "id": "dbac6b54-fa2b-4472-bdcb-0528d83589aa",
+    "isActive": true,
+    "createdAt": "2026-06-04T13:02:47.216Z",
+    "updatedAt": "2026-06-04T13:02:47.216Z"
+  },
+  {
+    "title": "Annual Drug Testing Compliance",
+    "category": "TLC",
+    "tags": [
+      "drug",
+      "test",
+      "screening",
+      "annual",
+      "deadline"
+    ],
+    "content": "All NYC TLC drivers must undergo annual drug screening within 90 days before their license anniversary date. \nOfficial testing centers include Labcorp and Quest Diagnostics. \nVerify your drug test compliance status under the JNI Compliance Dashboard.",
+    "id": "7a292991-0efa-455d-8da3-8ecd5ec7f02d",
+    "isActive": true,
+    "createdAt": "2026-06-04T13:02:47.217Z",
+    "updatedAt": "2026-06-04T13:02:47.217Z"
+  }
+]

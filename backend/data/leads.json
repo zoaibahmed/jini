@@ -1,0 +1,50 @@
+[
+  {
+    "id": "463b3dee-202a-41c4-98e3-edadeb5aec59",
+    "name": "New Test Lead",
+    "phone": "+1 (555) 999-9999",
+    "email": "newlead@example.com",
+    "language": "English",
+    "source": "SEO",
+    "notes": "Self-generated lead",
+    "status": "NEW",
+    "createdAt": "2026-06-04T15:00:00.355Z",
+    "updatedAt": "2026-06-04T15:00:00.355Z"
+  },
+  {
+    "id": "lead-1",
+    "name": "Carlos Santana",
+    "phone": "+1 (555) 019-1111",
+    "email": "carlos@example.com",
+    "language": "Spanish",
+    "source": "Google Search",
+    "notes": "Interested in Premium Driver Pro plan and Woodside inspection help.",
+    "status": "NEW",
+    "createdAt": "2026-06-02T14:59:31.305Z",
+    "updatedAt": "2026-06-02T14:59:31.305Z"
+  },
+  {
+    "id": "lead-2",
+    "name": "Mohammed Rahman",
+    "phone": "+1 (555) 019-2222",
+    "email": "mohammed@example.com",
+    "language": "Bengali",
+    "source": "Word of Mouth",
+    "notes": "TLC license renewal assistance needed urgently.",
+    "status": "QUALIFIED",
+    "createdAt": "2026-05-30T14:59:31.305Z",
+    "updatedAt": "2026-05-30T14:59:31.305Z"
+  },
+  {
+    "id": "lead-3",
+    "name": "Aisha Warren",
+    "phone": "+1 (555) 019-3333",
+    "email": "aisha@example.com",
+    "language": "English",
+    "source": "Facebook Ad",
+    "notes": "Summons defense checklist question.",
+    "status": "CONTACTED",
+    "createdAt": "2026-05-25T14:59:31.305Z",
+    "updatedAt": "2026-05-25T14:59:31.305Z"
+  }
+]
