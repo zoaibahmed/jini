@@ -52,8 +52,8 @@ export class AuthService {
         phone: data.phone,
         preferredLanguage: data.preferredLanguage || 'English',
         country: data.country || 'US',
-        role: UserRole.DRIVER, // Default role
-        isVerified: false, // Requires verification
+        role: UserRole.DRIVER,
+        isVerified: true, // Auto-verified in production MVP
       },
     });
 
