@@ -6,6 +6,47 @@ import { OpenAI } from 'openai';
 import * as crypto from 'crypto';
 import * as path from 'path';
 import * as fs from 'fs';
+import * as https from 'https';
+import * as url from 'url';
+
+// A simple helper for https POST requests
+function postJson(targetUrl: string, body: any): Promise<{ status: number; data: string }> {
+  return new Promise((resolve, reject) => {
+    try {
+      const parsedUrl = url.parse(targetUrl);
+      const postData = JSON.stringify(body);
+      
+      const options = {
+        hostname: parsedUrl.hostname,
+        path: parsedUrl.path,
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Content-Length': Buffer.byteLength(postData)
+        }
+      };
+
+      const req = https.request(options, (res) => {
+        let data = '';
+        res.on('data', (chunk) => {
+          data += chunk;
+        });
+        res.on('end', () => {
+          resolve({ status: res.statusCode || 0, data });
+        });
+      });
+
+      req.on('error', (e) => {
+        reject(e);
+      });
+
+      req.write(postData);
+      req.end();
+    } catch (err) {
+      reject(err);
+    }
+  });
+}
 
 @Injectable()
 export class AiService implements OnModuleInit {
@@ -586,7 +627,7 @@ class MockAiProvider implements AiProvider {
 
 // N8N Webhook Integration Provider
 class N8nProvider implements AiProvider {
-  private readonly webhookUrl = 'https://taha456987458945.app.n8n.cloud/webhook/jni-driver-chat';
+  private readonly webhookUrl = 'https://taha456987458945.app.n8n.cloud/webhook/jni-driver-assistant';
 
   constructor(private readonly sessionId: string) {}
 
@@ -601,22 +642,27 @@ class N8nProvider implements AiProvider {
     let responseText = '';
     let responseStatus = 200;
     try {
-      const response = await fetch(this.webhookUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          message: query,
-          sessionId: this.sessionId || 'default-session',
-        }),
+      const response = await postJson(this.webhookUrl, {
+        message: query,
+        sessionId: this.sessionId || 'default-session',
       });
       responseStatus = response.status;
-      responseText = await response.text();
+      responseText = response.data;
 
-      if (!response.ok) {
-        throw new Error(`Webhook responded with status ${response.status}: ${responseText}`);
+      if (responseStatus < 200 || responseStatus >= 300) {
+        throw new Error(`Webhook responded with status ${responseStatus}: ${responseText}`);
       }
     } catch (e) {
       Logger.error('N8N Webhook Call connection/HTTP error, falling back to mock response', e);
+      try {
+        const errorLogPath = path.join(process.cwd(), 'data', 'n8n_errors.log');
+        const dir = path.dirname(errorLogPath);
+        if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+        fs.appendFileSync(
+          errorLogPath,
+          `${new Date().toISOString()} - Error: ${e.message}\nStack: ${e.stack}\n\n`
+        );
+      } catch (err) {}
       const mock = new MockAiProvider('n8n');
       return mock.generateResponse(query, systemPrompt, history, knowledgeDocs, language, onToken);
     }

@@ -153,5 +153,38 @@
     "status": "OPEN",
     "driverId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
     "createdAt": "2026-06-13T16:12:42.115Z"
+  },
+  {
+    "id": "dd0f7642-148d-4924-b58f-a7c89d81d42c",
+    "ticketId": "JNI-T-7231",
+    "title": "AI Auto-Escalation: Low Confidence Query",
+    "description": "This ticket was automatically created by JNI Solutions Co-pilot due to a low confidence score (0.3).\n\nDriver Query: \"hey\"",
+    "category": "GENERAL",
+    "priority": "MEDIUM",
+    "status": "OPEN",
+    "driverId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "createdAt": "2026-06-13T17:08:26.231Z"
+  },
+  {
+    "id": "8d4d5207-1150-4046-a9c6-6baf440dccca",
+    "ticketId": "JNI-T-70045",
+    "title": "AI Auto-Escalation: Low Confidence Query",
+    "description": "This ticket was automatically created by JNI Solutions Co-pilot due to a low confidence score (0.3).\n\nDriver Query: \"umm\"",
+    "category": "GENERAL",
+    "priority": "MEDIUM",
+    "status": "OPEN",
+    "driverId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "createdAt": "2026-06-13T17:09:29.045Z"
+  },
+  {
+    "id": "f46e1a0f-31f9-408b-8eb2-cd786d2f7a84",
+    "ticketId": "JNI-T-97537",
+    "title": "AI Auto-Escalation: Low Confidence Query",
+    "description": "This ticket was automatically created by JNI Solutions Co-pilot due to a low confidence score (0.3).\n\nDriver Query: \"hey\"",
+    "category": "GENERAL",
+    "priority": "MEDIUM",
+    "status": "OPEN",
+    "driverId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "createdAt": "2026-06-13T17:09:56.537Z"
   }
 ]

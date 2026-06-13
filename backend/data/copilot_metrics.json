@@ -196,5 +196,93 @@
     "cost": 0.0008600000000000001,
     "id": "5f016546-344b-4dd6-b594-404e33bf601e",
     "createdAt": "2026-06-13T16:12:42.106Z"
+  },
+  {
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "provider": "n8n",
+    "modelName": "claude-3-5-sonnet",
+    "promptTokens": 121,
+    "completionTokens": 17,
+    "durationMs": 2000,
+    "cost": 0.0008600000000000001,
+    "id": "527f7b80-0e19-42c7-9044-6c5a3947a94a",
+    "createdAt": "2026-06-13T17:08:26.225Z"
+  },
+  {
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "provider": "n8n",
+    "modelName": "claude-3-5-sonnet",
+    "promptTokens": 121,
+    "completionTokens": 33,
+    "durationMs": 1768,
+    "cost": 0.0011,
+    "id": "c637ee0e-290c-403b-be1a-8bd3e6b6bea4",
+    "createdAt": "2026-06-13T17:08:30.843Z"
+  },
+  {
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "provider": "n8n",
+    "modelName": "claude-3-5-sonnet",
+    "promptTokens": 121,
+    "completionTokens": 33,
+    "durationMs": 1816,
+    "cost": 0.0011,
+    "id": "4fc8b5a7-f192-4864-9047-9a268bc09f7c",
+    "createdAt": "2026-06-13T17:08:36.778Z"
+  },
+  {
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "provider": "n8n",
+    "modelName": "claude-3-5-sonnet",
+    "promptTokens": 123,
+    "completionTokens": 33,
+    "durationMs": 1832,
+    "cost": 0.00111,
+    "id": "0d3f7689-cd28-4269-b305-80188c70fd49",
+    "createdAt": "2026-06-13T17:08:41.478Z"
+  },
+  {
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "provider": "n8n",
+    "modelName": "claude-3-5-sonnet",
+    "promptTokens": 121,
+    "completionTokens": 33,
+    "durationMs": 2012,
+    "cost": 0.0011,
+    "id": "a165e0c2-c1cc-4981-a434-7b1fe6b772d1",
+    "createdAt": "2026-06-13T17:09:19.649Z"
+  },
+  {
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "provider": "n8n",
+    "modelName": "claude-3-5-sonnet",
+    "promptTokens": 123,
+    "completionTokens": 33,
+    "durationMs": 1825,
+    "cost": 0.00111,
+    "id": "ceeef48b-6c9b-4771-ab6c-3a2eda3df5d5",
+    "createdAt": "2026-06-13T17:09:25.575Z"
+  },
+  {
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "provider": "n8n",
+    "modelName": "claude-3-5-sonnet",
+    "promptTokens": 121,
+    "completionTokens": 17,
+    "durationMs": 1038,
+    "cost": 0.0008600000000000001,
+    "id": "bfaed389-fa02-4dde-9770-1ec2af1234fe",
+    "createdAt": "2026-06-13T17:09:29.041Z"
+  },
+  {
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "provider": "OpenAI",
+    "modelName": "claude-3-5-sonnet",
+    "promptTokens": 121,
+    "completionTokens": 17,
+    "durationMs": 778,
+    "cost": 0.0008600000000000001,
+    "id": "3330bcc3-736e-4392-b065-651eb20ef1b9",
+    "createdAt": "2026-06-13T17:09:56.532Z"
   }
 ]
