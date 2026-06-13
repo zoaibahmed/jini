@@ -130,5 +130,71 @@
     "cost": 0.0013800000000000002,
     "id": "73ef9ca4-9ac5-4b72-80ff-88b1dd05ec72",
     "createdAt": "2026-06-08T18:12:06.295Z"
+  },
+  {
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "provider": "n8n",
+    "modelName": "claude-3-5-sonnet",
+    "promptTokens": 121,
+    "completionTokens": 17,
+    "durationMs": 2450,
+    "cost": 0.0008600000000000001,
+    "id": "ec420a72-6d43-4f0e-8ee0-1962670e4dd6",
+    "createdAt": "2026-06-13T16:11:57.916Z"
+  },
+  {
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "provider": "n8n",
+    "modelName": "claude-3-5-sonnet",
+    "promptTokens": 121,
+    "completionTokens": 17,
+    "durationMs": 1281,
+    "cost": 0.0008600000000000001,
+    "id": "a48d4532-7ce3-4740-9a7c-c8e3b7495f81",
+    "createdAt": "2026-06-13T16:12:12.112Z"
+  },
+  {
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "provider": "n8n",
+    "modelName": "claude-3-5-sonnet",
+    "promptTokens": 124,
+    "completionTokens": 71,
+    "durationMs": 3901,
+    "cost": 0.0016849999999999999,
+    "id": "53e9c6ba-b80c-4cb8-83ad-0ecb3cc027c4",
+    "createdAt": "2026-06-13T16:12:25.738Z"
+  },
+  {
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "provider": "n8n",
+    "modelName": "claude-3-5-sonnet",
+    "promptTokens": 121,
+    "completionTokens": 33,
+    "durationMs": 2016,
+    "cost": 0.0011,
+    "id": "0dac3986-c440-4e3a-88d6-a36bd18e51e5",
+    "createdAt": "2026-06-13T16:12:28.882Z"
+  },
+  {
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "provider": "n8n",
+    "modelName": "claude-3-5-sonnet",
+    "promptTokens": 123,
+    "completionTokens": 33,
+    "durationMs": 2012,
+    "cost": 0.00111,
+    "id": "23bf7f42-230e-4607-8a56-e95d9369be87",
+    "createdAt": "2026-06-13T16:12:37.065Z"
+  },
+  {
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "provider": "n8n",
+    "modelName": "claude-3-5-sonnet",
+    "promptTokens": 121,
+    "completionTokens": 17,
+    "durationMs": 1165,
+    "cost": 0.0008600000000000001,
+    "id": "5f016546-344b-4dd6-b594-404e33bf601e",
+    "createdAt": "2026-06-13T16:12:42.106Z"
   }
 ]

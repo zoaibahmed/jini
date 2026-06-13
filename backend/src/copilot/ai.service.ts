@@ -598,6 +598,8 @@ class N8nProvider implements AiProvider {
     language: string,
     onToken?: (token: string, text: string) => void,
   ): Promise<AiResponse> {
+    let responseText = '';
+    let responseStatus = 200;
     try {
       const response = await fetch(this.webhookUrl, {
         method: 'POST',
@@ -607,39 +609,51 @@ class N8nProvider implements AiProvider {
           sessionId: this.sessionId || 'default-session',
         }),
       });
+      responseStatus = response.status;
+      responseText = await response.text();
 
       if (!response.ok) {
-        throw new Error(`Webhook responded with status ${response.status}`);
+        throw new Error(`Webhook responded with status ${response.status}: ${responseText}`);
       }
-
-      const data = await response.json();
-      const text = data.response || data.text || 'No response from webhook';
-
-      if (onToken) {
-        // Simulate a smooth typing streaming effect for n8n webhook response
-        const words = text.split(' ');
-        let currentText = '';
-        for (let i = 0; i < words.length; i++) {
-          currentText += words[i] + (i === words.length - 1 ? '' : ' ');
-          onToken(words[i], currentText);
-          await new Promise(resolve => setTimeout(resolve, Math.max(5, 30 - words[i].length * 2)));
-        }
-      }
-
-      return {
-        text,
-        confidence: 0.95,
-        tokensUsed: {
-          prompt: query.split(/\s+/).length,
-          completion: text.split(/\s+/).length,
-        },
-        provider: 'n8n',
-        model: 'n8n-webhook',
-      };
     } catch (e) {
-      Logger.error('N8N Webhook Call failed, falling back to mock response', e);
+      Logger.error('N8N Webhook Call connection/HTTP error, falling back to mock response', e);
       const mock = new MockAiProvider('n8n');
       return mock.generateResponse(query, systemPrompt, history, knowledgeDocs, language, onToken);
     }
+
+    // Process the response text safely
+    let text = '';
+    if (responseText && responseText.trim()) {
+      try {
+        const data = JSON.parse(responseText);
+        text = data.response || data.text || (typeof data === 'string' ? data : JSON.stringify(data));
+      } catch (err) {
+        text = responseText;
+      }
+    } else {
+      text = `Webhook returned status ${responseStatus} with an empty response body. Please ensure your n8n workflow is active, receives the message, and returns a JSON response containing a 'response' or 'text' key.`;
+    }
+
+    if (onToken) {
+      // Simulate a smooth typing streaming effect for n8n webhook response
+      const words = text.split(' ');
+      let currentText = '';
+      for (let i = 0; i < words.length; i++) {
+        currentText += words[i] + (i === words.length - 1 ? '' : ' ');
+        onToken(words[i], currentText);
+        await new Promise(resolve => setTimeout(resolve, Math.max(5, 30 - words[i].length * 2)));
+      }
+    }
+
+    return {
+      text,
+      confidence: 0.95,
+      tokensUsed: {
+        prompt: query.split(/\s+/).length,
+        completion: text.split(/\s+/).length,
+      },
+      provider: 'n8n',
+      model: 'n8n-webhook',
+    };
   }
 }

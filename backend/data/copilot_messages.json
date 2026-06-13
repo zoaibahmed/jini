@@ -222,5 +222,119 @@
     "language": "English",
     "isPinned": false,
     "createdAt": "2026-06-08T18:12:06.301Z"
+  },
+  {
+    "id": "705cdba0-dc0f-4f3c-a493-23562a7cce1f",
+    "chatId": "32d3d38d-fa21-4c8a-927b-b348150bb749",
+    "sender": "USER",
+    "message": "hey",
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-06-13T16:11:55.443Z"
+  },
+  {
+    "id": "9deb5b92-ea47-4499-89f1-a7838d6f1042",
+    "chatId": "32d3d38d-fa21-4c8a-927b-b348150bb749",
+    "sender": "AI",
+    "message": "Hmm, that seems like a complex case regarding active issues or deactivations. I cannot resolve this directly.\n\n⚠️ *System Note: My confidence in answering this query is low. I have automatically opened a support case (JNI-T-18944) for you and queued it for transfer to a human support agent.*",
+    "confidenceScore": 0.3,
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-06-13T16:11:57.950Z"
+  },
+  {
+    "id": "69459293-487b-4256-be5f-147d88b5cb4c",
+    "chatId": "32d3d38d-fa21-4c8a-927b-b348150bb749",
+    "sender": "USER",
+    "message": "hii",
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-06-13T16:12:10.821Z"
+  },
+  {
+    "id": "0e7dbf63-40f0-4002-b4dc-bdef3431fbdc",
+    "chatId": "32d3d38d-fa21-4c8a-927b-b348150bb749",
+    "sender": "AI",
+    "message": "Hmm, that seems like a complex case regarding active issues or deactivations. I cannot resolve this directly.\n\n⚠️ *System Note: My confidence in answering this query is low. I have automatically opened a support case (JNI-T-33115) for you and queued it for transfer to a human support agent.*",
+    "confidenceScore": 0.3,
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-06-13T16:12:12.117Z"
+  },
+  {
+    "id": "8320e34e-3c6d-433b-a23e-549275b360f4",
+    "chatId": "2ffd585b-2637-4c84-90a9-1f40204ab1da",
+    "sender": "USER",
+    "message": "What documents expire soon?",
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-06-13T16:12:21.805Z"
+  },
+  {
+    "id": "10965f6a-8fd4-4293-8687-4a2ea37683c3",
+    "chatId": "2ffd585b-2637-4c84-90a9-1f40204ab1da",
+    "sender": "AI",
+    "message": "📚 **Reference: TLC License Renewal Guidelines**\n\nTo renew your NYC TLC Driver License:\n1. Submit renewal application online via LARS (TLC License Renewal Application System).\n2. Take the 24-hour TLC Driver License renewal course.\n3. Pass a drug test at an approved TLC facility (expires yearly).\n4. Pay the renewal fee.\nEnsure you upload proof of your drug screening and course certificate to your JNI documents portal.\n\nHope this helps! Let me know if you need specific details.",
+    "confidenceScore": 0.85,
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-06-13T16:12:25.752Z"
+  },
+  {
+    "id": "576327b3-0d44-4558-825b-22d57457cd2c",
+    "chatId": "2ffd585b-2637-4c84-90a9-1f40204ab1da",
+    "sender": "USER",
+    "message": "nothing",
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-06-13T16:12:26.852Z"
+  },
+  {
+    "id": "cc5992d3-b152-483a-ad23-ec31e4a70b33",
+    "chatId": "2ffd585b-2637-4c84-90a9-1f40204ab1da",
+    "sender": "AI",
+    "message": "👋 Hello! I am your JNI Solutions Co-pilot. I can assist you with your TLC compliance deadlines, airport arrivals & surge warnings, earnings summaries, or document renewals.\n\nWhat can I help you with today?",
+    "confidenceScore": 0.85,
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-06-13T16:12:28.899Z"
+  },
+  {
+    "id": "945ac005-f7e5-406c-adee-9c60aa7e5adc",
+    "chatId": "2ffd585b-2637-4c84-90a9-1f40204ab1da",
+    "sender": "USER",
+    "message": "ooo thats nice",
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-06-13T16:12:35.045Z"
+  },
+  {
+    "id": "6f196263-ddab-4b90-8226-fd248d645d1b",
+    "chatId": "2ffd585b-2637-4c84-90a9-1f40204ab1da",
+    "sender": "AI",
+    "message": "👋 Hello! I am your JNI Solutions Co-pilot. I can assist you with your TLC compliance deadlines, airport arrivals & surge warnings, earnings summaries, or document renewals.\n\nWhat can I help you with today?",
+    "confidenceScore": 0.85,
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-06-13T16:12:37.073Z"
+  },
+  {
+    "id": "d9c06ff2-c60c-4c2e-a693-f11f20a6056c",
+    "chatId": "2ffd585b-2637-4c84-90a9-1f40204ab1da",
+    "sender": "USER",
+    "message": "hmm",
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-06-13T16:12:40.932Z"
+  },
+  {
+    "id": "948de245-04c1-4c37-b499-909e84ee4d35",
+    "chatId": "2ffd585b-2637-4c84-90a9-1f40204ab1da",
+    "sender": "AI",
+    "message": "Hmm, that seems like a complex case regarding active issues or deactivations. I cannot resolve this directly.\n\n⚠️ *System Note: My confidence in answering this query is low. I have automatically opened a support case (JNI-T-63115) for you and queued it for transfer to a human support agent.*",
+    "confidenceScore": 0.3,
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-06-13T16:12:42.118Z"
   }
 ]
