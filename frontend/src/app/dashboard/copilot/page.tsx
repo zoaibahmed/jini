@@ -88,7 +88,7 @@ export default function DriverCopilot() {
 
   // Settings
   const [selectedLanguage, setSelectedLanguage] = useState('English');
-  const [selectedProvider, setSelectedProvider] = useState('OpenAI');
+  const [selectedProvider, setSelectedProvider] = useState('n8n');
 
   // Feedback states
   const [ratingMessageId, setRatingMessageId] = useState<string | null>(null);
@@ -676,6 +676,7 @@ export default function DriverCopilot() {
                     onChange={(e) => setSelectedProvider(e.target.value)}
                     className="bg-muted-background border border-border rounded-lg px-2.5 py-1 font-bold outline-none text-foreground"
                   >
+                    <option value="n8n">n8n AI Webhook (Production)</option>
                     <option value="OpenAI">OpenAI GPT-4o (Primary)</option>
                     <option value="Gemini">Gemini 1.5 Pro</option>
                     <option value="Claude">Claude 3.5 Sonnet</option>

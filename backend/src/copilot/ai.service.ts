@@ -94,7 +94,11 @@ Verify your drug test compliance status under the JNI Compliance Dashboard.`,
   }
 
   // Abstraction Factory Pattern
-  getProvider(providerName: string): AiProvider {
+  getProvider(providerName: string, sessionId?: string): AiProvider {
+    if (providerName.toLowerCase() === 'n8n') {
+      return new N8nProvider(sessionId || 'default-session');
+    }
+
     const apiKey = process.env.OPENAI_API_KEY;
     const isKeyConfigured = apiKey && apiKey.trim() !== '' && !apiKey.startsWith('YOUR_');
 
@@ -290,7 +294,7 @@ Verify your drug test compliance status under the JNI Compliance Dashboard.`,
       .map(m => ({ role: m.sender as 'USER' | 'AI', content: m.message }));
 
     // 5. Generate Response via Abstraction Provider
-    const provider = this.getProvider(selectedProvider);
+    const provider = this.getProvider(selectedProvider, chatId);
     const start = Date.now();
     
     const result = await provider.generateResponse(
@@ -576,6 +580,66 @@ class MockAiProvider implements AiProvider {
         return `🌐 [Spanish Translation Enabled]\n\nHola, bienvenido al asistente virtual JNI Co-pilot.\n\n${englishText}`;
       default:
         return englishText;
+    }
+  }
+}
+
+// N8N Webhook Integration Provider
+class N8nProvider implements AiProvider {
+  private readonly webhookUrl = 'https://taha456987458945.app.n8n.cloud/webhook/jni-driver-chat';
+
+  constructor(private readonly sessionId: string) {}
+
+  async generateResponse(
+    query: string,
+    systemPrompt: string,
+    history: { role: 'USER' | 'AI'; content: string }[],
+    knowledgeDocs: { title: string; content: string }[],
+    language: string,
+    onToken?: (token: string, text: string) => void,
+  ): Promise<AiResponse> {
+    try {
+      const response = await fetch(this.webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: query,
+          sessionId: this.sessionId || 'default-session',
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Webhook responded with status ${response.status}`);
+      }
+
+      const data = await response.json();
+      const text = data.response || data.text || 'No response from webhook';
+
+      if (onToken) {
+        // Simulate a smooth typing streaming effect for n8n webhook response
+        const words = text.split(' ');
+        let currentText = '';
+        for (let i = 0; i < words.length; i++) {
+          currentText += words[i] + (i === words.length - 1 ? '' : ' ');
+          onToken(words[i], currentText);
+          await new Promise(resolve => setTimeout(resolve, Math.max(5, 30 - words[i].length * 2)));
+        }
+      }
+
+      return {
+        text,
+        confidence: 0.95,
+        tokensUsed: {
+          prompt: query.split(/\s+/).length,
+          completion: text.split(/\s+/).length,
+        },
+        provider: 'n8n',
+        model: 'n8n-webhook',
+      };
+    } catch (e) {
+      Logger.error('N8N Webhook Call failed, falling back to mock response', e);
+      const mock = new MockAiProvider('n8n');
+      return mock.generateResponse(query, systemPrompt, history, knowledgeDocs, language, onToken);
     }
   }
 }
