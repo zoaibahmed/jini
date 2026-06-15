@@ -3,6 +3,7 @@ import { ComplianceService } from './compliance.service';
 import { ComplianceController } from './compliance.controller';
 import { AwsTextractProvider } from './providers/aws-textract.provider';
 import { LocalRegexOcrProvider } from './providers/local-regex.provider';
+import { OpenAiOcrProvider } from './providers/openai-ocr.provider';
 import { PrismaModule } from '../prisma/prisma.module';
 import { ReminderModule } from '../reminder/reminder.module';
 
@@ -15,6 +16,9 @@ import { ReminderModule } from '../reminder/reminder.module';
       useFactory: () => {
         if (process.env.AWS_ACCESS_KEY_ID && process.env.AWS_SECRET_ACCESS_KEY) {
           return new AwsTextractProvider();
+        }
+        if (process.env.OPENAI_API_KEY && !process.env.OPENAI_API_KEY.startsWith('YOUR_')) {
+          return new OpenAiOcrProvider(process.env.OPENAI_API_KEY);
         }
         return new LocalRegexOcrProvider();
       }

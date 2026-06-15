@@ -50,35 +50,19 @@
     "createdAt": "2026-06-04T12:52:14.359Z"
   },
   {
-    "id": "84bc9aaf-c69e-47cd-a436-6a96cfe84ec1",
-    "name": "Screenshot 2026-03-30 215315.png",
-    "categoryName": "Custom Files",
-    "size": "0.4 MB",
-    "s3Key": "uploads/a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e/1780943401440_Screenshot 2026-03-30 215315.png",
-    "status": "SAFE",
-    "expiryDate": "2026-09-06",
-    "notes": "Successfully scanned via secure S3 upload tunnel.",
-    "tags": [
-      "uploaded",
-      "vault"
-    ],
-    "driverId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
-    "createdAt": "2026-06-08T18:30:01.431Z"
-  },
-  {
-    "id": "d5e01388-b113-46de-b288-8ec13fc13d5b",
-    "name": "Screenshot 2026-03-30 215315.png",
-    "categoryName": "Unsupported Document",
-    "size": "0.4 MB",
-    "s3Key": "uploads/a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e/1781537352378_Screenshot 2026-03-30 215315.png",
+    "id": "fa5b23a2-ae9e-4205-af6f-037ce43ad7f7",
+    "name": "Screenshot 2026-06-15 203910.png",
+    "categoryName": "Unknown Document",
+    "size": "0.6 MB",
+    "s3Key": "uploads/a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e/1781538013701_Screenshot 2026-06-15 203910.png",
     "status": "SAFE",
     "expiryDate": null,
-    "notes": "AI Analysis Failed: Could not extract text from document (Unsupported Document).",
+    "notes": "Unknown Document",
     "tags": [
       "uploaded",
       "vault"
     ],
     "driverId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
-    "createdAt": "2026-06-15T15:29:12.365Z"
+    "createdAt": "2026-06-15T15:40:13.700Z"
   }
 ]

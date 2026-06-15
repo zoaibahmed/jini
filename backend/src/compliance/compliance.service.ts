@@ -97,10 +97,18 @@ export class ComplianceService {
 
       // If document is not confidently identified or required fields are missing
       if (doc) {
+        const hasApiKeys = (process.env.AWS_ACCESS_KEY_ID && process.env.AWS_SECRET_ACCESS_KEY) || 
+                           (process.env.OPENAI_API_KEY && !process.env.OPENAI_API_KEY.startsWith('YOUR_'));
+        
         doc.categoryName = 'Unknown Document';
         doc.status = 'Needs Review';
-        doc.notes = 'Unknown Document';
         doc.expiryDate = null;
+        
+        if (!hasApiKeys) {
+          doc.notes = 'Unknown Document.\n\n⚠️ Troubleshooting: No valid OpenAI API Key or AWS Textract credentials configured in your backend .env file. Image OCR analysis requires a valid API key to classify documents and extract expiration/due dates.';
+        } else {
+          doc.notes = 'Unknown Document';
+        }
         DocumentMetadataStore.save(doc);
       }
 
