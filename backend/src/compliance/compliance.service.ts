@@ -39,9 +39,24 @@ export class ComplianceService {
 
       const doc = docId ? DocumentMetadataStore.getById(docId) : undefined;
 
-      if (ocrResult.extractedData && ocrResult.extractedData.documentType && ocrResult.extractedData.documentType !== 'Unknown' && ocrResult.extractedData.expiryDate) {
-        const title = ocrResult.extractedData.documentType;
-        const dueDate = new Date(ocrResult.extractedData.expiryDate);
+      const allowedTypes = [
+        'TLC License',
+        'Insurance',
+        'Registration',
+        'Vehicle Inspection',
+        'Drug Test',
+        'DMV Notice',
+        'Traffic Ticket'
+      ];
+
+      const isConfident = ocrResult.extractedData && 
+                          ocrResult.extractedData.documentType && 
+                          allowedTypes.includes(ocrResult.extractedData.documentType) && 
+                          ocrResult.extractedData.expiryDate;
+
+      if (isConfident) {
+        const title = ocrResult.extractedData!.documentType!;
+        const dueDate = new Date(ocrResult.extractedData!.expiryDate!);
 
         // Check if valid date
         if (!isNaN(dueDate.getTime())) {
@@ -49,7 +64,7 @@ export class ComplianceService {
           const compliance = await this.prisma.complianceCheck.create({
             data: {
               title: title,
-              description: `Extracted from ${originalName}. License No: ${ocrResult.extractedData.licenseNumber || 'N/A'}`,
+              description: `Extracted from ${originalName}. License No: ${ocrResult.extractedData!.licenseNumber || 'N/A'}`,
               dueDate: dueDate,
               status: 'PENDING',
               driverId: userId,
@@ -82,16 +97,10 @@ export class ComplianceService {
 
       // If document is not confidently identified or required fields are missing
       if (doc) {
-        const textExtracted = !!(ocrResult.text && ocrResult.text.trim());
-        if (!textExtracted) {
-          doc.categoryName = 'Unsupported Document';
-          doc.status = 'Needs Review';
-          doc.notes = 'AI Analysis Failed: Could not extract text from document (Unsupported Document).';
-        } else {
-          doc.categoryName = 'Unknown';
-          doc.status = 'Needs Review';
-          doc.notes = 'AI Analysis Failed: Confident document identification failed or required compliance fields (such as expiration date) are missing.';
-        }
+        doc.categoryName = 'Unknown Document';
+        doc.status = 'Needs Review';
+        doc.notes = 'Unknown Document';
+        doc.expiryDate = null;
         DocumentMetadataStore.save(doc);
       }
 

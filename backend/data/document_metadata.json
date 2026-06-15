@@ -64,5 +64,21 @@
     ],
     "driverId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
     "createdAt": "2026-06-08T18:30:01.431Z"
+  },
+  {
+    "id": "d5e01388-b113-46de-b288-8ec13fc13d5b",
+    "name": "Screenshot 2026-03-30 215315.png",
+    "categoryName": "Unsupported Document",
+    "size": "0.4 MB",
+    "s3Key": "uploads/a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e/1781537352378_Screenshot 2026-03-30 215315.png",
+    "status": "SAFE",
+    "expiryDate": null,
+    "notes": "AI Analysis Failed: Could not extract text from document (Unsupported Document).",
+    "tags": [
+      "uploaded",
+      "vault"
+    ],
+    "driverId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "createdAt": "2026-06-15T15:29:12.365Z"
   }
 ]
