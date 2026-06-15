@@ -1,4 +1,5 @@
 import type { OCRProvider, OcrResult } from '../interfaces/ocr.provider';
+import { createWorker } from 'tesseract.js';
 
 export class LocalRegexOcrProvider implements OCRProvider {
   async extractText(file: Buffer, fileName?: string): Promise<OcrResult> {
@@ -19,13 +20,28 @@ export class LocalRegexOcrProvider implements OCRProvider {
 
     // Check if the file itself has readable text content (e.g. a plain text file)
     let fileText = '';
+    let isBinary = false;
     try {
       const tempText = file.toString('utf8');
-      const isBinary = /[\x00-\x08\x0E-\x1F\x80-\xFF]/.test(tempText.slice(0, 100));
+      isBinary = /[\x00-\x08\x0E-\x1F\x80-\xFF]/.test(tempText.slice(0, 100));
       if (!isBinary) {
         fileText = tempText;
       }
     } catch (err) {}
+
+    // If it's a binary file (image/pdf) and we want local API-keyless OCR, run Tesseract.js
+    if (isBinary) {
+      try {
+        const worker = await createWorker('eng');
+        const { data: { text } } = await worker.recognize(file);
+        await worker.terminate();
+        if (text && text.trim()) {
+          fileText = text;
+        }
+      } catch (tessErr) {
+        console.error('Local Tesseract.js OCR failed, falling back to name/regex:', tessErr);
+      }
+    }
 
     // We merge fileText and name for keyword searching
     const combinedSearch = `${name}\n${fileText}`.toLowerCase();
