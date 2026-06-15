@@ -978,5 +978,12 @@
     "eventType": "SUBSCRIBE",
     "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":490,\"billingPeriod\":\"yearly\"}",
     "createdAt": "2026-06-08T17:54:09.883Z"
+  },
+  {
+    "id": "EVT-2365",
+    "subscriptionId": "sub-isjz34e",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-13T17:47:28.680Z"
   }
 ]

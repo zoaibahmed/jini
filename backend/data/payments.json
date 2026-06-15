@@ -1240,5 +1240,14 @@
     "status": "SUCCESS",
     "paymentMethod": "CARD",
     "createdAt": "2026-06-08T17:54:09.881Z"
+  },
+  {
+    "id": "PAY-3751",
+    "subscriptionId": "sub-isjz34e",
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "amount": 49,
+    "status": "SUCCESS",
+    "paymentMethod": "CARD",
+    "createdAt": "2026-06-13T17:47:28.673Z"
   }
 ]

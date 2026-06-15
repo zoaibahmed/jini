@@ -203,7 +203,7 @@ export class DocumentService {
     const filePath = path.join(process.cwd(), 'uploads', data.name);
     
     // Non-blocking async call
-    this.complianceService.processDocumentFromFile(filePath, userId, data.name).catch(err => {
+    this.complianceService.processDocumentFromFile(filePath, userId, data.name, dbDoc.id).catch(err => {
       console.error('Background OCR processing failed:', err);
     });
 

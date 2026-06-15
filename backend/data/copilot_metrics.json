@@ -284,5 +284,27 @@
     "cost": 0.0008600000000000001,
     "id": "3330bcc3-736e-4392-b065-651eb20ef1b9",
     "createdAt": "2026-06-13T17:09:56.532Z"
+  },
+  {
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "provider": "n8n",
+    "modelName": "n8n-webhook",
+    "promptTokens": 1,
+    "completionTokens": 30,
+    "durationMs": 1670,
+    "cost": 0.000455,
+    "id": "698a318c-2d7c-4153-be8b-b117eb859364",
+    "createdAt": "2026-06-13T17:13:03.251Z"
+  },
+  {
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "provider": "n8n",
+    "modelName": "n8n-webhook",
+    "promptTokens": 1,
+    "completionTokens": 30,
+    "durationMs": 2552,
+    "cost": 0.000455,
+    "id": "4a0fe3ac-3cc6-4d6a-adfa-e7d72ad795cc",
+    "createdAt": "2026-06-13T17:47:40.922Z"
   }
 ]

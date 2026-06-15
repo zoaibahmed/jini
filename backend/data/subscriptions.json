@@ -31,12 +31,12 @@
     "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
     "planId": "premium",
     "status": "ACTIVE",
-    "billingPeriod": "yearly",
-    "currentPeriodStart": "2026-06-08T17:54:09.875Z",
-    "currentPeriodEnd": "2027-06-08T17:54:09.875Z",
+    "billingPeriod": "monthly",
+    "currentPeriodStart": "2026-06-13T17:47:28.645Z",
+    "currentPeriodEnd": "2026-07-13T17:47:28.645Z",
     "cancelAtPeriodEnd": false,
     "createdAt": "2026-06-08T17:52:08.704Z",
-    "updatedAt": "2026-06-08T17:54:09.875Z",
-    "stripeSubscriptionId": "sub_sim_wyj69w"
+    "updatedAt": "2026-06-13T17:47:28.645Z",
+    "stripeSubscriptionId": "sub_sim_l18hbb"
   }
 ]

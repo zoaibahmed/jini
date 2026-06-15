@@ -32,7 +32,7 @@ interface DocumentItem {
   categoryName: string;
   size: string;
   s3Key: string;
-  status: 'SAFE' | 'WARNING' | 'URGENT' | 'EXPIRED' | 'PENDING';
+  status: string;
   expiryDate: string | null;
   tags: string[];
   notes: string | null;
@@ -179,11 +179,11 @@ export default function DocumentCenter() {
           },
           body: JSON.stringify({
             name: file.name,
-            categoryName: 'TLC License',
+            categoryName: 'Unknown',
             size: `${(file.size / (1024 * 1024)).toFixed(1)} MB`,
-            expiryDate: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-            tags: ['uploaded', 'vault', 'ai-analyzed'],
-            notes: `AI Analysis Complete: Detected TLC License.\nExpiration Date: ${new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]}\nAction: Added to compliance tracker.`
+            expiryDate: null,
+            tags: ['uploaded', 'vault'],
+            notes: 'Processing OCR analysis...'
           })
         });
 
@@ -196,13 +196,13 @@ export default function DocumentCenter() {
         const newDoc: DocumentItem = {
           id: Math.random().toString(36).substring(2, 9),
           name: file.name,
-          categoryName: 'TLC License',
+          categoryName: 'Unknown',
           size: `${(file.size / (1024 * 1024)).toFixed(1)} MB`,
           s3Key: `uploads/${user?.id || 'demo'}/${file.name}`,
-          status: 'PENDING',
-          expiryDate: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-          tags: ['uploaded', 'vault', 'ai-analyzed'],
-          notes: `AI Analysis Complete: Detected TLC License.\nExpiration Date: ${new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]}\nAction: Added to compliance tracker (Offline).`,
+          status: 'Needs Review',
+          expiryDate: null,
+          tags: ['uploaded', 'vault'],
+          notes: 'Processing OCR analysis (Offline).',
           createdAt: new Date().toISOString()
         };
         setDocuments(prev => [newDoc, ...prev]);
@@ -448,7 +448,9 @@ export default function DocumentCenter() {
                           ? 'text-emerald-500 bg-emerald-500/10' 
                           : doc.status === 'WARNING'
                             ? 'text-amber-500 bg-amber-500/10'
-                            : 'text-red-500 bg-red-500/10'
+                            : doc.status === 'NEEDS REVIEW' || doc.status === 'Needs Review'
+                              ? 'text-blue-500 bg-blue-500/10'
+                              : 'text-red-500 bg-red-500/10'
                       }`}>
                         {doc.status}
                       </span>
@@ -542,7 +544,9 @@ export default function DocumentCenter() {
                         ? 'text-emerald-500 bg-emerald-500/10' 
                         : doc.status === 'WARNING'
                           ? 'text-amber-500 bg-amber-500/10'
-                          : 'text-red-500 bg-red-500/10'
+                          : doc.status === 'NEEDS REVIEW' || doc.status === 'Needs Review'
+                            ? 'text-blue-500 bg-blue-500/10'
+                            : 'text-red-500 bg-red-500/10'
                     }`}>
                       {doc.status}
                     </span>

@@ -2,7 +2,9 @@ import { Injectable, Inject, Logger } from '@nestjs/common';
 import type { OCRProvider } from './interfaces/ocr.provider';
 import { PrismaService } from '../prisma/prisma.service';
 import { ReminderService } from '../reminder/reminder.service';
+import { DocumentMetadataStore } from '../document/document-metadata.store';
 import * as fs from 'fs';
+import * as path from 'path';
 
 @Injectable()
 export class ComplianceService {
@@ -14,7 +16,18 @@ export class ComplianceService {
     private readonly reminderService: ReminderService
   ) {}
 
-  async processDocumentFromFile(filePath: string, userId: string, originalName: string) {
+  private calculateStatus(expiryDate?: Date | string | null): string {
+    if (!expiryDate) return 'SAFE';
+    const now = new Date();
+    const daysLeft = Math.ceil((new Date(expiryDate).getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+    
+    if (daysLeft < 0) return 'EXPIRED';
+    if (daysLeft <= 7) return 'URGENT';
+    if (daysLeft <= 15) return 'WARNING';
+    return 'SAFE';
+  }
+
+  async processDocumentFromFile(filePath: string, userId: string, originalName: string, docId?: string) {
     try {
       if (!fs.existsSync(filePath)) {
         this.logger.warn(`File not found for OCR: ${filePath}`);
@@ -22,14 +35,17 @@ export class ComplianceService {
       }
 
       const fileBuffer = fs.readFileSync(filePath);
-      const ocrResult = await this.ocrProvider.extractText(fileBuffer);
+      const ocrResult = await this.ocrProvider.extractText(fileBuffer, originalName);
 
-      if (ocrResult.extractedData && ocrResult.extractedData.expiryDate) {
-        const title = ocrResult.extractedData.documentType || 'Uploaded Document';
+      const doc = docId ? DocumentMetadataStore.getById(docId) : undefined;
+
+      if (ocrResult.extractedData && ocrResult.extractedData.documentType && ocrResult.extractedData.documentType !== 'Unknown' && ocrResult.extractedData.expiryDate) {
+        const title = ocrResult.extractedData.documentType;
         const dueDate = new Date(ocrResult.extractedData.expiryDate);
 
         // Check if valid date
         if (!isNaN(dueDate.getTime())) {
+          // Confidently identified, create compliance check
           const compliance = await this.prisma.complianceCheck.create({
             data: {
               title: title,
@@ -51,9 +67,34 @@ export class ComplianceService {
             } as any);
           }
 
+          // Update document metadata with confidently identified values
+          if (doc) {
+            doc.categoryName = title;
+            doc.expiryDate = dueDate.toISOString().split('T')[0];
+            doc.status = this.calculateStatus(dueDate);
+            doc.notes = `AI Analysis Complete: Confidently identified ${title}.\nExpiration Date: ${doc.expiryDate}\nAction: Added to compliance tracker.`;
+            DocumentMetadataStore.save(doc);
+          }
+
           return { ocrResult, compliance };
         }
       }
+
+      // If document is not confidently identified or required fields are missing
+      if (doc) {
+        const textExtracted = !!(ocrResult.text && ocrResult.text.trim());
+        if (!textExtracted) {
+          doc.categoryName = 'Unsupported Document';
+          doc.status = 'Needs Review';
+          doc.notes = 'AI Analysis Failed: Could not extract text from document (Unsupported Document).';
+        } else {
+          doc.categoryName = 'Unknown';
+          doc.status = 'Needs Review';
+          doc.notes = 'AI Analysis Failed: Confident document identification failed or required compliance fields (such as expiration date) are missing.';
+        }
+        DocumentMetadataStore.save(doc);
+      }
+
       return { ocrResult };
     } catch (err) {
       this.logger.error(`Error processing OCR for ${originalName}`, err);

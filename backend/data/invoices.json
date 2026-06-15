@@ -1240,5 +1240,14 @@
     "status": "PAID",
     "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-isjz34e_inv_1780941249876.pdf",
     "createdAt": "2026-06-08T17:54:09.876Z"
+  },
+  {
+    "id": "INV-1520",
+    "subscriptionId": "sub-isjz34e",
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-isjz34e_inv_1781372848655.pdf",
+    "createdAt": "2026-06-13T17:47:28.655Z"
   }
 ]
