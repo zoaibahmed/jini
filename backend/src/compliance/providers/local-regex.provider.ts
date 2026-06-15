@@ -55,8 +55,8 @@ export class LocalRegexOcrProvider implements OCRProvider {
 
     if (combinedSearch.includes('license') || combinedSearch.includes('tlc')) {
       // TLC License: requires expiry date and license number
-      const expiryMatch = combinedSearch.match(/exp(?:iry)?\s*date:?\s*(\d{2}\/\d{2}\/\d{4}|\d{4}-\d{2}-\d{2})/i);
-      const licMatch = combinedSearch.match(/(?:lic|license)\s*(?:no|num|number)?:?\s*([a-z0-9-]+)/i);
+      const expiryMatch = combinedSearch.match(/(?:exp(?:ir(?:e|y|s|ation)s?)?|valid\s*until)\s*(?:date)?\s*[:\-]?\s*(\d{2}\/\d{2}\/\d{4}|\d{4}-\d{2}-\d{2})/i);
+      const licMatch = combinedSearch.match(/(?:lic(?:ense)?\s*(?:no|num|number)?)\s*[:\-]?\s*([a-z0-9-]+)/i);
       
       // Heuristic fallback for file name if regex on text fails
       const simulatedExpiry = combinedSearch.includes('2026') ? '12/31/2026' : (combinedSearch.includes('2027') ? '12/31/2027' : undefined);
@@ -71,8 +71,8 @@ export class LocalRegexOcrProvider implements OCRProvider {
       }
     } else if (combinedSearch.includes('insurance')) {
       // Insurance: requires expiry date and policy number
-      const expiryMatch = combinedSearch.match(/exp(?:iry)?\s*date:?\s*(\d{2}\/\d{2}\/\d{4}|\d{4}-\d{2}-\d{2})/i);
-      const policyMatch = combinedSearch.match(/policy\s*(?:no|num|number)?:?\s*([a-z0-9-]+)/i);
+      const expiryMatch = combinedSearch.match(/(?:exp(?:ir(?:e|y|s|ation)s?)?|valid\s*until)\s*(?:date)?\s*[:\-]?\s*(\d{2}\/\d{2}\/\d{4}|\d{4}-\d{2}-\d{2})/i);
+      const policyMatch = combinedSearch.match(/(?:policy\s*(?:no|num|number)?)\s*[:\-]?\s*([a-z0-9-]+)/i);
 
       const simulatedExpiry = combinedSearch.includes('2026') ? '12/31/2026' : (combinedSearch.includes('2027') ? '12/31/2027' : undefined);
       const finalExpiry = expiryMatch ? expiryMatch[1] : simulatedExpiry;
@@ -85,7 +85,7 @@ export class LocalRegexOcrProvider implements OCRProvider {
       }
     } else if (combinedSearch.includes('registration')) {
       // Registration: requires expiry date
-      const expiryMatch = combinedSearch.match(/exp(?:iry)?\s*date:?\s*(\d{2}\/\d{2}\/\d{4}|\d{4}-\d{2}-\d{2})/i);
+      const expiryMatch = combinedSearch.match(/(?:exp(?:ir(?:e|y|s|ation)s?)?|valid\s*until)\s*(?:date)?\s*[:\-]?\s*(\d{2}\/\d{2}\/\d{4}|\d{4}-\d{2}-\d{2})/i);
       const simulatedExpiry = combinedSearch.includes('2026') ? '12/31/2026' : (combinedSearch.includes('2027') ? '12/31/2027' : undefined);
       const finalExpiry = expiryMatch ? expiryMatch[1] : simulatedExpiry;
 
@@ -95,8 +95,8 @@ export class LocalRegexOcrProvider implements OCRProvider {
       }
     } else if (combinedSearch.includes('ticket')) {
       // Ticket: requires due date and ticket number
-      const dueMatch = combinedSearch.match(/(?:due|exp(?:iry)?)\s*date:?\s*(\d{2}\/\d{2}\/\d{4}|\d{4}-\d{2}-\d{2})/i);
-      const ticketMatch = combinedSearch.match(/ticket\s*(?:no|num|number)?:?\s*([a-z0-9-]+)/i);
+      const dueMatch = combinedSearch.match(/(?:due|exp(?:ir(?:e|y|s|ation)s?)?|valid\s*until)\s*(?:date)?\s*[:\-]?\s*(\d{2}\/\d{2}\/\d{4}|\d{4}-\d{2}-\d{2})/i);
+      const ticketMatch = combinedSearch.match(/(?:ticket\s*(?:no|num|number)?)\s*[:\-]?\s*([a-z0-9-]+)/i);
 
       const simulatedExpiry = combinedSearch.includes('2026') ? '12/31/2026' : (combinedSearch.includes('2027') ? '12/31/2027' : undefined);
       const finalExpiry = dueMatch ? dueMatch[1] : simulatedExpiry;

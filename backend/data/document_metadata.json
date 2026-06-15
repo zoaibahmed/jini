@@ -50,35 +50,19 @@
     "createdAt": "2026-06-04T12:52:14.359Z"
   },
   {
-    "id": "fa5b23a2-ae9e-4205-af6f-037ce43ad7f7",
+    "id": "b2e84730-f177-4f35-973c-3d0432e848c8",
     "name": "Screenshot 2026-06-15 203910.png",
-    "categoryName": "Unknown Document",
+    "categoryName": "TLC License",
     "size": "0.6 MB",
-    "s3Key": "uploads/a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e/1781538013701_Screenshot 2026-06-15 203910.png",
+    "s3Key": "uploads/a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e/1781539810282_Screenshot 2026-06-15 203910.png",
     "status": "SAFE",
-    "expiryDate": null,
-    "notes": "Unknown Document",
+    "expiryDate": "2027-03-11",
+    "notes": "AI Analysis Complete: Confidently identified TLC License.\nExpiration Date: 2027-03-11\nAction: Added to compliance tracker.",
     "tags": [
       "uploaded",
       "vault"
     ],
     "driverId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
-    "createdAt": "2026-06-15T15:40:13.700Z"
-  },
-  {
-    "id": "97cbe709-ac04-4102-985a-dab6704f30ba",
-    "name": "Screenshot 2026-06-15 203921.png",
-    "categoryName": "Unknown Document",
-    "size": "0.4 MB",
-    "s3Key": "uploads/a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e/1781538882496_Screenshot 2026-06-15 203921.png",
-    "status": "SAFE",
-    "expiryDate": null,
-    "notes": "Unknown Document.\n\n⚠️ Troubleshooting: No valid OpenAI API Key or AWS Textract credentials configured in your backend .env file. Image OCR analysis requires a valid API key to classify documents and extract expiration/due dates.",
-    "tags": [
-      "uploaded",
-      "vault"
-    ],
-    "driverId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
-    "createdAt": "2026-06-15T15:54:42.489Z"
+    "createdAt": "2026-06-15T16:10:10.280Z"
   }
 ]
