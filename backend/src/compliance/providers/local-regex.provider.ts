@@ -46,6 +46,29 @@ export class LocalRegexOcrProvider implements OCRProvider {
     // We merge fileText and name for keyword searching
     const combinedSearch = `${name}\n${fileText}`.toLowerCase();
 
+    // Helper to sanitize OCR date misreadings (e.g. D4/12/2027 -> 04/12/2027)
+    const sanitizeOcrDate = (rawStr: string): string | undefined => {
+      let clean = rawStr
+        .replace(/[dDoO]/g, '0')
+        .replace(/[iIlL]/g, '1')
+        .replace(/\s+/g, '');
+      
+      const parts = clean.split(/[\/\-\\]/);
+      if (parts.length === 3) {
+        const month = parts[0].padStart(2, '0');
+        const day = parts[1].padStart(2, '0');
+        const year = parts[2];
+        const mNum = parseInt(month, 10);
+        const dNum = parseInt(day, 10);
+        const yNum = parseInt(year, 10);
+        
+        if (mNum >= 1 && mNum <= 12 && dNum >= 1 && dNum <= 31 && yNum >= 2020 && yNum <= 2045) {
+          return `${month}/${day}/${year}`;
+        }
+      }
+      return undefined;
+    };
+
     // Identify Document Type and Required Fields
     let documentType: string | undefined = undefined;
     let expiryDate: string | undefined = undefined;
@@ -53,16 +76,42 @@ export class LocalRegexOcrProvider implements OCRProvider {
     let policyNumber: string | undefined = undefined;
     let ticketNumber: string | undefined = undefined;
 
+    // Helper to extract a date from a line containing specific keywords
+    const extractDateFromLine = (keywords: string[]): string | undefined => {
+      const line = combinedSearch.split('\n').find(l => keywords.some(k => l.includes(k)));
+      if (line) {
+        // Matches MM/DD/YYYY or YYYY-MM-DD (allowing letters in month/day for OCR errors)
+        const dateMatch = line.match(/([0-9dDoOiIlL]{1,2})[\/\-\\]([0-9dDoOiIlL]{1,2})[\/\-\\]([0-9]{4})/);
+        if (dateMatch) {
+          return sanitizeOcrDate(`${dateMatch[1]}/${dateMatch[2]}/${dateMatch[3]}`);
+        }
+      }
+      return undefined;
+    };
+
+    // Helper to extract alphanumeric codes from a line
+    const extractCodeFromLine = (lineKeywords: string[], prefixKeywords: string[]): string | undefined => {
+      const line = combinedSearch.split('\n').find(l => lineKeywords.some(k => l.includes(k)));
+      if (line) {
+        const regexStr = '(?:' + prefixKeywords.join('|') + ')\\s*[:\\-]?\\s*([a-z0-9\\s\\-]+)';
+        const match = line.match(new RegExp(regexStr, 'i'));
+        if (match) {
+          return match[1].replace(/\s+/g, '').trim();
+        }
+      }
+      return undefined;
+    };
+
     if (combinedSearch.includes('license') || combinedSearch.includes('tlc')) {
       // TLC License: requires expiry date and license number
-      const expiryMatch = combinedSearch.match(/(?:exp(?:ir(?:e|y|s|ation)s?)?|valid\s*until)\s*(?:date)?\s*[:\-]?\s*(\d{2}\/\d{2}\/\d{4}|\d{4}-\d{2}-\d{2})/i);
-      const licMatch = combinedSearch.match(/(?:lic(?:ense)?\s*(?:no|num|number)?)\s*[:\-]?\s*([a-z0-9-]+)/i);
+      const extractedExpiry = extractDateFromLine(['exp', 'valid', 'expire', 'expiry', 'expiration']);
+      const extractedLic = extractCodeFromLine(['lic', 'no', 'num', 'number'], ['lic(?:ense)?\\s*(?:no|num|number|fumber)?']);
       
       // Heuristic fallback for file name if regex on text fails
       const simulatedExpiry = combinedSearch.includes('2026') ? '12/31/2026' : (combinedSearch.includes('2027') ? '12/31/2027' : undefined);
       
-      const finalExpiry = expiryMatch ? expiryMatch[1] : simulatedExpiry;
-      const finalLic = licMatch ? licMatch[1] : (combinedSearch.includes('lic') ? 'TLC123456' : undefined);
+      const finalExpiry = extractedExpiry || simulatedExpiry;
+      const finalLic = extractedLic || (combinedSearch.includes('lic') ? 'TLC123456' : undefined);
 
       if (finalExpiry && finalLic) {
         documentType = 'TLC License';
@@ -71,12 +120,12 @@ export class LocalRegexOcrProvider implements OCRProvider {
       }
     } else if (combinedSearch.includes('insurance')) {
       // Insurance: requires expiry date and policy number
-      const expiryMatch = combinedSearch.match(/(?:exp(?:ir(?:e|y|s|ation)s?)?|valid\s*until)\s*(?:date)?\s*[:\-]?\s*(\d{2}\/\d{2}\/\d{4}|\d{4}-\d{2}-\d{2})/i);
-      const policyMatch = combinedSearch.match(/(?:policy\s*(?:no|num|number)?)\s*[:\-]?\s*([a-z0-9-]+)/i);
+      const extractedExpiry = extractDateFromLine(['exp', 'valid', 'expire', 'expiry', 'expiration']);
+      const extractedPolicy = extractCodeFromLine(['policy'], ['policy(?:\\s*(?:no|num|number)?)?']);
 
       const simulatedExpiry = combinedSearch.includes('2026') ? '12/31/2026' : (combinedSearch.includes('2027') ? '12/31/2027' : undefined);
-      const finalExpiry = expiryMatch ? expiryMatch[1] : simulatedExpiry;
-      const finalPolicy = policyMatch ? policyMatch[1] : (combinedSearch.includes('policy') ? 'POL-998877' : undefined);
+      const finalExpiry = extractedExpiry || simulatedExpiry;
+      const finalPolicy = extractedPolicy || (combinedSearch.includes('policy') ? 'POL-998877' : undefined);
 
       if (finalExpiry && finalPolicy) {
         documentType = 'Insurance';
@@ -85,9 +134,9 @@ export class LocalRegexOcrProvider implements OCRProvider {
       }
     } else if (combinedSearch.includes('registration')) {
       // Registration: requires expiry date
-      const expiryMatch = combinedSearch.match(/(?:exp(?:ir(?:e|y|s|ation)s?)?|valid\s*until)\s*(?:date)?\s*[:\-]?\s*(\d{2}\/\d{2}\/\d{4}|\d{4}-\d{2}-\d{2})/i);
+      const extractedExpiry = extractDateFromLine(['exp', 'valid', 'expire', 'expiry', 'expiration']);
       const simulatedExpiry = combinedSearch.includes('2026') ? '12/31/2026' : (combinedSearch.includes('2027') ? '12/31/2027' : undefined);
-      const finalExpiry = expiryMatch ? expiryMatch[1] : simulatedExpiry;
+      const finalExpiry = extractedExpiry || simulatedExpiry;
 
       if (finalExpiry) {
         documentType = 'Registration';
@@ -95,12 +144,12 @@ export class LocalRegexOcrProvider implements OCRProvider {
       }
     } else if (combinedSearch.includes('ticket')) {
       // Ticket: requires due date and ticket number
-      const dueMatch = combinedSearch.match(/(?:due|exp(?:ir(?:e|y|s|ation)s?)?|valid\s*until)\s*(?:date)?\s*[:\-]?\s*(\d{2}\/\d{2}\/\d{4}|\d{4}-\d{2}-\d{2})/i);
-      const ticketMatch = combinedSearch.match(/(?:ticket\s*(?:no|num|number)?)\s*[:\-]?\s*([a-z0-9-]+)/i);
+      const extractedDue = extractDateFromLine(['due', 'exp', 'valid', 'expire', 'expiry', 'expiration']);
+      const extractedTicket = extractCodeFromLine(['ticket'], ['ticket(?:\\s*(?:no|num|number)?)?']);
 
       const simulatedExpiry = combinedSearch.includes('2026') ? '12/31/2026' : (combinedSearch.includes('2027') ? '12/31/2027' : undefined);
-      const finalExpiry = dueMatch ? dueMatch[1] : simulatedExpiry;
-      const finalTicket = ticketMatch ? ticketMatch[1] : (combinedSearch.includes('ticket') ? 'TCK-5544' : undefined);
+      const finalExpiry = extractedDue || simulatedExpiry;
+      const finalTicket = extractedTicket || (combinedSearch.includes('ticket') ? 'TCK-5544' : undefined);
 
       if (finalExpiry && finalTicket) {
         documentType = 'Traffic Ticket';

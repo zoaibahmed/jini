@@ -64,5 +64,21 @@
     ],
     "driverId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
     "createdAt": "2026-06-15T16:10:10.280Z"
+  },
+  {
+    "id": "d310919b-1036-46d0-83f6-8c6dce06bf11",
+    "name": "Screenshot 2026-06-15 220745.png",
+    "categoryName": "TLC License",
+    "size": "0.3 MB",
+    "s3Key": "uploads/a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e/1781543554317_Screenshot 2026-06-15 220745.png",
+    "status": "SAFE",
+    "expiryDate": "2027-03-11",
+    "notes": "AI Analysis Complete: Confidently identified TLC License.\nExpiration Date: 2027-03-11\nAction: Added to compliance tracker.",
+    "tags": [
+      "uploaded",
+      "vault"
+    ],
+    "driverId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "createdAt": "2026-06-15T17:12:34.310Z"
   }
 ]
