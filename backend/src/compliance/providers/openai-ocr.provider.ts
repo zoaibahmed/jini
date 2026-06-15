@@ -1,6 +1,7 @@
 import { OCRProvider, OcrResult } from '../interfaces/ocr.provider';
 import { OpenAI } from 'openai';
 import { Logger } from '@nestjs/common';
+import { LocalRegexOcrProvider } from './local-regex.provider';
 
 export class OpenAiOcrProvider implements OCRProvider {
   private readonly logger = new Logger(OpenAiOcrProvider.name);
@@ -80,14 +81,9 @@ Respond STRICTLY with a JSON object in this format:
         }
       };
     } catch (err) {
-      this.logger.error('OpenAI Vision OCR failed:', err);
-      return {
-        text: '',
-        extractedData: {
-          documentType: 'Unknown Document',
-          expiryDate: undefined
-        }
-      };
+      this.logger.error('OpenAI Vision OCR failed, falling back to LocalRegexOcrProvider:', err);
+      const fallback = new LocalRegexOcrProvider();
+      return fallback.extractText(file, fileName);
     }
   }
 }

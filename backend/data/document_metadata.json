@@ -64,5 +64,21 @@
     ],
     "driverId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
     "createdAt": "2026-06-15T15:40:13.700Z"
+  },
+  {
+    "id": "97cbe709-ac04-4102-985a-dab6704f30ba",
+    "name": "Screenshot 2026-06-15 203921.png",
+    "categoryName": "Unknown Document",
+    "size": "0.4 MB",
+    "s3Key": "uploads/a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e/1781538882496_Screenshot 2026-06-15 203921.png",
+    "status": "SAFE",
+    "expiryDate": null,
+    "notes": "Unknown Document.\n\n⚠️ Troubleshooting: No valid OpenAI API Key or AWS Textract credentials configured in your backend .env file. Image OCR analysis requires a valid API key to classify documents and extract expiration/due dates.",
+    "tags": [
+      "uploaded",
+      "vault"
+    ],
+    "driverId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "createdAt": "2026-06-15T15:54:42.489Z"
   }
 ]
