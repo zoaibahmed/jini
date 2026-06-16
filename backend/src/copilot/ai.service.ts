@@ -134,17 +134,13 @@ Verify your drug test compliance status under the JNI Compliance Dashboard.`,
     }
   }
 
-  // Abstraction Factory Pattern
+  // Abstraction Factory Pattern - Forced to always use OpenAI API key
   getProvider(providerName: string, sessionId?: string): AiProvider {
-    if (providerName.toLowerCase() === 'n8n') {
-      return new N8nProvider(sessionId || 'default-session');
-    }
-
     const apiKey = process.env.OPENAI_API_KEY;
     const isKeyConfigured = apiKey && apiKey.trim() !== '' && !apiKey.startsWith('YOUR_');
 
-    if (providerName.toLowerCase() === 'openai' && isKeyConfigured) {
-      this.logger.log('OpenAI Provider initialized using configured API Key');
+    if (isKeyConfigured) {
+      this.logger.log('Forcing OpenAI Provider using configured API Key');
       return new OpenAiProvider(apiKey!);
     }
 
@@ -223,6 +219,43 @@ Verify your drug test compliance status under the JNI Compliance Dashboard.`,
     }
     
     return 'English';
+  }
+
+  async generateChatTitle(query: string): Promise<string> {
+    const apiKey = process.env.OPENAI_API_KEY;
+    const isKeyConfigured = apiKey && apiKey.trim() !== '' && !apiKey.startsWith('YOUR_');
+    if (isKeyConfigured) {
+      try {
+        const openai = new OpenAI({ apiKey });
+        const response = await openai.chat.completions.create({
+          model: 'gpt-4o',
+          messages: [
+            {
+              role: 'system',
+              content: 'You are a helpful assistant. Generate a short, descriptive title (maximum 3-5 words, no punctuation, no quotes) for a chat session based on the user\'s first message. Do not include any filler text. Respond ONLY with the title.',
+            },
+            {
+              role: 'user',
+              content: query,
+            },
+          ],
+          max_tokens: 15,
+        });
+        const title = response.choices[0]?.message?.content?.trim();
+        if (title) {
+          // Remove wrapping quotes if any
+          return title.replace(/^["']|["']$/g, '');
+        }
+      } catch (e) {
+        Logger.error('Failed to generate chat title via OpenAI, falling back to substring', e);
+      }
+    }
+    // Fallback
+    const words = query.trim().split(/\s+/);
+    if (words.length <= 5) {
+      return query.trim();
+    }
+    return words.slice(0, 5).join(' ') + '...';
   }
 
   // Process message pipeline
@@ -375,43 +408,8 @@ Verify your drug test compliance status under the JNI Compliance Dashboard.`,
     let finalMessage = result.text;
     let confidence = result.confidence;
 
-    // 8. Low Confidence Escalation (Confidence < 0.4)
+    // 8. Low Confidence Escalation (Confidence < 0.4) - Disabled per user request
     let ticketCreated: any = null;
-    if (confidence < 0.4) {
-      const ticketCount = 1000 + Date.now() % 100000;
-      const ticketId = `JNI-T-${ticketCount}`;
-      
-      ticketCreated = {
-        id: crypto.randomUUID(),
-        ticketId,
-        title: `AI Auto-Escalation: Low Confidence Query`,
-        description: `This ticket was automatically created by JNI Solutions Co-pilot due to a low confidence score (${confidence}).\n\nDriver Query: "${query}"`,
-        category: 'GENERAL',
-        priority: 'MEDIUM',
-        status: 'OPEN',
-        driverId,
-        createdAt: new Date().toISOString(),
-      };
-
-      // Save ticket to local JSON file
-      const ticketsPath = path.join(process.cwd(), 'data', 'support_tickets.json');
-      try {
-        const dir = path.dirname(ticketsPath);
-        if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-        const list = fs.existsSync(ticketsPath) ? JSON.parse(fs.readFileSync(ticketsPath, 'utf8')) : [];
-        list.push(ticketCreated);
-        fs.writeFileSync(ticketsPath, JSON.stringify(list, null, 2), 'utf8');
-      } catch (err) {
-        this.logger.error('Failed to save auto-escalated ticket:', err);
-      }
-
-      finalMessage = `${result.text}\n\n⚠️ *System Note: My confidence in answering this query is low. I have automatically opened a support case (${ticketId}) for you and queued it for transfer to a human support agent.*`;
-      
-      // Let streaming callback know about the final suffix
-      if (onToken) {
-        onToken('', finalMessage);
-      }
-    }
 
     const savedAI: ChatMessage = {
       id: savedAIId,

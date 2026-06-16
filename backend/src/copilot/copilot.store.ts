@@ -133,6 +133,19 @@ export class CopilotStore {
     }
   }
 
+  static updateChatTitle(id: string, title: string): boolean {
+    this.ensureFileExists(this.chatsPath);
+    const list: ChatSession[] = JSON.parse(fs.readFileSync(this.chatsPath, 'utf8'));
+    const index = list.findIndex(c => c.id === id);
+    if (index > -1) {
+      list[index].title = title;
+      list[index].updatedAt = new Date().toISOString();
+      fs.writeFileSync(this.chatsPath, JSON.stringify(list, null, 2), 'utf8');
+      return true;
+    }
+    return false;
+  }
+
   static deleteChat(id: string): boolean {
     this.ensureFileExists(this.chatsPath);
     const list: ChatSession[] = JSON.parse(fs.readFileSync(this.chatsPath, 'utf8'));

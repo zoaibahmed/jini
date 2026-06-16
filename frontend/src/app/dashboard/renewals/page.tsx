@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Clock, 
   Calendar, 
@@ -15,6 +15,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/toast';
 import { useAuth } from '@/hooks/useAuth';
+import { API_URL } from '@/config';
 import Link from 'next/link';
 
 
@@ -30,13 +31,8 @@ interface RenewalItem {
 export default function RenewalsTracker() {
   const { toast } = useToast();
   const { user } = useAuth();
-  const [renewals, setRenewals] = useState<RenewalItem[]>([
-    { id: '1', title: 'Defensive Driving Course', description: '6-hour defensive driving certificate update', dueDate: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], category: 'DMV', status: 'EXPIRED' },
-    { id: '2', title: 'TLC Vehicle Inspection (DMV)', description: 'Bi-annual Woodside safety inspection slot', dueDate: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], category: 'DMV', status: 'WARNING' },
-    { id: '3', title: 'Annual TLC Drug Screening', description: 'Yearly drug test compliance for license status', dueDate: new Date(Date.now() + 32 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], category: 'TLC', status: 'SAFE' },
-    { id: '4', title: 'Commercial Liability Insurance Renewal', description: 'Liability policy active coverage update', dueDate: new Date(Date.now() + 8 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], category: 'Insurance', status: 'URGENT' },
-    { id: '5', title: 'TLC Driver License Renewal', description: '3-year professional hack license expiration', dueDate: new Date(Date.now() + 180 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], category: 'TLC', status: 'SAFE' }
-  ]);
+  const [renewals, setRenewals] = useState<RenewalItem[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const isAdmin = user?.role === 'ADMIN' || user?.role === 'SUPERADMIN' || user?.role === 'SUPPORT';
 
@@ -60,6 +56,55 @@ export default function RenewalsTracker() {
       </div>
     );
   }
+
+  const fetchRenewals = async () => {
+    try {
+      setLoading(true);
+      const token = document.cookie
+        .split('; ')
+        .find((row) => row.startsWith('jni_access_token='))
+        ?.split('=')[1] || '';
+
+      const res = await fetch(`${API_URL}/driver/compliance`, {
+        headers: {
+          'x-driver-id': user?.id || '',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data)) {
+          const mapped: RenewalItem[] = data.map((c: any) => {
+            let category: RenewalItem['category'] = 'TLC';
+            const titleLower = c.title.toLowerCase();
+            if (titleLower.includes('insurance')) category = 'Insurance';
+            else if (titleLower.includes('dmv') || titleLower.includes('defensive') || titleLower.includes('inspection')) category = 'DMV';
+            else if (titleLower.includes('medical') || titleLower.includes('drug')) category = 'Medical';
+
+            return {
+              id: c.id,
+              title: c.title,
+              description: c.description || '',
+              dueDate: c.dueDate.split('T')[0],
+              category,
+              status: c.status
+            };
+          });
+          setRenewals(mapped);
+        }
+      }
+    } catch (e) {
+      console.error('Failed to fetch renewals:', e);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (user && !isAdmin) {
+      fetchRenewals();
+    }
+  }, [user]);
 
   const getDaysLeft = (dueDate: string) => {
     return Math.ceil((new Date(dueDate).getTime() - Date.now()) / (1000 * 60 * 60 * 24));
@@ -108,14 +153,29 @@ export default function RenewalsTracker() {
     };
   };
 
-  const handleMarkCompleted = (id: string, title: string) => {
-    setRenewals(prev => prev.map(item => {
-      if (item.id === id) {
-        return { ...item, status: 'COMPLETED' };
+  const handleMarkCompleted = async (id: string, title: string) => {
+    try {
+      const token = document.cookie
+        .split('; ')
+        .find((row) => row.startsWith('jni_access_token='))
+        ?.split('=')[1] || '';
+
+      const res = await fetch(`${API_URL}/driver/compliance/${id}/complete`, {
+        method: 'PATCH',
+        headers: {
+          'x-driver-id': user?.id || '',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      if (res.ok) {
+        fetchRenewals();
+        toast.success(`Support notified of ${title} completion. Verification will finalize shortly.`);
+      } else {
+        throw new Error();
       }
-      return item;
-    }));
-    toast.success(`Support notified of ${title} completion. Verification will finalize shortly.`);
+    } catch (err) {
+      toast.error('Failed to update compliance status.');
+    }
   };
 
   return (
@@ -135,51 +195,61 @@ export default function RenewalsTracker() {
             <h3 className="font-heading font-extrabold text-sm uppercase tracking-wider mb-6 text-foreground">Upcoming Compliance checklist</h3>
             
             <div className="space-y-4">
-              {renewals.map((item) => {
-                const config = getStatusConfig(item);
-                const StatusIcon = config.icon;
-                const daysLeft = getDaysLeft(item.dueDate);
-                return (
-                  <div 
-                    key={item.id} 
-                    className="p-5 bg-muted-background/20 border border-border hover:border-gold-primary/30 rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 transition-all"
-                  >
-                    <div className="flex items-start space-x-3.5">
-                      {/* Left icon box */}
-                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center border shrink-0 ${config.colorClass}`}>
-                        <StatusIcon className="w-5 h-5" />
-                      </div>
-                      <div className="space-y-0.5">
-                        <span className="text-[10px] text-muted font-bold uppercase tracking-wider">{item.category} Category</span>
-                        <h4 className="font-heading font-extrabold text-sm text-foreground">{item.title}</h4>
-                        <p className="text-xs text-slate-500 font-semibold">{item.description}</p>
-                      </div>
-                    </div>
-
-                    {/* Timeline and Trigger */}
-                    <div className="flex sm:flex-col items-baseline sm:items-end justify-between w-full sm:w-auto border-t sm:border-0 border-border pt-3 sm:pt-0">
-                      <div className="text-xs">
-                        <span className="text-muted">Due Date: </span>
-                        <strong className="text-foreground font-bold">{item.dueDate}</strong>
-                      </div>
-                      
-                      {item.status !== 'COMPLETED' && (
-                        <div className="mt-2.5 flex items-center gap-2">
-                          <span className="text-[10px] text-muted font-bold uppercase">
-                            {daysLeft < 0 ? 'Expired' : `${daysLeft} days left`}
-                          </span>
-                          <button
-                            onClick={() => handleMarkCompleted(item.id, item.title)}
-                            className="px-3 py-1 rounded bg-[#0B0B0B] text-white hover:bg-gold-primary hover:text-black text-[10px] font-bold uppercase border-0 transition-colors cursor-pointer"
-                          >
-                            Mark Done
-                          </button>
+              {loading ? (
+                <div className="text-center py-12 text-xs text-muted font-bold animate-pulse">
+                  Loading active compliance checks...
+                </div>
+              ) : renewals.length === 0 ? (
+                <div className="text-center py-12 text-xs text-muted font-semibold">
+                  No upcoming renewals found. Upload license, drug test, or inspection documents to scan and track compliance status.
+                </div>
+              ) : (
+                renewals.map((item) => {
+                  const config = getStatusConfig(item);
+                  const StatusIcon = config.icon;
+                  const daysLeft = getDaysLeft(item.dueDate);
+                  return (
+                    <div 
+                      key={item.id} 
+                      className="p-5 bg-muted-background/20 border border-border hover:border-gold-primary/30 rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 transition-all"
+                    >
+                      <div className="flex items-start space-x-3.5">
+                        {/* Left icon box */}
+                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center border shrink-0 ${config.colorClass}`}>
+                          <StatusIcon className="w-5 h-5" />
                         </div>
-                      )}
+                        <div className="space-y-0.5">
+                          <span className="text-[10px] text-muted font-bold uppercase tracking-wider">{item.category} Category</span>
+                          <h4 className="font-heading font-extrabold text-sm text-foreground">{item.title}</h4>
+                          <p className="text-xs text-slate-500 font-semibold">{item.description}</p>
+                        </div>
+                      </div>
+
+                      {/* Timeline and Trigger */}
+                      <div className="flex sm:flex-col items-baseline sm:items-end justify-between w-full sm:w-auto border-t sm:border-0 border-border pt-3 sm:pt-0">
+                        <div className="text-xs">
+                          <span className="text-muted">Due Date: </span>
+                          <strong className="text-foreground font-bold">{item.dueDate}</strong>
+                        </div>
+                        
+                        {item.status !== 'COMPLETED' && (
+                          <div className="mt-2.5 flex items-center gap-2">
+                            <span className="text-[10px] text-muted font-bold uppercase">
+                              {daysLeft < 0 ? 'Expired' : `${daysLeft} days left`}
+                            </span>
+                            <button
+                              onClick={() => handleMarkCompleted(item.id, item.title)}
+                              className="px-3 py-1 rounded bg-[#0B0B0B] text-white hover:bg-gold-primary hover:text-black text-[10px] font-bold uppercase border-0 transition-colors cursor-pointer"
+                            >
+                              Mark Done
+                            </button>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })
+              )}
             </div>
           </div>
         </div>

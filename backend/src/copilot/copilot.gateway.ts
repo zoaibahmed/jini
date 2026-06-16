@@ -110,6 +110,24 @@ export class CopilotGateway implements OnGatewayConnection, OnGatewayDisconnect 
     // Update conversation updatedAt timestamp in JSON Store
     CopilotStore.updateChatTimestamp(chatId);
 
+    // Check if this is the first USER message in this chat to auto-rename it
+    const allMessages = CopilotStore.getMessagesByChatId(chatId);
+    const userMessages = allMessages.filter(m => m.sender === 'USER');
+    const chatSession = CopilotStore.getChatById(chatId);
+    if (chatSession && userMessages.length === 1 && 
+        (chatSession.title === 'Default Conversation' || 
+         chatSession.title === 'New Conversation' || 
+         chatSession.title.startsWith('Copilot chat #') ||
+         chatSession.title.startsWith('Default') || 
+         chatSession.title.startsWith('New'))) {
+      this.aiService.generateChatTitle(data.message).then(newTitle => {
+        CopilotStore.updateChatTitle(chatId, newTitle);
+        client.emit('chatTitleUpdated', { chatId, title: newTitle });
+      }).catch(err => {
+        this.logger.error(`Error auto-renaming chat: ${err.message}`);
+      });
+    }
+
     // Generate message ID for AI's response beforehand
     const aiMessageId = crypto.randomUUID();
 

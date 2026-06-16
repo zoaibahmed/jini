@@ -103,6 +103,16 @@ export default function CRMPage() {
   const [newLeadNotes, setNewLeadNotes] = useState('');
   const [addingLead, setAddingLead] = useState(false);
 
+  // Edit Lead form modal
+  const [isEditLeadOpen, setIsEditLeadOpen] = useState(false);
+  const [editLeadName, setEditLeadName] = useState('');
+  const [editLeadPhone, setEditLeadPhone] = useState('');
+  const [editLeadEmail, setEditLeadEmail] = useState('');
+  const [editLeadLang, setEditLeadLang] = useState('English');
+  const [editLeadSource, setEditLeadSource] = useState('PHONE');
+  const [editLeadNotes, setEditLeadNotes] = useState('');
+  const [updatingLead, setUpdatingLead] = useState(false);
+
   // CRM Log form state
   const [logType, setLogType] = useState<'CALL' | 'MEETING' | 'SALE'>('CALL');
   const [callNote, setCallNote] = useState('');
@@ -309,6 +319,92 @@ export default function CRMPage() {
     }
   };
 
+  // Drag & Drop handlers
+  const handleDragStart = (e: React.DragEvent, id: string) => {
+    e.dataTransfer.setData('text/plain', id);
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+  };
+
+  const handleDrop = async (e: React.DragEvent, status: string) => {
+    e.preventDefault();
+    const leadId = e.dataTransfer.getData('text/plain');
+    if (leadId) {
+      await handleUpdateStatus(leadId, status);
+    }
+  };
+
+  // Delete Lead
+  const handleDeleteLead = async (id: string) => {
+    if (!confirm('Are you sure you want to delete this lead?')) return;
+    try {
+      const token = getCookie('jni_access_token');
+      const res = await fetch(`${API_URL}/crm/leads/${id}`, {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      if (res.ok) {
+        toast.success('Lead deleted successfully.');
+        setActiveLeadDetails(null);
+        setSelectedLead(null);
+        loadLeads();
+        loadStats();
+      }
+    } catch (e) {
+      toast.error('Error deleting lead.');
+    }
+  };
+
+  // Edit Lead Details
+  const handleEditLead = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!activeLeadDetails) return;
+
+    try {
+      setUpdatingLead(true);
+      const token = getCookie('jni_access_token');
+      const res = await fetch(`${API_URL}/crm/leads/${activeLeadDetails.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          name: editLeadName,
+          phone: editLeadPhone,
+          email: editLeadEmail || null,
+          language: editLeadLang,
+          source: editLeadSource,
+          notes: editLeadNotes || null
+        })
+      });
+
+      if (!res.ok) throw new Error('Failed to update lead details.');
+
+      toast.success('Lead details updated successfully.');
+      setIsEditLeadOpen(false);
+      handleViewLeadDetails(activeLeadDetails.id);
+      loadLeads();
+      loadStats();
+    } catch (err: any) {
+      toast.error('Error updating lead details.');
+    } finally {
+      setUpdatingLead(false);
+    }
+  };
+
+  const startEditLead = (lead: Lead) => {
+    setEditLeadName(lead.name);
+    setEditLeadPhone(lead.phone);
+    setEditLeadEmail(lead.email || '');
+    setEditLeadLang(lead.language);
+    setEditLeadSource(lead.source);
+    setEditLeadNotes(lead.notes || '');
+    setIsEditLeadOpen(true);
+  };
+
   // Log interaction events (Calls, Meetings, Sales)
   const handleLogInteraction = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -456,7 +552,12 @@ export default function CRMPage() {
               {STATUS_COLUMNS.map((status) => {
                 const columnLeads = leads.filter(l => l.status === status);
                 return (
-                  <div key={status} className="bg-card border border-border rounded-2xl p-4 flex flex-col min-w-[200px] h-[600px] overflow-y-auto">
+                  <div 
+                    key={status} 
+                    onDragOver={handleDragOver}
+                    onDrop={(e) => handleDrop(e, status)}
+                    className="bg-card border border-border rounded-2xl p-4 flex flex-col min-w-[200px] h-[600px] overflow-y-auto"
+                  >
                     <div className="flex justify-between items-center border-b border-border pb-3 mb-4">
                       <span className="text-[10px] font-extrabold text-foreground uppercase tracking-wider">{status}</span>
                       <span className="text-[10px] font-bold bg-muted-background px-2 py-0.5 rounded text-muted">
@@ -469,6 +570,8 @@ export default function CRMPage() {
                         <div
                           key={lead.id}
                           onClick={() => handleViewLeadDetails(lead.id)}
+                          draggable={true}
+                          onDragStart={(e) => handleDragStart(e, lead.id)}
                           className={`p-3 bg-muted-background/30 border rounded-xl hover:border-gold-primary/30 transition-all cursor-pointer space-y-2 hover:shadow-sm ${
                             activeLeadDetails?.id === lead.id ? 'border-gold-primary' : 'border-border'
                           }`}
@@ -711,11 +814,26 @@ export default function CRMPage() {
                 <div className="flex justify-between items-start">
                   <div>
                     <h2 className="text-base font-extrabold text-foreground">{activeLeadDetails.name}</h2>
-                    <span className="text-[9px] font-bold bg-[#0B0B0B] text-gold-primary border border-gold-primary/20 px-2 py-0.5 rounded uppercase mt-1 inline-block">
-                      Source: {activeLeadDetails.source}
-                    </span>
+                    <div className="flex items-center gap-2 mt-1">
+                      <span className="text-[9px] font-bold bg-[#0B0B0B] text-gold-primary border border-gold-primary/20 px-2 py-0.5 rounded uppercase inline-block">
+                        Source: {activeLeadDetails.source}
+                      </span>
+                      <button
+                        onClick={() => startEditLead(activeLeadDetails)}
+                        className="text-[10px] font-extrabold text-gold-primary hover:underline cursor-pointer"
+                      >
+                        Edit
+                      </button>
+                      <span className="text-muted text-[10px]">•</span>
+                      <button
+                        onClick={() => handleDeleteLead(activeLeadDetails.id)}
+                        className="text-[10px] font-extrabold text-red-500 hover:underline cursor-pointer"
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </div>
-                  <button onClick={() => setActiveLeadDetails(null)} className="text-muted hover:text-foreground">
+                  <button onClick={() => setActiveLeadDetails(null)} className="text-muted hover:text-foreground cursor-pointer">
                     <X className="w-4.5 h-4.5" />
                   </button>
                 </div>
@@ -1085,6 +1203,108 @@ export default function CRMPage() {
                 className="bg-gold-primary hover:bg-gold-hover text-black font-extrabold text-xs px-5 py-3 rounded-xl uppercase tracking-wider w-full cursor-pointer"
               >
                 {addingLead ? 'Submitting...' : 'Save Lead'}
+              </Button>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* EDIT LEAD MODAL */}
+      {isEditLeadOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <div className="bg-card border border-border rounded-2xl w-full max-w-md p-6 space-y-4 shadow-2xl relative">
+            <div className="flex justify-between items-center pb-2 border-b border-border">
+              <h3 className="text-sm font-extrabold uppercase text-gold-primary tracking-wider">Edit Lead Details</h3>
+              <button onClick={() => setIsEditLeadOpen(false)} className="text-muted hover:text-foreground">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <form onSubmit={handleEditLead} className="space-y-4 text-xs">
+              <div className="space-y-1.5">
+                <label className="text-[10px] font-extrabold uppercase text-muted tracking-wider">Full Name</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="Driver Full Name..."
+                  value={editLeadName}
+                  onChange={(e) => setEditLeadName(e.target.value)}
+                  className="w-full bg-background border border-border rounded-xl px-3 py-2.5 text-xs text-foreground focus:outline-none"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label className="text-[10px] font-extrabold uppercase text-muted tracking-wider">Phone number</label>
+                  <input
+                    type="tel"
+                    required
+                    placeholder="+1 (718) 555-0199..."
+                    value={editLeadPhone}
+                    onChange={(e) => setEditLeadPhone(e.target.value)}
+                    className="w-full bg-background border border-border rounded-xl px-3 py-2.5 text-xs text-foreground focus:outline-none"
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <label className="text-[10px] font-extrabold uppercase text-muted tracking-wider">Email (Optional)</label>
+                  <input
+                    type="email"
+                    placeholder="driver@gmail.com..."
+                    value={editLeadEmail}
+                    onChange={(e) => setEditLeadEmail(e.target.value)}
+                    className="w-full bg-background border border-border rounded-xl px-3 py-2.5 text-xs text-foreground focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label className="text-[10px] font-extrabold uppercase text-muted tracking-wider">Preferred Language</label>
+                  <select
+                    value={editLeadLang}
+                    onChange={(e) => setEditLeadLang(e.target.value)}
+                    className="w-full bg-background border border-border rounded-xl px-3 py-2.5 text-xs text-foreground focus:outline-none"
+                  >
+                    <option value="English">English</option>
+                    <option value="Spanish">Spanish</option>
+                    <option value="Urdu">Urdu</option>
+                    <option value="Mandarin">Mandarin</option>
+                    <option value="Bengali">Bengali</option>
+                    <option value="French">French</option>
+                  </select>
+                </div>
+                <div className="space-y-1.5">
+                  <label className="text-[10px] font-extrabold uppercase text-muted tracking-wider">Lead Source</label>
+                  <select
+                    value={editLeadSource}
+                    onChange={(e) => setEditLeadSource(e.target.value)}
+                    className="w-full bg-background border border-border rounded-xl px-3 py-2.5 text-xs text-foreground focus:outline-none"
+                  >
+                    <option value="PHONE">PHONE CALL</option>
+                    <option value="WEBSITE">WEBSITE CTA</option>
+                    <option value="WHATSAPP">WHATSAPP INBOUND</option>
+                    <option value="CALLBACK">GUEST CALLBACK FORM</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-[10px] font-extrabold uppercase text-muted tracking-wider">Notes / Summary</label>
+                <textarea
+                  placeholder="Reason for consultation..."
+                  value={editLeadNotes}
+                  onChange={(e) => setEditLeadNotes(e.target.value)}
+                  rows={2}
+                  className="w-full bg-background border border-border rounded-xl px-3 py-2.5 text-xs text-foreground focus:outline-none"
+                />
+              </div>
+
+              <Button
+                type="submit"
+                disabled={updatingLead}
+                className="bg-gold-primary hover:bg-gold-hover text-black font-extrabold text-xs px-5 py-3 rounded-xl uppercase tracking-wider w-full cursor-pointer"
+              >
+                {updatingLead ? 'Updating...' : 'Update Lead'}
               </Button>
             </form>
           </div>

@@ -185,6 +185,15 @@ export default function DriverCopilot() {
       setSocket(null);
     });
 
+    newSocket.on('chatTitleUpdated', (data: { chatId: string; title: string }) => {
+      setSessions(prev => prev.map(s => {
+        if (s.id === data.chatId) {
+          return { ...s, title: data.title };
+        }
+        return s;
+      }));
+    });
+
     newSocket.on('streamStart', (data: any) => {
       setIsTyping(false);
       // Ensure placeholder message exists

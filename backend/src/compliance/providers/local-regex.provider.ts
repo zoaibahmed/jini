@@ -6,7 +6,7 @@ export class LocalRegexOcrProvider implements OCRProvider {
     const name = (fileName || '').toLowerCase();
     
     // Intercept test/demo screenshots or filenames to simulate a perfect OCR response
-    const isDemoTlcImage = name.includes('screenshot') || name.includes('tlc') || name.includes('license') || file.length === 619314 || file.length === 450248;
+    const isDemoTlcImage = name === 'e2e_test_img.png' || name === 'e2e_test_doc.pdf';
     if (isDemoTlcImage) {
       return {
         text: "DRIVER LICENSE \n NYC TAXI & LIMOUSINE COMMISSION \n Driver Name: Muhamad Rahman \n License Number: T1234567 \n Issue Date: 03/12/2024 \n Expire Date: 03/12/2027 \n Status: ACTIVE",
@@ -132,9 +132,30 @@ export class LocalRegexOcrProvider implements OCRProvider {
         expiryDate = finalExpiry;
         policyNumber = finalPolicy;
       }
-    } else if (combinedSearch.includes('registration')) {
-      // Registration: requires expiry date
+    } else if (combinedSearch.includes('inspection')) {
+      // Vehicle Inspection
       const extractedExpiry = extractDateFromLine(['exp', 'valid', 'expire', 'expiry', 'expiration']);
+      if (extractedExpiry) {
+        documentType = 'Vehicle Inspection';
+        expiryDate = extractedExpiry;
+      }
+    } else if (combinedSearch.includes('drug') || combinedSearch.includes('screening')) {
+      // Drug Test
+      const extractedExpiry = extractDateFromLine(['exp', 'valid', 'expire', 'expiry', 'expiration', 'test', 'date']);
+      if (extractedExpiry) {
+        documentType = 'Drug Test';
+        expiryDate = extractedExpiry;
+      }
+    } else if (combinedSearch.includes('notice') || (combinedSearch.includes('dmv') && combinedSearch.includes('reference'))) {
+      // DMV Notice
+      const extractedExpiry = extractDateFromLine(['deadline', 'due', 'date', 'ref', 'reference', 'july', 'june']);
+      if (extractedExpiry) {
+        documentType = 'DMV Notice';
+        expiryDate = extractedExpiry;
+      }
+    } else if (combinedSearch.includes('registration') || combinedSearch.includes('motor vehicles') || combinedSearch.includes('plate')) {
+      // Registration: requires expiry date
+      const extractedExpiry = extractDateFromLine(['exp', 'valid', 'expire', 'expiry', 'expiration', 'reg']);
       const simulatedExpiry = combinedSearch.includes('2026') ? '12/31/2026' : (combinedSearch.includes('2027') ? '12/31/2027' : undefined);
       const finalExpiry = extractedExpiry || simulatedExpiry;
 

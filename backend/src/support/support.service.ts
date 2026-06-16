@@ -22,9 +22,19 @@ export class SupportService {
       files?: Array<{ name: string; s3Key: string; sizeBytes: number; mimeType: string }>;
     },
   ) {
-    // Generate base UUID via Prisma
-    const baseRecord = await this.prisma.ticket.create({ data: {} });
+    // Generate base UUID via Prisma with all required fields
     const ticketId = await this.generateTicketId();
+    const baseRecord = await this.prisma.ticket.create({
+      data: {
+        ticketId,
+        driverId,
+        title: data.title,
+        description: data.description,
+        category: data.category.toUpperCase(),
+        status: 'OPEN',
+        priority: data.priority.toUpperCase(),
+      }
+    });
 
     const ticket: SupportTicket = {
       id: baseRecord.id,

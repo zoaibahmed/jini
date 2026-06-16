@@ -299,4 +299,38 @@ export class CrmService {
       },
     };
   }
+
+  // Update Lead details
+  async updateLeadDetails(id: string, data: {
+    name?: string;
+    phone?: string;
+    email?: string;
+    language?: string;
+    source?: string;
+    notes?: string;
+  }) {
+    const leads = CrmStore.getLeads();
+    const idx = leads.findIndex(l => l.id === id);
+    if (idx === -1) throw new NotFoundException('Lead not found');
+
+    if (data.name !== undefined) leads[idx].name = data.name;
+    if (data.phone !== undefined) leads[idx].phone = data.phone;
+    if (data.email !== undefined) leads[idx].email = data.email;
+    if (data.language !== undefined) leads[idx].language = data.language;
+    if (data.source !== undefined) leads[idx].source = data.source;
+    if (data.notes !== undefined) leads[idx].notes = data.notes;
+    
+    leads[idx].updatedAt = new Date().toISOString();
+    CrmStore.saveLeads(leads);
+
+    // Keep name in postgres Lead row consistent
+    if (data.name) {
+      await this.prisma.lead.update({
+        where: { id },
+        data: { name: data.name }
+      }).catch(() => {});
+    }
+
+    return leads[idx];
+  }
 }

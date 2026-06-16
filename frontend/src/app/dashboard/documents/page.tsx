@@ -85,14 +85,31 @@ export default function DocumentCenter() {
       if (res.ok) {
         const data = await res.json();
         setDocuments(data);
+        return data;
       }
     } catch (err) {
       console.warn('Backend documents fetch failed. Using seeded state fallback.');
     }
   };
 
+  const startPolling = () => {
+    let attempts = 0;
+    const interval = setInterval(async () => {
+      attempts++;
+      const data = await fetchDocs();
+      const stillProcessing = data && data.some((d: any) => d.notes && d.notes.includes('Processing OCR'));
+      if (!stillProcessing || attempts >= 12) {
+        clearInterval(interval);
+      }
+    }, 2000);
+  };
+
   useEffect(() => {
-    fetchDocs();
+    fetchDocs().then((data) => {
+      if (data && data.some((d: any) => d.notes && d.notes.includes('Processing OCR'))) {
+        startPolling();
+      }
+    });
   }, [activeCategory, activeFilterStatus, searchQuery, user]);
 
   const isAdmin = user?.role === 'ADMIN' || user?.role === 'SUPERADMIN' || user?.role === 'SUPPORT';
@@ -189,7 +206,7 @@ export default function DocumentCenter() {
 
         if (res.ok) {
           toast.success(`${file.name} uploaded and encrypted in vault.`);
-          fetchDocs();
+          startPolling();
         }
       } catch (err) {
         // Fallback for offline mode

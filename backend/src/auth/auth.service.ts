@@ -324,39 +324,6 @@ export class AuthService {
       },
     });
 
-    // Seed default compliance checks dynamically if none exist
-    const existingChecks = await this.prisma.complianceCheck.findFirst({
-      where: { driverId: userId },
-    });
-
-    if (!existingChecks) {
-      await this.prisma.complianceCheck.createMany({
-        data: [
-          {
-            driverId: userId,
-            title: 'TLC Vehicle Inspection (DMV)',
-            description: 'Bi-annual Woodside safety inspection requirement',
-            status: 'PENDING',
-            dueDate: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000),
-          },
-          {
-            driverId: userId,
-            title: 'Annual TLC Drug Screening',
-            description: 'Yearly drug test compliance for license renewal',
-            status: 'PENDING',
-            dueDate: new Date(Date.now() + 32 * 24 * 60 * 60 * 1000),
-          },
-          {
-            driverId: userId,
-            title: 'Defensive Driving Course',
-            description: 'Required 6-hour defensive driving certificate update',
-            status: 'EXPIRED',
-            dueDate: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
-          },
-        ],
-      });
-    }
-
     // Seed a default hybrid vehicle for this driver profile if none exist
     const existingVehicles = await this.prisma.vehicle.findFirst({
       where: { driverId: userId },

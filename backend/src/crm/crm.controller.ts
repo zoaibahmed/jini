@@ -61,6 +61,23 @@ export class CrmController {
     return this.crmService.updateLeadStatus(id, body.status);
   }
 
+  @Patch('leads/:id')
+  @ApiOperation({ summary: 'Update contact details of a CRM lead' })
+  async updateLeadDetails(
+    @Param('id') id: string,
+    @Body()
+    body: {
+      name?: string;
+      phone?: string;
+      email?: string;
+      language?: string;
+      source?: string;
+      notes?: string;
+    },
+  ) {
+    return this.crmService.updateLeadDetails(id, body);
+  }
+
   @Delete('leads/:id')
   @ApiOperation({ summary: 'Delete a CRM lead' })
   async deleteLead(@Param('id') id: string) {
