@@ -32,7 +32,7 @@ import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/toast';
 import { useAuth } from '@/hooks/useAuth';
 import { io, Socket } from 'socket.io-client';
-import { API_URL } from '@/config';
+import { API_URL, getSocketConfig } from '@/config';
 
 interface AttachmentItem {
   id: string;
@@ -406,10 +406,8 @@ export default function SupportCenter() {
       fetchAnalytics();
     }
 
-    const socketInstance = io(`${API_URL}/support`, {
-      transports: ['websocket'],
-      autoConnect: true
-    });
+    const socketCfg = getSocketConfig('support');
+    const socketInstance = io(socketCfg.url, socketCfg.options);
 
     socketInstance.on('connect', () => {
       console.log('Successfully connected to real-time Support WS Gateway');

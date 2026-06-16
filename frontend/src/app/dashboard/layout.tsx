@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Logo } from '@/components/ui/Logo';
-import { API_URL } from '@/config';
+import { API_URL, getSocketConfig } from '@/config';
 import { usePathname } from 'next/navigation';
 import { 
   LayoutDashboard, 
@@ -87,10 +87,8 @@ export default function DashboardLayout({
       .catch((err) => console.warn('Failed to fetch notifications:', err));
 
     // Connect to Notifications Namespace
-    const newSocket = io(`${API_URL}/notifications`, {
-      transports: ['websocket'],
-      autoConnect: true,
-    });
+    const socketCfg = getSocketConfig('notifications');
+    const newSocket = io(socketCfg.url, socketCfg.options);
 
     newSocket.on('connect', () => {
       newSocket.emit('register', { userId: user.id });
@@ -175,10 +173,8 @@ export default function DashboardLayout({
     }
 
     const token = getCookie('jni_access_token');
-    const newSocket = io(`${API_URL}/copilot`, {
-      transports: ['websocket'],
-      autoConnect: true,
-    });
+    const socketCfg = getSocketConfig('copilot');
+    const newSocket = io(socketCfg.url, socketCfg.options);
 
     newSocket.on('connect', () => {
       console.log('Floating AI widget connected to copilot socket');

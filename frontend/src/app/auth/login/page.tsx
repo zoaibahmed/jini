@@ -108,33 +108,7 @@ export default function LoginPage() {
               </Button>
             </form>
 
-            {/* Quick Demo Logins Helper */}
-            <div className="mt-6 border-t border-slate-100 dark:border-zinc-800 pt-6 space-y-3">
-              <h5 className="text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1">
-                <Sparkles className="w-3.5 h-3.5 text-[#F5C400]" />
-                <span>Quick Demo Accounts (Seed)</span>
-              </h5>
-              <div className="grid grid-cols-3 gap-2">
-                <button 
-                  onClick={() => handleFillDemo('driver')}
-                  className="p-2 border border-slate-200 dark:border-zinc-800 hover:border-[#F5C400] dark:hover:border-[#F5C400] bg-slate-50 dark:bg-zinc-900/50 rounded-xl text-[10px] font-bold text-center transition-colors text-slate-700 dark:text-slate-200"
-                >
-                  Driver
-                </button>
-                <button 
-                  onClick={() => handleFillDemo('support')}
-                  className="p-2 border border-slate-200 dark:border-zinc-800 hover:border-[#F5C400] dark:hover:border-[#F5C400] bg-slate-50 dark:bg-zinc-900/50 rounded-xl text-[10px] font-bold text-center transition-colors text-slate-700 dark:text-slate-200"
-                >
-                  Support
-                </button>
-                <button 
-                  onClick={() => handleFillDemo('admin')}
-                  className="p-2 border border-slate-200 dark:border-zinc-800 hover:border-[#F5C400] dark:hover:border-[#F5C400] bg-slate-50 dark:bg-zinc-900/50 rounded-xl text-[10px] font-bold text-center transition-colors text-slate-700 dark:text-slate-200"
-                >
-                  Admin
-                </button>
-              </div>
-            </div>
+
 
             <p className="mt-6 text-center text-xs text-slate-500 dark:text-slate-400 font-semibold">
               Don&apos;t have an account?{' '}

@@ -16,7 +16,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/toast';
 import { useAuth } from '@/hooks/useAuth';
-import { API_URL } from '@/config';
+import { API_URL, getSocketConfig } from '@/config';
 import { io } from 'socket.io-client';
 
 interface NotificationItem {
@@ -71,10 +71,8 @@ export default function NotificationCenter() {
     fetchNotifications();
 
     // Listen for real-time notifications on this page as well
-    const newSocket = io(`${API_URL}/notifications`, {
-      transports: ['websocket'],
-      autoConnect: true,
-    });
+    const socketCfg = getSocketConfig('notifications');
+    const newSocket = io(socketCfg.url, socketCfg.options);
 
     newSocket.on('connect', () => {
       newSocket.emit('register', { userId: user.id });

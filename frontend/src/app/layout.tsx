@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   description: "Advanced AI driver copilot, flight arrivals forecasting, TLC/city compliance tracking, and automated tax write-offs for Uber, Lyft, and commercial drivers.",
   keywords: ["TLC Driver Support", "Uber driver helper", "Lyft earnings", "JFK flight arrivals prediction", "TLC drug screening", "ride-share tax calculator"],
   authors: [{ name: "JNI Solutions Development Team" }],
+  icons: {
+    icon: '/icon.svg',
+  },
 };
 
 export default function RootLayout({

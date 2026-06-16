@@ -22,3 +22,18 @@ export const getApiUrl = (): string => {
 };
 
 export const API_URL = getApiUrl();
+
+export const getSocketConfig = (namespace: string) => {
+  const isProductionBackend = API_URL.includes('/backend');
+  const socketUrl = isProductionBackend ? API_URL.split('/backend')[0] : API_URL;
+  const path = isProductionBackend ? '/backend/socket.io' : undefined;
+  
+  return {
+    url: `${socketUrl}/${namespace}`,
+    options: {
+      path,
+      transports: ['websocket'],
+      autoConnect: true,
+    }
+  };
+};

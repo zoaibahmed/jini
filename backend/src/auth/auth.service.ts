@@ -256,8 +256,8 @@ export class AuthService {
       return { message: 'Password reset link sent if account exists.' };
     }
 
-    const token = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-    const expiresAt = new Date(Date.now() + 1 * 60 * 60 * 1000); // 1 hour expiry
+    const token = Math.floor(100000 + Math.random() * 900000).toString();
+    const expiresAt = new Date(Date.now() + 15 * 60 * 1000); // 15 minutes expiry for numeric code
 
     const resetRecord = {
       id: Math.random().toString(36).substring(2, 15),

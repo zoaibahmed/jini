@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { io, Socket } from 'socket.io-client';
 import { useAuth } from '@/hooks/useAuth';
 import { useToast } from '@/components/ui/toast';
-import { API_URL } from '@/config';
+import { API_URL, getSocketConfig } from '@/config';
 import { 
   MessageSquare, 
   Send, 
@@ -170,10 +170,8 @@ export default function DriverCopilot() {
   // Connect socket
   useEffect(() => {
     const token = getCookie('jni_access_token');
-    const newSocket = io(`${API_URL}/copilot`, {
-      transports: ['websocket'],
-      autoConnect: true,
-    });
+    const socketCfg = getSocketConfig('copilot');
+    const newSocket = io(socketCfg.url, socketCfg.options);
 
     newSocket.on('connect', () => {
       setIsConnected(true);
