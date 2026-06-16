@@ -14,10 +14,14 @@ export class DocumentService {
     private readonly complianceService: ComplianceService
   ) {}
 
-  // Return local URLs for upload and download flows
   async getPresignedUrl(fileName: string, action: 'GET' | 'PUT'): Promise<string> {
     const port = process.env.PORT || 5000;
-    const backendUrl = process.env.BACKEND_URL || `http://localhost:${port}`;
+    let backendUrl = process.env.BACKEND_URL || `http://localhost:${port}`;
+    
+    // Auto-fix production backend URL suffix if missing
+    if (!backendUrl.includes('localhost') && !backendUrl.includes('127.0.0.1') && !backendUrl.endsWith('/backend')) {
+      backendUrl = `${backendUrl.replace(/\/$/, '')}/backend`;
+    }
     
     if (action === 'PUT') {
       return `${backendUrl}/documents/upload-local?fileName=${encodeURIComponent(fileName)}`;
