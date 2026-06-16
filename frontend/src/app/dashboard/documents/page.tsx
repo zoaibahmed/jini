@@ -17,13 +17,15 @@ import {
   Edit2,
   Calendar,
   Tag,
-  AlertCircle
+  AlertCircle,
+  Camera
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/toast';
 import { useAuth } from '@/hooks/useAuth';
 import { API_URL } from '@/config';
 import Link from 'next/link';
+import { CameraScanner } from '@/components/CameraScanner';
 
 
 interface DocumentItem {
@@ -47,6 +49,7 @@ export default function DocumentCenter() {
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const [activeFilterStatus, setActiveFilterStatus] = useState<string>('All');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [showScanner, setShowScanner] = useState(false);
   
   // Upload status hooks
   const [isUploading, setIsUploading] = useState(false);
@@ -231,6 +234,86 @@ export default function DocumentCenter() {
     }, 1500);
   };
 
+  const handleCameraCapture = async (blob: Blob, fileName: string) => {
+    setUploadQueue(prev => [...prev, { name: fileName, progress: 0, status: 'UPLOADING' }]);
+    setIsUploading(true);
+    setUploadProgress(0);
+
+    const interval = setInterval(() => {
+      setUploadProgress(prev => {
+        const next = prev + 15;
+        if (next >= 100) {
+          clearInterval(interval);
+          return 100;
+        }
+        return next;
+      });
+    }, 150);
+
+    try {
+      const token = document.cookie
+        .split('; ')
+        .find((row) => row.startsWith('jni_access_token='))
+        ?.split('=')[1];
+
+      const s3SignRes = await fetch(`${API_URL}/documents/presigned-url?fileName=${encodeURIComponent(fileName)}`, {
+        headers: {
+          'x-user-id': user?.id || '',
+          'x-user-role': user?.role || 'DRIVER',
+          'Authorization': `Bearer ${token || ''}`
+        }
+      });
+      const s3SignData = await s3SignRes.json();
+
+      const file = new File([blob], fileName, { type: 'image/jpeg' });
+      await fetch(s3SignData.uploadUrl, {
+        method: 'PUT',
+        body: file,
+        headers: { 'Content-Type': 'image/jpeg' }
+      });
+
+      const res = await fetch(`${API_URL}/documents`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-user-id': user?.id || '',
+          'Authorization': `Bearer ${token || ''}`
+        },
+        body: JSON.stringify({
+          name: fileName,
+          categoryName: 'Unknown',
+          size: `${(file.size / (1024 * 1024)).toFixed(2)} MB`,
+          expiryDate: null,
+          tags: ['scanned', 'mobile-camera'],
+          notes: 'Processing OCR analysis...'
+        })
+      });
+
+      if (res.ok) {
+        toast.success(`Mobile Scan ${fileName} uploaded.`);
+        startPolling();
+      }
+    } catch (err) {
+      const newDoc: DocumentItem = {
+        id: Math.random().toString(36).substring(2, 9),
+        name: fileName,
+        categoryName: 'Unknown',
+        size: `${(blob.size / (1024 * 1024)).toFixed(2)} MB`,
+        s3Key: `uploads/${user?.id || 'demo'}/${fileName}`,
+        status: 'Needs Review',
+        expiryDate: null,
+        tags: ['scanned', 'mobile-camera'],
+        notes: 'Processing OCR analysis (Offline).',
+        createdAt: new Date().toISOString()
+      };
+      setDocuments(prev => [newDoc, ...prev]);
+      toast.success(`${fileName} saved locally (offline fallback).`);
+    } finally {
+      setIsUploading(false);
+      setUploadQueue([]);
+    }
+  };
+
   const handleDelete = async (id: string, name: string) => {
     try {
       const token = document.cookie
@@ -378,6 +461,16 @@ export default function DocumentCenter() {
                 </div>
               )}
             </label>
+
+            <div className="flex flex-col gap-2 pt-2">
+              <Button 
+                onClick={() => setShowScanner(true)}
+                className="w-full bg-[#0B0B0B] hover:bg-gold-primary text-white hover:text-black border border-border/40 hover:border-transparent font-bold py-2.5 flex items-center justify-center gap-2 rounded-xl transition-all cursor-pointer"
+              >
+                <Camera className="w-4 h-4" />
+                Scan Document with Camera
+              </Button>
+            </div>
 
             {/* S3 Security Badge */}
             <div className="bg-muted-background/30 p-4 rounded-xl border border-border space-y-2 text-xs flex gap-2.5">
@@ -729,6 +822,13 @@ export default function DocumentCenter() {
             </form>
           </div>
         </div>
+      )}
+
+      {showScanner && (
+        <CameraScanner
+          onClose={() => setShowScanner(false)}
+          onCapture={(blob, name) => handleCameraCapture(blob, name)}
+        />
       )}
 
     </div>

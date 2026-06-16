@@ -257,20 +257,27 @@ export default function DashboardLayout({
   return (
     <div className="flex-1 flex flex-col min-h-screen bg-background text-foreground md:flex-row transition-all duration-300">
       
-      {/* Sidebar for Desktop */}
-      <aside className="hidden md:flex flex-col w-64 glass border-r border-border shrink-0 sticky top-0 h-screen p-5 justify-between z-20">
-        <div className="space-y-6">
-          {/* Logo */}
-          <Link href="/" className="flex items-center group">
-            <Logo size="md" variant="auto" />
+      {/* Sidebar (Slim hover-expandable on mobile, sticky full-width on desktop) */}
+      <aside className="fixed md:sticky top-0 left-0 h-screen z-50 flex flex-col justify-between border-r border-border bg-background/80 dark:bg-zinc-950/80 backdrop-blur-md p-3 md:p-5 transition-all duration-300 group w-14 hover:w-64 md:w-64 shrink-0">
+        <div className="space-y-6 overflow-x-hidden">
+          {/* Logo Section */}
+          <Link href="/" className="flex items-center">
+            {/* Show full logo on desktop or when expanded */}
+            <div className="hidden group-hover:flex md:flex">
+              <Logo size="md" variant="auto" />
+            </div>
+            {/* Show icon-only logo when collapsed on mobile */}
+            <div className="flex group-hover:hidden md:hidden justify-center w-full">
+              <Logo size="sm" variant="auto" iconOnly={true} />
+            </div>
           </Link>
 
           {/* User Profile Summary */}
-          <div className="flex items-center space-x-3 p-3 bg-muted-background/40 border border-border rounded-xl">
-            <div className="w-10 h-10 rounded-lg bg-gold-primary/15 border border-gold-primary/30 flex items-center justify-center text-[#F5C400] font-heading font-extrabold text-sm">
+          <div className="flex items-center space-x-3 p-1.5 md:p-3 bg-muted-background/40 border border-border rounded-xl overflow-hidden">
+            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-gold-primary/15 border border-gold-primary/30 flex items-center justify-center text-[#F5C400] font-heading font-extrabold text-xs md:text-sm shrink-0">
               {initials}
             </div>
-            <div className="overflow-hidden">
+            <div className="overflow-hidden transition-all duration-300 opacity-0 group-hover:opacity-100 md:opacity-100 whitespace-nowrap">
               <h4 className="text-xs font-bold truncate text-foreground">{displayName}</h4>
               <span className="text-[10px] text-muted flex items-center gap-1 font-semibold">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
@@ -288,19 +295,21 @@ export default function DashboardLayout({
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold transition-all duration-200 ${
+                  className={`flex items-center justify-between p-2.5 md:px-3 md:py-2 rounded-xl text-xs font-bold transition-all duration-200 overflow-hidden ${
                     isActive 
                       ? 'bg-gold-primary text-[#0B0B0B] font-extrabold shadow-md shadow-gold-glow' 
                       : 'text-muted hover:text-foreground hover:bg-muted-background'
                   }`}
                 >
-                  <span className="flex items-center space-x-3">
-                    <Icon className="w-4 h-4" />
-                    <span>{item.name}</span>
+                  <span className="flex items-center min-w-0">
+                    <Icon className="w-4 h-4 shrink-0" />
+                    <span className="ml-3 transition-all duration-300 opacity-0 group-hover:opacity-100 md:opacity-100 whitespace-nowrap overflow-hidden text-ellipsis">
+                      {item.name}
+                    </span>
                   </span>
                   {item.name === 'Notifications' && unreadCount > 0 && (
-                    <span className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full ${
-                      isActive ? 'bg-[#0B0B0B] text-gold-primary' : 'bg-red-500 text-white animate-pulse'
+                    <span className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full shrink-0 transition-all duration-300 opacity-0 group-hover:opacity-100 md:opacity-100 ${
+                      isActive ? 'bg-[#0B0B0B] text-gold-primary' : 'bg-red-500 text-white'
                     }`}>
                       {unreadCount}
                     </span>
@@ -312,29 +321,34 @@ export default function DashboardLayout({
         </div>
 
         {/* Footer Actions */}
-        <div className="space-y-2 pt-4 border-t border-border">
+        <div className="space-y-2 pt-4 border-t border-border overflow-hidden">
           <button 
             onClick={toggleTheme}
-            className="flex items-center justify-between w-full px-3 py-2 rounded-xl text-xs font-bold text-muted hover:text-foreground hover:bg-muted-background transition-colors"
+            className="flex items-center justify-between w-full p-2.5 md:px-3 md:py-2 rounded-xl text-xs font-bold text-muted hover:text-foreground hover:bg-muted-background transition-colors"
           >
-            <span className="flex items-center space-x-3">
-              {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-              <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
+            <span className="flex items-center min-w-0">
+              {theme === 'dark' ? <Sun className="w-4 h-4 shrink-0" /> : <Moon className="w-4 h-4 shrink-0" />}
+              <span className="ml-3 transition-all duration-300 opacity-0 group-hover:opacity-100 md:opacity-100 whitespace-nowrap">
+                {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+              </span>
             </span>
           </button>
           
           <button
             onClick={logout}
-            className="flex items-center space-x-3 px-3 py-2 rounded-xl text-xs font-bold text-red-500 hover:bg-red-500/10 transition-colors w-full text-left"
+            className="flex items-center p-2.5 md:px-3 md:py-2 rounded-xl text-xs font-bold text-red-500 hover:bg-red-500/10 transition-colors w-full text-left"
           >
-            <LogOut className="w-4 h-4" />
-            <span>Sign Out</span>
+            <LogOut className="w-4 h-4 shrink-0" />
+            <span className="ml-3 transition-all duration-300 opacity-0 group-hover:opacity-100 md:opacity-100 whitespace-nowrap">
+              Sign Out
+            </span>
           </button>
         </div>
       </aside>
 
       {/* Main content wrapper */}
-      <div className="flex-1 flex flex-col min-h-screen pb-16 md:pb-0">
+      <div className="flex-1 flex flex-col min-h-screen pl-14 md:pl-0 transition-all duration-300">
+
         
         {/* Mobile Header Bar */}
         <header className="md:hidden flex items-center justify-between px-4 h-16 glass border-b border-border sticky top-0 z-30">
@@ -365,31 +379,9 @@ export default function DashboardLayout({
         </main>
       </div>
 
-      {/* Bottom Nav Bar for Mobile Viewports */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 h-16 glass border-t border-border flex items-center justify-around px-2 z-30">
-        {navigation.slice(0, 5).map((item) => {
-          const isActive = pathname === item.href;
-          const Icon = item.icon;
-          return (
-            <Link
-              key={item.name}
-              href={item.href}
-              className={`flex flex-col items-center justify-center w-12 h-12 rounded-xl transition-all duration-200 ${
-                isActive 
-                  ? 'text-[#F5C400]' 
-                  : 'text-muted'
-              }`}
-            >
-              <Icon className="w-5 h-5" />
-              <span className="text-[9px] mt-1 font-semibold truncate max-w-full">{item.name.replace('Support Center', 'Support').replace('Support Queue', 'Support')}</span>
-            </Link>
-          );
-        })}
-      </nav>
-
       {/* Global Floating AI Assistant Widget */}
       {!isCopilotRoute && (
-        <div className="fixed bottom-20 md:bottom-6 right-6 z-40">
+        <div className="fixed bottom-6 right-6 z-40">
           <AnimatePresence>
             {isAiOpen && (
               <motion.div
