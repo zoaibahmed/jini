@@ -181,117 +181,193 @@
     "createdAt": "2026-06-08T18:12:06.301Z"
   },
   {
-    "id": "7c2390aa-8de9-4c77-93af-20ed8f615516",
-    "chatId": "a98f21cf-293e-415b-999b-e4879b5efdf3",
+    "id": "602cfa29-1ab5-4fbe-b6f7-39ca5e009e2e",
+    "chatId": "2ab3b2a9-8b4e-4d53-b1a7-2c8a09737ba7",
     "sender": "USER",
-    "message": "heyyy",
+    "message": "Check Compliance Status",
     "language": "English",
     "isPinned": false,
-    "createdAt": "2026-06-13T17:09:17.632Z"
+    "createdAt": "2026-06-16T16:05:10.697Z"
   },
   {
-    "id": "e5fc90fb-6dd4-4b86-9918-241345006c68",
-    "chatId": "a98f21cf-293e-415b-999b-e4879b5efdf3",
-    "sender": "AI",
-    "message": "👋 Hello! I am your JNI Solutions Co-pilot. I can assist you with your TLC compliance deadlines, airport arrivals & surge warnings, earnings summaries, or document renewals.\n\nWhat can I help you with today?",
-    "confidenceScore": 0.85,
-    "language": "English",
-    "isPinned": false,
-    "createdAt": "2026-06-13T17:09:19.664Z"
-  },
-  {
-    "id": "f8c466e7-904e-4593-a74b-2a58175d0529",
-    "chatId": "a98f21cf-293e-415b-999b-e4879b5efdf3",
-    "sender": "USER",
-    "message": "nothing brother listen",
-    "language": "English",
-    "isPinned": false,
-    "createdAt": "2026-06-13T17:09:23.747Z"
-  },
-  {
-    "id": "a6bebdfd-b2ec-4d0c-bfe0-c3135498ef89",
-    "chatId": "a98f21cf-293e-415b-999b-e4879b5efdf3",
-    "sender": "AI",
-    "message": "👋 Hello! I am your JNI Solutions Co-pilot. I can assist you with your TLC compliance deadlines, airport arrivals & surge warnings, earnings summaries, or document renewals.\n\nWhat can I help you with today?",
-    "confidenceScore": 0.85,
-    "language": "English",
-    "isPinned": false,
-    "createdAt": "2026-06-13T17:09:25.580Z"
-  },
-  {
-    "id": "275632ab-c024-42fc-bac7-838657556728",
-    "chatId": "a98f21cf-293e-415b-999b-e4879b5efdf3",
-    "sender": "USER",
-    "message": "umm",
-    "language": "English",
-    "isPinned": false,
-    "createdAt": "2026-06-13T17:09:27.999Z"
-  },
-  {
-    "id": "ee349ca8-c63e-4e43-9741-b53f7d164c16",
-    "chatId": "a98f21cf-293e-415b-999b-e4879b5efdf3",
-    "sender": "AI",
-    "message": "Hmm, that seems like a complex case regarding active issues or deactivations. I cannot resolve this directly.\n\n⚠️ *System Note: My confidence in answering this query is low. I have automatically opened a support case (JNI-T-70045) for you and queued it for transfer to a human support agent.*",
-    "confidenceScore": 0.3,
-    "language": "English",
-    "isPinned": false,
-    "createdAt": "2026-06-13T17:09:29.047Z"
-  },
-  {
-    "id": "00564800-4e3d-47ca-9bb0-1aade1f669b7",
-    "chatId": "a98f21cf-293e-415b-999b-e4879b5efdf3",
-    "sender": "USER",
-    "message": "hey",
-    "language": "English",
-    "isPinned": false,
-    "createdAt": "2026-06-13T17:09:55.748Z"
-  },
-  {
-    "id": "fb145c15-4a09-40e6-9e87-97669691bd36",
-    "chatId": "a98f21cf-293e-415b-999b-e4879b5efdf3",
-    "sender": "AI",
-    "message": "Hmm, that seems like a complex case regarding active issues or deactivations. I cannot resolve this directly.\n\n⚠️ *System Note: My confidence in answering this query is low. I have automatically opened a support case (JNI-T-97537) for you and queued it for transfer to a human support agent.*",
-    "confidenceScore": 0.3,
-    "language": "English",
-    "isPinned": false,
-    "createdAt": "2026-06-13T17:09:56.539Z"
-  },
-  {
-    "id": "a7ae171a-49f0-43a6-99eb-08682dbd4e1b",
-    "chatId": "a98f21cf-293e-415b-999b-e4879b5efdf3",
-    "sender": "USER",
-    "message": "hey",
-    "language": "English",
-    "isPinned": false,
-    "createdAt": "2026-06-13T17:13:01.571Z"
-  },
-  {
-    "id": "9fa1c6c9-2d93-485e-88e5-3e4686437549",
-    "chatId": "a98f21cf-293e-415b-999b-e4879b5efdf3",
+    "id": "ac55f7e9-fdf6-433f-a43a-0b7895096cab",
+    "chatId": "2ab3b2a9-8b4e-4d53-b1a7-2c8a09737ba7",
     "sender": "AI",
     "message": "Webhook returned status 200 with an empty response body. Please ensure your n8n workflow is active, receives the message, and returns a JSON response containing a 'response' or 'text' key.",
     "confidenceScore": 0.95,
     "language": "English",
     "isPinned": false,
-    "createdAt": "2026-06-13T17:13:03.267Z"
+    "createdAt": "2026-06-16T16:05:13.319Z"
   },
   {
-    "id": "88cb44a3-4489-4f1f-a022-6119cfe21afb",
-    "chatId": "a98f21cf-293e-415b-999b-e4879b5efdf3",
+    "id": "4fc73d80-3353-49a8-8f7a-3233115fe219",
+    "chatId": "2ab3b2a9-8b4e-4d53-b1a7-2c8a09737ba7",
     "sender": "USER",
     "message": "hey",
     "language": "English",
     "isPinned": false,
-    "createdAt": "2026-06-13T17:47:38.355Z"
+    "createdAt": "2026-06-16T16:06:38.256Z"
   },
   {
-    "id": "73e73e6d-1ed8-42c6-acaf-ed2f7c422e88",
-    "chatId": "a98f21cf-293e-415b-999b-e4879b5efdf3",
+    "id": "8ca3e542-accf-4506-95f5-352aa2dfeadf",
+    "chatId": "2ab3b2a9-8b4e-4d53-b1a7-2c8a09737ba7",
     "sender": "AI",
     "message": "Webhook returned status 200 with an empty response body. Please ensure your n8n workflow is active, receives the message, and returns a JSON response containing a 'response' or 'text' key.",
     "confidenceScore": 0.95,
     "language": "English",
     "isPinned": false,
-    "createdAt": "2026-06-13T17:47:40.936Z"
+    "createdAt": "2026-06-16T16:06:39.988Z"
+  },
+  {
+    "id": "c6fb7ed4-d4c8-49a1-8eb1-0536ac5f4833",
+    "chatId": "2ab3b2a9-8b4e-4d53-b1a7-2c8a09737ba7",
+    "sender": "USER",
+    "message": "hmm",
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-06-16T16:06:44.747Z"
+  },
+  {
+    "id": "ea4d48f1-526b-4e1b-b599-d0922b66c4f4",
+    "chatId": "2ab3b2a9-8b4e-4d53-b1a7-2c8a09737ba7",
+    "sender": "AI",
+    "message": "Webhook returned status 200 with an empty response body. Please ensure your n8n workflow is active, receives the message, and returns a JSON response containing a 'response' or 'text' key.",
+    "confidenceScore": 0.95,
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-06-16T16:06:46.002Z"
+  },
+  {
+    "id": "9f17fb4a-a9ca-4c2f-bd19-a5cebce6f390",
+    "chatId": "2ab3b2a9-8b4e-4d53-b1a7-2c8a09737ba7",
+    "sender": "USER",
+    "message": "hey",
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-06-16T16:08:20.335Z"
+  },
+  {
+    "id": "330fa037-69bf-487f-94dd-d314d827134a",
+    "chatId": "2ab3b2a9-8b4e-4d53-b1a7-2c8a09737ba7",
+    "sender": "AI",
+    "message": "Hello! How can I assist you today? Whether you have questions about TLC rules, vehicle inspections, or anything related to driving commercially in NYC, feel free to ask!",
+    "confidenceScore": 0.3,
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-06-16T16:08:23.090Z"
+  },
+  {
+    "id": "9889a3bd-4f17-4916-953c-c9429e42a4bd",
+    "chatId": "2ab3b2a9-8b4e-4d53-b1a7-2c8a09737ba7",
+    "sender": "USER",
+    "message": "nothing bye",
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-06-16T16:08:29.128Z"
+  },
+  {
+    "id": "401750b7-763a-44d1-ae1c-1d0cd782e7f5",
+    "chatId": "2ab3b2a9-8b4e-4d53-b1a7-2c8a09737ba7",
+    "sender": "AI",
+    "message": "Alright, if you have any questions in the future, feel free to reach out. Have a great day and drive safely!",
+    "confidenceScore": 0.95,
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-06-16T16:08:31.489Z"
+  },
+  {
+    "id": "d7615494-0d9e-46a7-99f9-ab88b23cdcda",
+    "chatId": "2ab3b2a9-8b4e-4d53-b1a7-2c8a09737ba7",
+    "sender": "USER",
+    "message": "okk good reply ",
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-06-16T16:08:36.766Z"
+  },
+  {
+    "id": "4258da66-7602-4213-b6fd-9837b5d6032c",
+    "chatId": "2ab3b2a9-8b4e-4d53-b1a7-2c8a09737ba7",
+    "sender": "AI",
+    "message": "Thank you! If you have any more questions or need assistance, I'm here to help. Safe travels!",
+    "confidenceScore": 0.95,
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-06-16T16:08:37.671Z"
+  },
+  {
+    "id": "7c52b36c-7169-4866-af2a-f54f2c51e3eb",
+    "chatId": "2ab3b2a9-8b4e-4d53-b1a7-2c8a09737ba7",
+    "sender": "USER",
+    "message": "btw listen can you give info about like my brother is ill which medicine should i give him",
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-06-16T16:08:57.767Z"
+  },
+  {
+    "id": "31945632-fb7f-47c4-9a71-dbe3905a022f",
+    "chatId": "2ab3b2a9-8b4e-4d53-b1a7-2c8a09737ba7",
+    "sender": "AI",
+    "message": "I'm sorry to hear about your brother. However, I am not qualified to provide medical advice. It would be best to consult a healthcare professional or a doctor for guidance specific to his symptoms. If it's an urgent situation, please consider contacting a medical emergency service.",
+    "confidenceScore": 0.95,
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-06-16T16:08:59.345Z"
+  },
+  {
+    "id": "872269b1-55fd-4af2-a1b2-b00f3b3deca5",
+    "chatId": "2ab3b2a9-8b4e-4d53-b1a7-2c8a09737ba7",
+    "sender": "USER",
+    "message": "ok",
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-06-16T16:13:22.016Z"
+  },
+  {
+    "id": "b05c173b-6eda-4bfe-8b5c-a90f1ae156b0",
+    "chatId": "2ab3b2a9-8b4e-4d53-b1a7-2c8a09737ba7",
+    "sender": "AI",
+    "message": "If you have any other questions or need assistance with something related to driving or your vehicle, feel free to ask. I'm here to help!",
+    "confidenceScore": 0.3,
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-06-16T16:13:23.272Z"
+  },
+  {
+    "id": "e48a57aa-b002-41d4-967c-f6100efc31aa",
+    "chatId": "e20f4e13-ecb9-4b52-bc6f-0561c28fe54d",
+    "sender": "USER",
+    "message": "What documents expire soon?",
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-06-16T17:10:54.740Z"
+  },
+  {
+    "id": "887041de-afe2-4feb-91bf-ee1045d77054",
+    "chatId": "e20f4e13-ecb9-4b52-bc6f-0561c28fe54d",
+    "sender": "AI",
+    "message": "To determine which documents are expiring soon, you should regularly check the expiration dates of the following essential items for NYC commercial drivers:\n\n1. **TLC Driver License**: This needs to be renewed periodically. Ensure you've submitted the renewal application through LARS and completed the necessary requirements such as the 24-hour renewal course and drug test.\n\n2. **Vehicle Inspection**: Your vehicle must pass the TLC safety and emissions inspection annually. Check when your inspection is due to stay compliant.\n\n3. **Insurance**: Verify your insurance policy expiration date to maintain continuous coverage as per TLC requirements.\n\n4. **DMV License**: Ensure your regular driver's license is not near expiration, as this can affect your eligibility to drive commercially.\n\n5. **Drug Test**: Required annually for license renewal.\n\nI recommend keeping a record of all these expiration dates and setting reminders for timely renewals. For specific queries, you can refer to the [TLC License Renewal Guidelines] or log into the TLC License Application and Renewal System (LARS) to check your records.",
+    "confidenceScore": 0.95,
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-06-16T17:10:58.551Z"
+  },
+  {
+    "id": "af6648d2-474c-4993-83c4-85edc033005c",
+    "chatId": "2ab3b2a9-8b4e-4d53-b1a7-2c8a09737ba7",
+    "sender": "USER",
+    "message": "hmmm",
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-06-16T18:18:20.058Z"
+  },
+  {
+    "id": "1e0119cc-4cba-4e06-b366-cff2838905b0",
+    "chatId": "2ab3b2a9-8b4e-4d53-b1a7-2c8a09737ba7",
+    "sender": "AI",
+    "message": "If there's anything specific you're thinking about or need help with, just let me know. Whether it's related to TLC regulations, vehicle inspections, or anything else, I'm here to assist you.",
+    "confidenceScore": 0.3,
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-06-16T18:18:22.270Z"
   }
 ]

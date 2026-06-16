@@ -186,5 +186,72 @@
     "status": "OPEN",
     "driverId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
     "createdAt": "2026-06-13T17:09:56.537Z"
+  },
+  {
+    "id": "a30209f3-ec5b-439f-96a1-7613e3644232",
+    "ticketId": "JNI-T-79644",
+    "title": "AI Auto-Escalation: Low Confidence Query",
+    "description": "This ticket was automatically created by JNI Solutions Co-pilot due to a low confidence score (0.3).\n\nDriver Query: \"hey\"",
+    "category": "GENERAL",
+    "priority": "MEDIUM",
+    "status": "OPEN",
+    "driverId": "3bca9892-b9e5-4049-9515-b3f43a555c18",
+    "createdAt": "2026-06-16T16:02:58.644Z"
+  },
+  {
+    "id": "34660a9e-6bdf-44b4-b61b-5c92323dd503",
+    "ticketId": "JNI-T-94853",
+    "title": "AI Auto-Escalation: Low Confidence Query",
+    "description": "This ticket was automatically created by JNI Solutions Co-pilot due to a low confidence score (0.3).\n\nDriver Query: \"hmmm\"",
+    "category": "GENERAL",
+    "priority": "MEDIUM",
+    "status": "OPEN",
+    "driverId": "3bca9892-b9e5-4049-9515-b3f43a555c18",
+    "createdAt": "2026-06-16T16:03:13.854Z"
+  },
+  {
+    "id": "da36d9fa-c7d4-4e19-9d44-9963d1b1861a",
+    "ticketId": "JNI-T-1017",
+    "title": "Speed tickett",
+    "description": "signsssss",
+    "category": "TLC",
+    "priority": "URGENT",
+    "status": "OPEN",
+    "driverId": "2cfc44e8-babd-47eb-a250-5f1784b8a322",
+    "createdAt": "2026-06-16T17:40:55.963Z",
+    "messages": [
+      {
+        "id": "17ad28eb-6947-4835-9a82-4c3dc35f8ac8",
+        "senderId": "2cfc44e8-babd-47eb-a250-5f1784b8a322",
+        "senderRole": "DRIVER",
+        "message": "hehehehe hahahahaha",
+        "createdAt": "2026-06-16T17:41:05.643Z"
+      },
+      {
+        "id": "00b3c237-2e18-436b-ac04-0e2a2c8ac0d4",
+        "senderId": "e9cd0b53-4829-40c3-ba6c-dad58ada494a",
+        "senderRole": "ADMIN",
+        "message": "hmmmm",
+        "createdAt": "2026-06-16T17:43:59.772Z"
+      },
+      {
+        "id": "c93eee6d-75fe-480c-9a84-5ab47503bc76",
+        "senderId": "e9cd0b53-4829-40c3-ba6c-dad58ada494a",
+        "senderRole": "ADMIN",
+        "message": "heheheh",
+        "createdAt": "2026-06-16T17:44:04.340Z"
+      }
+    ],
+    "statusHistory": [
+      {
+        "oldStatus": "OPEN",
+        "newStatus": "OPEN",
+        "changedById": "2cfc44e8-babd-47eb-a250-5f1784b8a322",
+        "comment": "Ticket created by driver",
+        "createdAt": "2026-06-16T17:40:55.963Z"
+      }
+    ],
+    "internalNotes": [],
+    "escalations": []
   }
 ]

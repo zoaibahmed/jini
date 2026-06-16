@@ -306,5 +306,170 @@
     "cost": 0.000455,
     "id": "4a0fe3ac-3cc6-4d6a-adfa-e7d72ad795cc",
     "createdAt": "2026-06-13T17:47:40.922Z"
+  },
+  {
+    "userId": "3bca9892-b9e5-4049-9515-b3f43a555c18",
+    "provider": "n8n",
+    "modelName": "n8n-webhook",
+    "promptTokens": 1,
+    "completionTokens": 30,
+    "durationMs": 2492,
+    "cost": 0.000455,
+    "id": "14f87a83-be76-4449-9d5c-7cb476b7d6ce",
+    "createdAt": "2026-06-16T16:02:32.097Z"
+  },
+  {
+    "userId": "3bca9892-b9e5-4049-9515-b3f43a555c18",
+    "provider": "OpenAI",
+    "modelName": "gpt-4o",
+    "promptTokens": 212,
+    "completionTokens": 35,
+    "durationMs": 2318,
+    "cost": 0.001585,
+    "id": "2a2734a5-660e-4054-8268-11cb58f2729b",
+    "createdAt": "2026-06-16T16:02:58.635Z"
+  },
+  {
+    "userId": "3bca9892-b9e5-4049-9515-b3f43a555c18",
+    "provider": "OpenAI",
+    "modelName": "gpt-4o",
+    "promptTokens": 212,
+    "completionTokens": 49,
+    "durationMs": 2363,
+    "cost": 0.0017950000000000002,
+    "id": "bee09e2d-edf3-476c-b90a-1b3f20b2111f",
+    "createdAt": "2026-06-16T16:03:13.844Z"
+  },
+  {
+    "userId": "e9cd0b53-4829-40c3-ba6c-dad58ada494a",
+    "provider": "n8n",
+    "modelName": "n8n-webhook",
+    "promptTokens": 3,
+    "completionTokens": 30,
+    "durationMs": 2537,
+    "cost": 0.00046499999999999997,
+    "id": "7f132660-45cd-4f64-937b-7bd24d484c0a",
+    "createdAt": "2026-06-16T16:05:13.306Z"
+  },
+  {
+    "userId": "e9cd0b53-4829-40c3-ba6c-dad58ada494a",
+    "provider": "n8n",
+    "modelName": "n8n-webhook",
+    "promptTokens": 1,
+    "completionTokens": 30,
+    "durationMs": 1684,
+    "cost": 0.000455,
+    "id": "92a1f0a9-3028-47fb-884a-dfee60df1e3b",
+    "createdAt": "2026-06-16T16:06:39.966Z"
+  },
+  {
+    "userId": "3bca9892-b9e5-4049-9515-b3f43a555c18",
+    "provider": "n8n",
+    "modelName": "n8n-webhook",
+    "promptTokens": 1,
+    "completionTokens": 30,
+    "durationMs": 1229,
+    "cost": 0.000455,
+    "id": "6a52198c-5c28-418b-98a8-872b85c9e99d",
+    "createdAt": "2026-06-16T16:06:45.992Z"
+  },
+  {
+    "userId": "e9cd0b53-4829-40c3-ba6c-dad58ada494a",
+    "provider": "OpenAI",
+    "modelName": "gpt-4o",
+    "promptTokens": 212,
+    "completionTokens": 34,
+    "durationMs": 2729,
+    "cost": 0.0015700000000000002,
+    "id": "97dfeb5c-f552-4cdd-a275-6bcfd6cd1e31",
+    "createdAt": "2026-06-16T16:08:23.079Z"
+  },
+  {
+    "userId": "e9cd0b53-4829-40c3-ba6c-dad58ada494a",
+    "provider": "OpenAI",
+    "modelName": "gpt-4o",
+    "promptTokens": 213,
+    "completionTokens": 25,
+    "durationMs": 2340,
+    "cost": 0.0014400000000000003,
+    "id": "ea327e0a-d40b-460d-9ed3-2cf70dd7ba57",
+    "createdAt": "2026-06-16T16:08:31.482Z"
+  },
+  {
+    "userId": "e9cd0b53-4829-40c3-ba6c-dad58ada494a",
+    "provider": "OpenAI",
+    "modelName": "gpt-4o",
+    "promptTokens": 215,
+    "completionTokens": 21,
+    "durationMs": 885,
+    "cost": 0.00139,
+    "id": "832e7f47-7d13-4ee9-939c-c4cb9e299c4b",
+    "createdAt": "2026-06-16T16:08:37.665Z"
+  },
+  {
+    "userId": "e9cd0b53-4829-40c3-ba6c-dad58ada494a",
+    "provider": "OpenAI",
+    "modelName": "gpt-4o",
+    "promptTokens": 349,
+    "completionTokens": 52,
+    "durationMs": 1563,
+    "cost": 0.0025250000000000003,
+    "id": "2f225748-ef3e-4372-bc7f-7894a5453851",
+    "createdAt": "2026-06-16T16:08:59.338Z"
+  },
+  {
+    "userId": "e9cd0b53-4829-40c3-ba6c-dad58ada494a",
+    "provider": "OpenAI",
+    "modelName": "gpt-4o",
+    "promptTokens": 212,
+    "completionTokens": 28,
+    "durationMs": 1076,
+    "cost": 0.0014800000000000002,
+    "id": "2381390f-2c5e-4a14-aca1-bf2ed95be042",
+    "createdAt": "2026-06-16T16:13:23.109Z"
+  },
+  {
+    "userId": "c084332c-37d8-4ec5-8763-0a3b01d0e241",
+    "provider": "OpenAI",
+    "modelName": "gpt-4o",
+    "promptTokens": 279,
+    "completionTokens": 212,
+    "durationMs": 3757,
+    "cost": 0.004575,
+    "id": "b6240e7d-dd39-4bb4-8f21-88df5947c478",
+    "createdAt": "2026-06-16T17:10:58.528Z"
+  },
+  {
+    "userId": "e9cd0b53-4829-40c3-ba6c-dad58ada494a",
+    "provider": "OpenAI",
+    "modelName": "gpt-4o",
+    "promptTokens": 212,
+    "completionTokens": 37,
+    "durationMs": 2192,
+    "cost": 0.0016150000000000001,
+    "id": "f7950bc0-344d-4270-b1de-25777901ab00",
+    "createdAt": "2026-06-16T18:18:22.261Z"
+  },
+  {
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "provider": "OpenAI",
+    "modelName": "gpt-4o",
+    "promptTokens": 279,
+    "completionTokens": 221,
+    "durationMs": 5109,
+    "cost": 0.004710000000000001,
+    "id": "01a27422-9564-4c1d-9aa4-fd8559b0dcf8",
+    "createdAt": "2026-06-16T18:35:51.720Z"
+  },
+  {
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "provider": "OpenAI",
+    "modelName": "gpt-4o",
+    "promptTokens": 212,
+    "completionTokens": 40,
+    "durationMs": 873,
+    "cost": 0.0016600000000000002,
+    "id": "3f41b13b-b28d-4756-87fb-1d2eb6371e7c",
+    "createdAt": "2026-06-16T18:35:55.238Z"
   }
 ]

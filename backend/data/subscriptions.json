@@ -38,5 +38,41 @@
     "createdAt": "2026-06-08T17:52:08.704Z",
     "updatedAt": "2026-06-13T17:47:28.645Z",
     "stripeSubscriptionId": "sub_sim_l18hbb"
+  },
+  {
+    "id": "sub-00b8qrz",
+    "userId": "e9cd0b53-4829-40c3-ba6c-dad58ada494a",
+    "planId": "basic",
+    "status": "TRIAL",
+    "billingPeriod": "monthly",
+    "currentPeriodStart": "2026-06-16T16:05:06.367Z",
+    "currentPeriodEnd": "2026-06-23T16:05:06.367Z",
+    "cancelAtPeriodEnd": false,
+    "createdAt": "2026-06-16T16:05:06.367Z",
+    "updatedAt": "2026-06-16T16:05:06.367Z"
+  },
+  {
+    "id": "sub-r7tom7a",
+    "userId": "c084332c-37d8-4ec5-8763-0a3b01d0e241",
+    "planId": "basic",
+    "status": "TRIAL",
+    "billingPeriod": "monthly",
+    "currentPeriodStart": "2026-06-16T17:10:47.937Z",
+    "currentPeriodEnd": "2026-06-23T17:10:47.937Z",
+    "cancelAtPeriodEnd": false,
+    "createdAt": "2026-06-16T17:10:47.937Z",
+    "updatedAt": "2026-06-16T17:10:47.937Z"
+  },
+  {
+    "id": "sub-c3zroe3",
+    "userId": "2cfc44e8-babd-47eb-a250-5f1784b8a322",
+    "planId": "basic",
+    "status": "TRIAL",
+    "billingPeriod": "monthly",
+    "currentPeriodStart": "2026-06-16T17:34:55.409Z",
+    "currentPeriodEnd": "2026-06-23T17:34:55.409Z",
+    "cancelAtPeriodEnd": false,
+    "createdAt": "2026-06-16T17:34:55.409Z",
+    "updatedAt": "2026-06-16T17:34:55.409Z"
   }
 ]

@@ -50,27 +50,59 @@
     "createdAt": "2026-06-04T12:52:14.359Z"
   },
   {
-    "id": "b2e84730-f177-4f35-973c-3d0432e848c8",
-    "name": "Screenshot 2026-06-15 203910.png",
-    "categoryName": "TLC License",
-    "size": "0.6 MB",
-    "s3Key": "uploads/a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e/1781539810282_Screenshot 2026-06-15 203910.png",
-    "status": "SAFE",
-    "expiryDate": "2027-03-11",
-    "notes": "AI Analysis Complete: Confidently identified TLC License.\nExpiration Date: 2027-03-11\nAction: Added to compliance tracker.",
+    "id": "fccb9feb-4921-478c-a5fa-0152f035ae64",
+    "name": "Screenshot 2026-06-15 225514.png",
+    "categoryName": "Vehicle Inspection",
+    "size": "0.1 MB",
+    "s3Key": "uploads/a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e/1781547848279_Screenshot 2026-06-15 225514.png",
+    "status": "EXPIRED",
+    "expiryDate": "2026-03-09",
+    "notes": "AI Analysis Complete: Confidently identified Vehicle Inspection.\nExpiration Date: 2026-03-09\nAction: Added to compliance tracker.",
     "tags": [
       "uploaded",
       "vault"
     ],
     "driverId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
-    "createdAt": "2026-06-15T16:10:10.280Z"
+    "createdAt": "2026-06-15T18:24:08.277Z"
   },
   {
-    "id": "d310919b-1036-46d0-83f6-8c6dce06bf11",
+    "id": "b7c231f4-9402-4cf8-a0bd-7c904e8dfabd",
+    "name": "Screenshot 2026-06-15 225538.png",
+    "categoryName": "Drug Test",
+    "size": "0.1 MB",
+    "s3Key": "uploads/a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e/1781547861710_Screenshot 2026-06-15 225538.png",
+    "status": "EXPIRED",
+    "expiryDate": "2026-04-24",
+    "notes": "AI Analysis Complete: Confidently identified Drug Test.\nExpiration Date: 2026-04-24\nAction: Added to compliance tracker.",
+    "tags": [
+      "uploaded",
+      "vault"
+    ],
+    "driverId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "createdAt": "2026-06-15T18:24:21.710Z"
+  },
+  {
+    "id": "373c0ac7-ddcd-4210-bea4-8823fd9a501b",
+    "name": "Screenshot 2026-06-15 225452.png",
+    "categoryName": "Unknown Document",
+    "size": "0.1 MB",
+    "s3Key": "uploads/a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e/1781547875000_Screenshot 2026-06-15 225452.png",
+    "status": "SAFE",
+    "expiryDate": null,
+    "notes": "Unknown Document",
+    "tags": [
+      "uploaded",
+      "vault"
+    ],
+    "driverId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "createdAt": "2026-06-15T18:24:34.999Z"
+  },
+  {
+    "id": "70ff83db-eaa8-43a2-951c-cfaf394144b5",
     "name": "Screenshot 2026-06-15 220745.png",
     "categoryName": "TLC License",
     "size": "0.3 MB",
-    "s3Key": "uploads/a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e/1781543554317_Screenshot 2026-06-15 220745.png",
+    "s3Key": "uploads/a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e/1781547889614_Screenshot 2026-06-15 220745.png",
     "status": "SAFE",
     "expiryDate": "2027-03-11",
     "notes": "AI Analysis Complete: Confidently identified TLC License.\nExpiration Date: 2027-03-11\nAction: Added to compliance tracker.",
@@ -79,6 +111,54 @@
       "vault"
     ],
     "driverId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
-    "createdAt": "2026-06-15T17:12:34.310Z"
+    "createdAt": "2026-06-15T18:24:49.614Z"
+  },
+  {
+    "id": "dfdcf3d0-16b6-4133-9bc7-9c43976f5851",
+    "name": "Screenshot 2026-06-15 220745.png",
+    "categoryName": "TLC License",
+    "size": "0.3 MB",
+    "s3Key": "uploads/c084332c-37d8-4ec5-8763-0a3b01d0e241/1781629962201_Screenshot 2026-06-15 220745.png",
+    "status": "SAFE",
+    "expiryDate": "2027-04-11",
+    "notes": "AI Analysis Complete: Confidently identified TLC License.\nExpiration Date: 2027-04-11\nAction: Added to compliance tracker.",
+    "tags": [
+      "uploaded",
+      "vault"
+    ],
+    "driverId": "c084332c-37d8-4ec5-8763-0a3b01d0e241",
+    "createdAt": "2026-06-16T17:12:42.199Z"
+  },
+  {
+    "id": "6125c338-b52b-4478-8521-ad0087e48a7e",
+    "name": "Screenshot 2026-06-15 220745.png",
+    "categoryName": "TLC License",
+    "size": "0.3 MB",
+    "s3Key": "uploads/2cfc44e8-babd-47eb-a250-5f1784b8a322/1781631222737_Screenshot 2026-06-15 220745.png",
+    "status": "SAFE",
+    "expiryDate": "2027-04-11",
+    "notes": "AI Analysis Complete: Confidently identified TLC License.\nExpiration Date: 2027-04-11\nAction: Added to compliance tracker.",
+    "tags": [
+      "uploaded",
+      "vault"
+    ],
+    "driverId": "2cfc44e8-babd-47eb-a250-5f1784b8a322",
+    "createdAt": "2026-06-16T17:33:42.729Z"
+  },
+  {
+    "id": "284780bb-aacd-40ec-b58e-7a11802652c1",
+    "name": "Screenshot 2026-06-15 225523.png",
+    "categoryName": "Traffic Ticket",
+    "size": "0.1 MB",
+    "s3Key": "uploads/2cfc44e8-babd-47eb-a250-5f1784b8a322/1781631266786_Screenshot 2026-06-15 225523.png",
+    "status": "EXPIRED",
+    "expiryDate": "2025-06-18",
+    "notes": "AI Analysis Complete: Confidently identified Traffic Ticket.\nExpiration Date: 2025-06-18\nAction: Added to compliance tracker.",
+    "tags": [
+      "uploaded",
+      "vault"
+    ],
+    "driverId": "2cfc44e8-babd-47eb-a250-5f1784b8a322",
+    "createdAt": "2026-06-16T17:34:26.785Z"
   }
 ]

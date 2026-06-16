@@ -676,19 +676,7 @@ export default function DriverCopilot() {
             <div className="flex-1 flex flex-col min-w-0 bg-muted-background/5 justify-between">
               {/* Settings selectors */}
               <div className="flex flex-wrap gap-2.5 items-center justify-between px-6 py-2 border-b border-border/60 bg-card text-xs shrink-0 select-none">
-                <div className="flex items-center space-x-2">
-                  <span className="font-bold text-muted">Active Model Engine:</span>
-                  <select
-                    value={selectedProvider}
-                    onChange={(e) => setSelectedProvider(e.target.value)}
-                    className="bg-muted-background border border-border rounded-lg px-2.5 py-1 font-bold outline-none text-foreground"
-                  >
-                    <option value="n8n">n8n AI Webhook (Production)</option>
-                    <option value="OpenAI">OpenAI GPT-4o (Primary)</option>
-                    <option value="Gemini">Gemini 1.5 Pro</option>
-                    <option value="Claude">Claude 3.5 Sonnet</option>
-                  </select>
-                </div>
+
 
                 <div className="flex items-center space-x-2">
                   <Globe className="w-3.5 h-3.5 text-gold-primary" />
