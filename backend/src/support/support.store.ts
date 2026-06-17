@@ -11,6 +11,10 @@ export interface SupportTicket {
   status: string;
   driverId: string;
   assignedAgentId?: string | null;
+  handlingMode?: string; // "AI_MANAGED" or "HUMAN_MANAGED"
+  humanTakenOverById?: string | null;
+  humanTakenOverAt?: string | null;
+  lastModeChangedAt?: string | null;
   createdAt: string;
   messages: Array<{
     id: string;
@@ -18,6 +22,7 @@ export interface SupportTicket {
     message: string;
     createdAt: string;
     senderRole?: string;
+    attachments?: Array<{ name: string; s3Key: string; sizeBytes: number; mimeType: string }>;
   }>;
   statusHistory: Array<{
     oldStatus: string;

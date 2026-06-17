@@ -8,10 +8,10 @@ import { Footer } from '@/components/Footer';
 
 export default function AboutPage() {
   const stats = [
-    { label: 'NYC Drivers Active', value: '12,800+' },
-    { label: 'Compliance Audits Seeded', value: '48k+' },
-    { label: 'DMV Points Saved', value: '99.8%' },
-    { label: 'AI Responses / Day', value: '15,000+' }
+    { label: 'Built for NYC TLC Drivers', value: 'TLC Focus' },
+    { label: 'Designed for Uber & Lyft', value: 'Livery Ready' },
+    { label: 'AI Document Renewal Support', value: 'AI Assisted' },
+    { label: 'Driver Compliance Automation', value: 'Automation' }
   ];
 
   const milestones = [
@@ -23,7 +23,7 @@ export default function AboutPage() {
     {
       year: '2025',
       title: 'AI OCR Document Scanning',
-      description: 'Integrated neural OCR text extraction to let drivers upload images of cards and pull expiration dates instantly.'
+      description: 'Integrated neural OCR text extraction to let drivers upload images of cards and track expiration dates.'
     },
     {
       year: '2026',
@@ -59,7 +59,7 @@ export default function AboutPage() {
             >
               Keeping NYC Mobile & <br />
               <span className="relative inline-block mt-2">
-                <span className="relative z-10 px-2 text-[#0B0B0B] dark:text-[#F5C400]">Drivers Protected</span>
+                <span className="relative z-10 px-2 text-[#0B0B0B] dark:text-[#F5C400]">Drivers Supported</span>
                 <span className="absolute inset-x-0 bottom-1 h-3 bg-[#F5C400]/80 dark:bg-[#F5C400]/20 -rotate-1 z-0 rounded-sm" />
               </span>
             </motion.h1>
@@ -70,7 +70,7 @@ export default function AboutPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-slate-500 dark:text-slate-400 text-base sm:text-lg max-w-3xl mx-auto font-medium leading-relaxed"
             >
-              JNI Solutions is an NYC-based mobility tech company. We build proactive regulatory assistance modules and optimization algorithms that keep ride-share, taxi, and commercial drivers compliant, active, and profitable.
+              JNI Solutions is an NYC-based mobility tech company. We build regulatory assistance modules and optimization algorithms that help ride-share, taxi, and commercial drivers stay organized and track compliance milestones.
             </motion.p>
           </div>
         </section>
@@ -82,19 +82,19 @@ export default function AboutPage() {
               <div className="space-y-6">
                 <h2 className="font-heading font-extrabold text-3xl text-[#0B0B0B] dark:text-white">The Driver Uptime Mission</h2>
                 <p className="text-sm text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
-                  NYC TLC regulations are some of the most rigorous in the world. Between bi-annual Woodside safety inspections, annual drug testing, license points audits, and commercial insurance compliance, drivers spend days dealing with administrative burden.
+                  NYC TLC regulations are some of the most rigorous in the world. Between bi-annual Woodside safety inspections, annual drug testing, license points auditing, and commercial insurance compliance, drivers spend days dealing with administrative burden.
                 </p>
                 <p className="text-sm text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
-                  We believe technology should work for drivers, not against them. By utilizing intelligent AI OCR document parsing, multi-channel reminder feeds, and predictive JFK/LGA terminal flight wave radars, we turn regulatory headaches into automated backend routines.
+                  We believe technology should help drivers organize. By utilizing AI OCR document parsing tools, multi-channel reminder feeds, and predictive JFK/LGA terminal flight wave radars, we turn regulatory headaches into automated trackers.
                 </p>
               </div>
 
               {/* Stats Block */}
               <div className="grid grid-cols-2 gap-4 bg-slate-100/50 dark:bg-zinc-900/40 p-8 border border-slate-200 dark:border-zinc-800 rounded-2xl">
                 {stats.map((stat, idx) => (
-                  <div key={idx} className="bg-white dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 p-5 rounded-xl text-center space-y-1">
-                    <strong className="text-2xl font-heading font-extrabold text-[#0B0B0B] dark:text-white block">{stat.value}</strong>
-                    <span className="text-[10px] text-slate-400 dark:text-slate-500 font-bold uppercase tracking-wider block">{stat.label}</span>
+                  <div key={idx} className="bg-white dark:bg-zinc-955 border border-slate-200 dark:border-zinc-800 p-5 rounded-xl text-center space-y-1">
+                    <strong className="text-sm font-heading font-extrabold text-[#0B0B0B] dark:text-white block">{stat.value}</strong>
+                    <span className="text-[9px] text-slate-400 dark:text-slate-500 font-bold uppercase tracking-wider block leading-tight">{stat.label}</span>
                   </div>
                 ))}
               </div>
@@ -107,7 +107,7 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16 space-y-3">
               <h2 className="font-heading font-extrabold text-3xl text-[#0B0B0B] dark:text-white">Our Journey</h2>
-              <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-semibold">How we grew to support thousands of professional taxi and FHV operators.</p>
+              <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-semibold">How we grew to support taxi and FHV operators with their administrative needs.</p>
             </div>
 
             <div className="relative border-l-2 border-slate-200 dark:border-zinc-800 ml-4 md:ml-32 pl-8 space-y-12">
@@ -151,7 +151,7 @@ export default function AboutPage() {
                 <div className="space-y-2">
                   <h3 className="font-heading font-extrabold text-xl text-[#0B0B0B] dark:text-white">Queens Operations Hub</h3>
                   <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-bold">
-                    JNI Solutions Inc. <br />
+                    JNI Solutions LLC <br />
                     120 Woodside Ave, Queens, NY 11377
                   </p>
                 </div>

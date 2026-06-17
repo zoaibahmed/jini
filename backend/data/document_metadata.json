@@ -5,7 +5,7 @@
     "categoryName": "TLC License",
     "size": "0.08 KB",
     "s3Key": "uploads/driver-test-uuid-12345/1780573685102_e2e_test_doc.pdf",
-    "status": "SAFE",
+    "status": "WARNING",
     "expiryDate": "2026-07-04T11:48:05.025Z",
     "notes": "E2E testing PDF upload",
     "tags": [
@@ -22,7 +22,7 @@
     "categoryName": "Drug Test",
     "size": "0.08 KB",
     "s3Key": "uploads/driver-test-uuid-12345/1780573685137_e2e_test_img.png",
-    "status": "URGENT",
+    "status": "CRITICAL",
     "expiryDate": "2026-06-14T11:48:05.131Z",
     "notes": "E2E testing Image upload",
     "tags": [
@@ -39,7 +39,7 @@
     "categoryName": "Custom Files",
     "size": "0.4 MB",
     "s3Key": "uploads/a7791a5d-fb58-4e28-a96c-b1f52767abd8/1780577534363_Screenshot 2026-03-30 215315.png",
-    "status": "SAFE",
+    "status": "UPCOMING",
     "expiryDate": "2026-09-02",
     "notes": "Successfully scanned via secure S3 upload tunnel.",
     "tags": [
@@ -55,7 +55,7 @@
     "categoryName": "Vehicle Inspection",
     "size": "0.1 MB",
     "s3Key": "uploads/a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e/1781547848279_Screenshot 2026-06-15 225514.png",
-    "status": "EXPIRED",
+    "status": "CRITICAL",
     "expiryDate": "2026-03-09",
     "notes": "AI Analysis Complete: Confidently identified Vehicle Inspection.\nExpiration Date: 2026-03-09\nAction: Added to compliance tracker.",
     "tags": [
@@ -71,7 +71,7 @@
     "categoryName": "Drug Test",
     "size": "0.1 MB",
     "s3Key": "uploads/a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e/1781547861710_Screenshot 2026-06-15 225538.png",
-    "status": "EXPIRED",
+    "status": "CRITICAL",
     "expiryDate": "2026-04-24",
     "notes": "AI Analysis Complete: Confidently identified Drug Test.\nExpiration Date: 2026-04-24\nAction: Added to compliance tracker.",
     "tags": [
@@ -103,7 +103,7 @@
     "categoryName": "TLC License",
     "size": "0.3 MB",
     "s3Key": "uploads/a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e/1781547889614_Screenshot 2026-06-15 220745.png",
-    "status": "SAFE",
+    "status": "INFO",
     "expiryDate": "2027-03-11",
     "notes": "AI Analysis Complete: Confidently identified TLC License.\nExpiration Date: 2027-03-11\nAction: Added to compliance tracker.",
     "tags": [
@@ -119,7 +119,7 @@
     "categoryName": "TLC License",
     "size": "0.3 MB",
     "s3Key": "uploads/c084332c-37d8-4ec5-8763-0a3b01d0e241/1781629962201_Screenshot 2026-06-15 220745.png",
-    "status": "SAFE",
+    "status": "INFO",
     "expiryDate": "2027-04-11",
     "notes": "AI Analysis Complete: Confidently identified TLC License.\nExpiration Date: 2027-04-11\nAction: Added to compliance tracker.",
     "tags": [
@@ -135,7 +135,7 @@
     "categoryName": "TLC License",
     "size": "0.3 MB",
     "s3Key": "uploads/2cfc44e8-babd-47eb-a250-5f1784b8a322/1781631222737_Screenshot 2026-06-15 220745.png",
-    "status": "SAFE",
+    "status": "INFO",
     "expiryDate": "2027-04-11",
     "notes": "AI Analysis Complete: Confidently identified TLC License.\nExpiration Date: 2027-04-11\nAction: Added to compliance tracker.",
     "tags": [
@@ -151,7 +151,7 @@
     "categoryName": "Traffic Ticket",
     "size": "0.1 MB",
     "s3Key": "uploads/2cfc44e8-babd-47eb-a250-5f1784b8a322/1781631266786_Screenshot 2026-06-15 225523.png",
-    "status": "EXPIRED",
+    "status": "CRITICAL",
     "expiryDate": "2025-06-18",
     "notes": "AI Analysis Complete: Confidently identified Traffic Ticket.\nExpiration Date: 2025-06-18\nAction: Added to compliance tracker.",
     "tags": [
@@ -160,5 +160,21 @@
     ],
     "driverId": "2cfc44e8-babd-47eb-a250-5f1784b8a322",
     "createdAt": "2026-06-16T17:34:26.785Z"
+  },
+  {
+    "id": "4568cb87-7faf-45e7-9664-8bb5601767e5",
+    "name": "scan_1781636307140.jpg",
+    "categoryName": "Unknown Document",
+    "size": "0.06 MB",
+    "s3Key": "uploads/a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e/1781636307295_scan_1781636307140.jpg",
+    "status": "SAFE",
+    "expiryDate": null,
+    "notes": "Unknown Document",
+    "tags": [
+      "scanned",
+      "mobile-camera"
+    ],
+    "driverId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "createdAt": "2026-06-16T18:58:27.279Z"
   }
 ]

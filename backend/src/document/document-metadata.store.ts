@@ -13,6 +13,12 @@ export interface DocumentMetadata {
   tags: string[];
   driverId: string;
   createdAt: string;
+  isSupported?: boolean;
+  requiresReview?: boolean;
+  ocrConfidence?: number;
+  adminNotes?: string | null;
+  acceptedAt?: string;
+  rejectedAt?: string;
 }
 
 export interface ActivityLogMetadata {

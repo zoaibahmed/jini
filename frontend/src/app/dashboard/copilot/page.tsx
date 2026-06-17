@@ -32,9 +32,18 @@ import {
   BookOpen,
   Eye,
   Cpu,
-  FileText
+  FileText,
+  Paperclip
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+
+interface AttachmentItem {
+  id: string;
+  name: string;
+  s3Key: string;
+  sizeBytes: number;
+  mimeType: string;
+}
 
 interface ChatMessage {
   id?: string;
@@ -44,6 +53,7 @@ interface ChatMessage {
   isPinned?: boolean;
   confidenceScore?: number;
   ticketCreated?: any;
+  attachments?: AttachmentItem[];
 }
 
 interface ChatSession {
@@ -85,6 +95,9 @@ export default function DriverCopilot() {
   const [socket, setSocket] = useState<Socket | null>(null);
   const [isConnected, setIsConnected] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
+  const [copilotFiles, setCopilotFiles] = useState<AttachmentItem[]>([]);
+  const copilotFileInputRef = useRef<HTMLInputElement>(null);
+  const [isUploading, setIsUploading] = useState(false);
 
   // Settings
   const [selectedLanguage, setSelectedLanguage] = useState('English');
@@ -227,6 +240,7 @@ export default function DriverCopilot() {
           isPinned: data.isPinned,
           confidenceScore: data.confidenceScore,
           ticketCreated: data.ticketCreated,
+          attachments: data.attachments,
         };
 
         if (index !== -1) {
@@ -292,6 +306,7 @@ export default function DriverCopilot() {
         timestamp: new Date(m.createdAt),
         isPinned: m.isPinned,
         confidenceScore: m.confidenceScore,
+        attachments: m.attachments,
       })));
     } catch (e) {
       toast.error('Failed to load messages.');
@@ -348,13 +363,14 @@ export default function DriverCopilot() {
   };
 
   const handleSendMessage = (text: string) => {
-    if (!text.trim()) return;
+    if (!text.trim() && copilotFiles.length === 0) return;
 
     // Append User Message to State
     const userMsg: ChatMessage = {
       message: text,
       sender: 'USER',
       timestamp: new Date(),
+      attachments: copilotFiles,
     };
     setMessages(prev => [...prev, userMsg]);
     setInputMessage('');
@@ -367,9 +383,12 @@ export default function DriverCopilot() {
         driverId: user?.id,
         language: selectedLanguage,
         provider: selectedProvider,
+        files: copilotFiles,
       });
+      setCopilotFiles([]);
     } else {
       setIsTyping(true);
+      setCopilotFiles([]);
       setTimeout(() => {
         setIsTyping(false);
         setMessages(prev => [...prev, {
@@ -733,6 +752,44 @@ export default function DriverCopilot() {
                             <p key={lIdx} className={line ? 'mb-1.5 last:mb-0' : 'h-2'}>{line}</p>
                           ))}
 
+                          {msg.attachments && msg.attachments.length > 0 && (
+                            <div className="mt-2 space-y-1.5 border-t border-border/10 pt-2 select-none">
+                              {msg.attachments.map((att: any, attIdx: number) => {
+                                const isImg = att.mimeType?.startsWith('image/');
+                                const downloadUrl = `${API_URL}/documents/download-file?fileName=${encodeURIComponent(att.name)}`;
+                                
+                                return (
+                                  <div key={att.id || attIdx} className="flex items-center justify-between gap-4 p-1.5 bg-[#0B0B0B]/10 rounded border border-[#0B0B0B]/5 text-[9px] text-foreground">
+                                    <div className="flex items-center gap-1.5 truncate">
+                                      <Paperclip className="w-3 h-3 text-gold-primary shrink-0" />
+                                      <span className="truncate max-w-[120px] font-medium">{att.name}</span>
+                                    </div>
+                                    
+                                    <div className="flex items-center gap-2 shrink-0">
+                                      {isImg && (
+                                        <a 
+                                          href={`/backend/${att.s3Key}`} 
+                                          target="_blank" 
+                                          rel="noreferrer"
+                                          className="text-gold-primary hover:underline font-bold text-[8px]"
+                                        >
+                                          Preview
+                                        </a>
+                                      )}
+                                      <a 
+                                        href={downloadUrl} 
+                                        download 
+                                        className="text-gold-primary hover:underline font-bold text-[8px]"
+                                      >
+                                        Download
+                                      </a>
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          )}
+
                           {/* Actions overlay for AI */}
                           {isAI && msg.id && (
                             <div className="flex items-center gap-2 mt-4 pt-3 border-t border-border/40 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -870,6 +927,18 @@ export default function DriverCopilot() {
 
               {/* Input Area */}
               <div className="p-4 border-t border-border bg-card shrink-0">
+                {/* Attached files preview */}
+                {copilotFiles.length > 0 && (
+                  <div className="px-4 py-2 bg-card flex flex-wrap gap-2 mb-2 border border-border rounded-xl">
+                    {copilotFiles.map((file, idx) => (
+                      <div key={idx} className="flex items-center gap-1.5 text-[9px] font-bold text-foreground bg-gold-primary/10 border border-gold-primary/20 px-2 py-1 rounded-lg">
+                        <span>📎 {file.name}</span>
+                        <span className="text-red-500 cursor-pointer font-bold ml-1" onClick={() => setCopilotFiles(prev => prev.filter((_, i) => i !== idx))}>x</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
                 <form 
                   onSubmit={(e) => {
                     e.preventDefault();
@@ -878,15 +947,68 @@ export default function DriverCopilot() {
                   className="flex items-center gap-2.5 bg-muted-background/40 border border-border p-1.5 rounded-2xl"
                 >
                   <input 
+                    type="file"
+                    ref={copilotFileInputRef}
+                    className="hidden"
+                    accept="image/*,application/pdf"
+                    onChange={async (e) => {
+                      const file = e.target.files?.[0];
+                      if (!file || !user) return;
+                      
+                      setIsUploading(true);
+                      try {
+                        const formData = new FormData();
+                        formData.append('file', file);
+                        
+                        const uploadRes = await fetch(`${API_URL}/support/upload`, {
+                          method: 'POST',
+                          headers: {
+                            'x-user-id': user.id,
+                            'x-user-role': user.role
+                          },
+                          body: formData
+                        });
+                        
+                        if (!uploadRes.ok) throw new Error('Upload failed');
+                        const fileData = await uploadRes.json();
+                        
+                        setCopilotFiles(prev => [...prev, {
+                          id: fileData.id || `att-${Date.now()}`,
+                          name: fileData.name,
+                          s3Key: fileData.s3Key,
+                          sizeBytes: fileData.sizeBytes,
+                          mimeType: fileData.mimeType
+                        }]);
+                        toast.success(`Attached ${fileData.name}`);
+                      } catch (err) {
+                        toast.error('Failed to upload attachment');
+                      } finally {
+                        setIsUploading(false);
+                        e.target.value = '';
+                      }
+                    }}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => copilotFileInputRef.current?.click()}
+                    disabled={isUploading}
+                    className="p-2.5 rounded-xl bg-[#F5F5F5] dark:bg-[#1A1A1A] border border-border hover:bg-muted text-muted-foreground transition-colors shrink-0 disabled:opacity-50"
+                  >
+                    <Paperclip className="w-4 h-4" />
+                  </button>
+
+                  <input 
                     type="text" 
-                    placeholder="Ask AI Assistant anything..."
+                    placeholder={isUploading ? "Uploading attachment..." : "Ask AI Assistant anything..."}
                     value={inputMessage}
+                    disabled={isUploading}
                     onChange={(e) => setInputMessage(e.target.value)}
                     className="flex-1 bg-transparent border-0 ring-0 focus:ring-0 outline-none text-xs sm:text-sm px-3 text-foreground"
                   />
                   <button 
                     type="submit"
-                    className="w-10 h-10 rounded-xl bg-gold-primary hover:bg-gold-hover text-black flex items-center justify-center transition-all duration-300 shadow-md shadow-gold-glow shrink-0 animate-pulse"
+                    disabled={isUploading}
+                    className="w-10 h-10 rounded-xl bg-gold-primary hover:bg-gold-hover text-black flex items-center justify-center transition-all duration-300 shadow-md shadow-gold-glow shrink-0 animate-pulse disabled:opacity-50"
                     aria-label="Send"
                   >
                     <Send className="w-4 h-4" />

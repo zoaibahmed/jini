@@ -57,7 +57,7 @@ export default function ServicesPage() {
     },
     {
       title: 'Proactive Renewal Tracking',
-      description: 'Maintain 100% active shift status. We send critical multi-channel alerts (SMS, email, and push notifications) 30, 15, and 5 days prior to expiration dates.',
+      description: 'Helps drivers track deadlines and stay active. We send proactive multi-channel alerts (SMS, email, and push notifications) depending on the severity of the remaining days before expiration.',
       icon: Clock,
       bullets: [
         'SMS compliance alerts',
@@ -151,7 +151,7 @@ export default function ServicesPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-slate-500 dark:text-slate-400 text-base sm:text-lg max-w-3xl mx-auto font-medium leading-relaxed"
             >
-              From complex TLC paperwork and Woodside inspection dates to real-time flight peak analytics, JNI Solutions gives ride-share drivers the tools to maximize uptime and stay compliant.
+              From complex TLC paperwork and Woodside inspection dates to real-time flight peak analytics, JNI Solutions gives ride-share drivers the tools to stay organized and track compliance milestones.
             </motion.p>
           </div>
         </section>
@@ -208,6 +208,55 @@ export default function ServicesPage() {
           </div>
         </section>
 
+        {/* Smart Renewal Alerts Section */}
+        <section className="py-20 bg-slate-50/50 dark:bg-zinc-900/10 border-t border-b border-[#E5E5E5] dark:border-zinc-800 relative overflow-hidden transition-colors duration-300">
+          <div className="absolute left-0 bottom-0 w-80 h-80 bg-gold-primary/5 rounded-full blur-[100px] pointer-events-none" />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+              <span className="text-[#D9A300] dark:text-[#F5C400] text-xs font-bold uppercase tracking-wider block">Intelligent Deadlines</span>
+              <h2 className="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight text-[#111111] dark:text-white">
+                Smart Renewal Alerts
+              </h2>
+              <p className="text-slate-500 dark:text-slate-400 text-sm sm:text-base leading-relaxed font-medium">
+                JNI Solutions separates normal valid documents from real urgent deadlines. If your document expires years from now, it stays marked as safe. When a deadline gets closer, the system upgrades the status from upcoming to warning, urgent, or critical.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-xs">
+              <div className="bg-white dark:bg-zinc-900 border border-emerald-500/20 rounded-2xl p-6 space-y-2">
+                <span className="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">Safe / Info</span>
+                <h4 className="font-bold text-foreground">TLC License expiring in 4 years</h4>
+                <p className="text-muted leading-relaxed">Status remains Safe/Info. Green badge, dashboard only, no SMS/WhatsApp/email alerts.</p>
+              </div>
+              <div className="bg-white dark:bg-zinc-900 border border-blue-500/20 rounded-2xl p-6 space-y-2">
+                <span className="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded bg-blue-500/10 text-blue-500 border border-blue-500/20">Upcoming</span>
+                <h4 className="font-bold text-foreground">DMV Registration expiring in 45 days</h4>
+                <p className="text-muted leading-relaxed">Status becomes Upcoming. Blue badge, dashboard reminder only, optional email if enabled.</p>
+              </div>
+              <div className="bg-white dark:bg-zinc-900 border border-amber-500/20 rounded-2xl p-6 space-y-2">
+                <span className="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded bg-amber-500/10 text-amber-500 border border-amber-500/20">Warning</span>
+                <h4 className="font-bold text-foreground">Insurance expiring in 20 days</h4>
+                <p className="text-muted leading-relaxed">Status becomes Warning. Yellow badge, dashboard reminder + proactive email alert.</p>
+              </div>
+              <div className="bg-white dark:bg-zinc-900 border border-orange-500/20 rounded-2xl p-6 space-y-2">
+                <span className="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded bg-orange-500/10 text-orange-500 border border-orange-500/20">Urgent</span>
+                <h4 className="font-bold text-foreground">Drug test expiring in 5 days</h4>
+                <p className="text-muted leading-relaxed">Status becomes Urgent. Orange badge, dashboard + email + Twilio SMS/WhatsApp messages.</p>
+              </div>
+              <div className="bg-white dark:bg-zinc-900 border border-red-500/20 rounded-2xl p-6 space-y-2">
+                <span className="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded bg-red-500/10 text-red-500 border border-red-500/20">Critical</span>
+                <h4 className="font-bold text-foreground">Expired document</h4>
+                <p className="text-muted leading-relaxed">Status becomes Critical. Red badge, dashboard + email + SMS/WhatsApp alerts, admin review queue flag.</p>
+              </div>
+              <div className="bg-white dark:bg-zinc-900 border border-purple-500/20 rounded-2xl p-6 space-y-2">
+                <span className="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded bg-purple-500/10 text-purple-500 border border-purple-500/20">Needs Review</span>
+                <h4 className="font-bold text-foreground">Unknown / Low OCR Confidence document</h4>
+                <p className="text-muted leading-relaxed">Status becomes Needs Review. Gray/purple badge, admin manual review required before reminder scheduling.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Support Banner Info Section */}
         <section className="py-16 bg-[#0B0B0B] text-white overflow-hidden relative">
           <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#F5C400]/5 rounded-full blur-[100px] pointer-events-none" />
@@ -216,7 +265,7 @@ export default function ServicesPage() {
               Failing TLC Compliance Audits Costs Over $1,200 Annually
             </h2>
             <p className="text-slate-400 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed font-medium">
-              City rules are constantly updated, and late renewal fees pile up. Don't risk suspension. Our active system tracks checkpoints and sends direct reminders straight to your smartphone.
+              City rules are constantly updated, and late renewal fees pile up. JNI helps you track your checkpoints and sends proactive reminders straight to your smartphone.
             </p>
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
               <Link href="/auth/login">

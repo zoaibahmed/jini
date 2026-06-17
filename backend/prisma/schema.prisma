@@ -217,17 +217,32 @@ model Lead {
 }
 
 model Ticket {
-  id          String   @id @default(uuid())
-  ticketId    String   @unique
-  driverId    String
-  title       String
-  description String
-  category    String
-  status      String
-  priority    String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  VoiceCall   VoiceCall[]
+  id                  String   @id @default(uuid())
+  ticketId            String   @unique
+  driverId            String
+  title               String
+  description         String
+  category            String
+  status              String
+  priority            String
+  handlingMode        String   @default("AI_MANAGED") // "AI_MANAGED" or "HUMAN_MANAGED"
+  humanTakenOverById  String?
+  humanTakenOverAt    DateTime?
+  lastModeChangedAt   DateTime?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  VoiceCall           VoiceCall[]
+}
+
+model TicketAuditLog {
+  id            String   @id @default(uuid())
+  ticketId      String
+  action        String
+  oldMode       String?
+  newMode       String?
+  changedById   String?
+  changedByRole String?
+  createdAt     DateTime @default(now())
 }
 
 model TicketMessage {

@@ -23,6 +23,17 @@ export class SupportGateway implements OnGatewayConnection, OnGatewayDisconnect 
   @WebSocketServer()
   server: Server;
 
+  broadcastNewMessage(ticketId: string, message: any) {
+    this.logger.log(`Broadcasting new message for ticket ${ticketId}`);
+    this.server.to(ticketId).emit('messageReceived', message);
+  }
+
+  broadcastModeChange(ticketId: string, data: { handlingMode: string; lastModeChangedAt: string; humanTakenOverById?: string | null }) {
+    this.logger.log(`Broadcasting mode change for ticket ${ticketId} to ${data.handlingMode}`);
+    this.server.to(ticketId).emit('ticketModeChanged', { ticketId, ...data });
+    this.server.emit('globalTicketModeChanged', { ticketId, ...data });
+  }
+
   constructor(private readonly prisma: PrismaService) {}
 
   handleConnection(client: Socket) {

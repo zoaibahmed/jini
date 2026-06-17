@@ -147,4 +147,20 @@ export class AdminController {
   async getPayments() {
     return this.adminService.getPayments();
   }
+
+  // 13. Document Review Queue
+  @Get('documents/review-queue')
+  async getReviewQueue() {
+    return this.adminService.getReviewQueue();
+  }
+
+  @Post('documents/:id/review')
+  async processReview(
+    @Req() req: any,
+    @Param('id') docId: string,
+    @Body() body: { action: 'ACCEPT' | 'REJECT' | 'UNSUPPORTED'; expiryDate?: string; categoryName?: string; adminNotes?: string },
+  ) {
+    const adminId = req.user.id;
+    return this.adminService.processReview(adminId, docId, body);
+  }
 }

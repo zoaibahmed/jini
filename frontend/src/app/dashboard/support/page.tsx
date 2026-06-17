@@ -113,6 +113,7 @@ interface SupportTicket {
   } | null;
   createdAt: string;
   updatedAt: string;
+  handlingMode?: 'AI_MANAGED' | 'HUMAN_MANAGED';
   messages: MessageItem[];
   attachments: AttachmentItem[];
   statusHistory: StatusHistoryItem[];
@@ -182,6 +183,8 @@ export default function SupportCenter() {
   
   // Chat Input
   const [chatInput, setChatInput] = useState('');
+  const [chatFiles, setChatFiles] = useState<AttachmentItem[]>([]);
+  const chatFileInputRef = useRef<HTMLInputElement>(null);
   const [typingUser, setTypingUser] = useState<string | null>(null);
   const typingTimer = useRef<NodeJS.Timeout | null>(null);
   
@@ -423,6 +426,23 @@ export default function SupportCenter() {
       fetchTickets();
     });
 
+    // Handle mode changes in real-time
+    socketInstance.on('ticketModeChanged', (data: any) => {
+      if (activeTicketRef.current?.id === data.ticketId) {
+        setActiveTicket(prev => prev ? { 
+          ...prev, 
+          handlingMode: data.handlingMode,
+          lastModeChangedAt: data.lastModeChangedAt,
+          humanTakenOverById: data.humanTakenOverById
+        } : null);
+      }
+      fetchTickets();
+    });
+
+    socketInstance.on('globalTicketModeChanged', (data: any) => {
+      fetchTickets();
+    });
+
     // Handle typing status updates
     socketInstance.on('typingStatusReceived', (data: any) => {
       if (activeTicketRef.current?.id === data.ticketId && data.userId !== user.id) {
@@ -581,7 +601,7 @@ export default function SupportCenter() {
           'x-user-role': user.role,
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ message: messageContent })
+        body: JSON.stringify({ message: messageContent, files: chatFiles })
       });
 
       if (res.ok) {
@@ -595,6 +615,7 @@ export default function SupportCenter() {
           message: messageContent
         });
 
+        setChatFiles([]);
         fetchTicketDetails(activeTicket.id);
         fetchTickets();
       }
@@ -606,8 +627,10 @@ export default function SupportCenter() {
         senderId: user.id,
         sender: { id: user.id, name: user.name, email: user.email || '', role: user.role },
         message: messageContent,
+        attachments: chatFiles,
         createdAt: new Date().toISOString()
       };
+      setChatFiles([]);
 
       // Transition status locally
       let nextStatus = activeTicket.status;
@@ -646,6 +669,34 @@ export default function SupportCenter() {
       }));
     } finally {
       setChatLoading(false);
+    }
+  };
+
+  // Toggle handling mode (AI vs Human)
+  const handleToggleMode = async (newMode: 'AI_MANAGED' | 'HUMAN_MANAGED') => {
+    if (!activeTicket || !user) return;
+    try {
+      const token = getToken();
+      const res = await fetch(`${API_URL}/support/tickets/${activeTicket.id}/mode`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-user-id': user.id,
+          'x-user-role': user.role,
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ handlingMode: newMode })
+      });
+      if (res.ok) {
+        const data = await res.json();
+        toast.success(`Mode changed to ${newMode === 'AI_MANAGED' ? 'AI Auto-Reply' : 'Human Managed'}`);
+        setActiveTicket(data);
+        fetchTickets();
+      } else {
+        toast.error('Failed to change ticket mode.');
+      }
+    } catch (err) {
+      toast.error('Failed to update ticket mode.');
     }
   };
 
@@ -1159,9 +1210,52 @@ export default function SupportCenter() {
                                 {msg.sender?.name || 'System User'} ({msg.sender?.role || 'SYSTEM'})
                               </span>
                               <div className={`p-2.5 rounded-xl border ${
-                                isMe ? 'bg-gold-primary text-black font-semibold border-gold-hover' : 'bg-card border-border text-foreground'
+                                msg.senderId === 'AI_AGENT' 
+                                  ? 'bg-purple-500/10 border-purple-500/20 text-foreground'
+                                  : isMe 
+                                    ? 'bg-gold-primary text-black font-semibold border-gold-hover' 
+                                    : 'bg-card border-border text-foreground'
                               }`}>
                                 {msg.message}
+                                
+                                {msg.attachments && msg.attachments.length > 0 && (
+                                  <div className="mt-2 space-y-1.5 border-t border-border/10 pt-2 select-none">
+                                    {msg.attachments.map((att: any, attIdx: number) => {
+                                      const isImg = att.mimeType?.startsWith('image/');
+                                      const downloadUrl = `${API_URL}/documents/download-file?fileName=${encodeURIComponent(att.name)}`;
+                                      
+                                      return (
+                                        <div key={att.id || attIdx} className="flex items-center justify-between gap-4 p-1.5 bg-[#0B0B0B]/10 rounded border border-[#0B0B0B]/5 text-[9px]">
+                                          <div className="flex items-center gap-1.5 truncate">
+                                            <Paperclip className="w-3 h-3 text-gold-primary shrink-0" />
+                                            <span className="truncate max-w-[120px] font-medium">{att.name}</span>
+                                          </div>
+                                          
+                                          <div className="flex items-center gap-2 shrink-0">
+                                            {isImg && (
+                                              <a 
+                                                href={`/backend/${att.s3Key}`} 
+                                                target="_blank" 
+                                                rel="noreferrer"
+                                                className="text-gold-primary hover:underline font-bold text-[8px]"
+                                              >
+                                                Preview
+                                              </a>
+                                            )}
+                                            <a 
+                                              href={downloadUrl} 
+                                              download 
+                                              className="text-gold-primary hover:underline font-bold text-[8px]"
+                                            >
+                                              Download
+                                            </a>
+                                          </div>
+                                        </div>
+                                      );
+                                    })}
+                                  </div>
+                                )}
+
                                 <span className={`block text-[8px] mt-1 text-right ${isMe ? 'text-black/60' : 'text-slate-400'}`}>
                                   {new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                 </span>
@@ -1182,20 +1276,88 @@ export default function SupportCenter() {
                       <div ref={chatEndRef} />
                     </div>
 
+                    {/* Attached files preview */}
+                    {chatFiles.length > 0 && (
+                      <div className="px-4 py-2 border-t border-border bg-card flex flex-wrap gap-2">
+                        {chatFiles.map((file, idx) => (
+                          <div key={idx} className="flex items-center gap-1.5 text-[9px] font-bold text-foreground bg-gold-primary/10 border border-gold-primary/20 px-2 py-1 rounded-lg">
+                            <span>📎 {file.name}</span>
+                            <span className="text-red-500 cursor-pointer font-bold ml-1" onClick={() => setChatFiles(prev => prev.filter((_, i) => i !== idx))}>x</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
                     {/* Chat Input form */}
                     <form onSubmit={handleSendChatMessage} className="p-3 border-t border-border bg-card flex gap-2 items-center">
                       <input 
+                        type="file"
+                        ref={chatFileInputRef}
+                        className="hidden"
+                        accept="image/*,application/pdf"
+                        onChange={async (e) => {
+                          const file = e.target.files?.[0];
+                          if (!file || !user) return;
+                          
+                          setChatLoading(true);
+                          try {
+                            const formData = new FormData();
+                            formData.append('file', file);
+                            
+                            const uploadRes = await fetch(`${API_URL}/support/upload`, {
+                              method: 'POST',
+                              headers: {
+                                'x-user-id': user.id,
+                                'x-user-role': user.role
+                              },
+                              body: formData
+                            });
+                            
+                            if (!uploadRes.ok) throw new Error('Upload failed');
+                            const fileData = await uploadRes.json();
+                            
+                            setChatFiles(prev => [...prev, {
+                              id: fileData.id || `att-${Date.now()}`,
+                              name: fileData.name,
+                              s3Key: fileData.s3Key,
+                              sizeBytes: fileData.sizeBytes,
+                              mimeType: fileData.mimeType
+                            }]);
+                            toast.success(`Attached ${fileData.name}`);
+                          } catch (err) {
+                            toast.error('Failed to upload attachment');
+                          } finally {
+                            setChatLoading(false);
+                            e.target.value = '';
+                          }
+                        }}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => chatFileInputRef.current?.click()}
+                        disabled={chatLoading || (isAgent && (activeTicket.handlingMode || 'AI_MANAGED') === 'AI_MANAGED')}
+                        className="p-2.5 rounded-xl bg-[#F5F5F5] dark:bg-[#1A1A1A] border border-border hover:bg-muted text-muted-foreground transition-colors shrink-0 disabled:opacity-50"
+                      >
+                        <Paperclip className="w-4 h-4" />
+                      </button>
+
+                      <input 
                         type="text" 
-                        placeholder="Type reply message..."
+                        placeholder={
+                          isAgent && (activeTicket.handlingMode || 'AI_MANAGED') === 'AI_MANAGED'
+                            ? "AI is managing this ticket. Click 'Take Over Manually' to reply..."
+                            : "Type reply message..."
+                        }
                         value={chatInput}
+                        disabled={isAgent && (activeTicket.handlingMode || 'AI_MANAGED') === 'AI_MANAGED'}
                         onChange={(e) => handleChatInputChange(e.target.value)}
-                        className="flex-1 bg-[#F5F5F5] dark:bg-[#1A1A1A] border border-border text-xs rounded-xl px-3 py-2.5 outline-none font-semibold text-foreground"
+                        className="flex-1 bg-[#F5F5F5] dark:bg-[#1A1A1A] border border-border text-xs rounded-xl px-3 py-2.5 outline-none font-semibold text-foreground disabled:opacity-50"
                       />
                       <Button 
                         type="submit" 
                         size="sm"
-                        disabled={chatLoading} 
-                        className="bg-[#F5C400] text-black hover:bg-[#D9A300] border-0 h-9 w-9 p-0 flex items-center justify-center shadow-md shadow-gold-glow shrink-0"
+                        disabled={chatLoading || (isAgent && (activeTicket.handlingMode || 'AI_MANAGED') === 'AI_MANAGED')} 
+                        className="bg-[#F5C400] text-black hover:bg-[#D9A300] border-0 h-9 w-9 p-0 flex items-center justify-center shadow-md shadow-gold-glow shrink-0 disabled:opacity-50"
                       >
                         {chatLoading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Send className="w-3.5 h-3.5" />}
                       </Button>
@@ -1209,6 +1371,33 @@ export default function SupportCenter() {
                       {/* Ticket parameters */}
                       <div className="space-y-3">
                         <h4 className="font-heading font-extrabold text-xs text-foreground uppercase tracking-wider">Case Action Console</h4>
+                        
+                        {/* Handling Mode Status */}
+                        <div className="space-y-1.5 bg-[#F5F5F5] dark:bg-[#1A1A1A] p-2.5 rounded-xl border border-border">
+                          <label className="text-[8px] font-extrabold text-muted uppercase block">Handling Mode</label>
+                          <div className="flex items-center justify-between mt-1 gap-2">
+                            <div>
+                              <span className={`px-2 py-0.5 rounded text-[8px] font-extrabold uppercase border ${
+                                (activeTicket.handlingMode || 'AI_MANAGED') === 'AI_MANAGED'
+                                  ? 'text-purple-400 bg-purple-500/10 border-purple-500/20'
+                                  : 'text-amber-500 bg-amber-500/10 border-amber-500/20'
+                              }`}>
+                                {(activeTicket.handlingMode || 'AI_MANAGED').replace('_', ' ')}
+                              </span>
+                            </div>
+                            
+                            <button
+                              onClick={() => handleToggleMode((activeTicket.handlingMode || 'AI_MANAGED') === 'AI_MANAGED' ? 'HUMAN_MANAGED' : 'AI_MANAGED')}
+                              className={`px-2 py-1 rounded text-[8px] font-bold cursor-pointer transition-colors border-0 select-none ${
+                                (activeTicket.handlingMode || 'AI_MANAGED') === 'AI_MANAGED'
+                                  ? 'bg-amber-500 text-black hover:bg-amber-600'
+                                  : 'bg-purple-500 text-white hover:bg-purple-600'
+                              }`}
+                            >
+                              {(activeTicket.handlingMode || 'AI_MANAGED') === 'AI_MANAGED' ? 'Take Over Manually' : 'Return to AI Auto-Reply'}
+                            </button>
+                          </div>
+                        </div>
                         
                         {/* Status Select dropdown */}
                         <div className="space-y-1">

@@ -267,6 +267,7 @@ Verify your drug test compliance status under the JNI Compliance Dashboard.`,
     selectedProvider: string = 'OpenAI',
     onToken?: (token: string, text: string) => void,
     savedAIId: string = crypto.randomUUID(),
+    files?: Array<{ name: string; s3Key: string; sizeBytes: number; mimeType: string }>,
   ): Promise<{ message: ChatMessage; ticketCreated?: any }> {
     // A. Rate Limiter check
     const now = Date.now();
@@ -378,6 +379,7 @@ Verify your drug test compliance status under the JNI Compliance Dashboard.`,
       matchedDocs,
       targetLanguage,
       onToken,
+      files,
     );
     const durationMs = Date.now() - start;
 
@@ -450,6 +452,7 @@ class OpenAiProvider implements AiProvider {
     knowledgeDocs: { title: string; content: string }[],
     language: string,
     onToken?: (token: string, text: string) => void,
+    files?: Array<{ name: string; s3Key: string; sizeBytes: number; mimeType: string }>,
   ): Promise<AiResponse> {
     // Construct system message with RAG context
     const contextStr = knowledgeDocs.map(d => `[${d.title}]: ${d.content}`).join('\n\n');
@@ -461,8 +464,32 @@ class OpenAiProvider implements AiProvider {
         role: h.role === 'USER' ? 'user' : 'assistant',
         content: h.content,
       })),
-      { role: 'user', content: query },
     ];
+
+    const imageAttachments = files?.filter(f => f.mimeType?.startsWith('image/')) || [];
+
+    if (imageAttachments.length > 0) {
+      const contents: any[] = [{ type: 'text', text: query }];
+      for (const img of imageAttachments) {
+        const filePath = path.join(process.cwd(), img.s3Key);
+        if (fs.existsSync(filePath)) {
+          try {
+            const base64Image = fs.readFileSync(filePath).toString('base64');
+            contents.push({
+              type: 'image_url',
+              image_url: {
+                url: `data:${img.mimeType};base64,${base64Image}`
+              }
+            });
+          } catch (err) {
+            console.error(`Failed to read physical attachment for vision in copilot: ${filePath}`, err);
+          }
+        }
+      }
+      messages.push({ role: 'user', content: contents });
+    } else {
+      messages.push({ role: 'user', content: query });
+    }
 
     let fullText = '';
     let promptTokens = 150 + query.split(/\s+/).length + systemInstruction.split(/\s+/).length;
@@ -496,7 +523,7 @@ class OpenAiProvider implements AiProvider {
       Logger.error('OpenAI SDK Completion call failed, falling back to mock response', e);
       // Failsafe Mock call if OpenAI fails at runtime (e.g. rate limit / network error)
       const mock = new MockAiProvider('openai');
-      return mock.generateResponse(query, systemPrompt, history, knowledgeDocs, language, onToken);
+      return mock.generateResponse(query, systemPrompt, history, knowledgeDocs, language, onToken, files);
     }
 
     // Determine confidence score (simple keyword inspection or high default value for LLM)
@@ -540,6 +567,7 @@ class MockAiProvider implements AiProvider {
     knowledgeDocs: { title: string; content: string }[],
     language: string,
     onToken?: (token: string, text: string) => void,
+    files?: Array<{ name: string; s3Key: string; sizeBytes: number; mimeType: string }>,
   ): Promise<AiResponse> {
     const norm = query.toLowerCase();
     let text = '';

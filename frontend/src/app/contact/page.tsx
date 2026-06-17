@@ -242,7 +242,7 @@ export default function ContactPage() {
                       <PhoneCall className="w-5 h-5 text-[#F5C400] shrink-0" />
                       <div>
                         <strong className="text-white block font-bold text-sm">Phone Line Support</strong>
-                        <span className="text-[11px] block mt-1">+1 (718) 555-0199</span>
+                        <span className="text-[11px] block mt-1 text-slate-400">Phone support coming soon</span>
                       </div>
                     </div>
 
@@ -250,7 +250,9 @@ export default function ContactPage() {
                       <Mail className="w-5 h-5 text-[#F5C400] shrink-0" />
                       <div>
                         <strong className="text-white block font-bold text-sm">Email Mailbox</strong>
-                        <span className="text-[11px] block mt-1 hover:text-[#F5C400] transition-colors">support@jnisolutions.com</span>
+                        <span className="text-[11px] block mt-1 hover:text-[#F5C400] transition-colors">
+                          <a href="mailto:support@jnisolutionsllc.com" className="text-slate-300 hover:text-gold-primary transition-colors">support@jnisolutionsllc.com</a>
+                        </span>
                       </div>
                     </div>
                   </div>

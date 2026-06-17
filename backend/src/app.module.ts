@@ -10,7 +10,7 @@ import { DocumentModule } from './document/document.module';
 import { BillingModule } from './billing/billing.module';
 import { SupportModule } from './support/support.module';
 import { VoiceModule } from './voice/voice.module';
-// import { AdminModule } from './admin/admin.module';
+import { AdminModule } from './admin/admin.module';
 import { AppointmentModule } from './appointment/appointment.module';
 import { WhatsappModule } from './whatsapp/whatsapp.module';
 import { CrmModule } from './crm/crm.module';
@@ -44,7 +44,8 @@ import { MockController } from './mock.controller';
     ReminderModule,
     SmsModule,
     HealthModule,
-    VoiceModule
+    VoiceModule,
+    AdminModule
   ],
   controllers: [AppController, MockController],
   providers: [AppService],

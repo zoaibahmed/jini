@@ -165,6 +165,23 @@ export class SupportController {
     return this.supportService.updateStatus(userId, ticketId, body.status, body.comment);
   }
 
+  @Patch('tickets/:id/mode')
+  @ApiHeader({ name: 'x-user-id', required: true })
+  @ApiHeader({ name: 'x-user-role', required: false })
+  @ApiOperation({ summary: 'Toggle ticket handling mode between AI_MANAGED and HUMAN_MANAGED' })
+  async toggleMode(
+    @Headers('x-user-id') userIdHeader: string,
+    @Headers('x-user-role') roleHeader: string,
+    @Param('id') ticketId: string,
+    @Body() body: { handlingMode: string },
+  ) {
+    const { userId, role } = this.getAuthContext(userIdHeader, roleHeader);
+    if (role !== 'SUPPORT' && role !== 'ADMIN' && role !== 'SUPERADMIN') {
+      throw new BadRequestException('Access denied. Agent privileges required.');
+    }
+    return this.supportService.toggleMode(userId, role, ticketId, body.handlingMode);
+  }
+
   @Post('tickets/:id/escalate')
   @ApiHeader({ name: 'x-user-id', required: true })
   @ApiHeader({ name: 'x-user-role', required: false })

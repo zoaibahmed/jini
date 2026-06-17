@@ -17,5 +17,6 @@ export interface AiProvider {
     knowledgeDocs: { title: string; content: string }[],
     language: string,
     onToken?: (token: string, text: string) => void,
+    files?: Array<{ name: string; s3Key: string; sizeBytes: number; mimeType: string }>,
   ): Promise<AiResponse>;
 }

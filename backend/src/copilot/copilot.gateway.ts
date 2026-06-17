@@ -50,6 +50,7 @@ export class CopilotGateway implements OnGatewayConnection, OnGatewayDisconnect 
       driverId?: string;
       language?: string;
       provider?: string;
+      files?: Array<{ name: string; s3Key: string; sizeBytes: number; mimeType: string }>;
     },
   ) {
     this.logger.log(`Received message: ${data.message} for chat: ${data.chatId}`);
@@ -103,6 +104,7 @@ export class CopilotGateway implements OnGatewayConnection, OnGatewayDisconnect 
       message: data.message,
       language: data.language || 'English',
       isPinned: false,
+      attachments: data.files || undefined,
       createdAt: new Date().toISOString(),
     };
     CopilotStore.saveMessage(userMsg);
@@ -116,10 +118,10 @@ export class CopilotGateway implements OnGatewayConnection, OnGatewayDisconnect 
     const chatSession = CopilotStore.getChatById(chatId);
     if (chatSession && userMessages.length === 1 && 
         (chatSession.title === 'Default Conversation' || 
-         chatSession.title === 'New Conversation' || 
-         chatSession.title.startsWith('Copilot chat #') ||
-         chatSession.title.startsWith('Default') || 
-         chatSession.title.startsWith('New'))) {
+          chatSession.title === 'New Conversation' || 
+          chatSession.title.startsWith('Copilot chat #') ||
+          chatSession.title.startsWith('Default') || 
+          chatSession.title.startsWith('New'))) {
       this.aiService.generateChatTitle(data.message).then(newTitle => {
         CopilotStore.updateChatTitle(chatId, newTitle);
         client.emit('chatTitleUpdated', { chatId, title: newTitle });
@@ -145,6 +147,7 @@ export class CopilotGateway implements OnGatewayConnection, OnGatewayDisconnect 
         client.emit('streamToken', { id: aiMessageId, token, text, chatId });
       },
       aiMessageId,
+      data.files,
     );
 
     const savedAI = pipeline.message;

@@ -47,16 +47,20 @@ export function Footer() {
           <div className="space-y-4">
             <h5 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">Contact Support</h5>
             <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-semibold">
-              Email: support@jnisolutions.com <br />
+              Email: <a href="mailto:support@jnisolutionsllc.com" className="hover:text-gold-primary transition-colors text-gold-primary">support@jnisolutionsllc.com</a> <br />
               Office: 120 Woodside Ave, Queens, NY
             </p>
           </div>
 
         </div>
 
-        {/* Copyright */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-500 font-semibold">
-          <p>© {new Date().getFullYear()} JNI Solutions Inc. All rights reserved. NYC TLC, Uber, Lyft are registered marks of their respective entities.</p>
+        {/* Disclaimer and Copyright */}
+        <div className="pt-8 flex flex-col gap-4 border-t border-slate-100 dark:border-zinc-800 text-xs text-slate-400 dark:text-slate-500 font-semibold">
+          <div className="text-[10px] leading-relaxed text-slate-400 dark:text-slate-500 font-medium">
+            <strong>Disclaimer:</strong> JNI Solutions LLC is not a government agency, law firm, insurance carrier, DMV office, or TLC office. JNI Solutions provides driver assistance, document organization, reminders, support guidance, and referral services where applicable.
+          </div>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© {new Date().getFullYear()} JNI Solutions LLC. All rights reserved. NYC TLC, Uber, Lyft are registered marks of their respective entities.</p>
           <div className="flex space-x-6">
             <a href="#" className="hover:text-[#D9A300] dark:hover:text-[#F5C400] transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-[#D9A300] dark:hover:text-[#F5C400] transition-colors">Terms of Service</a>
@@ -64,6 +68,7 @@ export function Footer() {
           </div>
         </div>
       </div>
-    </footer>
+    </div>
+  </footer>
   );
 }

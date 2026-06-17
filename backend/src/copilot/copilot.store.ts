@@ -19,6 +19,7 @@ export interface ChatMessage {
   confidenceScore?: number;
   isPinned: boolean;
   createdAt: string;
+  attachments?: Array<{ name: string; s3Key: string; sizeBytes: number; mimeType: string }>;
   feedback?: {
     id: string;
     rating: 'THUMBS_UP' | 'THUMBS_DOWN';

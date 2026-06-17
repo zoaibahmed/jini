@@ -2,10 +2,17 @@
 import { Injectable, NotFoundException, ForbiddenException, BadRequestException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { SupportStore, SupportTicket } from './support.store';
+import { SupportGateway } from './support.gateway';
+import { OpenAI } from 'openai';
+import * as fs from 'fs';
+import * as path from 'path';
 
 @Injectable()
 export class SupportService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly gateway: SupportGateway
+  ) {}
 
   private async generateTicketId(): Promise<string> {
     const tickets = SupportStore.getAll();
@@ -33,6 +40,7 @@ export class SupportService {
         category: data.category.toUpperCase(),
         status: 'OPEN',
         priority: data.priority.toUpperCase(),
+        handlingMode: 'AI_MANAGED',
       }
     });
 
@@ -45,6 +53,7 @@ export class SupportService {
       priority: data.priority.toUpperCase(),
       status: 'OPEN',
       driverId,
+      handlingMode: 'AI_MANAGED',
       createdAt: new Date().toISOString(),
       messages: [],
       statusHistory: [
@@ -151,11 +160,19 @@ export class SupportService {
 
     const baseMsg = await this.prisma.ticketMessage.create({ data: {} });
 
+    const attachments = data.files ? data.files.map(f => ({
+      name: f.name,
+      s3Key: f.s3Key,
+      sizeBytes: f.sizeBytes,
+      mimeType: f.mimeType
+    })) : [];
+
     const message = {
       id: baseMsg.id,
       senderId: userId,
       senderRole: role,
       message: data.message,
+      attachments: attachments.length > 0 ? attachments : undefined,
       createdAt: new Date().toISOString()
     };
     ticket.messages.push(message);
@@ -187,7 +204,149 @@ export class SupportService {
     }
 
     SupportStore.save(ticket);
+
+    // Broadcast user's message immediately
+    try {
+      this.gateway.broadcastNewMessage(ticket.id, {
+        ticketId: ticket.id,
+        messageId: message.id,
+        senderName: isDriver ? 'Driver' : 'Agent',
+        message: message.message,
+        senderRole: role,
+        attachments: message.attachments,
+        createdAt: message.createdAt
+      });
+    } catch (err) {
+      console.error('Socket emit failed for user message:', err);
+    }
+
+    // Trigger AI response asynchronously if ticket is managed by AI and driver sent the message
+    const handlingMode = ticket.handlingMode || 'AI_MANAGED';
+    if (isDriver && handlingMode === 'AI_MANAGED') {
+      this.triggerAiResponse(ticket.id).catch(err => {
+        console.error('Failed to run AI response for ticket:', err);
+      });
+    }
+
     return message;
+  }
+
+  private async triggerAiResponse(ticketId: string) {
+    try {
+      const ticket = SupportStore.getById(ticketId);
+      if (!ticket) return;
+
+      const apiKey = process.env.OPENAI_API_KEY;
+      let aiText = '';
+
+      if (apiKey && !apiKey.startsWith('YOUR_')) {
+        const openai = new OpenAI({ apiKey });
+        
+        // Build conversational history
+        const conversationContext = ticket.messages.map(m => {
+          const roleLabel = m.senderRole === 'DRIVER' ? 'User' : 'Support Agent';
+          return `${roleLabel}: ${m.message}`;
+        }).join('\n');
+
+        const systemPrompt = `You are JNI Solutions AI Support Assistant. Respond politely to the TLC driver's ticket message.
+Ticket Details:
+Category: ${ticket.category}
+Title: ${ticket.title}
+Description: ${ticket.description}
+
+Conversation history:
+${conversationContext}
+
+Reply directly and constructively. Keep it under 4 paragraphs.`;
+
+        // Check if the latest driver message contains images for vision
+        const lastDriverMsg = [...ticket.messages].reverse().find(m => m.senderRole === 'DRIVER');
+        const imageAttachments = lastDriverMsg?.attachments?.filter(a => a.mimeType.startsWith('image/')) || [];
+
+        if (imageAttachments.length > 0) {
+          // Vision completion payload
+          const contents: any[] = [{ type: 'text', text: systemPrompt }];
+          
+          for (const img of imageAttachments) {
+            const filePath = path.join(process.cwd(), img.s3Key);
+            if (fs.existsSync(filePath)) {
+              try {
+                const base64Image = fs.readFileSync(filePath).toString('base64');
+                contents.push({
+                  type: 'image_url',
+                  image_url: {
+                    url: `data:${img.mimeType};base64,${base64Image}`
+                  }
+                });
+              } catch (err) {
+                console.error(`Failed to read physical attachment for vision: ${filePath}`, err);
+              }
+            }
+          }
+
+          const response = await openai.chat.completions.create({
+            model: 'gpt-4o',
+            messages: [
+              { role: 'user', content: contents }
+            ]
+          });
+          aiText = response.choices[0]?.message?.content || '';
+        } else {
+          // Standard text chat completion
+          const response = await openai.chat.completions.create({
+            model: 'gpt-4o',
+            messages: [
+              { role: 'system', content: systemPrompt }
+            ]
+          });
+          aiText = response.choices[0]?.message?.content || '';
+        }
+      }
+
+      // Fallback response if OpenAI key is missing or call failed
+      if (!aiText) {
+        aiText = `Hello! I am the JNI Solutions AI Support Assistant. Thank you for your message regarding "${ticket.title}". We have logged this inquiry and our support team has been notified. We will update you shortly.`;
+      }
+
+      // Save AI message to store and DB
+      const aiMsgRecord = await this.prisma.ticketMessage.create({ data: {} });
+      const aiMessage = {
+        id: aiMsgRecord.id,
+        senderId: 'AI_AGENT',
+        senderRole: 'SUPPORT',
+        message: aiText,
+        createdAt: new Date().toISOString()
+      };
+
+      ticket.messages.push(aiMessage);
+      
+      // Auto-update status to waiting user since AI replied
+      if (ticket.status === 'OPEN' || ticket.status === 'ASSIGNED' || ticket.status === 'IN_PROGRESS') {
+        ticket.status = 'WAITING_USER';
+        ticket.statusHistory.push({
+          oldStatus: ticket.status,
+          newStatus: 'WAITING_USER',
+          changedById: 'AI_AGENT',
+          comment: 'AI response sent, changed status to Waiting User',
+          createdAt: new Date().toISOString()
+        });
+      }
+
+      SupportStore.save(ticket);
+
+      // Broadcast AI's message
+      this.gateway.broadcastNewMessage(ticket.id, {
+        ticketId: ticket.id,
+        messageId: aiMessage.id,
+        senderName: 'JNI AI Assistant',
+        message: aiMessage.message,
+        senderRole: 'SUPPORT',
+        createdAt: aiMessage.createdAt
+      });
+
+    } catch (err) {
+      console.error('Failed to generate AI auto reply:', err);
+    }
   }
 
   async addInternalNote(agentId: string, ticketId: string, note: string) {
@@ -308,5 +467,68 @@ export class SupportService {
       agentWorkload: [],
       categoryMetrics: [],
     };
+  }
+
+  async toggleMode(userId: string, role: string, ticketId: string, handlingMode: string) {
+    const ticket = SupportStore.getById(ticketId);
+    if (!ticket) throw new NotFoundException('Ticket not found');
+
+    const oldMode = ticket.handlingMode || 'AI_MANAGED';
+    const newMode = handlingMode.toUpperCase();
+
+    if (oldMode === newMode) return ticket;
+
+    if (newMode !== 'AI_MANAGED' && newMode !== 'HUMAN_MANAGED') {
+      throw new BadRequestException('Invalid handling mode specified');
+    }
+
+    const timestamp = new Date();
+
+    ticket.handlingMode = newMode;
+    ticket.lastModeChangedAt = timestamp.toISOString();
+
+    if (newMode === 'HUMAN_MANAGED') {
+      ticket.humanTakenOverById = userId;
+      ticket.humanTakenOverAt = timestamp.toISOString();
+    } else {
+      ticket.humanTakenOverById = null;
+      ticket.humanTakenOverAt = null;
+    }
+
+    await this.prisma.ticket.update({
+      where: { id: ticket.id },
+      data: {
+        handlingMode: newMode,
+        humanTakenOverById: ticket.humanTakenOverById,
+        humanTakenOverAt: ticket.humanTakenOverAt ? timestamp : null,
+        lastModeChangedAt: timestamp,
+      }
+    }).catch(() => {});
+
+    await this.prisma.ticketAuditLog.create({
+      data: {
+        ticketId: ticket.id,
+        action: 'MODE_CHANGE',
+        oldMode,
+        newMode,
+        changedById: userId,
+        changedByRole: role,
+        createdAt: timestamp,
+      }
+    }).catch(() => {});
+
+    SupportStore.save(ticket);
+
+    try {
+      this.gateway.broadcastModeChange(ticket.id, {
+        handlingMode: newMode,
+        lastModeChangedAt: ticket.lastModeChangedAt,
+        humanTakenOverById: ticket.humanTakenOverById,
+      });
+    } catch (err) {
+      console.error('Socket emit failed for mode change:', err);
+    }
+
+    return ticket;
   }
 }

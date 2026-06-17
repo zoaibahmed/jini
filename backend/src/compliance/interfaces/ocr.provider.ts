@@ -5,6 +5,7 @@ export interface OcrResult {
     expiryDate?: string;
     issueDate?: string;
     licenseNumber?: string;
+    confidence?: number;
   };
 }
 

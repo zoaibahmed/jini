@@ -95,14 +95,18 @@ export class DocumentService {
 
   // Expiry status calculation based on standard thresholds (30, 15, 7 days)
   private calculateStatus(expiryDate?: Date | string | null): string {
-    if (!expiryDate) return 'SAFE';
+    if (!expiryDate) return 'INFO';
     const now = new Date();
-    const daysLeft = Math.ceil((new Date(expiryDate).getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const exp = new Date(expiryDate);
+    const expDate = new Date(exp.getFullYear(), exp.getMonth(), exp.getDate());
+    const daysLeft = Math.ceil((expDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
     
-    if (daysLeft < 0) return 'EXPIRED';
-    if (daysLeft <= 7) return 'URGENT';
-    if (daysLeft <= 15) return 'WARNING';
-    return 'SAFE';
+    if (daysLeft < 0) return 'CRITICAL';
+    if (daysLeft <= 14) return 'URGENT';
+    if (daysLeft <= 30) return 'WARNING';
+    if (daysLeft <= 90) return 'UPCOMING';
+    return 'INFO';
   }
 
   // Return static categories to compile successfully

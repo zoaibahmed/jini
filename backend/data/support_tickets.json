@@ -253,5 +253,81 @@
     ],
     "internalNotes": [],
     "escalations": []
+  },
+  {
+    "id": "c4549f51-4571-4c7c-a5a2-94a0b6ab8847",
+    "ticketId": "JNI-T-1018",
+    "title": "yesss",
+    "description": "hmmmmmmmmmmmmmmm",
+    "category": "TLC",
+    "priority": "MEDIUM",
+    "status": "WAITING_USER",
+    "driverId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "handlingMode": "AI_MANAGED",
+    "createdAt": "2026-06-17T14:18:48.412Z",
+    "messages": [
+      {
+        "id": "07e2a409-8915-4e5e-b97e-f3c9cd5e6590",
+        "senderId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+        "senderRole": "DRIVER",
+        "message": "lisennn",
+        "attachments": [
+          {
+            "name": "6.png",
+            "s3Key": "uploads/support/b0936792391296622c08eb2fb4239040",
+            "sizeBytes": 1962059,
+            "mimeType": "image/png"
+          }
+        ],
+        "createdAt": "2026-06-17T14:18:57.223Z"
+      },
+      {
+        "id": "16a90de8-51b3-496b-a63e-d612f03fcab4",
+        "senderId": "AI_AGENT",
+        "senderRole": "SUPPORT",
+        "message": "I'm here to assist you with your TLC-related inquiry. However, the details you've provided are quite brief. To better assist you, could you please provide more specific information about the issue or question you have?\n\nIf you need help with your TLC license, vehicle documents, or any related procedures, feel free to elaborate so I can guide you effectively. Your updated license and documentation look in order, but let me know if there's anything specific you need.\n\nIf you're facing an urgent issue or have further questions, please let me know, and I'll do my best to assist you. Thank you for reaching out, and I'm here to help!",
+        "createdAt": "2026-06-17T14:19:07.554Z"
+      },
+      {
+        "id": "d2584587-aab1-4f0c-80de-54d0222cc84b",
+        "senderId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+        "senderRole": "DRIVER",
+        "message": "okkk see this imageee",
+        "attachments": [
+          {
+            "name": "6.png",
+            "s3Key": "uploads/support/511bffaa5ee4f4e9142b51bea41fee57",
+            "sizeBytes": 1962059,
+            "mimeType": "image/png"
+          }
+        ],
+        "createdAt": "2026-06-17T14:19:20.622Z"
+      },
+      {
+        "id": "0322c0c1-a8f3-4688-bd3e-11f3fb8a8576",
+        "senderId": "AI_AGENT",
+        "senderRole": "SUPPORT",
+        "message": "Thank you for sharing the image. It appears you have included important documentation related to your TLC license and vehicle. Everything seems to be in order with your documents, including your driver’s license, vehicle insurance, registration, inspection, drug screening certificate, and DMV notice.\n\nIf there’s a specific issue or question you have regarding these documents, please let me know so I can assist you further. Whether it’s about renewal, a particular procedure, or clarification on any of the listed items, I’m here to help.\n\nIn case you need assistance with another concern, or if there are any errors or updates required, please provide more details so that I can address them effectively. Thank you for reaching out, and I look forward to helping you resolve any concerns you may have.",
+        "createdAt": "2026-06-17T14:19:25.926Z"
+      }
+    ],
+    "statusHistory": [
+      {
+        "oldStatus": "OPEN",
+        "newStatus": "OPEN",
+        "changedById": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+        "comment": "Ticket created by driver",
+        "createdAt": "2026-06-17T14:18:48.412Z"
+      },
+      {
+        "oldStatus": "WAITING_USER",
+        "newStatus": "WAITING_USER",
+        "changedById": "AI_AGENT",
+        "comment": "AI response sent, changed status to Waiting User",
+        "createdAt": "2026-06-17T14:19:07.554Z"
+      }
+    ],
+    "internalNotes": [],
+    "escalations": []
   }
 ]

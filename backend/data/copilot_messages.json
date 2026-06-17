@@ -369,5 +369,71 @@
     "language": "English",
     "isPinned": false,
     "createdAt": "2026-06-16T18:18:22.270Z"
+  },
+  {
+    "id": "320a6586-4a32-419e-b38e-3e1beb66473c",
+    "chatId": "e2f60b4f-b661-44b1-9fb4-9185d65601fa",
+    "sender": "USER",
+    "message": "View Required Documents",
+    "language": "Urdu",
+    "isPinned": false,
+    "createdAt": "2026-06-16T18:39:11.899Z"
+  },
+  {
+    "id": "5aafb8f1-464f-4bbe-bca4-fbf124f8db0f",
+    "chatId": "e2f60b4f-b661-44b1-9fb4-9185d65601fa",
+    "sender": "AI",
+    "message": "معذرت، لیکن آپ کو کون سی دستاویزات درکار ہیں؟ اگر آپ TLC لائسنس کی تجدید کے لئے مطلوبہ دستاویزات کے بارے میں جاننا چاہتے ہیں تو عموماً ان میں آن لائن تجدید درخواست، 24 گھنٹوں کا تجدید کورس کا سرٹیفیکیٹ، منظور شدہ TLC سہولت سے ڈرگ ٹیسٹ کی رپورٹ، اور تجدید فیس شامل ہوتی ہیں۔ مزید معلومات کے لئے، براہ کرم اپنے JNI دستاویزات پورٹل میں لاگ ان کریں۔",
+    "confidenceScore": 0.95,
+    "language": "Urdu",
+    "isPinned": false,
+    "createdAt": "2026-06-16T18:39:15.860Z"
+  },
+  {
+    "id": "8017125b-0d7e-4937-b740-9d62fba8c676",
+    "chatId": "e2f60b4f-b661-44b1-9fb4-9185d65601fa",
+    "sender": "USER",
+    "message": "hehe",
+    "language": "Bangla",
+    "isPinned": false,
+    "createdAt": "2026-06-16T18:39:21.679Z"
+  },
+  {
+    "id": "86fe15a4-c05d-413c-8dc6-938f9f2d386b",
+    "chatId": "e2f60b4f-b661-44b1-9fb4-9185d65601fa",
+    "sender": "AI",
+    "message": "আপনি কি বিশেষ কোনো তথ্য বা সহায়তা চান? আমি নিউ ইয়র্ক সিটি ট্যাক্সি এবং লিমোজিন কমিশন (TLC) এর নিয়ম, যানবাহন পরিদর্শন, বীমা এবং অন্যান্য সংক্রান্ত যেকোনো প্রশ্নে আপনার সাহায্য করতে এখানে আছি। অনুগ্রহ করে নিজস্ব প্রশ্ন করুন।",
+    "confidenceScore": 0.3,
+    "language": "Bangla",
+    "isPinned": false,
+    "createdAt": "2026-06-16T18:39:23.338Z"
+  },
+  {
+    "id": "ffb15ed2-f7da-478f-84e1-4cf2e74aed27",
+    "chatId": "e2f60b4f-b661-44b1-9fb4-9185d65601fa",
+    "sender": "USER",
+    "message": "see this ",
+    "language": "English",
+    "isPinned": false,
+    "attachments": [
+      {
+        "id": "att-1781710098428",
+        "name": "6.png",
+        "s3Key": "uploads/support/edd08a42cec2307181c8dcee21df9451",
+        "sizeBytes": 1962059,
+        "mimeType": "image/png"
+      }
+    ],
+    "createdAt": "2026-06-17T15:28:22.080Z"
+  },
+  {
+    "id": "80e3a899-5ff9-4fa9-b42f-2fdf9030e9d5",
+    "chatId": "e2f60b4f-b661-44b1-9fb4-9185d65601fa",
+    "sender": "AI",
+    "message": "It seems like there are several important documents presented here, typically required for a TLC driver in NYC. Here's a breakdown:\n\n1. **TLC Driver License**: This is your official license from the Taxi and Limousine Commission to operate as a driver.\n2. **Vehicle Insurance Card**: Proof of insurance for your vehicle, which is mandatory.\n3. **Vehicle Registration**: Official registration of your vehicle with the Department of Motor Vehicles (DMV).\n4. **Vehicle Inspection Certificate**: Documentation showing that your vehicle has passed the required inspections.\n5. **Drug Test Certificate**: Evidence that you have passed the necessary drug screening.\n6. **DMV Notice**: Any notices or summonses related to parking or other violations.\n\nEnsure all these documents are up-to-date and maintained properly. If you have specific questions or need assistance with these documents, feel free to ask!",
+    "confidenceScore": 0.95,
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-06-17T15:28:28.342Z"
   }
 ]
