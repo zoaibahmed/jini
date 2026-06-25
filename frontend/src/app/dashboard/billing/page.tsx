@@ -15,16 +15,13 @@ import {
   Tag,
   Loader2,
   Lock,
-  X,
-  CreditCard as CardIcon,
   ShieldCheck,
-  Zap,
-  Globe
+  Zap
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/toast';
 import { useAuth } from '@/hooks/useAuth';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { API_URL } from '@/config';
 import Link from 'next/link';
 
@@ -47,7 +44,6 @@ function BillingPortalContent() {
   const { toast } = useToast();
   const { user } = useAuth();
   const searchParams = useSearchParams();
-  const router = useRouter();
 
   const isAdmin = user?.role === 'ADMIN' || user?.role === 'SUPERADMIN' || user?.role === 'SUPPORT';
 
@@ -72,15 +68,6 @@ function BillingPortalContent() {
   const [couponInput, setCouponInput] = useState('');
   const [appliedCoupon, setAppliedCoupon] = useState<string | null>(null);
   const [discountPercent, setDiscountPercent] = useState<number>(0);
-
-  // Mock Payment Modal State
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState<PlanItem | null>(null);
-  const [cardHolder, setCardHolder] = useState('');
-  const [cardNumber, setCardNumber] = useState('');
-  const [cardExpiry, setCardExpiry] = useState('');
-  const [cardCvc, setCardCvc] = useState('');
-  const [isPaymentProcessing, setIsPaymentProcessing] = useState(false);
 
   const fetchBillingData = async () => {
     try {
@@ -203,13 +190,7 @@ function BillingPortalContent() {
   }
 
   const handleSubscribeClick = (plan: PlanItem) => {
-    if (plan.priceMonthly === 0) {
-      // Free basic tier -> Go straight to checkout success
-      handleExecuteSubscribe(plan.id);
-    } else {
-      setSelectedPlan(plan);
-      setIsModalOpen(true);
-    }
+    handleExecuteSubscribe(plan.id);
   };
 
   const handleExecuteSubscribe = async (planId: string) => {
@@ -237,6 +218,7 @@ function BillingPortalContent() {
       if (!res.ok) throw new Error('Checkout API error');
       const data = await res.json();
       
+      toast.info('Redirecting to secure Stripe checkout portal...');
       if (data.checkoutUrl) {
         window.location.href = data.checkoutUrl;
       }
@@ -244,26 +226,6 @@ function BillingPortalContent() {
       toast.error('Billing portal currently offline.');
       setActionLoading(null);
     }
-  };
-
-  const handleModalPaymentSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!cardNumber || !cardExpiry || !cardCvc || !cardHolder) {
-      toast.error('Please fill out all payment details.');
-      return;
-    }
-    
-    setIsPaymentProcessing(true);
-
-    // Simulate Payment processing delay
-    setTimeout(async () => {
-      setIsPaymentProcessing(false);
-      setIsModalOpen(false);
-      
-      if (selectedPlan) {
-        await handleExecuteSubscribe(selectedPlan.id);
-      }
-    }, 2000);
   };
 
   const handleCancelSub = async () => {
@@ -374,31 +336,6 @@ function BillingPortalContent() {
     const left = getDaysLeft(dateString);
     const total = subscription?.billingPeriod === 'yearly' ? 365 : 30;
     return Math.min(100, Math.max(0, (left / total) * 100));
-  };
-
-  const formatCardNumber = (value: string) => {
-    const v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
-    const matches = v.match(/\d{4,16}/g);
-    const match = (matches && matches[0]) || '';
-    const parts = [];
-
-    for (let i = 0, len = match.length; i < len; i += 4) {
-      parts.push(match.substring(i, i + 4));
-    }
-
-    if (parts.length > 0) {
-      return parts.join(' ');
-    } else {
-      return v;
-    }
-  };
-
-  const formatExpiry = (value: string) => {
-    const v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
-    if (v.length >= 2) {
-      return `${v.substring(0, 2)}/${v.substring(2, 4)}`;
-    }
-    return v;
   };
 
   if (loading) {
@@ -661,12 +598,15 @@ function BillingPortalContent() {
 
           {/* Active Card */}
           <div className="bg-[#0d0d0d] border border-[#222222] rounded-3xl p-6 space-y-4">
-            <h3 className="font-heading font-extrabold text-sm uppercase tracking-wider text-white">Active Card</h3>
+            <h3 className="font-heading font-extrabold text-sm uppercase tracking-wider text-white flex items-center gap-2">
+              <CreditCard className="w-4 h-4 text-[#F5C400]" />
+              <span>Active Card</span>
+            </h3>
             
             <div className="bg-gradient-to-br from-[#141414] to-[#0a0a0a] text-white p-6 rounded-2xl border border-[#222222] shadow-xl relative overflow-hidden">
               <div className="absolute top-0 right-0 w-24 h-24 bg-[#F5C400]/5 rounded-full blur-xl pointer-events-none" />
               <div className="flex justify-between items-center mb-6">
-                <CardIcon className="w-8 h-8 text-[#F5C400]" />
+                <CreditCard className="w-8 h-8 text-[#F5C400]" />
                 <span className="text-[10px] font-extrabold tracking-widest bg-white/10 px-2 py-0.5 rounded uppercase">VISA</span>
               </div>
               <div className="space-y-4">
@@ -689,7 +629,10 @@ function BillingPortalContent() {
 
           {/* Ledger invoices */}
           <div className="bg-[#0d0d0d] border border-[#222222] rounded-3xl p-6 space-y-4">
-            <h3 className="font-heading font-extrabold text-sm uppercase tracking-wider text-white">Ledger Invoices</h3>
+            <h3 className="font-heading font-extrabold text-sm uppercase tracking-wider text-white flex items-center gap-2">
+              <Download className="w-4 h-4 text-[#F5C400]" />
+              <span>Ledger Invoices</span>
+            </h3>
             
             <div className="divide-y divide-[#222222]">
               {invoices.map((inv) => (
@@ -702,7 +645,7 @@ function BillingPortalContent() {
                     <span className="text-white">${inv.amount.toFixed(2)}</span>
                     <button 
                       onClick={() => toast.success(`Saved ${inv.id}.pdf to downloads directory.`)}
-                      className="p-2 rounded-xl border border-[#222222] text-slate-450 hover:text-white hover:bg-[#141414] transition-all"
+                      className="p-2 rounded-xl border border-[#222222] text-slate-400 hover:text-white hover:bg-[#141414] transition-all"
                       title="Download PDF"
                     >
                       <Download className="w-3.5 h-3.5" />
@@ -720,126 +663,6 @@ function BillingPortalContent() {
 
         </div>
       </div>
-
-      {/* Mock Credit Card Payment Modal */}
-      {isModalOpen && selectedPlan && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in">
-          <div className="relative bg-[#0d0d0d] border border-[#222222] rounded-3xl w-full max-w-lg p-8 shadow-2xl relative">
-            
-            {/* Close Button */}
-            <button 
-              onClick={() => setIsModalOpen(false)}
-              className="absolute top-6 right-6 p-2 rounded-xl border border-[#222222] hover:bg-[#141414] text-slate-400 hover:text-white transition-all"
-            >
-              <X className="w-4 h-4" />
-            </button>
-
-            <h3 className="text-xl font-heading font-extrabold text-white flex items-center gap-2">
-              Secure Checkout
-              <ShieldCheck className="w-5 h-5 text-emerald-400" />
-            </h3>
-            <p className="text-slate-400 text-xs mt-1">Activate subscription for {selectedPlan.name}.</p>
-
-            {/* Dynamic Card Display */}
-            <div className="my-6 bg-gradient-to-br from-[#141414] to-[#0a0a0a] text-white p-6 rounded-2xl border border-[#222222] shadow-xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-[#F5C400]/5 rounded-full blur-xl pointer-events-none" />
-              <div className="flex justify-between items-center mb-6">
-                <CardIcon className="w-8 h-8 text-[#F5C400]" />
-                <span className="text-[10px] font-extrabold tracking-widest bg-white/10 px-2 py-0.5 rounded uppercase">MOCK CARD</span>
-              </div>
-              <div className="space-y-4">
-                <span className="text-sm font-bold block tracking-widest text-white">
-                  {cardNumber || '•••• •••• •••• ••••'}
-                </span>
-                <div className="flex justify-between items-center text-[10px] text-slate-400">
-                  <span>EXP: {cardExpiry || 'MM/YY'}</span>
-                  <span>{cardHolder.toUpperCase() || 'CARDHOLDER NAME'}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Form */}
-            <form onSubmit={handleModalPaymentSubmit} className="space-y-4">
-              <div className="space-y-1">
-                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Cardholder Name</label>
-                <input 
-                  type="text"
-                  placeholder="John Doe"
-                  required
-                  value={cardHolder}
-                  onChange={(e) => setCardHolder(e.target.value)}
-                  className="w-full bg-[#141414] border border-[#222222] text-xs rounded-xl px-4 py-3 outline-none focus:border-[#F5C400] text-white font-semibold"
-                />
-              </div>
-
-              <div className="space-y-1">
-                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Card Number</label>
-                <input 
-                  type="text"
-                  placeholder="4111 2222 3333 4444"
-                  maxLength={19}
-                  required
-                  value={cardNumber}
-                  onChange={(e) => setCardNumber(formatCardNumber(e.target.value))}
-                  className="w-full bg-[#141414] border border-[#222222] text-xs rounded-xl px-4 py-3 outline-none focus:border-[#F5C400] text-white font-semibold"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-1">
-                  <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Expiry Date</label>
-                  <input 
-                    type="text"
-                    placeholder="MM/YY"
-                    maxLength={5}
-                    required
-                    value={cardExpiry}
-                    onChange={(e) => setCardExpiry(formatExpiry(e.target.value))}
-                    className="w-full bg-[#141414] border border-[#222222] text-xs rounded-xl px-4 py-3 outline-none focus:border-[#F5C400] text-white font-semibold"
-                  />
-                </div>
-                <div className="space-y-1">
-                  <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">CVC</label>
-                  <input 
-                    type="text"
-                    placeholder="123"
-                    maxLength={3}
-                    required
-                    value={cardCvc}
-                    onChange={(e) => setCardCvc(e.target.value.replace(/[^0-9]/g, ''))}
-                    className="w-full bg-[#141414] border border-[#222222] text-xs rounded-xl px-4 py-3 outline-none focus:border-[#F5C400] text-white font-semibold"
-                  />
-                </div>
-              </div>
-
-              {/* Price Details */}
-              <div className="pt-4 border-t border-[#222222] flex justify-between items-center text-xs font-semibold">
-                <span className="text-slate-400">Total Billed:</span>
-                <span className="text-white text-lg font-heading font-extrabold">
-                  ${(billingPeriod === 'yearly' ? selectedPlan.priceYearly : selectedPlan.priceMonthly) * (1 - discountPercent / 100)}
-                </span>
-              </div>
-
-              <Button 
-                type="submit"
-                disabled={isPaymentProcessing}
-                className="w-full bg-[#F5C400] text-black hover:bg-[#d4a800] font-bold py-3.5 rounded-2xl text-xs uppercase flex items-center justify-center gap-2 mt-4"
-              >
-                {isPaymentProcessing ? (
-                  <>
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    <span>Processing Transaction...</span>
-                  </>
-                ) : (
-                  <>
-                    <span>Pay & Activate</span>
-                  </>
-                )}
-              </Button>
-            </form>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
