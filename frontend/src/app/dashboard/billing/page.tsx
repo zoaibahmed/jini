@@ -51,9 +51,9 @@ function BillingPortalContent() {
 
   const [billingPeriod, setBillingPeriod] = useState<'monthly' | 'yearly'>('monthly');
   const [plans, setPlans] = useState<PlanItem[]>([
-    { id: '1', name: 'Basic Support', priceMonthly: 0, priceYearly: 0, features: ['DOCUMENTS'] },
-    { id: '2', name: 'Premium Driver Pro', priceMonthly: 19, priceYearly: 168, features: ['DOCUMENTS', 'AI_COPILOT', 'SUPPORT_TICKETS'] },
-    { id: '3', name: 'Enterprise Fleet', priceMonthly: 99, priceYearly: 948, features: ['DOCUMENTS', 'AI_COPILOT', 'SUPPORT_TICKETS', 'FLEET_DISPATCH'] }
+    { id: 'basic', name: 'Basic Support', priceMonthly: 0, priceYearly: 0, features: ['DOCUMENTS', 'NOTIFICATIONS'] },
+    { id: 'premium', name: 'Premium Driver Pro', priceMonthly: 49, priceYearly: 490, features: ['DOCUMENTS', 'NOTIFICATIONS', 'AI_COPILOT', 'COMPLIANCE', 'SUPPORT_TICKETS'] },
+    { id: 'enterprise', name: 'Enterprise Fleet', priceMonthly: 99, priceYearly: 990, features: ['DOCUMENTS', 'NOTIFICATIONS', 'AI_COPILOT', 'COMPLIANCE', 'SUPPORT_TICKETS', 'FLEET_DISPATCH', 'VOICE_AGENT', 'WHATSAPP'] }
   ]);
   const [subscription, setSubscription] = useState<any>(null);
   const [invoices, setInvoices] = useState<InvoiceItem[]>([]);
@@ -101,7 +101,7 @@ function BillingPortalContent() {
       console.warn('Backend billing fetch failed. Running in seed/demo mode.', err);
       setSubscription({
         status: 'ACTIVE',
-        plan: { id: '2', name: 'Premium Driver Pro', priceMonthly: 19, priceYearly: 168, features: ['DOCUMENTS', 'AI_COPILOT', 'SUPPORT_TICKETS'] },
+        plan: { id: 'premium', name: 'Premium Driver Pro', priceMonthly: 49, priceYearly: 490, features: ['DOCUMENTS', 'NOTIFICATIONS', 'AI_COPILOT', 'COMPLIANCE', 'SUPPORT_TICKETS'] },
         billingPeriod: 'monthly',
         cancelAtPeriodEnd: false,
         currentPeriodEnd: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000).toISOString()
@@ -145,6 +145,10 @@ function BillingPortalContent() {
             });
 
             if (res.ok) {
+              const resData = await res.json();
+              if (resData.accessToken) {
+                document.cookie = `jni_access_token=${resData.accessToken}; path=/; max-age=${60 * 60 * 24 * 7}`;
+              }
               toast.success('Your subscription was successfully activated! Features unlocked.');
               window.location.href = '/dashboard/billing';
             }

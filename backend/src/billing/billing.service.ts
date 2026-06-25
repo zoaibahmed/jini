@@ -2,6 +2,7 @@ import { Injectable, Logger, NotFoundException, BadRequestException } from '@nes
 import { PrismaService } from '../prisma/prisma.service';
 import { SubscriptionStatus } from '@prisma/client';
 import { BillingStore, BillingPlan, Subscription, Invoice, Payment, BillingEvent, Coupon } from './billing.store';
+import { JwtService } from '@nestjs/jwt';
 import Stripe from 'stripe';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -12,7 +13,10 @@ export class BillingService {
   private stripe: any = null;
   private isSimulatedMode = true;
 
-  constructor(private readonly prisma: PrismaService) {
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly jwtService: JwtService,
+  ) {
     const stripeKey = process.env.STRIPE_SECRET_KEY;
     if (stripeKey && stripeKey !== 'mock_secret_key' && stripeKey.trim() !== '') {
       try {
@@ -22,6 +26,7 @@ export class BillingService {
         this.isSimulatedMode = false;
         this.logger.log('Stripe SDK initialized in Live/Test Gateway Mode.');
       } catch (err) {
+        this.stripe = null;
         this.logger.error('Failed to initialize Stripe SDK. Falling back to local simulation.', err);
       }
     } else {
@@ -287,7 +292,25 @@ export class BillingService {
     events.push(event);
     BillingStore.saveEvents(events);
 
-    return sub;
+    const accessToken = await this.generateUpdatedUserToken(userId, sub, plan);
+
+    return { subscription: sub, accessToken };
+  }
+
+  private async generateUpdatedUserToken(userId: string, sub: Subscription, plan: BillingPlan): Promise<string> {
+    const user = await this.getUserDetails(userId);
+    const subscriptionPayload = {
+      status: sub.status,
+      planName: plan.name,
+      features: plan.features || ['DOCUMENTS']
+    };
+    const payload = {
+      sub: user.id,
+      email: user.email,
+      role: user.role,
+      subscription: subscriptionPayload
+    };
+    return this.jwtService.sign(payload);
   }
 
   // 6. Change plan (Upgrade/Downgrade pro-rata calculations)
@@ -320,7 +343,9 @@ export class BillingService {
     });
     BillingStore.saveEvents(events);
 
-    return { success: true, message: `Changed plan to ${targetPlan.name} successfully.` };
+    const accessToken = await this.generateUpdatedUserToken(userId, sub, targetPlan);
+
+    return { success: true, message: `Changed plan to ${targetPlan.name} successfully.`, accessToken };
   }
 
   // 7. Cancel subscription at period end

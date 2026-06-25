@@ -110,7 +110,7 @@ export class AuthService {
     }
     
     const baseFeatures = plan?.features || ['DOCUMENTS'];
-    const features = Array.from(new Set([...baseFeatures, 'SUPPORT_TICKETS', 'AI_COPILOT']));
+    const features = Array.from(new Set(baseFeatures));
     
     const subscription = {
       status: sub ? sub.status : 'TRIAL',
