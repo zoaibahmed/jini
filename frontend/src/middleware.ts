@@ -64,6 +64,14 @@ export async function middleware(request: NextRequest) {
           if (pathname.startsWith('/dashboard/support') && !features.includes('SUPPORT_TICKETS')) {
             return NextResponse.redirect(new URL('/dashboard/billing?restricted=support', request.url));
           }
+
+          if (pathname.startsWith('/dashboard/whatsapp') && !features.includes('WHATSAPP')) {
+            return NextResponse.redirect(new URL('/dashboard/billing?restricted=whatsapp', request.url));
+          }
+
+          if (pathname.startsWith('/dashboard/voice') && !features.includes('VOICE_AGENT')) {
+            return NextResponse.redirect(new URL('/dashboard/billing?restricted=voice', request.url));
+          }
         }
       }
 
