@@ -2,21 +2,28 @@
 
 import React, { useState, useEffect, Suspense } from 'react';
 import { 
-  CreditCard, 
-  DollarSign, 
   Download, 
   Check, 
-  ArrowUpRight, 
   CheckCircle2, 
-  Calendar,
-  Layers,
   Sparkles,
   AlertCircle,
   Tag,
   Loader2,
   Lock,
-  ShieldCheck,
-  Zap
+  Zap,
+  Star,
+  Crown,
+  Shield,
+  X,
+  ArrowRight,
+  FileText,
+  Bell,
+  Bot,
+  ClipboardCheck,
+  HeadphonesIcon,
+  Truck,
+  Phone,
+  MessageSquare
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/toast';
@@ -38,6 +45,102 @@ interface PlanItem {
   priceMonthly: number;
   priceYearly: number;
   features: string[];
+}
+
+const FEATURE_LABELS: Record<string, { label: string; icon: React.ReactNode }> = {
+  DOCUMENTS:        { label: 'Document Vault',         icon: <FileText className="w-3.5 h-3.5" /> },
+  NOTIFICATIONS:    { label: 'Smart Notifications',    icon: <Bell className="w-3.5 h-3.5" /> },
+  AI_COPILOT:       { label: 'AI Driver Copilot',      icon: <Bot className="w-3.5 h-3.5" /> },
+  COMPLIANCE:       { label: 'Compliance Tracker',     icon: <ClipboardCheck className="w-3.5 h-3.5" /> },
+  SUPPORT_TICKETS:  { label: 'Priority Support',       icon: <HeadphonesIcon className="w-3.5 h-3.5" /> },
+  FLEET_DISPATCH:   { label: 'Fleet Dispatch',         icon: <Truck className="w-3.5 h-3.5" /> },
+  VOICE_AGENT:      { label: 'AI Voice Agent',         icon: <Phone className="w-3.5 h-3.5" /> },
+  WHATSAPP:         { label: 'WhatsApp Integration',   icon: <MessageSquare className="w-3.5 h-3.5" /> },
+};
+
+const PLAN_META: Record<string, { icon: React.ReactNode; gradient: string; accent: string; badge?: string }> = {
+  basic:      { icon: <Shield className="w-5 h-5" />,  gradient: 'from-slate-500/10 to-slate-400/5',  accent: 'text-slate-500 dark:text-slate-400',  badge: undefined },
+  premium:    { icon: <Star className="w-5 h-5" />,    gradient: 'from-[#F5C400]/15 to-[#F5C400]/5',  accent: 'text-[#F5C400]',                        badge: 'Most Popular' },
+  enterprise: { icon: <Crown className="w-5 h-5" />,   gradient: 'from-purple-500/15 to-purple-400/5', accent: 'text-purple-500 dark:text-purple-400',   badge: 'Best Value' },
+};
+
+function ConfirmModal({ plan, billingPeriod, discountPercent, onConfirm, onClose, loading }: {
+  plan: PlanItem;
+  billingPeriod: 'monthly' | 'yearly';
+  discountPercent: number;
+  onConfirm: () => void;
+  onClose: () => void;
+  loading: boolean;
+}) {
+  const raw = billingPeriod === 'yearly' ? plan.priceYearly : plan.priceMonthly;
+  const final = discountPercent > 0 ? raw * (1 - discountPercent / 100) : raw;
+  const isYearly = billingPeriod === 'yearly';
+  const meta = PLAN_META[plan.id] || PLAN_META.basic;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
+      <div className="bg-white dark:bg-[#111111] border border-slate-200 dark:border-[#222222] rounded-3xl p-8 max-w-md w-full shadow-2xl space-y-6">
+        {/* Header */}
+        <div className="flex items-start justify-between">
+          <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${meta.gradient} flex items-center justify-center border border-slate-200 dark:border-[#333333] ${meta.accent}`}>
+            {meta.icon}
+          </div>
+          <button onClick={onClose} className="p-2 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-[#1a1a1a] transition-all">
+            <X className="w-4 h-4" />
+          </button>
+        </div>
+
+        <div>
+          <h3 className="font-heading font-extrabold text-xl text-slate-900 dark:text-white">Confirm Subscription</h3>
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Review your plan details before being redirected to secure checkout.</p>
+        </div>
+
+        <div className="bg-slate-50 dark:bg-[#1a1a1a] border border-slate-200 dark:border-[#222222] rounded-2xl p-5 space-y-3">
+          <div className="flex justify-between items-center">
+            <span className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wide">Plan</span>
+            <span className="text-sm font-extrabold text-slate-900 dark:text-white">{plan.name}</span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wide">Billing</span>
+            <span className="text-sm font-bold text-slate-700 dark:text-slate-300 capitalize">{billingPeriod}</span>
+          </div>
+          {discountPercent > 0 && (
+            <div className="flex justify-between items-center">
+              <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wide">Promo Applied</span>
+              <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400">-{discountPercent}%</span>
+            </div>
+          )}
+          <div className="border-t border-slate-200 dark:border-[#333333] pt-3 flex justify-between items-center">
+            <span className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wide">Total Due</span>
+            <span className="font-heading font-extrabold text-2xl text-slate-900 dark:text-white">
+              ${plan.priceMonthly === 0 ? '0.00' : final.toFixed(2)}
+              <span className="text-xs font-semibold text-slate-400 ml-1">/{isYearly ? 'yr' : 'mo'}</span>
+            </span>
+          </div>
+        </div>
+
+        {plan.priceMonthly === 0 ? (
+          <p className="text-xs text-center text-slate-400">This is a free plan. No payment required.</p>
+        ) : (
+          <p className="text-xs text-center text-slate-400">You will be redirected to Stripe's secure payment portal to complete your purchase.</p>
+        )}
+
+        <div className="flex gap-3">
+          <Button onClick={onClose} variant="outline" className="flex-1 border-slate-200 dark:border-[#333333] text-slate-600 dark:text-slate-400 font-bold rounded-2xl">
+            Cancel
+          </Button>
+          <Button
+            onClick={onConfirm}
+            disabled={loading}
+            className="flex-1 bg-[#F5C400] text-black hover:bg-[#d4a800] font-bold rounded-2xl flex items-center justify-center gap-2"
+          >
+            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <ArrowRight className="w-4 h-4" />}
+            {plan.priceMonthly === 0 ? 'Activate Free' : 'Go to Checkout'}
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 function BillingPortalContent() {
@@ -64,18 +167,23 @@ function BillingPortalContent() {
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState<string | null>(null);
 
+  // Confirm Modal State
+  const [confirmPlan, setConfirmPlan] = useState<PlanItem | null>(null);
+
   // Promo Code State
   const [couponInput, setCouponInput] = useState('');
   const [appliedCoupon, setAppliedCoupon] = useState<string | null>(null);
   const [discountPercent, setDiscountPercent] = useState<number>(0);
 
+  const getToken = () =>
+    document.cookie
+      .split('; ')
+      .find((row) => row.startsWith('jni_access_token='))
+      ?.split('=')[1] || '';
+
   const fetchBillingData = async () => {
     try {
-      const token = document.cookie
-        .split('; ')
-        .find((row) => row.startsWith('jni_access_token='))
-        ?.split('=')[1];
-
+      const token = getToken();
       const plansRes = await fetch(`${API_URL}/billing/plans`);
       if (plansRes.ok) {
         const plansData = await plansRes.json();
@@ -86,7 +194,7 @@ function BillingPortalContent() {
         headers: {
           'x-user-id': user?.id || '',
           'x-user-role': user?.role || 'DRIVER',
-          'Authorization': `Bearer ${token || ''}`
+          'Authorization': `Bearer ${token}`
         }
       });
 
@@ -103,18 +211,14 @@ function BillingPortalContent() {
         }
       }
     } catch (err) {
-      console.warn('Backend billing fetch failed. Running in seed/demo mode.', err);
+      console.warn('Billing fetch failed, using demo data.', err);
       setSubscription({
-        status: 'ACTIVE',
-        plan: { id: 'premium', name: 'Premium Driver Pro', priceMonthly: 49, priceYearly: 490, features: ['DOCUMENTS', 'NOTIFICATIONS', 'AI_COPILOT', 'COMPLIANCE', 'SUPPORT_TICKETS'] },
+        status: 'TRIAL',
+        plan: { id: 'basic', name: 'Basic Support', priceMonthly: 0, priceYearly: 0 },
         billingPeriod: 'monthly',
         cancelAtPeriodEnd: false,
-        currentPeriodEnd: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000).toISOString()
+        currentPeriodEnd: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString()
       });
-      setInvoices([
-        { id: 'INV-8029', date: '2026-05-12', amount: 49.00, status: 'PAID' },
-        { id: 'INV-7901', date: '2026-04-12', amount: 49.00, status: 'PAID' }
-      ]);
     } finally {
       setLoading(false);
     }
@@ -130,17 +234,13 @@ function BillingPortalContent() {
         if (checkoutSuccess && planId && period) {
           toast.info('Finalizing secure subscription provisioning...');
           try {
-            const token = document.cookie
-              .split('; ')
-              .find((row) => row.startsWith('jni_access_token='))
-              ?.split('=')[1];
-
+            const token = getToken();
             const res = await fetch(`${API_URL}/billing/checkout/success`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
                 'x-user-id': user.id,
-                'Authorization': `Bearer ${token || ''}`
+                'Authorization': `Bearer ${token}`
               },
               body: JSON.stringify({
                 planId,
@@ -189,27 +289,26 @@ function BillingPortalContent() {
     );
   }
 
+  // Open modal first — do NOT auto-checkout
   const handleSubscribeClick = (plan: PlanItem) => {
-    handleExecuteSubscribe(plan.id);
+    setConfirmPlan(plan);
   };
 
-  const handleExecuteSubscribe = async (planId: string) => {
-    setActionLoading(planId);
+  const handleExecuteSubscribe = async () => {
+    if (!confirmPlan) return;
+    setActionLoading(confirmPlan.id);
+    setConfirmPlan(null);
     try {
-      const token = document.cookie
-        .split('; ')
-        .find((row) => row.startsWith('jni_access_token='))
-        ?.split('=')[1];
-
+      const token = getToken();
       const res = await fetch(`${API_URL}/billing/checkout`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'x-user-id': user?.id || '',
-          'Authorization': `Bearer ${token || ''}`
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
-          planId,
+          planId: confirmPlan.id,
           billingPeriod,
           couponCode: appliedCoupon || undefined
         })
@@ -231,19 +330,11 @@ function BillingPortalContent() {
   const handleCancelSub = async () => {
     setActionLoading('cancel');
     try {
-      const token = document.cookie
-        .split('; ')
-        .find((row) => row.startsWith('jni_access_token='))
-        ?.split('=')[1];
-
+      const token = getToken();
       const res = await fetch(`${API_URL}/billing/cancel`, {
         method: 'POST',
-        headers: {
-          'x-user-id': user?.id || '',
-          'Authorization': `Bearer ${token || ''}`
-        }
+        headers: { 'x-user-id': user?.id || '', 'Authorization': `Bearer ${token}` }
       });
-
       if (res.ok) {
         toast.success('Your subscription will end on the current period renewal date.');
         fetchBillingData();
@@ -258,19 +349,11 @@ function BillingPortalContent() {
   const handleResumeSub = async () => {
     setActionLoading('resume');
     try {
-      const token = document.cookie
-        .split('; ')
-        .find((row) => row.startsWith('jni_access_token='))
-        ?.split('=')[1];
-
+      const token = getToken();
       const res = await fetch(`${API_URL}/billing/resume`, {
         method: 'POST',
-        headers: {
-          'x-user-id': user?.id || '',
-          'Authorization': `Bearer ${token || ''}`
-        }
+        headers: { 'x-user-id': user?.id || '', 'Authorization': `Bearer ${token}` }
       });
-
       if (res.ok) {
         toast.success('Subscription renewal resumed successfully!');
         fetchBillingData();
@@ -285,24 +368,14 @@ function BillingPortalContent() {
   const handleManagePortal = async () => {
     setActionLoading('portal');
     try {
-      const token = document.cookie
-        .split('; ')
-        .find((row) => row.startsWith('jni_access_token='))
-        ?.split('=')[1];
-
+      const token = getToken();
       const res = await fetch(`${API_URL}/billing/create-portal-session`, {
         method: 'POST',
-        headers: {
-          'x-user-id': user?.id || '',
-          'Authorization': `Bearer ${token || ''}`
-        }
+        headers: { 'x-user-id': user?.id || '', 'Authorization': `Bearer ${token}` }
       });
-
       if (!res.ok) throw new Error('Portal API error');
       const data = await res.json();
-      if (data.url) {
-        window.location.href = data.url;
-      }
+      if (data.url) window.location.href = data.url;
     } catch (e) {
       toast.error('Billing portal currently offline.');
     } finally {
@@ -313,13 +386,11 @@ function BillingPortalContent() {
   const handleApplyCoupon = () => {
     const code = couponInput.trim().toUpperCase();
     if (code === 'WELCOME10') {
-      setAppliedCoupon(code);
-      setDiscountPercent(10);
-      toast.success('Promo Code applied: Flat 10% discount will reflect on checkout!');
+      setAppliedCoupon(code); setDiscountPercent(10);
+      toast.success('Promo Code applied: 10% discount on checkout!');
     } else if (code === 'SAVE50') {
-      setAppliedCoupon(code);
-      setDiscountPercent(50);
-      toast.success('Promo Code applied: Flat 50% discount will reflect on checkout!');
+      setAppliedCoupon(code); setDiscountPercent(50);
+      toast.success('Promo Code applied: 50% discount on checkout!');
     } else {
       toast.error('Invalid or expired promotional code.');
     }
@@ -350,12 +421,25 @@ function BillingPortalContent() {
   const activePlanId = subscription?.plan?.id || '';
   const isSubscriptionActive = subscription?.status === 'ACTIVE' || subscription?.status === 'TRIAL';
   const hasPendingCancel = subscription?.cancelAtPeriodEnd ?? false;
+  const isBasicPlan = activePlanId === 'basic' || !activePlanId;
 
   return (
     <div className="space-y-8 animate-fade-in pb-12">
-      {/* Dynamic Feature Locked Warnings */}
+      {/* Confirm Modal */}
+      {confirmPlan && (
+        <ConfirmModal
+          plan={confirmPlan}
+          billingPeriod={billingPeriod}
+          discountPercent={discountPercent}
+          onConfirm={handleExecuteSubscribe}
+          onClose={() => setConfirmPlan(null)}
+          loading={actionLoading === confirmPlan.id}
+        />
+      )}
+
+      {/* Feature Locked Warning */}
       {(isRestrictedAi || isRestrictedSupport || isRestrictedWhatsapp || isRestrictedVoice) && (
-        <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-2xl flex items-start gap-4 text-xs leading-relaxed animate-pulse shadow-lg shadow-red-500/5">
+        <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-2xl flex items-start gap-4 text-xs leading-relaxed shadow-lg shadow-red-500/5">
           <div className="w-8 h-8 rounded-xl bg-red-500/20 flex items-center justify-center text-red-500 shrink-0">
             <Lock className="w-4 h-4" />
           </div>
@@ -371,217 +455,261 @@ function BillingPortalContent() {
         </div>
       )}
 
-      {/* Hero Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#222222] pb-6">
+      {/* Page Header */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-[#222222] pb-6">
         <div>
           <h1 className="font-heading font-extrabold text-3xl tracking-tight text-foreground flex items-center gap-2">
-            Billing & Subscriptions
+            Billing <span className="text-[#F5C400]">&amp;</span> Subscriptions
             <Sparkles className="w-5 h-5 text-[#F5C400]" />
           </h1>
-          <p className="text-slate-400 text-sm mt-1">Verify subscription tiers, review historical invoices, and manage payment options.</p>
+          <p className="text-slate-400 text-sm mt-1">Manage your plan, review invoices, and apply promo codes.</p>
         </div>
       </div>
 
+      {/* Active Plan Banner */}
+      <div className="relative overflow-hidden rounded-3xl border border-slate-200 dark:border-zinc-800/80 bg-gradient-to-br from-slate-50 to-white dark:from-zinc-900/70 dark:to-black/30 p-8 shadow-xl">
+        <div className="absolute -top-12 -right-12 w-48 h-48 bg-[#F5C400]/8 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-[#F5C400]/5 rounded-full blur-2xl pointer-events-none" />
+        
+        <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+          <div className="space-y-4 flex-1">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className={`text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full border ${
+                subscription?.status === 'ACTIVE' 
+                  ? 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/30' 
+                  : 'bg-amber-500/15 text-amber-650 dark:text-amber-400 border-amber-500/30'
+              }`}>
+                {subscription?.status || 'No Plan'}
+              </span>
+              {hasPendingCancel && (
+                <span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-red-500/15 text-red-500 border border-red-500/30">
+                  Cancelling at Period End
+                </span>
+              )}
+              {isBasicPlan && (
+                <span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-slate-500/10 text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-slate-700">
+                  Free Tier
+                </span>
+              )}
+            </div>
+
+            <div>
+              <h2 className="font-heading font-extrabold text-2xl md:text-3xl text-slate-900 dark:text-white">
+                {subscription?.plan?.name || 'Basic Support'}
+              </h2>
+              <p className="text-slate-500 dark:text-slate-400 text-xs mt-1">
+                {isBasicPlan
+                  ? 'You are on the free tier. Upgrade to unlock AI, compliance, and support features.'
+                  : subscription?.billingPeriod === 'yearly' ? 'Yearly billing cycle (best value)' : 'Monthly billing cycle'}
+              </p>
+            </div>
+
+            {/* Renewal Progress — only for paid active plans */}
+            {isSubscriptionActive && !isBasicPlan && (
+              <div className="space-y-1.5 max-w-xs">
+                <div className="flex justify-between text-[10px] font-semibold text-slate-500 dark:text-slate-400">
+                  <span>{getDaysLeft(subscription?.currentPeriodEnd)} days left</span>
+                  <span>Renews {subscription?.currentPeriodEnd?.split('T')[0]}</span>
+                </div>
+                <div className="w-full bg-slate-200 dark:bg-zinc-800 h-1.5 rounded-full overflow-hidden">
+                  <div
+                    className="bg-[#F5C400] h-full rounded-full transition-all duration-700"
+                    style={{ width: `${getSubProgress(subscription?.currentPeriodEnd)}%` }}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Action Buttons */}
+          <div className="shrink-0 w-full md:w-auto flex flex-col sm:flex-row md:flex-col gap-3 min-w-[180px]">
+            {isSubscriptionActive && !isBasicPlan ? (
+              hasPendingCancel ? (
+                <Button
+                  onClick={handleResumeSub}
+                  disabled={actionLoading === 'resume'}
+                  className="w-full bg-[#F5C400] text-black hover:bg-[#d4a800] font-bold py-3 px-6 rounded-2xl flex items-center justify-center gap-2"
+                >
+                  {actionLoading === 'resume' && <Loader2 className="w-4 h-4 animate-spin" />}
+                  Resume Auto-Renewal
+                </Button>
+              ) : (
+                <>
+                  <Button
+                    onClick={handleManagePortal}
+                    disabled={actionLoading !== null}
+                    className="w-full bg-[#F5C400] text-black hover:bg-[#d4a800] font-bold py-3 px-6 rounded-2xl flex items-center justify-center gap-2"
+                  >
+                    {actionLoading === 'portal' && <Loader2 className="w-4 h-4 animate-spin" />}
+                    Manage Payment Info
+                  </Button>
+                  <Button
+                    onClick={handleCancelSub}
+                    disabled={actionLoading === 'cancel'}
+                    variant="outline"
+                    className="w-full border-red-500/30 bg-red-500/5 hover:bg-red-500/10 text-red-500 dark:text-red-400 font-bold py-3 px-6 rounded-2xl flex items-center justify-center gap-2"
+                  >
+                    {actionLoading === 'cancel' && <Loader2 className="w-4 h-4 animate-spin" />}
+                    Cancel Subscription
+                  </Button>
+                </>
+              )
+            ) : null}
+          </div>
+        </div>
+      </div>
+
+      {/* Layout: Pricing left, sidebar right */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         
-        {/* Left Column (Active Plan & Plan Tiers) */}
-        <div className="lg:col-span-8 space-y-8">
-          
-          {/* Active Plan Dashboard */}
-          <div className="relative overflow-hidden rounded-3xl bg-slate-50 dark:bg-zinc-900/50 border border-slate-200 dark:border-zinc-800/80 p-8 shadow-xl">
-            {/* Glowing Backdrop Circle */}
-            <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#F5C400]/10 rounded-full blur-3xl pointer-events-none" />
-            
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative z-10">
-              <div className="space-y-4 w-full">
-                <div className="flex items-center gap-3">
-                  <span className={`text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full border ${
-                    subscription?.status === 'ACTIVE' 
-                      ? 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/30' 
-                      : 'bg-amber-500/15 text-amber-650 dark:text-amber-400 border-amber-500/30'
-                  }`}>
-                    {subscription?.status || 'No Active Plan'}
-                  </span>
-                  {hasPendingCancel && (
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-red-500/15 text-red-650 dark:text-red-400 border border-red-500/30">
-                      Pending Cancellation
-                    </span>
-                  )}
-                </div>
-                
-                <div>
-                  <h3 className="font-heading font-extrabold text-3xl text-slate-900 dark:text-white">{subscription?.plan?.name || 'Basic Free Tier'}</h3>
-                  <p className="text-slate-500 dark:text-slate-400 text-xs mt-1">
-                    {subscription?.billingPeriod === 'yearly' ? 'Yearly billing cycle (best value)' : 'Monthly billing cycle'}
-                  </p>
-                </div>
+        {/* Left: Plan Tiers */}
+        <div className="lg:col-span-8 space-y-6">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div>
+              <h3 className="font-heading font-extrabold text-lg text-foreground uppercase tracking-wider">Choose Your Plan</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">All plans include SSL, uptime guarantee, and daily backups.</p>
+            </div>
 
-                {isSubscriptionActive && (
-                  <div className="space-y-2 w-full max-w-sm pt-2">
-                    <div className="flex justify-between text-xs font-semibold text-slate-500 dark:text-slate-400">
-                      <span>{getDaysLeft(subscription?.currentPeriodEnd)} Days Remaining</span>
-                      <span>Renews on {subscription?.currentPeriodEnd?.split('T')[0]}</span>
-                    </div>
-                    <div className="w-full bg-slate-200 dark:bg-zinc-800 h-2 rounded-full overflow-hidden">
-                      <div className="bg-[#F5C400] h-full transition-all duration-500 shadow-md shadow-gold-glow" style={{ width: `${getSubProgress(subscription?.currentPeriodEnd)}%` }} />
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              <div className="shrink-0 w-full md:w-auto flex flex-col sm:flex-row md:flex-col gap-3">
-                {isSubscriptionActive ? (
-                  hasPendingCancel ? (
-                    <Button 
-                      onClick={handleResumeSub}
-                      disabled={actionLoading === 'resume'}
-                      className="w-full bg-[#F5C400] text-black hover:bg-[#d4a800] font-bold py-3 px-6 rounded-2xl flex items-center justify-center gap-2"
-                    >
-                      {actionLoading === 'resume' && <Loader2 className="w-4 h-4 animate-spin" />}
-                      <span>Resume Auto-Renewal</span>
-                    </Button>
-                  ) : (
-                    <>
-                      <Button 
-                        onClick={handleManagePortal}
-                        disabled={actionLoading !== null}
-                        className="w-full bg-[#F5C400] text-black hover:bg-[#d4a800] font-bold py-3 px-6 rounded-2xl flex items-center justify-center gap-2"
-                      >
-                        {actionLoading === 'portal' && <Loader2 className="w-4 h-4 animate-spin" />}
-                        <span>Manage Payment Info</span>
-                      </Button>
-                      <Button 
-                        onClick={handleCancelSub}
-                        disabled={actionLoading === 'cancel'}
-                        variant="outline"
-                        className="w-full border-red-500/30 bg-red-500/5 hover:bg-red-500/10 text-red-650 dark:text-red-400 font-bold py-3 px-6 rounded-2xl flex items-center justify-center gap-2"
-                      >
-                        {actionLoading === 'cancel' && <Loader2 className="w-4 h-4 animate-spin" />}
-                        <span>Cancel Subscription</span>
-                      </Button>
-                    </>
-                  )
-                ) : null}
-              </div>
+            {/* Billing Toggle */}
+            <div className="bg-slate-100 dark:bg-[#141414] p-1 rounded-2xl flex items-center border border-slate-200 dark:border-zinc-800 select-none">
+              <button
+                onClick={() => setBillingPeriod('monthly')}
+                className={`px-4 py-2 rounded-xl text-[10px] font-bold uppercase transition-all duration-200 ${
+                  billingPeriod === 'monthly' ? 'bg-[#F5C400] text-black shadow-lg' : 'text-slate-500 dark:text-slate-400'
+                }`}
+              >
+                Monthly
+              </button>
+              <button
+                onClick={() => setBillingPeriod('yearly')}
+                className={`px-4 py-2 rounded-xl text-[10px] font-bold uppercase transition-all duration-200 ${
+                  billingPeriod === 'yearly' ? 'bg-[#F5C400] text-black shadow-lg' : 'text-slate-500 dark:text-slate-400'
+                }`}
+              >
+                Yearly <span className="hidden sm:inline">(Save 20%)</span>
+              </button>
             </div>
           </div>
 
-          {/* Pricing Grid */}
-          <div className="space-y-6">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-              <div>
-                <h3 className="font-heading font-extrabold text-lg text-foreground uppercase tracking-wider">Upgrade Tier Packages</h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Toggle billing period options to view discounts.</p>
-              </div>
+          {/* Plan Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {plans.map((p) => {
+              const isActive = activePlanId === p.id && isSubscriptionActive;
+              const meta = PLAN_META[p.id] || PLAN_META.basic;
+              const price = billingPeriod === 'yearly' ? p.priceYearly : p.priceMonthly;
+              const monthlyEquiv = billingPeriod === 'yearly' && price > 0 ? Math.round(price / 12) : price;
 
-              {/* Billing Period Switch */}
-              <div className="bg-slate-100 dark:bg-[#141414] p-1 rounded-2xl flex items-center border border-slate-200 dark:border-zinc-800 select-none">
-                <button 
-                  onClick={() => setBillingPeriod('monthly')}
-                  className={`px-4 py-2 rounded-xl text-[10px] font-bold uppercase transition-all duration-200 ${
-                    billingPeriod === 'monthly' ? 'bg-[#F5C400] text-black shadow-lg' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+              return (
+                <div
+                  key={p.id}
+                  className={`relative flex flex-col rounded-3xl border p-6 transition-all duration-300 ${
+                    isActive
+                      ? 'border-[#F5C400] bg-[#F5C400]/5 shadow-xl shadow-[#F5C400]/10'
+                      : p.id === 'premium'
+                      ? 'border-[#F5C400]/30 dark:border-[#F5C400]/20 bg-white dark:bg-[#0d0d0d] hover:border-[#F5C400]/60 hover:shadow-lg hover:shadow-[#F5C400]/5'
+                      : 'border-slate-200 dark:border-[#222222] bg-white dark:bg-[#0d0d0d] hover:border-slate-300 dark:hover:border-[#333333] hover:shadow-md'
                   }`}
                 >
-                  Monthly
-                </button>
-                <button 
-                  onClick={() => setBillingPeriod('yearly')}
-                  className={`px-4 py-2 rounded-xl text-[10px] font-bold uppercase transition-all duration-200 ${
-                    billingPeriod === 'yearly' ? 'bg-[#F5C400] text-black shadow-lg' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                  }`}
-                >
-                  Yearly (Save 20%)
-                </button>
-              </div>
-            </div>
+                  {/* Popular / Best Value badge */}
+                  {meta.badge && !isActive && (
+                    <span className={`absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full text-[9px] font-extrabold uppercase tracking-widest flex items-center gap-1 whitespace-nowrap ${
+                      p.id === 'premium' ? 'bg-[#F5C400] text-black' : 'bg-purple-600 text-white'
+                    }`}>
+                      <Zap className="w-2.5 h-2.5" />
+                      {meta.badge}
+                    </span>
+                  )}
+                  {isActive && (
+                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-emerald-500 text-white text-[9px] font-extrabold uppercase tracking-widest flex items-center gap-1 whitespace-nowrap">
+                      <CheckCircle2 className="w-2.5 h-2.5" />
+                      Current Plan
+                    </span>
+                  )}
 
-            {/* Plan Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {plans.map((p) => {
-                const isActive = activePlanId === p.id && isSubscriptionActive;
-                const features = p.features || [];
-                const price = billingPeriod === 'yearly' ? p.priceYearly : p.priceMonthly;
-                const monthlyEquiv = billingPeriod === 'yearly' ? Math.round(price / 12) : price;
-
-                return (
-                  <div 
-                    key={p.id}
-                    className={`relative rounded-3xl border p-6 flex flex-col justify-between transition-all duration-300 h-full ${
-                      isActive 
-                        ? 'border-[#F5C400] bg-[#F5C400]/5 shadow-xl shadow-[#F5C400]/5' 
-                        : 'border-slate-200 dark:border-[#222222] bg-white dark:bg-[#0d0d0d] hover:border-slate-300 dark:hover:border-[#333333]'
-                    }`}
-                  >
-                    {isActive && (
-                      <span className="absolute -top-3 left-6 px-3 py-0.5 rounded-full bg-[#F5C400] text-black text-[9px] font-extrabold uppercase tracking-widest flex items-center gap-1">
-                        <Zap className="w-2.5 h-2.5" /> Current Plan
-                      </span>
-                    )}
-
-                    <div className="space-y-6">
-                      <div>
-                        <h4 className="font-heading font-extrabold text-sm text-slate-800 dark:text-white uppercase tracking-wider">{p.name}</h4>
-                        <div className="flex items-baseline mt-4">
-                          <span className="font-heading font-extrabold text-3xl text-slate-900 dark:text-white">${monthlyEquiv}</span>
-                          <span className="text-[10px] text-slate-500 dark:text-slate-400 ml-1">/ month</span>
-                        </div>
-                        {billingPeriod === 'yearly' && price > 0 && (
-                          <span className="text-[9px] text-emerald-600 dark:text-emerald-400 font-bold mt-2 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded inline-block uppercase">
-                            Save 20% (Billed ${price}/yr)
-                          </span>
-                        )}
-                      </div>
-
-                      <ul className="space-y-3 pt-4 border-t border-slate-100 dark:border-[#222222] text-xs font-semibold text-slate-500 dark:text-slate-400">
-                        {features.map((feat) => (
-                          <li key={feat} className="flex items-center gap-2">
-                            <Check className="w-4 h-4 text-[#F5C400] shrink-0" />
-                            <span className="text-slate-700 dark:text-slate-350">{feat.replace('_', ' ')}</span>
-                          </li>
-                        ))}
-                      </ul>
+                  {/* Plan Icon + Name */}
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className={`w-10 h-10 rounded-2xl bg-gradient-to-br ${meta.gradient} border border-slate-200 dark:border-[#333333] flex items-center justify-center ${meta.accent}`}>
+                      {meta.icon}
                     </div>
-
-                    <div className="mt-8">
-                      {isActive ? (
-                        <div className="w-full text-center bg-emerald-500/10 text-emerald-650 dark:text-emerald-400 border border-emerald-500/20 font-bold py-3 text-xs rounded-2xl uppercase tracking-wider">
-                          Active Tier
-                        </div>
-                      ) : (
-                        <Button 
-                          onClick={() => handleSubscribeClick(p)}
-                          disabled={actionLoading !== null}
-                          className="w-full bg-[#0b0b0b] dark:bg-white text-white dark:text-black hover:bg-[#F5C400] dark:hover:bg-[#F5C400] font-bold py-3 rounded-2xl text-xs uppercase transition-all flex items-center justify-center gap-2"
-                        >
-                          {actionLoading === p.id && <Loader2 className="w-4 h-4 animate-spin" />}
-                          <span>{p.priceMonthly === 0 ? 'Activate Plan' : 'Select Plan'}</span>
-                        </Button>
-                      )}
-                    </div>
+                    <h4 className="font-heading font-extrabold text-sm text-slate-800 dark:text-white leading-tight">{p.name}</h4>
                   </div>
-                );
-              })}
-            </div>
+
+                  {/* Price */}
+                  <div className="mb-5">
+                    <div className="flex items-baseline gap-1">
+                      <span className="font-heading font-extrabold text-4xl text-slate-900 dark:text-white">
+                        ${p.priceMonthly === 0 ? '0' : monthlyEquiv}
+                      </span>
+                      <span className="text-[10px] text-slate-400 font-semibold">/ mo</span>
+                    </div>
+                    {billingPeriod === 'yearly' && price > 0 && (
+                      <p className="text-[9px] text-emerald-600 dark:text-emerald-400 font-bold mt-1 uppercase tracking-wide">
+                        Billed ${price}/yr — Save 20%
+                      </p>
+                    )}
+                    {p.priceMonthly === 0 && (
+                      <p className="text-[9px] text-slate-400 font-bold mt-1 uppercase tracking-wide">Always free</p>
+                    )}
+                  </div>
+
+                  {/* Features */}
+                  <ul className="space-y-2.5 flex-1 border-t border-slate-100 dark:border-[#1e1e1e] pt-4 mb-6">
+                    {p.features.map((feat) => {
+                      const fm = FEATURE_LABELS[feat] || { label: feat.replace(/_/g, ' '), icon: <Check className="w-3.5 h-3.5" /> };
+                      return (
+                        <li key={feat} className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400 font-semibold">
+                          <span className={`shrink-0 ${meta.accent}`}>{fm.icon}</span>
+                          <span>{fm.label}</span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+
+                  {/* CTA */}
+                  {isActive ? (
+                    <div className="w-full text-center text-[10px] font-extrabold uppercase tracking-wider py-3 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                      Active Tier
+                    </div>
+                  ) : (
+                    <Button
+                      onClick={() => handleSubscribeClick(p)}
+                      disabled={actionLoading !== null}
+                      className={`w-full font-bold py-3 rounded-2xl text-xs uppercase flex items-center justify-center gap-2 transition-all ${
+                        p.id === 'premium'
+                          ? 'bg-[#F5C400] text-black hover:bg-[#d4a800]'
+                          : p.id === 'enterprise'
+                          ? 'bg-purple-600 text-white hover:bg-purple-700'
+                          : 'bg-slate-800 dark:bg-white text-white dark:text-black hover:bg-slate-700 dark:hover:bg-slate-100'
+                      }`}
+                    >
+                      {actionLoading === p.id && <Loader2 className="w-4 h-4 animate-spin" />}
+                      {p.priceMonthly === 0 ? 'Start Free' : 'Select Plan'}
+                    </Button>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
 
-        {/* Right Column (Promo Code, Active Card, Ledger) */}
-        <div className="lg:col-span-4 space-y-8">
+        {/* Right: Promo Code + Invoices */}
+        <div className="lg:col-span-4 space-y-6">
           
-          {/* Promo Card */}
+          {/* Promo Code */}
           <div className="bg-white dark:bg-[#0d0d0d] border border-slate-200 dark:border-[#222222] rounded-3xl p-6 space-y-4">
             <h3 className="font-heading font-extrabold text-sm uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-2">
               <Tag className="w-4 h-4 text-[#F5C400]" />
-              <span>Promo Code</span>
+              Promo Code
             </h3>
-            
+
             <div className="flex gap-2">
-              <input 
-                type="text" 
-                placeholder="Enter Code (e.g. SAVE50)"
+              <input
+                type="text"
+                placeholder="e.g. SAVE50"
                 value={couponInput}
                 onChange={(e) => setCouponInput(e.target.value)}
-                className="flex-1 bg-slate-50 dark:bg-[#141414] border border-slate-200 dark:border-[#222222] text-xs rounded-xl px-3 py-2.5 outline-none focus:border-[#F5C400] text-slate-900 dark:text-white font-semibold uppercase tracking-wider"
+                onKeyDown={(e) => e.key === 'Enter' && handleApplyCoupon()}
+                className="flex-1 bg-slate-50 dark:bg-[#141414] border border-slate-200 dark:border-[#222222] text-xs rounded-xl px-3 py-2.5 outline-none focus:border-[#F5C400] text-slate-900 dark:text-white font-semibold uppercase tracking-wider placeholder:normal-case placeholder:tracking-normal placeholder:text-slate-400"
               />
               <Button onClick={handleApplyCoupon} className="bg-[#F5C400] text-black hover:bg-[#d4a800] border-0 text-xs font-bold px-4 py-2.5 rounded-xl shrink-0">
                 Apply
@@ -589,78 +717,56 @@ function BillingPortalContent() {
             </div>
 
             {appliedCoupon && (
-              <div className="text-[10px] bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 p-2.5 rounded-xl font-bold flex justify-between animate-fade-in">
-                <span>Coupon '{appliedCoupon}' Activated</span>
-                <span>-{discountPercent}% Discount applied</span>
+              <div className="text-[10px] bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 px-3 py-2.5 rounded-xl font-bold flex justify-between items-center animate-fade-in">
+                <span>'{appliedCoupon}' Active</span>
+                <span>-{discountPercent}% off</span>
               </div>
             )}
+
+            <p className="text-[10px] text-slate-400 leading-relaxed">Discount is applied automatically at checkout confirmation. Try <strong>WELCOME10</strong> or <strong>SAVE50</strong>.</p>
           </div>
 
-          {/* Active Card */}
-          <div className="bg-white dark:bg-[#0d0d0d] border border-slate-200 dark:border-[#222222] rounded-3xl p-6 space-y-4">
-            <h3 className="font-heading font-extrabold text-sm uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-2">
-              <CreditCard className="w-4 h-4 text-[#F5C400]" />
-              <span>Active Card</span>
-            </h3>
-            
-            <div className="bg-gradient-to-br from-slate-900 to-slate-950 dark:from-[#141414] dark:to-[#0a0a0a] text-white p-6 rounded-2xl border border-slate-800 dark:border-[#222222] shadow-xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-[#F5C400]/5 rounded-full blur-xl pointer-events-none" />
-              <div className="flex justify-between items-center mb-6">
-                <CreditCard className="w-8 h-8 text-[#F5C400]" />
-                <span className="text-[10px] font-extrabold tracking-widest bg-white/10 px-2 py-0.5 rounded uppercase">VISA</span>
-              </div>
-              <div className="space-y-4">
-                <span className="text-sm font-bold block tracking-widest text-white">•••• •••• •••• 4242</span>
-                <div className="flex justify-between items-center text-[10px] text-slate-400">
-                  <span>EXP: 12 / 2028</span>
-                  <span>{user?.name?.toUpperCase() || 'ALEX MERCER'}</span>
-                </div>
-              </div>
-            </div>
-
-            <Button 
-              variant="outline" 
-              className="w-full text-xs font-bold py-3 border-slate-200 dark:border-[#222222] hover:bg-slate-50 dark:hover:bg-[#141414] text-slate-700 dark:text-slate-300 rounded-2xl" 
-              onClick={() => toast.info('Billing details can be updated via the Stripe Elements Portal.')}
-            >
-              Update Payment Card
-            </Button>
-          </div>
-
-          {/* Ledger invoices */}
+          {/* Invoice Ledger */}
           <div className="bg-white dark:bg-[#0d0d0d] border border-slate-200 dark:border-[#222222] rounded-3xl p-6 space-y-4">
             <h3 className="font-heading font-extrabold text-sm uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-2">
               <Download className="w-4 h-4 text-[#F5C400]" />
-              <span>Ledger Invoices</span>
+              Invoice Ledger
             </h3>
-            
-            <div className="divide-y divide-slate-100 dark:divide-[#222222]">
+
+            <div className="divide-y divide-slate-100 dark:divide-[#1e1e1e]">
               {invoices.map((inv) => (
-                <div key={inv.id} className="py-4 flex items-center justify-between text-xs font-semibold">
+                <div key={inv.id} className="py-3.5 flex items-center justify-between text-xs font-semibold">
                   <div>
                     <strong className="block text-slate-900 dark:text-white">{inv.id}</strong>
                     <span className="text-[10px] text-slate-400">{inv.date}</span>
                   </div>
-                  <div className="flex items-center space-x-3.5">
+                  <div className="flex items-center gap-3">
+                    <span className={`text-[10px] font-bold uppercase px-2 py-0.5 rounded-full ${
+                      inv.status === 'PAID' 
+                        ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
+                        : inv.status === 'FAILED'
+                        ? 'bg-red-500/10 text-red-500'
+                        : 'bg-amber-500/10 text-amber-600 dark:text-amber-400'
+                    }`}>{inv.status}</span>
                     <span className="text-slate-900 dark:text-white">${inv.amount.toFixed(2)}</span>
-                    <button 
-                      onClick={() => toast.success(`Saved ${inv.id}.pdf to downloads directory.`)}
-                      className="p-2 rounded-xl border border-slate-200 dark:border-[#222222] text-slate-400 hover:text-white hover:bg-slate-50 dark:hover:bg-[#141414] transition-all cursor-pointer"
+                    <button
+                      onClick={() => toast.success(`Saved ${inv.id}.pdf to downloads.`)}
+                      className="p-1.5 rounded-lg border border-slate-200 dark:border-[#222222] text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-[#141414] transition-all cursor-pointer"
                       title="Download PDF"
                     >
-                      <Download className="w-3.5 h-3.5" />
+                      <Download className="w-3 h-3" />
                     </button>
                   </div>
                 </div>
               ))}
               {invoices.length === 0 && (
-                <div className="text-center py-6 text-xs text-slate-400">
-                  No invoice logs found.
+                <div className="text-center py-8 text-xs text-slate-400 space-y-2">
+                  <FileText className="w-8 h-8 mx-auto text-slate-300 dark:text-slate-700" />
+                  <p>No invoices yet.<br />They'll appear here after your first payment.</p>
                 </div>
               )}
             </div>
           </div>
-
         </div>
       </div>
     </div>
