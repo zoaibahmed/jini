@@ -37,148 +37,16 @@ import { CountryPhoneInput } from '@/components/CountryPhoneInput';
 import { useAuth } from '@/hooks/useAuth';
 import { useToast } from '@/components/ui/toast';
 import { API_URL } from '@/config';
+import { useLanguage } from '@/app/language-provider';
 
-const translations: Record<string, any> = {
-  English: {
-    heroTitle: "Centralized Support",
-    heroSubtitle: "For NYC TLC Drivers",
-    heroDesc: "Centralize your TLC license renewals, DMV safety compliance, and checkup timelines. Protect your profile with automated Twilio reminders.",
-    signupBtn: "Sign Up",
-    connectWhatsapp: "Connect WhatsApp",
-    servicesTitle: "Complete Driver Workflow Coverage",
-    servicesDesc: "Find guides, dispute parking summonses, and track drug testing locations.",
-    featuresTitle: "TLC Compliance & Support SaaS",
-    featuresDesc: "We package automated compliance checklists, structured OCR uploads, and outbound callback routing to keep you active.",
-    reviewsTitle: "Driver Reviews & Testimonials",
-    signupCardTitle: "Fast Driver Onboarding",
-    signupCardDesc: "Register or sign in with your phone number. No passwords required.",
-    phoneLabel: "Phone Number",
-    firstNameLabel: "First Name",
-    lastNameLabel: "Last Name",
-    sendOtp: "Send Verification OTP",
-    verifyOtp: "Verify & Continue",
-    enterOtp: "Enter Verification Code",
-    otpSentMsg: "A verification code was dispatched to your device.",
-    whatsappConnectedMsg: "Connect with WhatsApp Admin to finalize compliance setup.",
-  },
-  Spanish: {
-    heroTitle: "Soporte Centralizado",
-    heroSubtitle: "Para Conductores de TLC",
-    heroDesc: "Centralice sus renovaciones de licencia TLC, cumplimiento de seguridad de DMV y plazos de chequeo. Proteja su perfil con recordatorios automáticos de Twilio.",
-    signupBtn: "Registrarse",
-    connectWhatsapp: "Conectarse por WhatsApp",
-    servicesTitle: "Cobertura Completa del Trabajo del Conductor",
-    servicesDesc: "Encuentre guías, dispute multas de estacionamiento y realice el seguimiento de pruebas de drogas.",
-    featuresTitle: "SaaS de Cumplimiento y Soporte de TLC",
-    featuresDesc: "Ofrecemos listas de verificación automatizadas, cargas de OCR estructuradas y enrutamiento de llamadas para mantenerlo activo.",
-    reviewsTitle: "Opiniones y Testimonios de Conductores",
-    signupCardTitle: "Registro Rápido de Conductor",
-    signupCardDesc: "Regístrese o inicie sesión con su número de teléfono. Sin contraseñas.",
-    phoneLabel: "Número de Teléfono",
-    firstNameLabel: "Primer Nombre",
-    lastNameLabel: "Apellido",
-    sendOtp: "Enviar OTP de Verificación",
-    verifyOtp: "Verificar y Continuar",
-    enterOtp: "Ingrese el Código de Verificación",
-    otpSentMsg: "Se ha enviado un código de verificación a su dispositivo.",
-    whatsappConnectedMsg: "Conéctese con el administrador de WhatsApp para finalizar la configuración.",
-  },
-  Urdu: {
-    heroTitle: "مرکزی سپورٹ",
-    heroSubtitle: "NYC TLC ڈرائیورز کے لیے",
-    heroDesc: "اپنے TLC لائسنس کی تجدید، DMV حفاظتی تعمیل، اور طبی چیک اپ ٹائم لائنز کو ایک جگہ رکھیں۔ اپنے پروفائل کو خودکار Twilio یاد دہانیوں سے محفوظ بنائیں۔",
-    signupBtn: "سائن اپ",
-    connectWhatsapp: "واٹس ایپ سے رابطہ کریں",
-    servicesTitle: "مکمل ڈرائیور ورک فلو کوریج",
-    servicesDesc: "رہنما اصول تلاش کریں، پارکنگ سمن پر اعتراض کریں، اور منشیات کے ٹیسٹ کے مقامات کو ٹریک کریں۔",
-    featuresTitle: "TLC تعمیل اور سپورٹ ساس",
-    featuresDesc: "ہم خودکار تعمیل کی فہرستیں، منظم OCR اپ لوڈز، اور ڈرائیورز کو متحرک رکھنے کے لیے آؤٹ باؤنڈ کالز پیک کرتے ہیں۔",
-    reviewsTitle: "ڈرائیور کے جائزے اور تعریفی کلمات",
-    signupCardTitle: "فاسٹ ڈرائیور رجسٹریشن",
-    signupCardDesc: "اپنے فون نمبر سے رجسٹر یا لاگ ان کریں۔ کسی پاس ورڈ کی ضرورت نہیں ہے۔",
-    phoneLabel: "فون نمبر",
-    firstNameLabel: "پہلا نام",
-    lastNameLabel: "آخری نام",
-    sendOtp: "تصدیقی کوڈ بھیجیں",
-    verifyOtp: "کوڈ کی تصدیق کریں اور آگے بڑھیں",
-    enterOtp: "تصدیقی کوڈ درج کریں",
-    otpSentMsg: "تصدیقی کوڈ آپ کے آلے پر بھیج دیا گیا ہے۔",
-    whatsappConnectedMsg: "تعمیل مکمل کرنے کے لیے واٹس ایپ ایڈمن سے رابطہ کریں۔",
-  },
-  Bengali: {
-    heroTitle: "সেন্ট্রালাইজড সাপোর্ট",
-    heroSubtitle: "NYC TLC ড্রাইভারদের জন্য",
-    heroDesc: "আপনার TLC লাইসেন্স পুনর্নবীকরণ, DMV নিরাপত্তা সম্মতি, এবং মেডিকেল চেকআপের সময়সূচী সেন্ট্রালাইজ করুন। স্বয়ংক্রিয় Twilio অনুস্মারকগুলির সাহায্যে আপনার প্রোফাইল সুরক্ষিত করুন।",
-    signupBtn: "সাইন আপ",
-    connectWhatsapp: "হোয়াটসঅ্যাপে যোগাযোগ করুন",
-    servicesTitle: "সম্পূর্ণ ড্রাইভার ওয়ার্কফ্লো কভারেজ",
-    servicesDesc: "গাইড খুঁজুন, পার্কিং সমন বিরোধ করুন, এবং ড্রাগ পরীক্ষার অবস্থানগুলি ট্র্যাক করুন।",
-    featuresTitle: "TLC সম্মতি ও সহায়তা SaaS",
-    featuresDesc: "আপনাকে সক্রিয় রাখতে আমরা স্বয়ংক্রিয় সম্মতি চেকলিস্ট, কাঠামোগত OCR আপলোড এবং আউটবাউন্ড কল রাউটিং অফার করি।",
-    reviewsTitle: "ড্রাইভার পর্যালোচনা এবং প্রশংসাপত্র",
-    signupCardTitle: "ফাস্ট ড্রাইভার অনবোর্ডিং",
-    signupCardDesc: "আপনার ফোন নম্বর দিয়ে সাইন ইন বা রেজিস্টার করুন। কোনো পাসওয়ার্ডের প্রয়োজন নেই।",
-    phoneLabel: "ফোন নম্বর",
-    firstNameLabel: "প্রথম নাম",
-    lastNameLabel: "শেষ নাম",
-    sendOtp: "যাচাইকরণ ওটিপি পাঠান",
-    verifyOtp: "ওটিপি যাচাই করুন এবং এগিয়ে যান",
-    enterOtp: "যাচাইকরণ কোড লিখুন",
-    otpSentMsg: "একটি যাচাইকরণ কোড আপনার ডিভাইসে পাঠানো হয়েছে।",
-    whatsappConnectedMsg: "সম্মতি সেটআপ চূড়ান্ত করতে হোয়াটসঅ্যাপ অ্যাডমিনের সাথে সংযোগ করুন।",
-  },
-  French: {
-    heroTitle: "Support Centralisé",
-    heroSubtitle: "Pour les Chauffeurs TLC",
-    heroDesc: "Centralisez vos renouvellements de licence TLC, votre conformité de sécurité DMV et vos bilans de santé. Protégez votre profil grâce à des rappels Twilio automatisés.",
-    signupBtn: "S'inscrire",
-    connectWhatsapp: "Se Connecter via WhatsApp",
-    servicesTitle: "Couverture Completa del Flux de Travail Conducteur",
-    servicesDesc: "Trouvez des guides, contestez les contraventions et suivez les centres de dépistage.",
-    featuresTitle: "SaaS de Conformité et de Support TLC",
-    featuresDesc: "Nous regroupons des listes de contrôle automatisées, des téléchargements OCR structurés et un routage d'appels pour vous garder actif.",
-    reviewsTitle: "Avis et Témoignages de Chauffeurs",
-    signupCardTitle: "Inscription Rapide du Chauffeur",
-    signupCardDesc: "Inscrivez-vous ou connectez-vous avec votre numéro de téléphone. Aucun mot de passe requis.",
-    phoneLabel: "Numéro de Téléphone",
-    firstNameLabel: "Prénom",
-    lastNameLabel: "Nom de Famille",
-    sendOtp: "Envoyer le Code OTP",
-    verifyOtp: "Vérifier le Code et Continuer",
-    enterOtp: "Saisir le Code de Vérification",
-    otpSentMsg: "Un code de vérification a été envoyé à votre appareil.",
-    whatsappConnectedMsg: "Contactez l'administrateur WhatsApp pour finaliser la configuration.",
-  },
-  Mandarin: {
-    heroTitle: "集中支持平台",
-    heroSubtitle: "纽约 TLC 司机",
-    heroDesc: "集中管理您的 TLC 执照更新、DMV 安全合规和体检时间线。使用 Twilio 自动提醒来保护您的个人资料。",
-    signupBtn: "注册",
-    connectWhatsapp: "连接 WhatsApp",
-    servicesTitle: "完整的司机工作流覆盖",
-    servicesDesc: "查找指南、解决停车传票并跟踪药检地点。",
-    featuresTitle: "TLC 合规与支持 SaaS",
-    featuresDesc: "我们整合了自动合规清单、结构化 OCR 上传和呼叫路由，确保您的账号始终处于活跃状态。",
-    reviewsTitle: "司机评价与证言",
-    signupCardTitle: "司机快速入驻",
-    signupCardDesc: "使用您的电话号码注册或登录。无需密码。",
-    phoneLabel: "电话号码",
-    firstNameLabel: "名字",
-    lastNameLabel: "姓氏",
-    sendOtp: "发送验证码 (OTP)",
-    verifyOtp: "验证并继续",
-    enterOtp: "输入验证码",
-    otpSentMsg: "验证码已发送至您的设备。",
-    whatsappConnectedMsg: "与 WhatsApp 管理员联系以完成合规设置。",
-  }
-};
+import { translations } from './translations';
 
 export default function JniLandingPage() {
   const { toast } = useToast();
   const { sendOtp, verifyOtp, registerPasskey, loginWithPasskey } = useAuth();
 
   // Language configuration
-  const [selectedLanguage, setSelectedLanguage] = useState('English');
+  const { language: selectedLanguage, setLanguage: setSelectedLanguage } = useLanguage();
   const t = translations[selectedLanguage] || translations.English;
 
   // Onboarding state
@@ -373,97 +241,96 @@ export default function JniLandingPage() {
     }
   };
 
-  const features = [
-    { title: 'Compliance Vault', description: 'Store and secure TLC driver licenses, DMV logs, commercial insurance certificates, and medical checkup forms.', icon: FileText },
-    { title: 'OpenAI Structured OCR', description: 'Snap photos of documents. Our OCR engine parses name, license number, expiry, and issue dates automatically.', icon: ShieldCheck },
-    { title: 'Interactive RAG Copilot', description: 'Ask the smart assistant anything. Uses JNI Guides, renewal policies, and FAQs as context vectors.', icon: MessageSquare },
-    { title: 'Automated SMS Alerts', description: 'Never miss inspection timelines. BullMQ and Twilio automatically schedule alerts 30, 15, and 5 days prior.', icon: Clock },
-    { title: 'CRM Lead Conversion', description: 'Track qualified drivers and inbound callback requests directly on our team Kanban boards.', icon: Users },
-    { title: 'Voice AI Dialer', description: 'Intelligent Twilio telephony routing qualifies driver calls and queues outbound callbacks hands-free.', icon: PhoneIncoming },
-    { title: 'Subscription SaaS Core', description: 'Central billing and invoice logs managing driver accounts, premium subscriptions, and features access.', icon: Layers },
-    { title: 'Support Ticket System', description: 'Log DMV summons disputes, defensive driving courses updates, and plate registration issues with support agents.', icon: Ticket },
-  ];
+  const featuresListTranslated = t.featuresList || [];
+  const featuresIcons = [FileText, ShieldCheck, MessageSquare, Clock, Users, PhoneIncoming, Layers, Ticket];
+  const features: any[] = featuresListTranslated.map((item: any, idx: number) => ({
+    ...item,
+    icon: featuresIcons[idx] || FileText
+  }));
 
-  const services = [
-    { title: 'TLC Renewal Guide', description: 'NYC TLC application instructions, drug screening fast-track coordination, and compliance timelines verification.', icon: ShieldAlert },
-    { title: 'DMV Summons Assistance', description: 'Hearing representation guidelines, defensive driving point mitigation, and Woodside safety inspection schedules.', icon: Scale },
-    { title: 'Document Intelligence', description: 'Automated OCR metadata extraction tags files and sets expiry check jobs.', icon: FileText },
-    { title: 'Reminders Scheduler', description: 'Twilio SMS logs send critical alerts. Rest easy knowing you are 100% active.', icon: Clock },
-    { title: 'Agent Live Chat', description: 'Communicate in real-time. Direct access to support agents and specialized legal compliance advisors.', icon: MessageSquare },
-    { title: 'Multilingual Support', description: 'Guides, chats, and calls supported in English, Spanish, Urdu, Bengali, French, and Mandarin.', icon: Globe },
-  ];
+  const servicesListTranslated = t.servicesList || [];
+  const servicesIcons = [ShieldAlert, Scale, FileText, Clock, MessageSquare, Globe];
+  const services: any[] = servicesListTranslated.map((item: any, idx: number) => ({
+    ...item,
+    icon: servicesIcons[idx] || ShieldAlert
+  }));
 
-  const workflowSteps = [
-    { number: '01', title: 'Submit Consultation', description: 'Book a consultation slot or submit a callback request to get matched with a JNI advisor.' },
-    { number: '02', title: 'Upload TLC Documents', description: 'Take photos of licenses, DMV registrations, or checkup slips. The AI populates metadata.' },
-    { number: '03', title: 'Monitor Compliance Checklist', description: 'Check your active dashboard checklists. Green items indicate verified safe compliance.' },
-    { number: '04', title: 'Rely on Automated Reminders', description: 'Receive SMS, email, and socket push alerts before critical dates arrive to prevent suspensions.' },
-    { number: '05', title: 'Resolve Disputes Fast', description: 'Log parking tickets and TLC summonses into the support queue for legal guidelines representation.' },
-  ];
+  const workflowStepsListTranslated = t.workflowStepsList || [];
+  const workflowSteps: any[] = workflowStepsListTranslated.map((item: any, idx: number) => ({
+    ...item,
+    number: (idx + 1).toString().padStart(2, '0')
+  }));
 
   const pricingPlans = [
     {
-      name: 'Basic Support',
+      name: selectedLanguage === 'Spanish' ? 'Soporte Básico' : selectedLanguage === 'Urdu' ? 'بنیادی سپورٹ' : selectedLanguage === 'Bengali' ? 'বেসিক সাপোর্ট' : selectedLanguage === 'French' ? 'Support de Base' : selectedLanguage === 'Mandarin' ? '基础支持' : 'Basic Support',
       price: billingPeriod === 'monthly' ? 0 : 0,
-      description: 'Essential compliance tracking, renewal guide articles, and manual document storage.',
-      features: [
-        'Centralized Compliance Calendar',
-        'Defensive driving course guides',
-        'Manual document uploading & tags',
-        'Standard Email support queue',
-      ],
-      cta: 'Start Free',
+      description: selectedLanguage === 'Spanish' ? 'Seguimiento de cumplimiento esencial, guías y almacenamiento manual.' : selectedLanguage === 'Urdu' ? 'ضروری تعمیل کا ٹریکر، گائیڈز اور دستی دستاویز کا ذخیرہ۔' : selectedLanguage === 'Bengali' ? 'প্রয়োজনীয় কমপ্লায়েন্স ট্র্যাকিং, গাইড এবং ম্যানুয়াল নথি সংরক্ষণ।' : selectedLanguage === 'French' ? 'Suivi de conformité essentiel, guides et stockage manuel.' : selectedLanguage === 'Mandarin' ? '基本合规追踪、指南和手动文件存储。' : 'Essential compliance tracking, renewal guide articles, and manual document storage.',
+      features: selectedLanguage === 'Spanish' 
+        ? ['Calendario de cumplimiento centralizado', 'Guías de curso de conducción defensiva', 'Carga manual de documentos y etiquetas', 'Cola de soporte por correo estándar']
+        : selectedLanguage === 'Urdu'
+        ? ['مرکزی تعمیل کیلنڈر', 'ڈرائیونگ گائیڈز', 'دستی دستاویز اپ لوڈز', 'معیاری ای میل سپورٹ']
+        : selectedLanguage === 'Bengali'
+        ? ['কেন্দ্রীয় কমপ্লায়েন্স ক্যালেন্ডার', 'ড্রাইভিং গাইড', 'ম্যানুয়াল নথি আপলোড', 'স্ট্যান্ডার্ড ইমেল সমর্থন']
+        : selectedLanguage === 'French'
+        ? ['Calendrier de conformité centralisé', 'Guides de conduite défensive', 'Téléchargement manuel et étiquettes', 'Support e-mail standard']
+        : selectedLanguage === 'Mandarin'
+        ? ['集中合规日历', '防御性驾驶课程指南', '手动文档上传与标签', '标准电子邮件支持']
+        : ['Centralized Compliance Calendar', 'Defensive driving course guides', 'Manual document uploading & tags', 'Standard Email support queue'],
+      cta: selectedLanguage === 'Spanish' ? 'Comenzar Gratis' : selectedLanguage === 'Urdu' ? 'مفت شروع کریں' : selectedLanguage === 'Bengali' ? 'বিনামূল্যে শুরু করুন' : selectedLanguage === 'French' ? 'Commencer Gratuitement' : selectedLanguage === 'Mandarin' ? '免费开始' : 'Start Free',
       popular: false
     },
     {
-      name: 'Premium Driver Pro',
+      name: selectedLanguage === 'Spanish' ? 'Conductor Premium Pro' : selectedLanguage === 'Urdu' ? 'پریمیم ڈرائیور پرو' : selectedLanguage === 'Bengali' ? 'প্রিমিয়াম ড্রাইভার প্রো' : selectedLanguage === 'French' ? 'Conducteur Premium Pro' : selectedLanguage === 'Mandarin' ? '高级职业司机' : 'Premium Driver Pro',
       price: billingPeriod === 'monthly' ? 19 : 14,
-      description: 'AI-powered co-pilot assistance, structured OCR document parsing, and Twilio SMS alerts.',
-      features: [
-        'OpenAI Structured OCR Engine',
-        'Real-time WebSocket AI Co-pilot',
-        'Automated SMS & email expiry alerts',
-        'Centralized support ticket dashboard',
-        'Woodside inspection priority slots',
-      ],
-      cta: 'Subscribe Pro',
+      description: selectedLanguage === 'Spanish' ? 'Copiloto de IA, OCR estructurado y alertas por SMS.' : selectedLanguage === 'Urdu' ? 'اے آئی کپیلیٹ، او سی آر اور ایس ایم ایس الرٹس۔' : selectedLanguage === 'Bengali' ? 'এআই কো-পাইলট, ওসিআর এবং এসএমএস সতর্কতা।' : selectedLanguage === 'French' ? 'Copilote IA, OCR structuré et alertes SMS.' : selectedLanguage === 'Mandarin' ? 'AI 协同、OCR 解析和短信提醒。' : 'AI-powered co-pilot assistance, structured OCR document parsing, and Twilio SMS alerts.',
+      features: selectedLanguage === 'Spanish'
+        ? ['Motor OCR estructurado de OpenAI', 'Copiloto de IA por WebSocket', 'Alertas de vencimiento por SMS y correo', 'Panel de tickets de soporte centralizado', 'Prioridad de inspección Woodside']
+        : selectedLanguage === 'Urdu'
+        ? ['اوپن اے آئی او سی آر انجن', 'ریئل ٹائم اے آئی کپیلیٹ', 'خودکار ایس ایم ایس الرٹس', 'سپورٹ ٹکٹ ڈیش بورڈ', 'ووڈ سائیڈ تفتیشی ترجیح']
+        : selectedLanguage === 'Bengali'
+        ? ['ওপেনএআই ওসিআর ইঞ্জিন', 'রিয়েল-টাইম এআই কো-পাইলট', 'স্বয়ংক্রিয় এসএমএস অ্যালার্ট', 'সহায়তা টিকিট ড্যাশবোর্ড', 'উডসাইড তদন্তের অগ্রাধিকার']
+        : selectedLanguage === 'French'
+        ? ['Moteur OCR structuré OpenAI', 'Copilote IA par WebSocket', 'Alertes d\'expiration SMS et e-mail', 'Tableau de bord de tickets centralisé', 'Priorité d\'inspection Woodside']
+        : selectedLanguage === 'Mandarin'
+        ? ['OpenAI 结构化 OCR 引擎', '实时 AI 协同助手', '自动短信与邮件过期提醒', '集中工单仪表板', 'Woodside 检查优先时段']
+        : ['OpenAI Structured OCR Engine', 'Real-time WebSocket AI Co-pilot', 'Automated SMS & email expiry alerts', 'Centralized support ticket dashboard', 'Woodside inspection priority slots'],
+      cta: selectedLanguage === 'Spanish' ? 'Suscribirse Pro' : selectedLanguage === 'Urdu' ? 'پرو سبسکرائب کریں' : selectedLanguage === 'Bengali' ? 'প্রো সাবস্ক্রাইব করুন' : selectedLanguage === 'French' ? 'S\'abonner Pro' : selectedLanguage === 'Mandarin' ? '订阅专业版' : 'Subscribe Pro',
       popular: true
     },
     {
-      name: 'Enterprise Fleet',
+      name: selectedLanguage === 'Spanish' ? 'Flota Enterprise' : selectedLanguage === 'Urdu' ? 'انٹرپرائز فلیٹ' : selectedLanguage === 'Bengali' ? 'এন্টারপ্রাইজ ফ্লিট' : selectedLanguage === 'French' ? 'Flotte Entreprise' : selectedLanguage === 'Mandarin' ? '车队企业版' : 'Enterprise Fleet',
       price: billingPeriod === 'monthly' ? 99 : 79,
-      description: 'Central fleet compliance registry for dispatch taxi operators and livery services.',
-      features: [
-        'Centralized Fleet Compliance Log',
-        'Manage up to 10 driver licenses',
-        'Centralized support ticket routing',
-        'Dedicated 24/7 account manager',
-        'RAG Context articles creation',
-      ],
-      cta: 'Subscribe Fleet',
+      description: selectedLanguage === 'Spanish' ? 'Registro de cumplimiento centralizado para operadores de taxis y flotas.' : selectedLanguage === 'Urdu' ? 'ٹیکسی اور فلیٹ آپریٹرز کے لیے مرکزی تعمیل۔' : selectedLanguage === 'Bengali' ? 'ট্যাক্সি এবং ফ্লিট অপারেটরদের জন্য কেন্দ্রীয় কমপ্লায়েন্স।' : selectedLanguage === 'French' ? 'Suivi centralisé pour les répartiteurs de taxis et les flottes.' : selectedLanguage === 'Mandarin' ? '适用于出租车运营商 and 车队的集中合规注册表。' : 'Central billing and invoice logs managing driver accounts, premium subscriptions, and features access.',
+      features: selectedLanguage === 'Spanish'
+        ? ['Registro de cumplimiento de flota centralizado', 'Gestión de hasta 10 licencias de conducir', 'Enrutamiento de tickets de soporte centralizado', 'Gestor de cuentas dedicado 24/7', 'Creación de artículos con contexto RAG']
+        : selectedLanguage === 'Urdu'
+        ? ['مرکزی فلیٹ تعمیل لاگ', '10 ڈرائیور لائسنسوں کا انتظام', 'مرکزی سپورٹ ٹکٹ روٹنگ', '24/7 اکاؤنٹ مینیجر', 'آر اے جی مضمون تخلیق']
+        : selectedLanguage === 'Bengali'
+        ? ['কেন্দ্রীয় ফ্লিট কমপ্লায়েন্স লগ', '১০ জন ড্রাইভার লাইসেন্স পরিচালনা', 'সহায়তা টিকিট রাউটিং', '২৪/৭ অ্যাকাউন্ট ম্যানেজার', 'আরএজি নিবন্ধ তৈরি']
+        : selectedLanguage === 'French'
+        ? ['Registre de conformité de flotte centralisé', 'Gérer jusqu\'à 10 licences', 'Routage de tickets centralisé', 'Gestionnaire de compte dédié 24/7', 'Création d\'articles contextuels RAG']
+        : selectedLanguage === 'Mandarin'
+        ? ['集中车队合规日志', '管理最多 10 个驾驶员执照', '集中支持工单路由', '24/7 专属客户经理', 'RAG 上下文文章创建']
+        : ['Centralized Fleet Compliance Log', 'Manage up to 10 driver licenses', 'Centralized support ticket routing', 'Dedicated 24/7 account manager', 'RAG Context articles creation'],
+      cta: selectedLanguage === 'Spanish' ? 'Suscribirse Flota' : selectedLanguage === 'Urdu' ? 'فلیٹ سبسکرائب کریں' : selectedLanguage === 'Bengali' ? 'ফ্লিট সাবস্ক্রাইব করুন' : selectedLanguage === 'French' ? 'S\'abonner Flotte' : selectedLanguage === 'Mandarin' ? '订阅车队版' : 'Subscribe Fleet',
       popular: false
     }
   ];
 
-  const testimonials = [
-    { quote: "JNI Solutions saved my TLC license! I forgot about my drug test date. The automated SMS alert arrived 15 days prior, leaving me plenty of time to book. An absolute lifesaver.", author: "Luis R., NYC Uber Driver", stars: 5 },
-    { quote: "The structured OCR parser is amazing. I uploaded my DMV registration, and it instantly updated my checklist. Proactive alerts keep my vehicle active.", author: "Arif K., Green Cab Owner-Operator", stars: 5 },
-    { quote: "Outstanding summons dispute guidance. Submitting a ticket connected me with an agent who prepared my DMV hearing papers. Highly recommended.", author: "Samantha T., Taxi Dispatch Agent", stars: 5 }
-  ];
+  const testimonials: any[] = (t.testimonialsList || []).map((item: any) => ({
+    ...item,
+    stars: 5
+  }));
 
-  const faqItems = [
-    { id: '1', title: 'How does JNI help with TLC compliance?', content: 'We monitor official TLC renewal requirements, safety inspections, and drug screening deadlines. Our automated reminders ensure you complete each step before critical dates arrive to prevent sudden license suspension.' },
-    { id: '2', title: 'What is OpenAI Structured OCR?', content: 'When you upload documents (TLC license, DMV registration, drug test, insurance), our advanced OCR uses GPT-4o structured extraction to automatically parse name, license number, and dates, updating your compliance status immediately.' },
-    { id: '3', title: 'What languages does JNI support?', content: 'Our AI Co-pilot, RAG articles, support queue, and Voice AI call center routing support English, Spanish, Urdu, Bengali, French, and Mandarin.' },
-    { id: '4', title: 'How do JNI support tickets work?', content: 'If you receive a summons, you can submit a support ticket under DMV or TLC categories. Our agents guide you through dispute procedures and hearing representation steps.' }
-  ];
+  const faqItems: any[] = t.faqItemsList || [];
 
   const whatsappUrl = `https://wa.me/19177359169?text=Hello%20JNI%20Admin%2C%20I%20want%20to%20connect%20my%20TLC%20driver%20account.`;
 
   return (
     <div className="flex-1 flex flex-col min-h-screen bg-background text-foreground antialiased selection:bg-[#F5C400]/25 selection:text-[#0B0B0B] transition-colors duration-300">
       <Preloader />
-      <LanguagePopup onLanguageSelect={(lang) => setSelectedLanguage(lang)} />
+      <LanguagePopup onLanguageSelect={(lang) => setSelectedLanguage(lang as any)} />
       <Navbar />
 
       {/* 1st Section: Hero Section */}
@@ -1089,7 +956,7 @@ export default function JniLandingPage() {
       </section>
 
       {/* 10th Section: Final CTA Banner */}
-      <section className="py-20 lg:py-28 bg-[#141414] text-white relative border-t border-zinc-800 overflow-hidden text-center transition-colors duration-300">
+      <section className="py-20 lg:py-28 bg-slate-50 dark:bg-[#141414] text-slate-900 dark:text-white relative border-t border-slate-200 dark:border-zinc-800 overflow-hidden text-center transition-colors duration-300">
         <div className="absolute -left-40 -top-40 w-96 h-96 bg-[#F5C400]/5 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute -right-40 -bottom-40 w-96 h-96 bg-[#D9A300]/5 rounded-full blur-[120px] pointer-events-none" />
 
@@ -1100,23 +967,23 @@ export default function JniLandingPage() {
           transition={{ duration: 0.6 }}
           className="max-w-4xl mx-auto px-4 sm:px-6 relative space-y-6"
         >
-          <h2 className="font-heading font-extrabold text-4xl sm:text-5xl tracking-tight text-white leading-tight">
-            Ready to Protect Your TLC Profile?
+          <h2 className="font-heading font-extrabold text-4xl sm:text-5xl tracking-tight text-slate-900 dark:text-white leading-tight">
+            {t.readyTitle || 'Ready to Protect Your TLC Profile?'}
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base max-w-xl mx-auto leading-relaxed font-medium">
-            Launch your compliance dashboard. Upload licenses, access AI copilot, receive SMS reminders, and dispute summonses in real time.
+          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-xl mx-auto leading-relaxed font-medium">
+            {t.readyDesc || 'Launch your compliance dashboard. Upload licenses, access AI copilot, receive SMS reminders, and dispute summonses in real time.'}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a href="#home">
               <Button size="lg" className="w-full sm:w-auto bg-[#F5C400] text-black hover:bg-[#D9A300] font-bold border-0 px-8 py-3.5 rounded-xl shadow-md">
-                Get Started Now (Sign Up)
+                {t.readyCta || 'Get Started Now (Sign Up)'}
               </Button>
             </a>
             <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-              <Button size="lg" variant="outline" className="w-full sm:w-auto border-2 border-white text-white hover:bg-white/10 font-bold px-8 py-3.5 rounded-xl flex items-center justify-center gap-1.5">
+              <Button size="lg" variant="outline" className="w-full sm:w-auto border-2 border-slate-950 dark:border-white text-slate-950 dark:text-white hover:bg-slate-100 dark:hover:bg-white/10 font-bold px-8 py-3.5 rounded-xl flex items-center justify-center gap-1.5 bg-transparent">
                 <Globe className="w-4 h-4 text-emerald-500" />
-                <span>Connect WhatsApp</span>
+                <span>{t.connectWhatsapp}</span>
               </Button>
             </a>
           </div>

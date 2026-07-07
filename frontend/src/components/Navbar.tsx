@@ -5,15 +5,29 @@ import Link from 'next/link';
 import { Logo } from '@/components/ui/Logo';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X, Sun, Moon, ChevronDown, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTheme } from '@/app/theme-provider';
+import { useLanguage, Language } from '@/app/language-provider';
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
+  const { language, setLanguage } = useLanguage();
+
+  const languages: { name: Language; flag: string; local: string }[] = [
+    { name: 'English', flag: '🇺🇸', local: 'English' },
+    { name: 'Spanish', flag: '🇪🇸', local: 'Español' },
+    { name: 'Urdu', flag: '🇵🇰', local: 'اردو' },
+    { name: 'Bengali', flag: '🇧🇩', local: 'বাংলা' },
+    { name: 'French', flag: '🇫🇷', local: 'Français' },
+    { name: 'Mandarin', flag: '🇨🇳', local: '中文' },
+  ];
+
+  const currentLang = languages.find(l => l.name === language) || languages[0];
 
   // Close mobile menu on route change & track scroll depth
   useEffect(() => {
@@ -75,9 +89,57 @@ export function Navbar() {
  
         {/* CTA Buttons & Theme Toggler */}
         <div className="hidden md:flex items-center space-x-4">
+          {/* Language Selector Dropdown */}
+          <div className="relative">
+            <button
+              type="button"
+              onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+              className="flex items-center space-x-1.5 p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-[#F5C400] dark:hover:text-[#F5C400] hover:bg-slate-100 dark:hover:bg-zinc-800/50 transition-all duration-205 cursor-pointer"
+              aria-label="Select Language"
+            >
+              <span className="text-base">{currentLang.flag}</span>
+              <span className="text-[10px] font-extrabold uppercase tracking-wider">{currentLang.name.substring(0, 3)}</span>
+              <ChevronDown className="w-3.5 h-3.5 text-zinc-400" />
+            </button>
+
+            <AnimatePresence>
+              {langDropdownOpen && (
+                <>
+                  <div className="fixed inset-0 z-10" onClick={() => setLangDropdownOpen(false)} />
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="absolute right-0 mt-2 w-40 rounded-xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 p-1.5 shadow-xl z-20 text-slate-800 dark:text-white"
+                  >
+                    {languages.map((lang) => (
+                      <button
+                        type="button"
+                        key={lang.name}
+                        onClick={() => {
+                          setLanguage(lang.name);
+                          setLangDropdownOpen(false);
+                        }}
+                        className={`flex items-center justify-between w-full px-3 py-2 rounded-lg text-left text-xs transition-colors hover:bg-slate-100 dark:hover:bg-zinc-900 cursor-pointer ${
+                          language === lang.name ? 'text-[#F5C400] font-bold' : 'text-slate-600 dark:text-zinc-400'
+                        }`}
+                      >
+                        <span className="flex items-center gap-2">
+                          <span>{lang.flag}</span>
+                          <span>{lang.name}</span>
+                        </span>
+                        {language === lang.name && <Check className="w-3.5 h-3.5 stroke-[2.5]" />}
+                      </button>
+                    ))}
+                  </motion.div>
+                </>
+              )}
+            </AnimatePresence>
+          </div>
+
           <button 
             onClick={toggleTheme}
-            className="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-[#F5C400] dark:hover:text-[#F5C400] hover:bg-slate-100 dark:hover:bg-zinc-800/50 transition-all duration-200"
+            className="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-[#F5C400] dark:hover:text-[#F5C400] hover:bg-slate-100 dark:hover:bg-zinc-800/50 transition-all duration-200 cursor-pointer"
             aria-label="Toggle Theme"
           >
             {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
@@ -95,9 +157,56 @@ export function Navbar() {
  
         {/* Mobile menu trigger */}
         <div className="flex items-center space-x-2 md:hidden">
+          {/* Mobile Language Selector Dropdown */}
+          <div className="relative">
+            <button
+              type="button"
+              onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+              className="flex items-center space-x-1 p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-[#F5C400] dark:hover:text-[#F5C400] transition-all duration-200 cursor-pointer"
+              aria-label="Select Language"
+            >
+              <span className="text-base">{currentLang.flag}</span>
+              <ChevronDown className="w-3.5 h-3.5 text-zinc-400" />
+            </button>
+
+            <AnimatePresence>
+              {langDropdownOpen && (
+                <>
+                  <div className="fixed inset-0 z-10" onClick={() => setLangDropdownOpen(false)} />
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="absolute right-0 mt-2 w-36 rounded-xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 p-1.5 shadow-xl z-20 text-slate-800 dark:text-white"
+                  >
+                    {languages.map((lang) => (
+                      <button
+                        type="button"
+                        key={lang.name}
+                        onClick={() => {
+                          setLanguage(lang.name);
+                          setLangDropdownOpen(false);
+                        }}
+                        className={`flex items-center justify-between w-full px-2.5 py-1.5 rounded-lg text-left text-xs transition-colors hover:bg-slate-100 dark:hover:bg-zinc-900 cursor-pointer ${
+                          language === lang.name ? 'text-[#F5C400] font-bold' : 'text-slate-600 dark:text-zinc-400'
+                        }`}
+                      >
+                        <span className="flex items-center gap-1.5">
+                          <span>{lang.flag}</span>
+                          <span>{lang.name}</span>
+                        </span>
+                        {language === lang.name && <Check className="w-3 h-3 stroke-[2.5]" />}
+                      </button>
+                    ))}
+                  </motion.div>
+                </>
+              )}
+            </AnimatePresence>
+          </div>
+
           <button 
             onClick={toggleTheme}
-            className="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-[#F5C400] dark:hover:text-[#F5C400] transition-all duration-200"
+            className="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-[#F5C400] dark:hover:text-[#F5C400] transition-all duration-200 cursor-pointer"
             aria-label="Toggle Theme"
           >
             {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}

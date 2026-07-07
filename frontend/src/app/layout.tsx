@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { ThemeProvider } from "./theme-provider";
+import { LanguageProvider } from "./language-provider";
 import { ToastProvider } from "@/components/ui/toast";
 import { AuthProvider } from "@/hooks/useAuth";
 import "./globals.css";
@@ -22,13 +23,15 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full scroll-smooth">
       <body className="min-h-full flex flex-col bg-background text-foreground antialiased selection:bg-gold-primary selection:text-black">
-        <ThemeProvider>
-          <ToastProvider>
-            <AuthProvider>
-              {children}
-            </AuthProvider>
-          </ToastProvider>
-        </ThemeProvider>
+        <LanguageProvider>
+          <ThemeProvider>
+            <ToastProvider>
+              <AuthProvider>
+                {children}
+              </AuthProvider>
+            </ToastProvider>
+          </ThemeProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

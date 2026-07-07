@@ -20,73 +20,218 @@ import { Footer } from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
+import { useLanguage } from '@/app/language-provider';
+
 export default function ServicesPage() {
+  const { language: selectedLanguage } = useLanguage();
+
+  const title = selectedLanguage === 'Spanish' ? 'Servicios de Soporte Diseñados'
+    : selectedLanguage === 'Urdu' ? 'سپورٹ سروسز جو آپ کے لیے ہیں'
+    : selectedLanguage === 'Bengali' ? 'আপনার জন্য উপযুক্ত সমর্থন পরিষেবা'
+    : selectedLanguage === 'French' ? 'Services de Support Adaptés'
+    : selectedLanguage === 'Mandarin' ? '量身定制的支持服务'
+    : 'Support Services Tailored';
+
+  const subtitle = selectedLanguage === 'Spanish' ? 'Para Conductores de NYC'
+    : selectedLanguage === 'Urdu' ? 'NYC ڈرائیورز کے لیے'
+    : selectedLanguage === 'Bengali' ? 'NYC ড্রাইভারদের জন্য'
+    : selectedLanguage === 'French' ? 'Pour les Chauffeurs de NYC'
+    : selectedLanguage === 'Mandarin' ? '为纽约市司机服务'
+    : 'For NYC Drivers';
+
+  const desc = selectedLanguage === 'Spanish' ? 'Desde papeleo de TLC y fechas de inspección de Woodside hasta análisis de vuelos en tiempo real, JNI Solutions le brinda herramientas para mantenerse al día.'
+    : selectedLanguage === 'Urdu' ? 'TLC کاغذی کارروائی، ووڈ سائیڈ تفتیش سے لے کر پروازوں کے رش کے تجزیہ تک، جے این آئی آپ کو باخبر رکھتا ہے۔'
+    : selectedLanguage === 'Bengali' ? 'TLC কাগজপত্র, উডসাইড তদন্তের তারিখ থেকে ফ্লাইটের পিক পূর্বাভাস পর্যন্ত, JNI আপনাকে আপডেট রাখে।'
+    : selectedLanguage === 'French' ? 'Qu\'il s\'agisse de paperasse TLC, d\'inspections Woodside ou d\'analyses de vol en temps réel, JNI Solutions vous donne les outils pour rester organisé.'
+    : selectedLanguage === 'Mandarin' ? '从复杂的 TLC 文件和 Woodside 检查日期到实时航班高峰分析，JNI Solutions 为网约车司机提供了保持井井有条的工具。'
+    : 'From complex TLC paperwork and Woodside inspection dates to real-time flight peak analytics, JNI Solutions gives ride-share drivers the tools to stay organized and track compliance milestones.';
+
   const services = [
     {
-      title: 'TLC Compliance Support',
-      description: 'Never get caught off guard by city rule changes. We monitor active TLC driver rules, license standing, and renewal updates, keeping you in good standing.',
+      title: selectedLanguage === 'Spanish' ? 'Soporte de Cumplimiento TLC'
+        : selectedLanguage === 'Urdu' ? 'TLC تعمیل سپورٹ'
+        : selectedLanguage === 'Bengali' ? 'TLC কমপ্লায়েন্স সহায়তা'
+        : selectedLanguage === 'French' ? 'Support de Conformité TLC'
+        : selectedLanguage === 'Mandarin' ? 'TLC 合规支持'
+        : 'TLC Compliance Support',
+      description: selectedLanguage === 'Spanish' ? 'Nunca se quede fuera por cambios en las reglas de la ciudad. Monitoreamos el estado de su licencia y renovaciones de TLC.'
+        : selectedLanguage === 'Urdu' ? 'شہر کے قوانین کی تبدیلیوں سے کبھی پریشان نہ ہوں۔ ہم لائسنس کی حیثیت اور تجدید کی نگرانی کرتے ہیں۔'
+        : selectedLanguage === 'Bengali' ? 'শহরের নিয়মের পরিবর্তনে কখনই অসচেতন হবেন না। আমরা লাইসেন্সের স্থিতি এবং পুনর্নবীকরণ পর্যবেক্ষণ করি।'
+        : selectedLanguage === 'French' ? 'Ne soyez jamais pris au dépourvu par les changements de règles. Nous surveillons l\'état de votre licence TLC et les mises à jour.'
+        : selectedLanguage === 'Mandarin' ? '绝不会因城市规则变化而措手不及。我们监控活跃的 TLC 司机规则、执照状态和更新。'
+        : 'Never get caught off guard by city rule changes. We monitor active TLC driver rules, license standing, and renewal updates, keeping you in good standing.',
       icon: ShieldAlert,
-      bullets: [
-        'TLC license status monitoring',
-        'Automatic drug screening reminders',
-        'FHV vehicle permit verification',
-        'Summon defense document templates'
-      ]
+      bullets: selectedLanguage === 'Spanish'
+        ? ['Monitoreo de estado de licencia TLC', 'Recordatorios automáticos de pruebas de drogas', 'Verificación de permisos FHV', 'Plantillas de defensa ante citaciones']
+        : selectedLanguage === 'Urdu'
+        ? ['TLC لائسنس کی نگرانی', 'ڈرگ ٹیسٹ کی خودکار یاد دہانیاں', 'FHV پرمٹ کی تصدیق', 'سمن دفاعی ٹیمپلیٹس']
+        : selectedLanguage === 'Bengali'
+        ? ['TLC লাইসেন্সের স্থিতি পর্যবেক্ষণ', 'ড্রাগ টেস্টের স্বয়ংক্রিয় অনুস্মারক', 'FHV পারমিট যাচাইকরণ', 'সমন বিরোধ নথি টেমপ্লেট']
+        : selectedLanguage === 'French'
+        ? ['Surveillance de licence TLC', 'Rappels automatiques de dépistage', 'Vérification de permis FHV', 'Modèles de défense pour citations']
+        : selectedLanguage === 'Mandarin'
+        ? ['TLC 执照状态监控', '自动药检提醒', 'FHV 车辆许可验证', '传票申辩文件模板']
+        : [
+          'TLC license status monitoring',
+          'Automatic drug screening reminders',
+          'FHV vehicle permit verification',
+          'Summon defense document templates'
+        ]
     },
     {
-      title: 'DMV Woodside Inspections',
-      description: 'Skip the stress of booking Woodside inspection dates. Our platform coordinates slot availability and sends alerts so you secure your bi-annual checks in time.',
+      title: selectedLanguage === 'Spanish' ? 'Inspecciones Woodside DMV'
+        : selectedLanguage === 'Urdu' ? 'DMV ووڈ سائیڈ تفتیش'
+        : selectedLanguage === 'Bengali' ? 'DMV উডসাইড তদন্ত'
+        : selectedLanguage === 'French' ? 'Inspections Woodside DMV'
+        : selectedLanguage === 'Mandarin' ? 'DMV Woodside 检查'
+        : 'DMV Woodside Inspections',
+      description: selectedLanguage === 'Spanish' ? 'Evite el estrés de reservar las fechas de inspección de Woodside. Coordinamos espacios disponibles y enviamos alertas.'
+        : selectedLanguage === 'Urdu' ? 'ووڈ سائیڈ تفتیش کی تاریخوں کی بکنگ کی پریشانی سے بچیں۔ ہم الرٹس بھیجتے ہیں تاکہ آپ وقت پر تاریخ بک کریں۔'
+        : selectedLanguage === 'Bengali' ? 'উডসাইড তদন্তের তারিখ বুকিংয়ের ঝামেলা এড়ান। আমরা অ্যালার্ট পাঠাই যাতে আপনি সময়মতো স্লট বুক করেন।'
+        : selectedLanguage === 'French' ? 'Évitez le stress de la réservation des inspections Woodside. Nous coordonnons les créneaux et envoyons des alertes.'
+        : selectedLanguage === 'Mandarin' ? '免去预订 Woodside 检查日期的压力。我们的平台协调空闲时段并发送警报，以便您按时完成检查。'
+        : 'Skip the stress of booking Woodside inspection dates. Our platform coordinates slot availability and sends alerts so you secure your bi-annual checks in time.',
       icon: Scale,
-      bullets: [
-        'Woodside scheduling alerts',
-        'Pre-inspection checklist guides',
-        'DMV points audit support',
-        'Inspection status tracking'
-      ]
+      bullets: selectedLanguage === 'Spanish'
+        ? ['Alertas de programación de Woodside', 'Guías de listas de verificación previas', 'Soporte de auditoría de puntos DMV', 'Seguimiento de estado de inspección']
+        : selectedLanguage === 'Urdu'
+        ? ['ووڈ سائیڈ شیڈولنگ الرٹس', 'تفتیش سے پہلے کے رہنما اصول', 'DMV پوائنٹس آڈٹ سپورٹ', 'تفتیش کی حیثیت کا پتہ لگانا']
+        : selectedLanguage === 'Bengali'
+        ? ['উডসাইড শিডিউলিং অ্যালার্ট', 'তদন্তের আগের চেকলিস্ট গাইড', 'DMV পয়েন্ট অডিট সমর্থন', 'তদন্তের স্থিতি ট্র্যাকিং']
+        : selectedLanguage === 'French'
+        ? ['Alertes de planification Woodside', 'Checklists de pré-inspection', 'Audit des points du DMV', 'Suivi de l\'état de l\'inspection']
+        : selectedLanguage === 'Mandarin'
+        ? ['Woodside 预订警报', '检查前清单指南', 'DMV 扣分审计支持', '检查状态跟踪']
+        : [
+          'Woodside scheduling alerts',
+          'Pre-inspection checklist guides',
+          'DMV points audit support',
+          'Inspection status tracking'
+        ]
     },
     {
-      title: 'AI Document Assistance',
-      description: 'Stop typing vehicle details manually. Snap a photo of your TLC driver card, DMV registration, or insurance certificate, and let our AI extract expiry dates.',
+      title: selectedLanguage === 'Spanish' ? 'Asistencia de Documentos IA'
+        : selectedLanguage === 'Urdu' ? 'اے آئی دستاویز اسسٹنس'
+        : selectedLanguage === 'Bengali' ? 'এআই নথি সহায়তা'
+        : selectedLanguage === 'French' ? 'Assistance Documentaire IA'
+        : selectedLanguage === 'Mandarin' ? 'AI 文档协助'
+        : 'AI Document Assistance',
+      description: selectedLanguage === 'Spanish' ? 'Deje de escribir detalles del auto manualmente. Tome una foto de su tarjeta TLC o registro DMV y la IA extraerá los datos.'
+        : selectedLanguage === 'Urdu' ? 'گاڑی کی تفصیلات دستی طور پر درج کرنا بند کریں۔ تصویر لیں اور ہماری اے آئی تاریخیں خود نکال لے گی۔'
+        : selectedLanguage === 'Bengali' ? 'ম্যানুয়ালি গাড়ির বিবরণ টাইপ করা বন্ধ করুন। ছবি তুলুন এবং এআই স্বয়ংক্রিয়ভাবে মেয়াদ শেষের তারিখ সংগ্রহ করবে।'
+        : selectedLanguage === 'French' ? 'Arrêtez de saisir manuellement les détails du véhicule. Prenez une photo de votre TLC ou DMV, l\'IA extrait les dates.'
+        : selectedLanguage === 'Mandarin' ? '无需手动输入车辆详细信息。拍摄 TLC 驾驶卡、DMV 注册或保险证书，让 AI 自动提取过期时间。'
+        : 'Stop typing vehicle details manually. Snap a photo of your TLC driver card, DMV registration, or insurance certificate, and let our AI extract expiry dates.',
       icon: FileText,
-      bullets: [
-        'OCR insurance extraction',
-        'TLC card scanning & parsing',
-        'Automatic expiration database sync',
-        'Safe encrypted PDF vaults'
-      ]
+      bullets: selectedLanguage === 'Spanish'
+        ? ['Extracción OCR de seguros', 'Escaneo y análisis de tarjetas TLC', 'Sincronización automática de vencimientos', 'Bóveda de archivos PDF segura y cifrada']
+        : selectedLanguage === 'Urdu'
+        ? ['انشورنس کی او سی آر معلومات', 'TLC کارڈ اسکین اور تجزیہ', 'خودکار میعاد ختم ہونے کا مطابقت', 'محفوظ پی ڈی ایف والٹ']
+        : selectedLanguage === 'Bengali'
+        ? ['বীমা পলিসির OCR নিষ্কাশন', 'TLC কার্ড স্ক্যান এবং বিশ্লেষণ', 'স্বয়ংক্রিয় মেয়াদ শেষ সিঙ্ক', 'সুরক্ষিত পিডিএফ ভল্ট']
+        : selectedLanguage === 'French'
+        ? ['Extraction OCR d\'assurance', 'Numérisation de carte TLC', 'Synchro auto d\'expiration', 'Coffre-fort PDF sécurisé']
+        : selectedLanguage === 'Mandarin'
+        ? ['OCR 保险提取', 'TLC 驾驶卡扫描与解析', '自动过期数据库同步', '安全加密的 PDF 保险箱']
+        : [
+          'OCR insurance extraction',
+          'TLC card scanning & parsing',
+          'Automatic expiration database sync',
+          'Safe encrypted PDF vaults'
+        ]
     },
     {
-      title: 'Proactive Renewal Tracking',
-      description: 'Helps drivers track deadlines and stay active. We send proactive multi-channel alerts (SMS, email, and push notifications) depending on the severity of the remaining days before expiration.',
+      title: selectedLanguage === 'Spanish' ? 'Seguimiento de Renovación Proactivo'
+        : selectedLanguage === 'Urdu' ? 'فعال تجدید ٹریکنگ'
+        : selectedLanguage === 'Bengali' ? 'সক্রিয় পুনর্নবীকরণ ট্র্যাকিং'
+        : selectedLanguage === 'French' ? 'Suivi Proactif des Renouvellements'
+        : selectedLanguage === 'Mandarin' ? '主动更新跟踪'
+        : 'Proactive Renewal Tracking',
+      description: selectedLanguage === 'Spanish' ? 'Ayuda a los conductores a seguir plazos. Enviamos alertas multicanal (SMS, correo y notificaciones push).'
+        : selectedLanguage === 'Urdu' ? 'ڈرائیوروں کو تاریخیں یاد رکھنے میں مدد کرتا ہے۔ ہم ایس ایم ایس، ای میل اور پش اطلاعات بھیجتے ہیں۔'
+        : selectedLanguage === 'Bengali' ? 'ড্রাইভারদের সময়সীমা মনে রাখতে সহায়তা করে। আমরা এসএমএস, ইমেল এবং পুশ অ্যালার্ট পাঠাই।'
+        : selectedLanguage === 'French' ? 'Aide les conducteurs à suivre les délais. Alertes multicanaux (SMS, e-mail, notifications push).'
+        : selectedLanguage === 'Mandarin' ? '帮助司机跟踪最后期限并保持活跃状态。我们根据过期剩余天数的紧急程度发送主动的多渠道警报（短信、电子邮件和推送通知）。'
+        : 'Helps drivers track deadlines and stay active. We send proactive multi-channel alerts (SMS, email, and push notifications) depending on the severity of the remaining days before expiration.',
       icon: Clock,
-      bullets: [
-        'SMS compliance alerts',
-        'Push notifications on mobile',
-        'Shared dispatcher dashboards',
-        'Grace period calculators'
-      ]
+      bullets: selectedLanguage === 'Spanish'
+        ? ['Alertas de cumplimiento por SMS', 'Notificaciones push en móvil', 'Paneles de despachador compartidos', 'Calculadora de períodos de gracia']
+        : selectedLanguage === 'Urdu'
+        ? ['ایس ایم ایس تعمیل الرٹس', 'موبائل پر پش اطلاعات', 'شیئرڈ ڈسپیچر ڈیش بورڈز', 'رعایتی مدت کے کیلکولیٹر']
+        : selectedLanguage === 'Bengali'
+        ? ['এসএমএস কমপ্লায়েন্স অ্যালার্ট', 'মোবাইলে পুশ বিজ্ঞপ্তি', 'শেয়ার্ড ডিসপ্যাচার ড্যাশবোর্ড', 'গ্রেস পিরিয়ড ক্যালকুলেটর']
+        : selectedLanguage === 'French'
+        ? ['Alertes de conformité SMS', 'Notifications push mobiles', 'Tableaux de bord partagés', 'Calculateurs de période de grâce']
+        : selectedLanguage === 'Mandarin'
+        ? ['短信合规警报', '手机推送通知', '共享调度员仪表板', '宽限期计算器']
+        : [
+          'SMS compliance alerts',
+          'Push notifications on mobile',
+          'Shared dispatcher dashboards',
+          'Grace period calculators'
+        ]
     },
     {
-      title: 'AI Copilot & Surge Radar',
-      description: 'Drive smarter, earn more. Our real-time AI copilot projects passenger arrival waves at JFK, LGA, and EWR terminals to help you schedule shifts.',
+      title: selectedLanguage === 'Spanish' ? 'Copiloto de IA y Radar de Tarifa'
+        : selectedLanguage === 'Urdu' ? 'اے آئی کپیلیٹ اور رڈار'
+        : selectedLanguage === 'Bengali' ? 'এআই কো-পাইলট ও রাডার'
+        : selectedLanguage === 'French' ? 'Copilote IA & Radar de Course'
+        : selectedLanguage === 'Mandarin' ? 'AI 协同与高峰雷达'
+        : 'AI Copilot & Surge Radar',
+      description: selectedLanguage === 'Spanish' ? 'Conduzca más inteligente, gane más. Nuestro copiloto proyecta oleadas de pasajeros en aeropuertos JFK, LGA y EWR.'
+        : selectedLanguage === 'Urdu' ? 'بہتر گاڑی چلائیں، زیادہ کمائیں۔ ہمارا کپیلیٹ JFK، LGA اور EWR پر پروازوں کے رش کی پیش گوئی کرتا ہے۔'
+        : selectedLanguage === 'Bengali' ? 'বুদ্ধিমানের সাথে গাড়ি চালান, বেশি আয় করুন। আমাদের কো-পাইলট JFK, LGA এবং EWR-এ ফ্লাইট পিকের পূর্বাভাস দেয়।'
+        : selectedLanguage === 'French' ? 'Roulez plus intelligemment, gagnez plus. Prévision des vagues de passagers aux terminaux JFK, LGA et EWR.'
+        : selectedLanguage === 'Mandarin' ? '更聪明地驾车，赚取更多收益。我们的实时 AI 协同助手可预测肯尼迪 (JFK)、拉瓜迪亚 (LGA) 和纽瓦克 (EWR) 航站楼的旅客到达高峰。'
+        : 'Drive smarter, earn more. Our real-time AI copilot projects passenger arrival waves at JFK, LGA, and EWR terminals to help you schedule shifts.',
       icon: Sparkles,
-      bullets: [
-        'Flight wave hourly peaks',
-        'Surge prediction maps',
-        'Hands-free voice assistant',
-        'Earnings optimizer logs'
-      ]
+      bullets: selectedLanguage === 'Spanish'
+        ? ['Picos de vuelos por hora', 'Mapas de predicción de tarifas', 'Asistente de voz manos libres', 'Registro de optimización de ganancias']
+        : selectedLanguage === 'Urdu'
+        ? ['پروازوں کے فی گھنٹہ رش', 'کرایوں کی پیش گوئی کے نقشے', 'ہینڈز فری آواز اسسٹنٹ', 'آمدنی کے لاگز کا انتظام']
+        : selectedLanguage === 'Bengali'
+        ? ['প্রতি ঘণ্টার ফ্লাইট পিক', 'ভাড়ার পূর্বাভাসের মানচিত্র', 'হ্যান্ডস-ফ্রি ভয়েস সহকারী', 'আয় অপ্টিমাইজার লগ']
+        : selectedLanguage === 'French'
+        ? ['Pics de vols horaires', 'Cartes de prédiction de tarifs', 'Assistant vocal mains libres', 'Optimiseur de gains']
+        : selectedLanguage === 'Mandarin'
+        ? ['每小时航班高峰', '高峰预测地图', '免提语音助手', '收益优化日志']
+        : [
+          'Flight wave hourly peaks',
+          'Surge prediction maps',
+          'Hands-free voice assistant',
+          'Earnings optimizer logs'
+        ]
     },
     {
-      title: 'Citation & Summon Management',
-      description: 'Fast disputes for parking summonses, clean-up tickets, and lane violations. Get immediate AI-generated recommendations for disputing unjust charges.',
+      title: selectedLanguage === 'Spanish' ? 'Gestión de Multas y Citaciones'
+        : selectedLanguage === 'Urdu' ? 'سمن اور ٹکٹوں کا انتظام'
+        : selectedLanguage === 'Bengali' ? 'সমন ও টিকিটের ব্যবস্থা'
+        : selectedLanguage === 'French' ? 'Gestion des Citations & Contraventions'
+        : selectedLanguage === 'Mandarin' ? '传票与罚单管理'
+        : 'Citation & Summon Management',
+      description: selectedLanguage === 'Spanish' ? 'Disputas rápidas para multas de estacionamiento y carriles. Obtenga recomendaciones inmediatas generadas por IA.'
+        : selectedLanguage === 'Urdu' ? 'پارکنگ ٹکٹوں اور خلاف ورزیوں پر فوری اعتراض۔ اے آئی کے ذریعے اعتراضات تیار کریں۔'
+        : selectedLanguage === 'Bengali' ? 'পার্কিং টিকিট এবং নিয়ম লঙ্ঘনের দ্রুত বিরোধ। এআই-এর মাধ্যমে তাত্ক্ষণিক সুপারিশ পান।'
+        : selectedLanguage === 'French' ? 'Contestation rapide des contraventions de stationnement et de voies. Recommandations générées par IA.'
+        : selectedLanguage === 'Mandarin' ? '快速争议停车传票、清洁罚单和车道违章。获取由 AI 生成的即时申辩建议。'
+        : 'Fast disputes for parking summonses, clean-up tickets, and lane violations. Get immediate AI-generated recommendations for disputing unjust charges.',
       icon: Ticket,
-      bullets: [
-        'Summons categorization',
-        'AI dispute templates',
-        'Woodside violation helper',
-        'Legal helpline connections'
-      ]
+      bullets: selectedLanguage === 'Spanish'
+        ? ['Categorización de citaciones', 'Plantillas de disputas por IA', 'Asistente de violaciones de Woodside', 'Conexión con asesores legales']
+        : selectedLanguage === 'Urdu'
+        ? ['سمن کی درجہ بندی', 'اے آئی اعتراض کے ٹیمپلیٹس', 'ووڈ سائیڈ خلاف ورزی اسسٹنٹ', 'قانونی مشیروں سے رابطہ']
+        : selectedLanguage === 'Bengali'
+        ? ['সমন শ্রেণীবদ্ধকরণ', 'এআই বিরোধ টেমপ্লেট', 'উডসাইড লঙ্ঘন সহকারী', 'আইনি পরামর্শদাতাদের সাথে সংযোগ']
+        : selectedLanguage === 'French'
+        ? ['Catégorisation des citations', 'Modèles de litiges IA', 'Assistant d\'infraction Woodside', 'Liaison d\'aide juridique']
+        : selectedLanguage === 'Mandarin'
+        ? ['传票分类', 'AI 申辩模板', 'Woodside 违规助手', '法律咨询专线连接']
+        : [
+          'Summons categorization',
+          'AI dispute templates',
+          'Woodside violation helper',
+          'Legal helpline connections'
+        ]
     }
   ];
 
@@ -138,9 +283,9 @@ export default function ServicesPage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-[#111111] dark:text-white leading-tight"
             >
-              Support Services Tailored <br />
+              {title} <br />
               <span className="relative inline-block mt-2">
-                <span className="relative z-10 px-2 text-[#0B0B0B] dark:text-[#F5C400]">For NYC Drivers</span>
+                <span className="relative z-10 px-2 text-[#0B0B0B] dark:text-[#F5C400]">{subtitle}</span>
                 <span className="absolute inset-x-0 bottom-1 h-3 bg-[#F5C400]/80 dark:bg-[#F5C400]/20 -rotate-1 z-0 rounded-sm" />
               </span>
             </motion.h1>
@@ -151,7 +296,7 @@ export default function ServicesPage() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-slate-500 dark:text-slate-400 text-base sm:text-lg max-w-3xl mx-auto font-medium leading-relaxed"
             >
-              From complex TLC paperwork and Woodside inspection dates to real-time flight peak analytics, JNI Solutions gives ride-share drivers the tools to stay organized and track compliance milestones.
+              {desc}
             </motion.p>
           </div>
         </section>
