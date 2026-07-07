@@ -7,6 +7,7 @@ import { AuditService } from './audit.service';
 import { EmailService } from './email.service';
 import { OtpService } from './otp.service';
 import { WebAuthnService } from './webauthn.service';
+import { BillingStore } from '../billing/billing.store';
 
 // In-memory token store for Verification Tokens and Password Resets
 interface InMemoryToken {
@@ -96,7 +97,6 @@ export class AuthService {
       throw new UnauthorizedException('Your driver account has been suspended by administrators.');
     }
 
-    const { BillingStore } = require('../billing/billing.store');
     const subs = BillingStore.getSubscriptions();
     const plans = BillingStore.getPlans();
     
@@ -227,7 +227,6 @@ export class AuthService {
       throw new UnauthorizedException('Invalid email or password');
     }
 
-    const { BillingStore } = require('../billing/billing.store');
     const subs = BillingStore.getSubscriptions();
     const plans = BillingStore.getPlans();
     
@@ -313,7 +312,6 @@ export class AuthService {
       },
     });
 
-    const { BillingStore } = require('../billing/billing.store');
     const subs = BillingStore.getSubscriptions();
     const plans = BillingStore.getPlans();
     
@@ -546,7 +544,6 @@ export class AuthService {
       throw new UnauthorizedException('Biometric verification failed');
     }
 
-    const { BillingStore } = require('../billing/billing.store');
     const subs = BillingStore.getSubscriptions();
     const plans = BillingStore.getPlans();
     
