@@ -5,7 +5,7 @@
     "categoryName": "TLC License",
     "size": "0.08 KB",
     "s3Key": "uploads/driver-test-uuid-12345/1780573685102_e2e_test_doc.pdf",
-    "status": "WARNING",
+    "status": "CRITICAL",
     "expiryDate": "2026-07-04T11:48:05.025Z",
     "notes": "E2E testing PDF upload",
     "tags": [
@@ -87,7 +87,7 @@
     "categoryName": "Unknown Document",
     "size": "0.1 MB",
     "s3Key": "uploads/a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e/1781547875000_Screenshot 2026-06-15 225452.png",
-    "status": "SAFE",
+    "status": "INFO",
     "expiryDate": null,
     "notes": "Unknown Document",
     "tags": [
@@ -167,7 +167,7 @@
     "categoryName": "Unknown Document",
     "size": "0.06 MB",
     "s3Key": "uploads/a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e/1781636307295_scan_1781636307140.jpg",
-    "status": "SAFE",
+    "status": "INFO",
     "expiryDate": null,
     "notes": "Unknown Document",
     "tags": [

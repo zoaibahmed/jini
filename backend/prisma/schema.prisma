@@ -67,10 +67,10 @@ enum SubscriptionStatus {
 // Core models (unchanged except optional tenantId for future migration)
 model User {
   id                String            @id @default(uuid())
-  email             String            @unique
-  name              String
-  password          String
-  phone             String?
+  email             String?           @unique
+  name              String?
+  password          String?
+  phone             String?           @unique
   role              UserRole          @default(DRIVER)
   isVerified        Boolean           @default(false)
   isActive          Boolean           @default(true)
@@ -86,9 +86,20 @@ model User {
   driverProfile     DriverProfile?
   sessions          UserSession[]
   notifications     Notification[]
+  passkeys          Passkey[]
   // Placeholder relations removed for now
 
   @@index([email])
+  @@index([phone])
+}
+
+model Passkey {
+  id           String   @id // Credential ID (base64url encoded)
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  publicKey    String   // Public key in PEM or base64 format
+  counter      Int      // Signature counter
+  createdAt    DateTime @default(now())
 }
 
 model DriverProfile {

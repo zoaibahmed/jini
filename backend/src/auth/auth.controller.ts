@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Req, Get, UseGuards, UnauthorizedException, Headers, Patch, Query } from '@nestjs/common';
+import { Controller, Post, Body, Req, Get, UseGuards, UnauthorizedException, Headers, Patch, Query, BadRequestException, Param } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import type { Request } from 'express';
 import { AuthGuard } from '@nestjs/passport';
@@ -8,6 +8,76 @@ import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
+
+  @Post('send-otp')
+  @ApiOperation({ summary: 'Send OTP to phone number' })
+  async sendOtp(@Body() body: { phone: string }) {
+    if (!body.phone) {
+      throw new BadRequestException('Phone number is required');
+    }
+    return this.authService.sendOtp(body.phone);
+  }
+
+  @Post('verify-otp')
+  @ApiOperation({ summary: 'Verify OTP and login/signup' })
+  async verifyOtp(@Req() req: Request, @Body() body: any) {
+    const ip = req.ip;
+    const userAgent = req.headers['user-agent'];
+    if (!body.phone || !body.otp) {
+      throw new BadRequestException('Phone and OTP are required');
+    }
+    return this.authService.verifyOtp(body, ip, userAgent);
+  }
+
+  @Post('webauthn/register-options')
+  @ApiOperation({ summary: 'Generate WebAuthn registration options' })
+  async webAuthnRegisterOptions(@Body() body: { userId: string; userName: string }) {
+    if (!body.userId || !body.userName) {
+      throw new BadRequestException('userId and userName are required');
+    }
+    return this.authService.webAuthnRegisterOptions(body.userId, body.userName);
+  }
+
+  @Post('webauthn/register-verify')
+  @ApiOperation({ summary: 'Verify WebAuthn registration' })
+  async webAuthnRegisterVerify(@Body() body: { userId: string; credentialId: string; publicKeySpkiHex: string; challenge: string }) {
+    if (!body.userId || !body.credentialId || !body.publicKeySpkiHex || !body.challenge) {
+      throw new BadRequestException('All verification fields are required');
+    }
+    return this.authService.webAuthnRegisterVerify(body.userId, body.credentialId, body.publicKeySpkiHex, body.challenge);
+  }
+
+  @Post('webauthn/login-options')
+  @ApiOperation({ summary: 'Generate WebAuthn login assertion options' })
+  async webAuthnLoginOptions(@Body() body: { phone: string }) {
+    if (!body.phone) {
+      throw new BadRequestException('Phone is required');
+    }
+    return this.authService.webAuthnLoginOptions(body.phone);
+  }
+
+  @Post('webauthn/login-verify')
+  @ApiOperation({ summary: 'Verify WebAuthn login' })
+  async webAuthnLoginVerify(@Req() req: Request, @Body() body: any) {
+    const ip = req.ip;
+    const userAgent = req.headers['user-agent'];
+    return this.authService.webAuthnLoginVerify(body, ip, userAgent);
+  }
+
+  @Get('webauthn/check/:userId')
+  @ApiOperation({ summary: 'Check if a user has passkeys registered' })
+  async webAuthnCheck(@Param('userId') userId: string) {
+    return this.authService.webAuthnCheck(userId);
+  }
+
+  @Post('change-phone')
+  @ApiOperation({ summary: 'Verify current and new phone OTPs and change number' })
+  async changePhone(@Body() body: { userId: string; currentPhone: string; currentOtp: string; newPhone: string; newOtp: string }) {
+    if (!body.userId || !body.currentPhone || !body.currentOtp || !body.newPhone || !body.newOtp) {
+      throw new BadRequestException('All fields (userId, currentPhone, currentOtp, newPhone, newOtp) are required');
+    }
+    return this.authService.changePhone(body.userId, body.currentPhone, body.currentOtp, body.newPhone, body.newOtp);
+  }
 
   @Post('register')
   @ApiOperation({ summary: 'Register a new driver user' })

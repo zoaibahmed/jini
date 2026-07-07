@@ -985,5 +985,89 @@
     "eventType": "SUBSCRIBE",
     "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
     "createdAt": "2026-06-13T17:47:28.680Z"
+  },
+  {
+    "id": "EVT-3299",
+    "subscriptionId": "sub-isjz34e",
+    "eventType": "CANCELLED",
+    "metadata": "{\"planName\":\"Premium Driver Pro\"}",
+    "createdAt": "2026-06-25T15:32:43.999Z"
+  },
+  {
+    "id": "EVT-7574",
+    "subscriptionId": "sub-isjz34e",
+    "eventType": "RESUMED",
+    "metadata": "{\"planName\":\"Premium Driver Pro\"}",
+    "createdAt": "2026-06-25T15:32:45.922Z"
+  },
+  {
+    "id": "EVT-3434",
+    "subscriptionId": "sub-isjz34e",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-25T15:32:49.123Z"
+  },
+  {
+    "id": "EVT-6702",
+    "subscriptionId": "sub-isjz34e",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Basic Support\",\"price\":0,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-25T15:33:06.589Z"
+  },
+  {
+    "id": "EVT-4065",
+    "subscriptionId": "sub-isjz34e",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-25T17:49:17.971Z"
+  },
+  {
+    "id": "EVT-8496",
+    "subscriptionId": "sub-isjz34e",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Basic Support\",\"price\":0,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-25T17:59:08.037Z"
+  },
+  {
+    "id": "EVT-5654",
+    "subscriptionId": "sub-isjz34e",
+    "eventType": "CANCELLED",
+    "metadata": "{\"planName\":\"Basic Support\"}",
+    "createdAt": "2026-06-25T17:59:14.313Z"
+  },
+  {
+    "id": "EVT-9243",
+    "subscriptionId": "sub-isjz34e",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-25T17:59:17.228Z"
+  },
+  {
+    "id": "EVT-8382",
+    "subscriptionId": "sub-isjz34e",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-25T18:05:21.976Z"
+  },
+  {
+    "id": "EVT-2144",
+    "subscriptionId": "sub-5ak3vae",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Premium Driver Pro\",\"price\":49,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-25T18:07:14.914Z"
+  },
+  {
+    "id": "EVT-1022",
+    "subscriptionId": "sub-isjz34e",
+    "eventType": "CANCELLED",
+    "metadata": "{\"planName\":\"Premium Driver Pro\"}",
+    "createdAt": "2026-06-25T19:06:17.420Z"
+  },
+  {
+    "id": "EVT-7179",
+    "subscriptionId": "sub-isjz34e",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Basic Support\",\"price\":0,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-06-25T19:06:53.359Z"
   }
 ]

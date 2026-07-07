@@ -1249,5 +1249,77 @@
     "status": "PAID",
     "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-isjz34e_inv_1781372848655.pdf",
     "createdAt": "2026-06-13T17:47:28.655Z"
+  },
+  {
+    "id": "INV-2952",
+    "subscriptionId": "sub-isjz34e",
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-isjz34e_inv_1782401569113.pdf",
+    "createdAt": "2026-06-25T15:32:49.113Z"
+  },
+  {
+    "id": "INV-3546",
+    "subscriptionId": "sub-isjz34e",
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "amount": 0,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-isjz34e_inv_1782401586583.pdf",
+    "createdAt": "2026-06-25T15:33:06.583Z"
+  },
+  {
+    "id": "INV-1712",
+    "subscriptionId": "sub-isjz34e",
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-isjz34e_inv_1782409757964.pdf",
+    "createdAt": "2026-06-25T17:49:17.964Z"
+  },
+  {
+    "id": "INV-6037",
+    "subscriptionId": "sub-isjz34e",
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "amount": 0,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-isjz34e_inv_1782410348034.pdf",
+    "createdAt": "2026-06-25T17:59:08.034Z"
+  },
+  {
+    "id": "INV-3493",
+    "subscriptionId": "sub-isjz34e",
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "amount": 99,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-isjz34e_inv_1782410357224.pdf",
+    "createdAt": "2026-06-25T17:59:17.224Z"
+  },
+  {
+    "id": "INV-4087",
+    "subscriptionId": "sub-isjz34e",
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-isjz34e_inv_1782410721967.pdf",
+    "createdAt": "2026-06-25T18:05:21.967Z"
+  },
+  {
+    "id": "INV-3435",
+    "subscriptionId": "sub-5ak3vae",
+    "userId": "d7610b93-f997-4fb4-91cb-2693aa737e8b",
+    "amount": 49,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-5ak3vae_inv_1782410834908.pdf",
+    "createdAt": "2026-06-25T18:07:14.908Z"
+  },
+  {
+    "id": "INV-9544",
+    "subscriptionId": "sub-isjz34e",
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "amount": 0,
+    "status": "PAID",
+    "pdfUrl": "https://jni-billing-vault.s3.amazonaws.com/invoices/sub-isjz34e_inv_1782414413350.pdf",
+    "createdAt": "2026-06-25T19:06:53.350Z"
   }
 ]

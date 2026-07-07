@@ -7,8 +7,9 @@ import { API_URL } from '@/config';
 
 interface User {
   id: string;
-  email: string;
+  email?: string;
   name: string;
+  phone?: string;
   role: string;
   isVerified: boolean;
 }
@@ -23,6 +24,11 @@ interface AuthContextType {
   forgotPassword: (email: string) => Promise<string | undefined>;
   resetPassword: (data: any) => Promise<void>;
   setupProfile: (profileData: any) => Promise<void>;
+  sendOtp: (phone: string) => Promise<{ success: boolean; codeForTesting?: string; twilioError?: boolean }>;
+  verifyOtp: (phone: string, otp: string, name?: string, preferredLanguage?: string, skipRedirect?: boolean) => Promise<any>;
+  registerPasskey: (userId: string, userName: string) => Promise<boolean>;
+  loginWithPasskey: (phone: string) => Promise<any>;
+  updateUserPhone: (newPhone: string) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -147,6 +153,192 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     return () => clearInterval(interval);
   }, [handleRefresh]);
+
+  const sendOtp = async (phone: string) => {
+    setLoading(true);
+    try {
+      const res = await fetch(`${API_URL}/auth/send-otp`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone }),
+      });
+      if (!res.ok) {
+        const error = await res.json();
+        throw new Error(error.message || 'Failed to send OTP');
+      }
+      return await res.json();
+    } catch (err: any) {
+      toast.error(err.message || 'Failed to send OTP');
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const verifyOtp = async (phone: string, otp: string, name?: string, preferredLanguage?: string, skipRedirect?: boolean) => {
+    setLoading(true);
+    try {
+      const res = await fetch(`${API_URL}/auth/verify-otp`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone, otp, name, preferredLanguage }),
+      });
+      if (!res.ok) {
+        const error = await res.json();
+        throw new Error(error.message || 'OTP verification failed');
+      }
+      const data = await res.json();
+      
+      setUser(data.user);
+      safeSetItem('jni_user', JSON.stringify(data.user));
+      safeSetItem('jni_refresh_token', data.refreshToken);
+      setCookie('jni_access_token', data.accessToken, 30);
+      
+      if (!skipRedirect) {
+        toast.success('Successfully logged in!');
+        router.push('/dashboard');
+      }
+      return data;
+    } catch (err: any) {
+      toast.error(err.message || 'OTP verification failed');
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const registerPasskey = async (userId: string, userName: string): Promise<boolean> => {
+    setLoading(true);
+    try {
+      const optionsRes = await fetch(`${API_URL}/auth/webauthn/register-options`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId, userName }),
+      });
+      if (!optionsRes.ok) throw new Error('Failed to get registration options');
+      const options = await optionsRes.json();
+
+      const challengeBuf = Uint8Array.from(atob(options.challenge.replace(/-/g, '+').replace(/_/g, '/')), c => c.charCodeAt(0));
+      const userIdBuf = Uint8Array.from(atob(options.user.id.replace(/-/g, '+').replace(/_/g, '/')), c => c.charCodeAt(0));
+
+      const publicKeyCredentialCreationOptions: CredentialCreationOptions = {
+        publicKey: {
+          ...options,
+          challenge: challengeBuf,
+          user: {
+            ...options.user,
+            id: userIdBuf,
+          },
+        },
+      };
+
+      const credential = (await navigator.credentials.create(publicKeyCredentialCreationOptions)) as any;
+      if (!credential) throw new Error('Passkey creation failed');
+
+      const publicKeyBuffer = credential.response.getPublicKey ? credential.response.getPublicKey() : null;
+      if (!publicKeyBuffer) throw new Error('Biometric hardware did not return a public key');
+      
+      const publicKeySpkiHex = Array.from(new Uint8Array(publicKeyBuffer))
+        .map(b => b.toString(16).padStart(2, '0'))
+        .join('');
+
+      const verifyRes = await fetch(`${API_URL}/auth/webauthn/register-verify`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userId,
+          credentialId: credential.id,
+          publicKeySpkiHex,
+          challenge: options.challenge,
+        }),
+      });
+
+      if (!verifyRes.ok) throw new Error('Failed to verify passkey registration');
+      toast.success('Fingerprint registered successfully!');
+      return true;
+    } catch (err: any) {
+      toast.error(err.message || 'Passkey registration failed');
+      return false;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const loginWithPasskey = async (phone: string): Promise<any> => {
+    setLoading(true);
+    try {
+      const optionsRes = await fetch(`${API_URL}/auth/webauthn/login-options`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone }),
+      });
+      if (!optionsRes.ok) {
+        const error = await optionsRes.json();
+        throw new Error(error.message || 'Failed to get login options');
+      }
+      const { challengeId, options } = await optionsRes.json();
+
+      const challengeBuf = Uint8Array.from(atob(options.challenge.replace(/-/g, '+').replace(/_/g, '/')), c => c.charCodeAt(0));
+      const allowCredentials = options.allowCredentials.map((cred: any) => ({
+        ...cred,
+        id: Uint8Array.from(atob(cred.id.replace(/-/g, '+').replace(/_/g, '/')), c => c.charCodeAt(0)),
+      }));
+
+      const assertion = (await navigator.credentials.get({
+        publicKey: {
+          ...options,
+          challenge: challengeBuf,
+          allowCredentials,
+        },
+      })) as any;
+
+      if (!assertion) throw new Error('Biometric assertion failed');
+
+      const clientDataJson = btoa(String.fromCharCode(...new Uint8Array(assertion.response.clientDataJSON)))
+        .replace(/\+/g, '-')
+        .replace(/\//g, '_')
+        .replace(/=/g, '');
+      const authDataHex = Array.from(new Uint8Array(assertion.response.authenticatorData))
+        .map(b => b.toString(16).padStart(2, '0'))
+        .join('');
+      const signatureHex = Array.from(new Uint8Array(assertion.response.signature))
+        .map(b => b.toString(16).padStart(2, '0'))
+        .join('');
+
+      const verifyRes = await fetch(`${API_URL}/auth/webauthn/login-verify`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          phone,
+          challengeId,
+          clientDataJson,
+          authDataHex,
+          signatureHex,
+          credentialId: assertion.id,
+        }),
+      });
+
+      if (!verifyRes.ok) {
+        const error = await verifyRes.json();
+        throw new Error(error.message || 'Biometric verification failed');
+      }
+
+      const data = await verifyRes.json();
+      setUser(data.user);
+      safeSetItem('jni_user', JSON.stringify(data.user));
+      safeSetItem('jni_refresh_token', data.refreshToken);
+      setCookie('jni_access_token', data.accessToken, 30);
+      
+      toast.success('Welcome back (Biometric Authenticated)!');
+      router.push('/dashboard');
+      return data;
+    } catch (err: any) {
+      toast.error(err.message || 'Biometric login failed');
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const login = async (credentials: any) => {
     setLoading(true);
@@ -323,8 +515,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
+  const updateUserPhone = (newPhone: string) => {
+    if (user) {
+      const updated = { ...user, phone: newPhone };
+      setUser(updated);
+      safeSetItem('jni_user', JSON.stringify(updated));
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ user, loading, login, signup, logout, verifyEmail, forgotPassword, resetPassword, setupProfile }}>
+    <AuthContext.Provider value={{ user, loading, login, signup, logout, verifyEmail, forgotPassword, resetPassword, setupProfile, sendOtp, verifyOtp, registerPasskey, loginWithPasskey, updateUserPhone }}>
       {children}
     </AuthContext.Provider>
   );

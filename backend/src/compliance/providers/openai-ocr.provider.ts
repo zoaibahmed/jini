@@ -25,11 +25,11 @@ export class OpenAiOcrProvider implements OCRProvider {
               {
                 type: 'text',
                 text: `You are an AI OCR assistant. Analyze this uploaded document image.
-1. Classify the document type from this allowed list only: 'TLC License', 'Insurance', 'Registration', 'Vehicle Inspection', 'Drug Test', 'DMV Notice', 'Traffic Ticket'.
-2. If the document is not clearly one of these types, or confidence is low, set the documentType to 'Unknown Document' and do not extract other fields.
+1. Classify the document type from this allowed list only: 'TLC License', 'Driver License', 'Insurance', 'Registration', 'Vehicle Inspection', 'Drug Test', 'DMV Notice', 'Traffic Ticket'.
+2. The document may be from any country (e.g. United States, Pakistan, etc.). If it is a driver license, card, or document from any country, classify it correctly matching the list above, extract its details, and do not set it to 'Unknown Document'. If it is not clearly one of these, or confidence is low, set the documentType to 'Unknown Document'.
 3. Extract the following fields if present:
    - Driver Name
-   - License Number (e.g., TLC license number)
+   - License Number (e.g., TLC license number or driver license number)
    - Issue Date (format MM/DD/YYYY or YYYY-MM-DD)
    - Expiration Date (format MM/DD/YYYY or YYYY-MM-DD)
    - Policy Number (for Insurance)
@@ -37,7 +37,7 @@ export class OpenAiOcrProvider implements OCRProvider {
 
 Respond STRICTLY with a JSON object in this format:
 {
-  "documentType": "TLC License" | "Insurance" | "Registration" | "Vehicle Inspection" | "Drug Test" | "DMV Notice" | "Traffic Ticket" | "Unknown Document",
+  "documentType": "TLC License" | "Driver License" | "Insurance" | "Registration" | "Vehicle Inspection" | "Drug Test" | "DMV Notice" | "Traffic Ticket" | "Unknown Document",
   "expiryDate": "MM/DD/YYYY" | null,
   "issueDate": "MM/DD/YYYY" | null,
   "licenseNumber": "string" | null,

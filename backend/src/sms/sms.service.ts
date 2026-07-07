@@ -25,6 +25,10 @@ export class SmsService {
     }
   }
 
+  isTwilioActive(): boolean {
+    return !!this.twilioClient;
+  }
+
   async sendSms(to: string, message: string, type: 'RENEWAL_REMINDER' | 'DRUG_TEST_REMINDER' | 'APPOINTMENT_REMINDER' | string) {
     this.logger.log(`Dispatching SMS to=${to} type=${type}...`);
     

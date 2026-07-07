@@ -1249,5 +1249,77 @@
     "status": "SUCCESS",
     "paymentMethod": "CARD",
     "createdAt": "2026-06-13T17:47:28.673Z"
+  },
+  {
+    "id": "PAY-3094",
+    "subscriptionId": "sub-isjz34e",
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "amount": 99,
+    "status": "SUCCESS",
+    "paymentMethod": "CARD",
+    "createdAt": "2026-06-25T15:32:49.118Z"
+  },
+  {
+    "id": "PAY-4073",
+    "subscriptionId": "sub-isjz34e",
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "amount": 0,
+    "status": "SUCCESS",
+    "paymentMethod": "CARD",
+    "createdAt": "2026-06-25T15:33:06.586Z"
+  },
+  {
+    "id": "PAY-6296",
+    "subscriptionId": "sub-isjz34e",
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "amount": 49,
+    "status": "SUCCESS",
+    "paymentMethod": "CARD",
+    "createdAt": "2026-06-25T17:49:17.967Z"
+  },
+  {
+    "id": "PAY-2878",
+    "subscriptionId": "sub-isjz34e",
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "amount": 0,
+    "status": "SUCCESS",
+    "paymentMethod": "CARD",
+    "createdAt": "2026-06-25T17:59:08.036Z"
+  },
+  {
+    "id": "PAY-9078",
+    "subscriptionId": "sub-isjz34e",
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "amount": 99,
+    "status": "SUCCESS",
+    "paymentMethod": "CARD",
+    "createdAt": "2026-06-25T17:59:17.226Z"
+  },
+  {
+    "id": "PAY-7726",
+    "subscriptionId": "sub-isjz34e",
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "amount": 49,
+    "status": "SUCCESS",
+    "paymentMethod": "CARD",
+    "createdAt": "2026-06-25T18:05:21.971Z"
+  },
+  {
+    "id": "PAY-5148",
+    "subscriptionId": "sub-5ak3vae",
+    "userId": "d7610b93-f997-4fb4-91cb-2693aa737e8b",
+    "amount": 49,
+    "status": "SUCCESS",
+    "paymentMethod": "CARD",
+    "createdAt": "2026-06-25T18:07:14.911Z"
+  },
+  {
+    "id": "PAY-1504",
+    "subscriptionId": "sub-isjz34e",
+    "userId": "a30e5e3e-fa73-40a8-9ed3-21d7fe815a0e",
+    "amount": 0,
+    "status": "SUCCESS",
+    "paymentMethod": "CARD",
+    "createdAt": "2026-06-25T19:06:53.355Z"
   }
 ]

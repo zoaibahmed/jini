@@ -21,7 +21,7 @@ export class ReminderService {
           select: { email: true, phone: true }
         });
         if (user) {
-          if (!email) email = user.email;
+          if (!email) email = user.email || undefined;
           if (!phone) phone = user.phone || undefined;
         }
       } catch (err) {
