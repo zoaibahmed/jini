@@ -49,7 +49,7 @@ export class AuthService {
     }
 
     // 2. Find or register driver
-    let user = await this.prisma.user.findUnique({
+    let user = await this.prisma.user.findFirst({
       where: { phone: data.phone },
     });
 
@@ -60,7 +60,6 @@ export class AuthService {
         data: {
           phone: data.phone,
           name: generatedName,
-          email: undefined,
           password: await bcrypt.hash(Math.random().toString(36).substring(2, 15), 10),
           role: UserRole.DRIVER,
           preferredLanguage: data.preferredLanguage || 'English',
@@ -505,7 +504,7 @@ export class AuthService {
   }
 
   async webAuthnLoginOptions(phone: string) {
-    const user = await this.prisma.user.findUnique({
+    const user = await this.prisma.user.findFirst({
       where: { phone },
       include: { passkeys: true },
     });
@@ -518,7 +517,7 @@ export class AuthService {
   }
 
   async webAuthnLoginVerify(data: any, ip?: string, userAgent?: string) {
-    const user = await this.prisma.user.findUnique({
+    const user = await this.prisma.user.findFirst({
       where: { phone: data.phone },
       include: { passkeys: true },
     });
