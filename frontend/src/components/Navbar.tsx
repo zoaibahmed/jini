@@ -54,39 +54,36 @@ export function Navbar() {
   ];
 
   return (
-    <header className={`sticky top-0 z-50 transition-all duration-300 ${
-      isScrolled 
-        ? 'bg-white/95 dark:bg-[#141414]/95 backdrop-blur-md border-b border-slate-200/80 dark:border-zinc-800/80 shadow-md' 
+    <header className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled
+        ? 'bg-white/95 dark:bg-[#141414]/95 backdrop-blur-md border-b border-slate-200/80 dark:border-zinc-800/80 shadow-md'
         : 'bg-transparent border-b border-transparent'
-    }`}>
+      }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        
+
         {/* Logo container (blends with navbar background color) */}
         <Link href="/" className="flex items-center group">
           <Logo size="md" variant="auto" />
         </Link>
- 
+
         {/* Desktop Navigation Links */}
         <nav className="hidden md:flex items-center space-x-8 text-sm font-semibold">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
-              <Link 
-                key={link.name} 
-                href={link.href} 
-                className={`relative py-1 transition-colors ${
-                  isActive ? 'text-[#F5C400]' : 'text-slate-600 dark:text-slate-300 hover:text-[#F5C400] dark:hover:text-[#F5C400]'
-                } group`}
+              <Link
+                key={link.name}
+                href={link.href}
+                className={`relative py-1 transition-colors ${isActive ? 'text-[#F5C400]' : 'text-slate-600 dark:text-slate-300 hover:text-[#F5C400] dark:hover:text-[#F5C400]'
+                  } group`}
               >
                 <span>{link.name}</span>
-                <span className={`absolute bottom-0 left-0 h-0.5 bg-[#F5C400] transition-all duration-300 ${
-                  isActive ? 'w-full' : 'w-0 group-hover:w-full'
-                }`} />
+                <span className={`absolute bottom-0 left-0 h-0.5 bg-[#F5C400] transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`} />
               </Link>
             );
           })}
         </nav>
- 
+
         {/* CTA Buttons & Theme Toggler */}
         <div className="hidden md:flex items-center space-x-4">
           {/* Language Selector Dropdown */}
@@ -119,9 +116,8 @@ export function Navbar() {
                           setLanguage(lang.name);
                           setLangDropdownOpen(false);
                         }}
-                        className={`flex items-center justify-between w-full px-3 py-2 rounded-lg text-left text-xs transition-colors hover:bg-slate-100 dark:hover:bg-zinc-900 cursor-pointer ${
-                          language === lang.name ? 'text-[#F5C400] font-bold' : 'text-slate-600 dark:text-zinc-400'
-                        }`}
+                        className={`flex items-center justify-between w-full px-3 py-2 rounded-lg text-left text-xs transition-colors hover:bg-slate-100 dark:hover:bg-zinc-900 cursor-pointer ${language === lang.name ? 'text-[#F5C400] font-bold' : 'text-slate-600 dark:text-zinc-400'
+                          }`}
                       >
                         <span className="flex items-center gap-2">
                           <span>{lang.flag}</span>
@@ -136,14 +132,14 @@ export function Navbar() {
             </AnimatePresence>
           </div>
 
-          <button 
+          <button
             onClick={toggleTheme}
             className="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-[#F5C400] dark:hover:text-[#F5C400] hover:bg-slate-100 dark:hover:bg-zinc-800/50 transition-all duration-200 cursor-pointer"
             aria-label="Toggle Theme"
           >
             {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
           </button>
-          
+
           <Link href="/auth/login" className="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-[#F5C400] dark:hover:text-[#F5C400] transition-colors">
             Login
           </Link>
@@ -153,7 +149,7 @@ export function Navbar() {
             </Button>
           </Link>
         </div>
- 
+
         {/* Mobile menu trigger */}
         <div className="flex items-center space-x-2 md:hidden">
           {/* Mobile Language Selector Dropdown */}
@@ -186,9 +182,8 @@ export function Navbar() {
                           setLanguage(lang.name);
                           setLangDropdownOpen(false);
                         }}
-                        className={`flex items-center justify-between w-full px-2.5 py-1.5 rounded-lg text-left text-xs transition-colors hover:bg-slate-100 dark:hover:bg-zinc-900 cursor-pointer ${
-                          language === lang.name ? 'text-[#F5C400] font-bold' : 'text-slate-600 dark:text-zinc-400'
-                        }`}
+                        className={`flex items-center justify-between w-full px-2.5 py-1.5 rounded-lg text-left text-xs transition-colors hover:bg-slate-100 dark:hover:bg-zinc-900 cursor-pointer ${language === lang.name ? 'text-[#F5C400] font-bold' : 'text-slate-600 dark:text-zinc-400'
+                          }`}
                       >
                         <span className="flex items-center gap-1.5">
                           <span>{lang.flag}</span>
@@ -203,14 +198,14 @@ export function Navbar() {
             </AnimatePresence>
           </div>
 
-          <button 
+          <button
             onClick={toggleTheme}
             className="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-[#F5C400] dark:hover:text-[#F5C400] transition-all duration-200 cursor-pointer"
             aria-label="Toggle Theme"
           >
             {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
           </button>
-          <button 
+          <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-2 rounded-lg border border-slate-200 dark:border-zinc-700 text-slate-600 dark:text-slate-300 hover:text-[#F5C400] dark:hover:text-[#F5C400] hover:bg-slate-100 dark:hover:bg-zinc-800/50"
             aria-label="Toggle Menu"
@@ -219,11 +214,11 @@ export function Navbar() {
           </button>
         </div>
       </div>
- 
+
       {/* Mobile Navigation Drawer */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -233,12 +228,11 @@ export function Navbar() {
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
-                <Link 
-                  key={link.name} 
-                  href={link.href} 
-                  className={`block px-3 py-2 rounded-xl text-base font-semibold transition-all ${
-                    isActive ? 'bg-[#F5C400]/15 text-[#F5C400]' : 'hover:bg-slate-100 dark:hover:bg-zinc-800/50 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
-                  }`}
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className={`block px-3 py-2 rounded-xl text-base font-semibold transition-all ${isActive ? 'bg-[#F5C400]/15 text-[#F5C400]' : 'hover:bg-slate-100 dark:hover:bg-zinc-800/50 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
+                    }`}
                 >
                   {link.name}
                 </Link>

@@ -358,46 +358,75 @@ export default function ServicesPage() {
           <div className="absolute left-0 bottom-0 w-80 h-80 bg-gold-primary/5 rounded-full blur-[100px] pointer-events-none" />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-              <span className="text-[#D9A300] dark:text-[#F5C400] text-xs font-bold uppercase tracking-wider block">Intelligent Deadlines</span>
+              <span className="text-[#D9A300] dark:text-[#F5C400] text-xs font-bold uppercase tracking-wider block">
+                {selectedLanguage === 'Spanish' ? 'Plazos Inteligentes' : selectedLanguage === 'Urdu' ? 'ذہین وقت کی حدود' : selectedLanguage === 'Bengali' ? 'বুদ্ধিমান সময়সীমা' : selectedLanguage === 'French' ? 'Délais Intelligents' : selectedLanguage === 'Mandarin' ? '智能截止日期' : 'Intelligent Deadlines'}
+              </span>
               <h2 className="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight text-[#111111] dark:text-white">
-                Smart Renewal Alerts
+                {selectedLanguage === 'Spanish' ? 'Alertas de Renovación Inteligentes' : selectedLanguage === 'Urdu' ? 'ذہین تجدید کے الرٹس' : selectedLanguage === 'Bengali' ? 'স্মার্ট পুনর্নবীকরণ অ্যালার্ট' : selectedLanguage === 'French' ? 'Alertes de Renouvellement Intelligentes' : selectedLanguage === 'Mandarin' ? '智能更新警报' : 'Smart Renewal Alerts'}
               </h2>
               <p className="text-slate-500 dark:text-slate-400 text-sm sm:text-base leading-relaxed font-medium">
-                JNI Solutions separates normal valid documents from real urgent deadlines. If your document expires years from now, it stays marked as safe. When a deadline gets closer, the system upgrades the status from upcoming to warning, urgent, or critical.
+                {selectedLanguage === 'Spanish' ? 'JNI Solutions separa los documentos normales válidos de los plazos urgentes reales. Si su documento vence dentro de años, se marca como seguro. Cuando se acerca un plazo, el sistema actualiza el estado a próximo, advertencia, urgente o crítico.' 
+                 : selectedLanguage === 'Urdu' ? 'جے این آئی سلوشنز عام درست دستاویزات کو حقیقی فوری آخری تاریخوں سے الگ کرتا ہے۔ اگر آپ کا دستاویز سالوں بعد ختم ہوتا ہے تو یہ محفوظ نشان زد رہتا ہے۔ جیسے جیسے کوئی آخری تاریخ قریب آتی ہے، نظام اسٹیٹس کو اپ گریڈ کرتا ہے۔'
+                 : selectedLanguage === 'Bengali' ? 'JNI সলিউশন সাধারণ বৈধ নথিকে প্রকৃত জরুরি সময়সীমা থেকে আলাদা করে। আপনার নথির মেয়াদ যদি কয়েক বছর পর শেষ হয়, তবে এটি নিরাপদ থাকে। সময়সীমা কাছে এলে সিস্টেমটি আসন্ন, সতর্কতা, জরুরি বা গুরুত্বর অবস্থায় উন্নীত করে।'
+                 : selectedLanguage === 'French' ? 'JNI Solutions sépare les documents valides des délais urgents. Si votre document expire dans plusieurs années, il reste marqué comme sécurisé. Quand un délai approche, le statut change en à venir, avertissement, urgent ou critique.'
+                 : selectedLanguage === 'Mandarin' ? 'JNI Solutions 将正常的有效证件与真正紧急的截止日期区分开来。如果您的文件在几年后才过期，它将保持安全状态。当截止日期临近时，系统会将状态升级为即将到来、警告、紧急或关键。'
+                 : 'JNI Solutions separates normal valid documents from real urgent deadlines. If your document expires years from now, it stays marked as safe. When a deadline gets closer, the system upgrades the status from upcoming to warning, urgent, or critical.'}
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-xs">
-              <div className="bg-white dark:bg-zinc-900 border border-emerald-500/20 rounded-2xl p-6 space-y-2">
-                <span className="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">Safe / Info</span>
-                <h4 className="font-bold text-foreground">TLC License expiring in 4 years</h4>
-                <p className="text-muted leading-relaxed">Status remains Safe/Info. Green badge, dashboard only, no SMS/WhatsApp/email alerts.</p>
-              </div>
-              <div className="bg-white dark:bg-zinc-900 border border-blue-500/20 rounded-2xl p-6 space-y-2">
-                <span className="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded bg-blue-500/10 text-blue-500 border border-blue-500/20">Upcoming</span>
-                <h4 className="font-bold text-foreground">DMV Registration expiring in 45 days</h4>
-                <p className="text-muted leading-relaxed">Status becomes Upcoming. Blue badge, dashboard reminder only, optional email if enabled.</p>
-              </div>
-              <div className="bg-white dark:bg-zinc-900 border border-amber-500/20 rounded-2xl p-6 space-y-2">
-                <span className="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded bg-amber-500/10 text-amber-500 border border-amber-500/20">Warning</span>
-                <h4 className="font-bold text-foreground">Insurance expiring in 20 days</h4>
-                <p className="text-muted leading-relaxed">Status becomes Warning. Yellow badge, dashboard reminder + proactive email alert.</p>
-              </div>
-              <div className="bg-white dark:bg-zinc-900 border border-orange-500/20 rounded-2xl p-6 space-y-2">
-                <span className="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded bg-orange-500/10 text-orange-500 border border-orange-500/20">Urgent</span>
-                <h4 className="font-bold text-foreground">Drug test expiring in 5 days</h4>
-                <p className="text-muted leading-relaxed">Status becomes Urgent. Orange badge, dashboard + email + Twilio SMS/WhatsApp messages.</p>
-              </div>
-              <div className="bg-white dark:bg-zinc-900 border border-red-500/20 rounded-2xl p-6 space-y-2">
-                <span className="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded bg-red-500/10 text-red-500 border border-red-500/20">Critical</span>
-                <h4 className="font-bold text-foreground">Expired document</h4>
-                <p className="text-muted leading-relaxed">Status becomes Critical. Red badge, dashboard + email + SMS/WhatsApp alerts, admin review queue flag.</p>
-              </div>
-              <div className="bg-white dark:bg-zinc-900 border border-purple-500/20 rounded-2xl p-6 space-y-2">
-                <span className="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded bg-purple-500/10 text-purple-500 border border-purple-500/20">Needs Review</span>
-                <h4 className="font-bold text-foreground">Unknown / Low OCR Confidence document</h4>
-                <p className="text-muted leading-relaxed">Status becomes Needs Review. Gray/purple badge, admin manual review required before reminder scheduling.</p>
-              </div>
+              {[
+                {
+                  badge: selectedLanguage === 'Spanish' ? 'Seguro / Info' : selectedLanguage === 'Urdu' ? 'محفوظ / معلومات' : selectedLanguage === 'Bengali' ? 'নিরাপদ / তথ্য' : selectedLanguage === 'French' ? 'Sécurisé / Info' : selectedLanguage === 'Mandarin' ? '安全 / 信息' : 'Safe / Info',
+                  badgeClass: 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20',
+                  borderClass: 'border-emerald-500/20',
+                  title: selectedLanguage === 'Spanish' ? 'Licencia TLC vence en 4 años' : selectedLanguage === 'Urdu' ? 'TLC لائسنس 4 سال میں ختم ہو رہا ہے' : selectedLanguage === 'Bengali' ? 'TLC লাইসেন্স ৪ বছরে শেষ হচ্ছে' : selectedLanguage === 'French' ? 'Licence TLC expirant dans 4 ans' : selectedLanguage === 'Mandarin' ? 'TLC 执照将在 4 年后过期' : 'TLC License expiring in 4 years',
+                  desc: selectedLanguage === 'Spanish' ? 'El estado sigue siendo Seguro/Info. Placa verde, solo en el tablero de control, sin alertas de SMS/WhatsApp/correo.' : selectedLanguage === 'Urdu' ? 'حیثیت محفوظ/معلومات رہے گی۔ سبز بیج، صرف ڈیش بورڈ پر، کوئی ایس ایم ایس/واٹس ایپ/ای میل الرٹ نہیں کیا جائے گا۔' : selectedLanguage === 'Bengali' ? 'স্থিতি নিরাপদ/তথ্য থাকবে। সবুজ ব্যাজ, শুধুমাত্র ড্যাশবোর্ডে, কোন এসএমএস/হোয়াটসঅ্যাপ/ইমেল অ্যালার্ট থাকবে না।' : selectedLanguage === 'French' ? 'Le statut reste Sécurisé/Info. Badge vert, tableau de bord uniquement, pas d\'alertes SMS/WhatsApp/e-mail.' : selectedLanguage === 'Mandarin' ? '状态保持“安全/信息”。绿色徽章，仅仪表板显示，无短信/WhatsApp/电子邮件警报。' : 'Status remains Safe/Info. Green badge, dashboard only, no SMS/WhatsApp/email alerts.'
+                },
+                {
+                  badge: selectedLanguage === 'Spanish' ? 'Próximo' : selectedLanguage === 'Urdu' ? 'آنے والا' : selectedLanguage === 'Bengali' ? 'আসন্ন' : selectedLanguage === 'French' ? 'À venir' : selectedLanguage === 'Mandarin' ? '即将到来' : 'Upcoming',
+                  badgeClass: 'bg-blue-500/10 text-blue-500 border-blue-500/20',
+                  borderClass: 'border-blue-500/20',
+                  title: selectedLanguage === 'Spanish' ? 'Registro DMV vence en 45 días' : selectedLanguage === 'Urdu' ? 'DMV رجسٹریشن 45 دن میں ختم ہو رہی ہے' : selectedLanguage === 'Bengali' ? 'DMV রেজিস্ট্রেশন ৪৫ দিনে শেষ হচ্ছে' : selectedLanguage === 'French' ? 'Enregistrement DMV expirant dans 45 jours' : selectedLanguage === 'Mandarin' ? 'DMV 注册将在 45 天后过期' : 'DMV Registration expiring in 45 days',
+                  desc: selectedLanguage === 'Spanish' ? 'El estado pasa a ser Próximo. Placa azul, recordatorio solo en el tablero, correo opcional si está activado.' : selectedLanguage === 'Urdu' ? 'حیثیت آنے والا ہو جائے گی۔ نیلا بیج، صرف ڈیش بورڈ پر یاد دہانی، فعال ہونے پر ای میل کی جا سکتی ہے۔' : selectedLanguage === 'Bengali' ? 'স্থিতি আসন্ন হবে। নীল ব্যাজ, শুধুমাত্র ড্যাশবোর্ডে অনুস্মারক, সক্রিয় থাকলে ঐচ্ছিক ইমেল।' : selectedLanguage === 'French' ? 'Le statut devient À venir. Badge bleu, rappel sur tableau de bord uniquement, e-mail facultatif si activé.' : selectedLanguage === 'Mandarin' ? '状态变为“即将到来”。蓝色徽章，仅仪表板提醒，如果启用则发送可选电子邮件。' : 'Status becomes Upcoming. Blue badge, dashboard reminder only, optional email if enabled.'
+                },
+                {
+                  badge: selectedLanguage === 'Spanish' ? 'Advertencia' : selectedLanguage === 'Urdu' ? 'انتباہ' : selectedLanguage === 'Bengali' ? 'সতর্কতা' : selectedLanguage === 'French' ? 'Avertissement' : selectedLanguage === 'Mandarin' ? '警告' : 'Warning',
+                  badgeClass: 'bg-amber-500/10 text-amber-500 border-amber-500/20',
+                  borderClass: 'border-amber-500/20',
+                  title: selectedLanguage === 'Spanish' ? 'Seguro vence en 20 días' : selectedLanguage === 'Urdu' ? 'انشورنس 20 دن میں ختم ہو رہی ہے' : selectedLanguage === 'Bengali' ? 'বীমা ২০ দিনে শেষ হচ্ছে' : selectedLanguage === 'French' ? 'Assurance expirant dans 20 jours' : selectedLanguage === 'Mandarin' ? '保险将在 20 天后过期' : 'Insurance expiring in 20 days',
+                  desc: selectedLanguage === 'Spanish' ? 'El estado pasa a ser Advertencia. Placa amarilla, recordatorio en el tablero + alerta proactiva por correo.' : selectedLanguage === 'Urdu' ? 'حیثیت انتباہ ہو جائے گی۔ پیلا بیج، ڈیش بورڈ یاد دہانی + فعال ای میل الرٹ۔' : selectedLanguage === 'Bengali' ? 'স্থিতি সতর্কতা হবে। হলুদ ব্যাজ, ড্যাশবোর্ড অনুস্মারক + সক্রিয় ইমেল অ্যালার্ট।' : selectedLanguage === 'French' ? 'Le statut devient Avertissement. Badge jaune, rappel sur tableau de bord + alerte e-mail proactive.' : selectedLanguage === 'Mandarin' ? '状态变为“警告”。黄色徽章，仪表板提醒 + 主动电子邮件警报。' : 'Status becomes Warning. Yellow badge, dashboard reminder + proactive email alert.'
+                },
+                {
+                  badge: selectedLanguage === 'Spanish' ? 'Urgente' : selectedLanguage === 'Urdu' ? 'فوری' : selectedLanguage === 'Bengali' ? 'জরুরী' : selectedLanguage === 'French' ? 'Urgent' : selectedLanguage === 'Mandarin' ? '紧急' : 'Urgent',
+                  badgeClass: 'bg-orange-500/10 text-orange-500 border-orange-500/20',
+                  borderClass: 'border-orange-500/20',
+                  title: selectedLanguage === 'Spanish' ? 'Prueba de drogas vence en 5 días' : selectedLanguage === 'Urdu' ? 'ڈرگ ٹیسٹ 5 دن میں ختم ہو رہا ہے' : selectedLanguage === 'Bengali' ? 'ড্রাগ টেস্ট ৫ দিনে শেষ হচ্ছে' : selectedLanguage === 'French' ? 'Dépistage de drogues expirant dans 5 jours' : selectedLanguage === 'Mandarin' ? '药检将在 5 天后过期' : 'Drug test expiring in 5 days',
+                  desc: selectedLanguage === 'Spanish' ? 'El estado pasa a ser Urgente. Placa naranja, tablero + correo + mensajes de SMS/WhatsApp de Twilio.' : selectedLanguage === 'Urdu' ? 'حیثیت فوری ہو جائے گی۔ نارنجی بیج، ڈیش بورڈ + ای میل + ٹویلیو ایس ایم ایس/واٹس ایپ الرٹس۔' : selectedLanguage === 'Bengali' ? 'স্থিতি জরুরী হবে। কমলা ব্যাজ, ড্যাশবোর্ড + ইমেল + টুইলিও এসএমএস/হোয়াটসঅ্যাপ বার্তা।' : selectedLanguage === 'French' ? 'Le statut devient Urgent. Badge orange, tableau de bord + e-mail + messages SMS/WhatsApp Twilio.' : selectedLanguage === 'Mandarin' ? '状态变为“紧急”。橙色徽章，仪表板 + 电子邮件 + Twilio 短信/WhatsApp 消息。' : 'Status becomes Urgent. Orange badge, dashboard + email + Twilio SMS/WhatsApp messages.'
+                },
+                {
+                  badge: selectedLanguage === 'Spanish' ? 'Crítico' : selectedLanguage === 'Urdu' ? 'انتہائی اہم' : selectedLanguage === 'Bengali' ? 'গুরুতর' : selectedLanguage === 'French' ? 'Critique' : selectedLanguage === 'Mandarin' ? '关键/严重' : 'Critical',
+                  badgeClass: 'bg-red-500/10 text-red-500 border-red-500/20',
+                  borderClass: 'border-red-500/20',
+                  title: selectedLanguage === 'Spanish' ? 'Documento vencido' : selectedLanguage === 'Urdu' ? 'میعاد ختم دستاویز' : selectedLanguage === 'Bengali' ? 'মেয়াদোত্তীর্ণ নথি' : selectedLanguage === 'French' ? 'Document expiré' : selectedLanguage === 'Mandarin' ? '证件已过期' : 'Expired document',
+                  desc: selectedLanguage === 'Spanish' ? 'El estado pasa a ser Crítico. Placa roja, tablero + correo + alertas de SMS/WhatsApp, bandera de revisión de administrador.' : selectedLanguage === 'Urdu' ? 'حیثیت انتہائی اہم ہو جائے گی۔ لال بیج، ڈیش بورڈ + ای میل + ایس ایم ایس/واٹس ایپ الرٹس، ایڈمن ریویو فلیگ۔' : selectedLanguage === 'Bengali' ? 'স্থিতি গুরুতর হবে। লাল ব্যাজ, ড্যাশবোর্ড + ইমেল + এসএমএস/হোয়াটসঅ্যাপ অ্যালার্ট, অ্যাডমিন পর্যালোচনা ফ্ল্যাগ।' : selectedLanguage === 'French' ? 'Le statut devient Critique. Badge rouge, tableau de bord + e-mail + alertes SMS/WhatsApp, drapeau de révision administrateur.' : selectedLanguage === 'Mandarin' ? '状态变为“关键”。红色徽章，仪表板 + 电子邮件 + 短信/WhatsApp 警报，管理员人工审查队列标志。' : 'Status becomes Critical. Red badge, dashboard + email + SMS/WhatsApp alerts, admin review queue flag.'
+                },
+                {
+                  badge: selectedLanguage === 'Spanish' ? 'Requiere Revisión' : selectedLanguage === 'Urdu' ? 'جائزے کی ضرورت ہے' : selectedLanguage === 'Bengali' ? 'পর্যালোচনা প্রয়োজন' : selectedLanguage === 'French' ? 'À réviser' : selectedLanguage === 'Mandarin' ? '需要审查' : 'Needs Review',
+                  badgeClass: 'bg-purple-500/10 text-purple-500 border-purple-500/20',
+                  borderClass: 'border-purple-500/20',
+                  title: selectedLanguage === 'Spanish' ? 'Documento desconocido / Baja confianza de OCR' : selectedLanguage === 'Urdu' ? 'نامعلوم دستاویز / کم او سی آر اعتماد' : selectedLanguage === 'Bengali' ? 'অজানা নথি / কম ওসিআর আত্মবিশ্বাস' : selectedLanguage === 'French' ? 'Document inconnu / Confiance OCR faible' : selectedLanguage === 'Mandarin' ? '未知 / 低 OCR 置信度文件' : 'Unknown / Low OCR Confidence document',
+                  desc: selectedLanguage === 'Spanish' ? 'El estado pasa a ser Requiere Revisión. Placa morada, se requiere revisión manual del administrador.' : selectedLanguage === 'Urdu' ? 'حیثیت جائزے کی ضرورت ہو جائے گی۔ جامنی بیج، ایڈمن کا دستی جائزہ لازمی ہو گا۔' : selectedLanguage === 'Bengali' ? 'স্থিতি পর্যালোচনা প্রয়োজন হবে। বেগুনি ব্যাজ, অ্যাডমিন ম্যানুয়াল পর্যালোচনা আবশ্যক।' : selectedLanguage === 'French' ? 'Le statut devient À réviser. Badge violet, révision manuelle de l\'administrateur requise.' : selectedLanguage === 'Mandarin' ? '状态变为“需要审查”。灰色/紫色徽章，在安排提醒前需要管理员进行人工审查。' : 'Status becomes Needs Review. Gray/purple badge, admin manual review required before reminder scheduling.'
+                }
+              ].map((card, cIdx) => (
+                <div key={cIdx} className={`bg-white dark:bg-zinc-900 border ${card.borderClass} rounded-2xl p-6 space-y-2`}>
+                  <span className={`px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded border ${card.badgeClass}`}>
+                    {card.badge}
+                  </span>
+                  <h4 className="font-bold text-foreground">{card.title}</h4>
+                  <p className="text-muted leading-relaxed">{card.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
