@@ -9,6 +9,8 @@ import { Footer } from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 
+import { useLanguage } from '@/app/language-provider';
+
 export default function ContactPage() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -20,6 +22,7 @@ export default function ContactPage() {
     subject: 'General Compliance Inquiry',
     message: ''
   });
+  const { language: selectedLanguage } = useLanguage();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,7 +48,6 @@ export default function ContactPage() {
     }
   };
 
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData(prev => ({
       ...prev,
@@ -55,18 +57,69 @@ export default function ContactPage() {
 
   const contactFaq = [
     {
-      q: 'How quickly will JNI support review my summons?',
-      a: 'Summonses uploaded to JNI Solutions are scanned by our AI instantly. If you require legal assistance routing or custom dispute templates, our driver support desk typically completes the review and exports documentation within 2 to 4 hours.'
+      q: selectedLanguage === 'Spanish' ? '¿Qué tan rápido revisará el soporte de JNI mi citación?'
+        : selectedLanguage === 'Urdu' ? 'جے این آئی سپورٹ میرے سمن کا کتنی جلدی جائزہ لے گی؟'
+        : selectedLanguage === 'Bengali' ? 'JNI সহায়তা কত দ্রুত আমার সমন পর্যালোচনা করবে?'
+        : selectedLanguage === 'French' ? 'À quelle vitesse le support JNI examinera-t-il ma citation ?'
+        : selectedLanguage === 'Mandarin' ? 'JNI 支持团队多快会审查我的传票？'
+        : 'How quickly will JNI support review my summons?',
+      a: selectedLanguage === 'Spanish' ? 'Las citaciones cargadas en JNI Solutions son escaneadas por nuestra IA al instante. Nuestro equipo de soporte para conductores suele completar la revisión y exportar la documentación en un plazo de 2 a 4 horas.'
+        : selectedLanguage === 'Urdu' ? 'جے این آئی سلوشنز پر اپ لوڈ کردہ سمن کا جائزہ ہماری اے آئی فوری طور پر لیتی ہے۔ ہماری ڈرائیور سپورٹ ٹیم عام طور پر 2 سے 4 گھنٹوں میں جائزہ مکمل کر کے دستاویزات فراہم کر دیتی ہے۔'
+        : selectedLanguage === 'Bengali' ? 'JNI সলিউশনে আপলোড করা সমন আমাদের এআই তাত্ক্ষণিকভাবে স্ক্যান করে। আমাদের ড্রাইভার সহায়তা দল সাধারণত ২ থেকে ৪ ঘণ্টার মধ্যে পর্যালোচনা সম্পন্ন করে ডকুমেন্ট সরবরাহ করে।'
+        : selectedLanguage === 'French' ? 'Las citations importées sont scannées instantanément par notre IA. Notre équipe complète généralement l\'examen et exporte la documentation en 2 à 4 heures.'
+        : selectedLanguage === 'Mandarin' ? '上传到 JNI Solutions 的传票将由我们的 AI 立即扫描。如果您需要法律途径协助或自定义申辩模板，我们的司机支持服务台通常会在 2 到 4 小时内完成审查并导出文件。'
+        : 'Summonses uploaded to JNI Solutions are scanned by our AI instantly. If you require legal assistance routing or custom dispute templates, our driver support desk typically completes the review and exports documentation within 2 to 4 hours.'
     },
     {
-      q: 'Can I drop in to the Queens Office without booking?',
-      a: 'Yes, our operations hub at 120 Woodside Ave, Queens, welcomes walk-in drivers. We are open Monday through Friday, 9:00 AM to 5:00 PM, to help you resolve active suspensions and inspect vehicles before DMV checks.'
+      q: selectedLanguage === 'Spanish' ? '¿Puedo ir a la oficina de Queens sin reservar?'
+        : selectedLanguage === 'Urdu' ? 'کیا میں بکنگ کے بغیر کوئینز آفس جا سکتا ہوں؟'
+        : selectedLanguage === 'Bengali' ? 'আমি কি বুকিং ছাড়াই কুইন্স অফিসে যেতে পারি?'
+        : selectedLanguage === 'French' ? 'Puis-je me rendre au bureau de Queens sans rendez-vous ?'
+        : selectedLanguage === 'Mandarin' ? '我可以不预约直接去 Queens 办公室吗？'
+        : 'Can I drop in to the Queens Office without booking?',
+      a: selectedLanguage === 'Spanish' ? 'Sí, nuestro centro de operaciones en 120 Woodside Ave, Queens, recibe a conductores sin cita previa. Estamos abiertos de lunes a viernes, de 9:00 AM a 5:00 PM.'
+        : selectedLanguage === 'Urdu' ? 'جی ہاں، 120 Woodside Ave، Queens میں ہمارا ہب بغیر کسی پیشگی بکنگ کے ڈرائیورز کا استقبال کرتا ہے۔ ہم پیر سے جمعہ صبح 9:00 بجے سے شام 5:00 بجے تک کھلے ہیں۔'
+        : selectedLanguage === 'Bengali' ? 'হ্যাঁ, ১২০ উডসাইড এভিনিউ, কুইন্সে আমাদের হাব সরাসরি চালকদের স্বাগত জানায়। আমরা সোমবার থেকে শুক্রবার, সকাল ৯:০০ টা থেকে বিকেল ৫:০০ টা পর্যন্ত খোলা থাকি।'
+        : selectedLanguage === 'French' ? 'Oui, notre centre d\'opérations au 120 Woodside Ave, Queens, accueille les chauffeurs sans rendez-vous, du lundi au vendredi de 9h à 17h.'
+        : selectedLanguage === 'Mandarin' ? '可以，我们位于皇后区 Woodside Ave 120 号的运营中心欢迎司机直接拜访。我们的工作时间是周一至周五上午 9:00 至下午 5:00。'
+        : 'Yes, our operations hub at 120 Woodside Ave, Queens, welcomes walk-in drivers. We are open Monday through Friday, 9:00 AM to 5:00 PM, to help you resolve active suspensions and inspect vehicles before DMV checks.'
     },
     {
-      q: 'Is my document data encrypted and safe?',
-      a: 'Absolutely. We use bank-grade AES-256 encryption keys to store driver license PDFs and insurance card scans. Your files are accessible only to you and verified JNI audit tools.'
+      q: selectedLanguage === 'Spanish' ? '¿Están mis documentos seguros y encriptados?'
+        : selectedLanguage === 'Urdu' ? 'کیا میری دستاویزات کا ڈیٹا محفوظ اور خفیہ ہے؟'
+        : selectedLanguage === 'Bengali' ? 'আমার নথির তথ্য কি সুরক্ষিত এবং এনক্রিপ্ট করা?'
+        : selectedLanguage === 'French' ? 'Mes données de documents sont-elles cryptées et sécurisées ?'
+        : selectedLanguage === 'Mandarin' ? '我的文件数据是否加密且安全？'
+        : 'Is my document data encrypted and safe?',
+      a: selectedLanguage === 'Spanish' ? 'Absolutamente. Utilizamos claves de cifrado AES-256 de nivel bancario para almacenar archivos PDF de licencias de conducir y escaneos de tarjetas de seguro.'
+        : selectedLanguage === 'Urdu' ? 'بالکل۔ ہم ڈرائیور لائسنس کی پی ڈی ایف اور انشورنس کارڈ اسکینز کو محفوظ کرنے کے لیے بینک گریڈ AES-256 انکرپشن کا استعمال کرتے ہیں۔'
+        : selectedLanguage === 'Bengali' ? 'অবশ্যই। আমরা ড্রাইভার লাইসেন্স পিডিএফ এবং বীমা কার্ড স্ক্যান সংরক্ষণের জন্য ব্যাঙ্ক-গ্রেড AES-256 এনক্রিপশন কী ব্যবহার করি।'
+        : selectedLanguage === 'French' ? 'Absolument. Nous utilisons des clés de cryptage AES-256 de niveau bancaire pour stocker les scans de permis de conduire et de cartes d\'assurance.'
+        : selectedLanguage === 'Mandarin' ? '当然。我们使用银行级的 AES-256 加密密钥来存储驾驶员执照 PDF 和保险卡扫描件。您的文件仅对您和经过验证的 JNI 审核工具可见。'
+        : 'Absolutely. We use bank-grade AES-256 encryption keys to store driver license PDFs and insurance card scans. Your files are accessible only to you and verified JNI audit tools.'
     }
   ];
+
+  const title1 = selectedLanguage === 'Spanish' ? 'Póngase en Contacto Con'
+    : selectedLanguage === 'Urdu' ? 'رابطہ قائم کریں'
+    : selectedLanguage === 'Bengali' ? 'যোগাযোগ করুন'
+    : selectedLanguage === 'French' ? 'Contactez le'
+    : selectedLanguage === 'Mandarin' ? '取得联系'
+    : 'Get In Touch With';
+
+  const titleHighlight = selectedLanguage === 'Spanish' ? 'Soporte al Conductor'
+    : selectedLanguage === 'Urdu' ? 'ڈرائیور سپورٹ سے'
+    : selectedLanguage === 'Bengali' ? 'ড্রাইভার সাপোর্ট'
+    : selectedLanguage === 'French' ? 'Support Chauffeur'
+    : selectedLanguage === 'Mandarin' ? '司机支持'
+    : 'Driver Support';
+
+  const subtitle1 = selectedLanguage === 'Spanish' ? '¿Tiene preguntas sobre la mitigación de puntos de DMV, exámenes de seguridad de TLC o configuración de suscripción? Contacte a nuestro equipo de Queens.'
+    : selectedLanguage === 'Urdu' ? 'کیا آپ کے پاس DMV پوائنٹس کی کمی، TLC حفاظتی اسکریننگ، یا سبسکرپشن کے بارے میں سوالات ہیں؟ ہم سے رابطہ کریں۔'
+    : selectedLanguage === 'Bengali' ? 'DMV পয়েন্ট হ্রাস, TLC সুরক্ষা স্ক্রীনিং, বা সাবস্ক্রিপশন সেটআপ সম্পর্কে প্রশ্ন আছে? আমাদের সাথে যোগাযোগ করুন।'
+    : selectedLanguage === 'French' ? 'Des questions sur les points du DMV, les dépistages de la TLC ou l\'abonnement ? Contactez notre équipe de Queens.'
+    : selectedLanguage === 'Mandarin' ? '对 DMV 扣分减免、TLC 安全筛查或订阅设置有疑问吗？请联系我们的皇后区运营团队。'
+    : 'Have questions about DMV points mitigation, TLC safety screenings, or subscription setup? Contact our Queens operations team.';
 
   return (
     <div className="flex-1 flex flex-col min-h-screen bg-background text-foreground antialiased selection:bg-[#F5C400]/25 selection:text-[#0B0B0B] transition-colors duration-300">
@@ -83,9 +136,9 @@ export default function ContactPage() {
               transition={{ duration: 0.5 }}
               className="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-[#111111] dark:text-white leading-tight"
             >
-              Get In Touch With <br />
+              {title1} <br />
               <span className="relative inline-block mt-2">
-                <span className="relative z-10 px-2 text-[#0B0B0B] dark:text-[#F5C400]">Driver Support</span>
+                <span className="relative z-10 px-2 text-[#0B0B0B] dark:text-[#F5C400]">{titleHighlight}</span>
                 <span className="absolute inset-x-0 bottom-1 h-3 bg-[#F5C400]/80 dark:bg-[#F5C400]/20 -rotate-1 z-0 rounded-sm" />
               </span>
             </motion.h1>
@@ -96,7 +149,7 @@ export default function ContactPage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-slate-500 dark:text-slate-400 text-base sm:text-lg max-w-2xl mx-auto font-medium"
             >
-              Have questions about DMV points mitigation, TLC safety screenings, or subscription setup? Contact our Queens operations team.
+              {subtitle1}
             </motion.p>
           </div>
         </section>

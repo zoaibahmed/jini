@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Logo } from '@/components/ui/Logo';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Sun, Moon, ChevronDown, Check } from 'lucide-react';
+import { Menu, X, Sun, Moon, ChevronDown, Check, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTheme } from '@/app/theme-provider';
 import { useLanguage, Language } from '@/app/language-provider';
@@ -94,11 +94,10 @@ export function Navbar() {
             <button
               type="button"
               onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-              className="flex items-center space-x-1.5 p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-[#F5C400] dark:hover:text-[#F5C400] hover:bg-slate-100 dark:hover:bg-zinc-800/50 transition-all duration-205 cursor-pointer"
+              className="flex items-center space-x-1 p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-[#F5C400] dark:hover:text-[#F5C400] hover:bg-slate-100 dark:hover:bg-zinc-800/50 transition-all duration-205 cursor-pointer"
               aria-label="Select Language"
             >
-              <span className="text-base">{currentLang.flag}</span>
-              <span className="text-[10px] font-extrabold uppercase tracking-wider">{currentLang.name.substring(0, 3)}</span>
+              <Globe className="w-4 h-4" />
               <ChevronDown className="w-3.5 h-3.5 text-zinc-400" />
             </button>
 
@@ -165,7 +164,7 @@ export function Navbar() {
               className="flex items-center space-x-1 p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-[#F5C400] dark:hover:text-[#F5C400] transition-all duration-200 cursor-pointer"
               aria-label="Select Language"
             >
-              <span className="text-base">{currentLang.flag}</span>
+              <Globe className="w-4 h-4" />
               <ChevronDown className="w-3.5 h-3.5 text-zinc-400" />
             </button>
 
