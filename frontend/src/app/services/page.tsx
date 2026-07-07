@@ -419,11 +419,11 @@ export default function ServicesPage() {
                   desc: selectedLanguage === 'Spanish' ? 'El estado pasa a ser Requiere Revisión. Placa morada, se requiere revisión manual del administrador.' : selectedLanguage === 'Urdu' ? 'حیثیت جائزے کی ضرورت ہو جائے گی۔ جامنی بیج، ایڈمن کا دستی جائزہ لازمی ہو گا۔' : selectedLanguage === 'Bengali' ? 'স্থিতি পর্যালোচনা প্রয়োজন হবে। বেগুনি ব্যাজ, অ্যাডমিন ম্যানুয়াল পর্যালোচনা আবশ্যক।' : selectedLanguage === 'French' ? 'Le statut devient À réviser. Badge violet, révision manuelle de l\'administrateur requise.' : selectedLanguage === 'Mandarin' ? '状态变为“需要审查”。灰色/紫色徽章，在安排提醒前需要管理员进行人工审查。' : 'Status becomes Needs Review. Gray/purple badge, admin manual review required before reminder scheduling.'
                 }
               ].map((card, cIdx) => (
-                <div key={cIdx} className={`bg-white dark:bg-zinc-900 border ${card.borderClass} rounded-2xl p-6 space-y-2`}>
-                  <span className={`px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded border ${card.badgeClass}`}>
+                <div key={cIdx} className={`bg-white dark:bg-zinc-900 border ${card.borderClass} rounded-2xl p-6 flex flex-col justify-start items-start gap-2 h-full`}>
+                  <span className={`px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded border self-start ${card.badgeClass}`}>
                     {card.badge}
                   </span>
-                  <h4 className="font-bold text-foreground">{card.title}</h4>
+                  <h4 className="font-bold text-foreground min-h-[2.5rem] flex items-center">{card.title}</h4>
                   <p className="text-muted leading-relaxed">{card.desc}</p>
                 </div>
               ))}
