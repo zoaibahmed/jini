@@ -89,7 +89,7 @@ export class BillingService {
   }
 
   // 3. Create Subscription Checkout Session (Real/Simulated)
-  async createCheckoutSession(userId: string, data: { planId: string; billingPeriod: 'monthly' | 'yearly'; couponCode?: string }) {
+  async createCheckoutSession(userId: string, data: { planId: string; billingPeriod: 'monthly' | 'yearly'; couponCode?: string }, host: string = 'http://localhost:3000') {
     const plans = BillingStore.getPlans();
     const plan = plans.find(p => p.id === data.planId);
     if (!plan) throw new NotFoundException('Selected billing plan not found');
@@ -118,7 +118,7 @@ export class BillingService {
 
     if (this.isSimulatedMode || !this.stripe) {
       // Simulate Session Response
-      const checkoutUrl = `http://localhost:3000/dashboard/billing?checkout_success=true&session_id=mock_session_${Date.now()}&plan_id=${plan.id}&period=${data.billingPeriod}&coupon=${data.couponCode || ''}`;
+      const checkoutUrl = `${host}/dashboard/billing?checkout_success=true&session_id=mock_session_${Date.now()}&plan_id=${plan.id}&period=${data.billingPeriod}&coupon=${data.couponCode || ''}`;
       return { checkoutUrl, simulated: true };
     }
 
@@ -144,8 +144,8 @@ export class BillingService {
           },
         ],
         mode: 'subscription',
-        success_url: `http://localhost:3000/dashboard/billing?checkout_success=true&session_id={CHECKOUT_SESSION_ID}&plan_id=${plan.id}&period=${data.billingPeriod}`,
-        cancel_url: `http://localhost:3000/dashboard/billing?checkout_cancel=true`,
+        success_url: `${host}/dashboard/billing?checkout_success=true&session_id={CHECKOUT_SESSION_ID}&plan_id=${plan.id}&period=${data.billingPeriod}`,
+        cancel_url: `${host}/dashboard/billing?checkout_cancel=true`,
         customer_email: email,
         metadata: { userId, planId: plan.id, billingPeriod: data.billingPeriod },
       });
@@ -153,20 +153,20 @@ export class BillingService {
       return { checkoutUrl: session.url, simulated: false };
     } catch (err: any) {
       this.logger.error('Stripe API error creating checkout session, falling back to simulator:', err);
-      const checkoutUrl = `http://localhost:3000/dashboard/billing?checkout_success=true&session_id=mock_session_${Date.now()}&plan_id=${plan.id}&period=${data.billingPeriod}&coupon=${data.couponCode || ''}`;
+      const checkoutUrl = `${host}/dashboard/billing?checkout_success=true&session_id=mock_session_${Date.now()}&plan_id=${plan.id}&period=${data.billingPeriod}&coupon=${data.couponCode || ''}`;
       return { checkoutUrl, simulated: true };
     }
   }
 
   // 4. Create Stripe Customer Billing Portal Session
-  async createPortalSession(userId: string) {
+  async createPortalSession(userId: string, host: string = 'http://localhost:3000') {
     const user = await this.getUserDetails(userId);
     const subs = BillingStore.getSubscriptions();
     const sub = subs.find(s => s.userId === userId);
 
     if (this.isSimulatedMode || !this.stripe) {
       // Simulator URL
-      return { url: 'http://localhost:3000/dashboard/billing?portal_sim=true' };
+      return { url: `${host}/dashboard/billing?portal_sim=true` };
     }
 
     try {
@@ -196,13 +196,13 @@ export class BillingService {
 
       const portalSession = await this.stripe.billingPortal.sessions.create({
         customer: customerId,
-        return_url: 'http://localhost:3000/dashboard/billing',
+        return_url: `${host}/dashboard/billing`,
       });
 
       return { url: portalSession.url };
     } catch (err: any) {
       this.logger.error('Stripe API error creating billing portal session:', err);
-      return { url: 'http://localhost:3000/dashboard/billing?portal_sim=true' };
+      return { url: `${host}/dashboard/billing?portal_sim=true` };
     }
   }
 

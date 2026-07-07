@@ -33,10 +33,13 @@ export class BillingController {
   @ApiOperation({ summary: 'Generate Stripe payment checkout session URL (legacy)' })
   async createCheckout(
     @Headers('x-user-id') userIdHeader: string,
+    @Headers('origin') origin: string,
+    @Headers('referer') referer: string,
     @Body() body: { planId: string; billingPeriod: 'monthly' | 'yearly'; couponCode?: string },
   ) {
     const { userId } = this.getAuthContext(userIdHeader);
-    return this.billingService.createCheckoutSession(userId, body);
+    const host = origin || (referer ? new URL(referer).origin : 'http://localhost:3000');
+    return this.billingService.createCheckoutSession(userId, body, host);
   }
 
   @Post('create-checkout-session')
@@ -44,10 +47,13 @@ export class BillingController {
   @ApiOperation({ summary: 'Generate Stripe payment checkout session URL (new)' })
   async createCheckoutSession(
     @Headers('x-user-id') userIdHeader: string,
+    @Headers('origin') origin: string,
+    @Headers('referer') referer: string,
     @Body() body: { planId: string; billingPeriod: 'monthly' | 'yearly'; couponCode?: string },
   ) {
     const { userId } = this.getAuthContext(userIdHeader);
-    const result = await this.billingService.createCheckoutSession(userId, body);
+    const host = origin || (referer ? new URL(referer).origin : 'http://localhost:3000');
+    const result = await this.billingService.createCheckoutSession(userId, body, host);
     return { session: { url: result.checkoutUrl }, url: result.checkoutUrl };
   }
 
@@ -65,9 +71,14 @@ export class BillingController {
   @Post('create-portal-session')
   @ApiHeader({ name: 'x-user-id', required: true })
   @ApiOperation({ summary: 'Create Stripe Customer Billing Portal Session' })
-  async createPortalSession(@Headers('x-user-id') userIdHeader: string) {
+  async createPortalSession(
+    @Headers('x-user-id') userIdHeader: string,
+    @Headers('origin') origin: string,
+    @Headers('referer') referer: string,
+  ) {
     const { userId } = this.getAuthContext(userIdHeader);
-    const result = await this.billingService.createPortalSession(userId);
+    const host = origin || (referer ? new URL(referer).origin : 'http://localhost:3000');
+    const result = await this.billingService.createPortalSession(userId, host);
     return { portalSession: { url: result.url }, url: result.url };
   }
 
