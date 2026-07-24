@@ -435,5 +435,24 @@
     "language": "English",
     "isPinned": false,
     "createdAt": "2026-06-17T15:28:28.342Z"
+  },
+  {
+    "id": "fc16fb44-223f-474c-be95-4ecdc7a6f36d",
+    "chatId": "59834701-0bc4-4c8f-9463-7c582d40aecb",
+    "sender": "USER",
+    "message": "hey",
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-07-09T05:44:02.685Z"
+  },
+  {
+    "id": "8acc4c15-63c5-4064-bfe1-39ff7a02007f",
+    "chatId": "59834701-0bc4-4c8f-9463-7c582d40aecb",
+    "sender": "AI",
+    "message": "Hello! How can I assist you today? Are you looking for guidance on TLC rules, DMV summonses, vehicle inspections, insurance, renewals, or any other driving-related inquiries?",
+    "confidenceScore": 0.3,
+    "language": "English",
+    "isPinned": false,
+    "createdAt": "2026-07-09T05:44:05.638Z"
   }
 ]

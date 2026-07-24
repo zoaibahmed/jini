@@ -2,6 +2,7 @@ import { Injectable, Inject, Logger } from '@nestjs/common';
 import type { OCRProvider } from './interfaces/ocr.provider';
 import { PrismaService } from '../prisma/prisma.service';
 import { ReminderService } from '../reminder/reminder.service';
+import { NotificationService } from '../notification/notification.service';
 import { DocumentMetadataStore } from '../document/document-metadata.store';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -13,7 +14,8 @@ export class ComplianceService {
   constructor(
     @Inject('OCR_PROVIDER') private readonly ocrProvider: OCRProvider,
     private readonly prisma: PrismaService,
-    private readonly reminderService: ReminderService
+    private readonly reminderService: ReminderService,
+    private readonly notificationService: NotificationService,
   ) {}
 
   calculateSeverity(expiryDate?: Date | string | null): string {
@@ -90,6 +92,12 @@ export class ComplianceService {
           doc.ocrConfidence = confidence;
           DocumentMetadataStore.save(doc);
         }
+        await this.notificationService.createNotification(
+          userId,
+          'Document Needs Review',
+          `Your uploaded file "${originalName}" is unrecognized or unsupported. A compliance support agent will review it.`,
+          'WARNING'
+        ).catch(() => {});
         return { ocrResult: responsePayload };
       }
 
@@ -150,6 +158,12 @@ export class ComplianceService {
           doc.ocrConfidence = confidence;
           DocumentMetadataStore.save(doc);
         }
+        await this.notificationService.createNotification(
+          userId,
+          'Document Needs Review',
+          `Your uploaded ${normalizedType.replace(/_/g, ' ')} "${originalName}" requires manual verification by a compliance agent.`,
+          'WARNING'
+        ).catch(() => {});
         return { ocrResult: responsePayload };
       }
 
@@ -185,6 +199,15 @@ export class ComplianceService {
           doc.ocrConfidence = confidence;
           DocumentMetadataStore.save(doc);
         }
+
+        const statusType = this.calculateSeverity(expiryDate);
+        const alertType = ['WARNING', 'URGENT', 'CRITICAL'].includes(statusType) ? 'WARNING' : 'SUCCESS';
+        await this.notificationService.createNotification(
+          userId,
+          'Document Verified',
+          `Your ${normalizedType.replace(/_/g, ' ')} has been successfully verified. Expiration date: ${doc ? doc.expiryDate : expiryDate.toISOString().split('T')[0]}.`,
+          alertType
+        ).catch(() => {});
 
         return { ocrResult: responsePayload, compliance };
       }

@@ -255,10 +255,9 @@ export default function DashboardLayout({
   const isCopilotRoute = pathname === '/dashboard/copilot';
 
   return (
-    <div className="flex-1 flex flex-col min-h-screen bg-background text-foreground md:flex-row transition-all duration-300">
-      
-      {/* Sidebar (Slim hover-expandable on mobile, sticky full-width on desktop) */}
-      <aside className="fixed md:sticky top-0 left-0 h-screen z-50 flex flex-col justify-between border-r border-border bg-background/80 dark:bg-zinc-950/80 backdrop-blur-md p-3 md:p-5 transition-all duration-300 group w-14 hover:w-64 md:w-64 shrink-0">
+    <div className="flex-1 flex flex-col min-h-screen bg-zinc-50 dark:bg-[#070708] text-foreground md:flex-row transition-all duration-300">
+       {/* Sidebar (Slim hover-expandable on mobile, sticky full-width on desktop) */}
+      <aside className="fixed md:sticky top-0 left-0 h-screen z-50 flex flex-col justify-between border-r border-border/35 bg-white dark:bg-[#09090b] p-3 md:p-5 transition-all duration-300 group w-14 hover:w-64 md:w-64 shrink-0 shadow-lg dark:shadow-black/40">
         <div className="space-y-6 overflow-x-hidden">
           {/* Logo Section */}
           <Link href="/" className="flex items-center">
@@ -273,13 +272,13 @@ export default function DashboardLayout({
           </Link>
 
           {/* User Profile Summary */}
-          <div className="flex items-center space-x-3 p-1.5 md:p-3 bg-muted-background/40 border border-border rounded-xl overflow-hidden">
-            <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-gold-primary/15 border border-gold-primary/30 flex items-center justify-center text-[#F5C400] font-heading font-extrabold text-xs md:text-sm shrink-0">
+          <div className="flex items-center space-x-3 p-1.5 md:p-3 bg-zinc-50 dark:bg-zinc-950/80 border border-border/30 rounded-2xl overflow-hidden">
+            <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl bg-[#F5C400]/10 border border-[#F5C400]/25 flex items-center justify-center text-[#F5C400] font-heading font-black text-xs md:text-sm shrink-0">
               {initials}
             </div>
             <div className="overflow-hidden transition-all duration-300 opacity-0 group-hover:opacity-100 md:opacity-100 whitespace-nowrap">
-              <h4 className="text-xs font-bold truncate text-foreground">{displayName}</h4>
-              <span className="text-[10px] text-muted flex items-center gap-1 font-semibold">
+              <h4 className="text-xs font-bold truncate text-zinc-800 dark:text-zinc-200">{displayName}</h4>
+              <span className="text-[9px] text-zinc-450 dark:text-zinc-500 flex items-center gap-1 font-semibold">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                 {roleDisplay}
               </span>
@@ -287,7 +286,7 @@ export default function DashboardLayout({
           </div>
 
           {/* Navigation links */}
-          <nav className="space-y-1">
+          <nav className="space-y-1.5">
             {navigation.map((item) => {
               const isActive = pathname === item.href;
               const Icon = item.icon;
@@ -295,10 +294,10 @@ export default function DashboardLayout({
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`flex items-center justify-between p-2.5 md:px-3 md:py-2 rounded-xl text-xs font-bold transition-all duration-200 overflow-hidden ${
+                  className={`flex items-center justify-between p-2.5 md:px-3.5 md:py-2.5 rounded-xl text-xs font-bold transition-all duration-200 overflow-hidden ${
                     isActive 
-                      ? 'bg-gold-primary text-[#0B0B0B] font-extrabold shadow-md shadow-gold-glow' 
-                      : 'text-muted hover:text-foreground hover:bg-muted-background'
+                      ? 'bg-[#F5C400] text-black font-extrabold shadow-lg shadow-[#F5C400]/20' 
+                      : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-150 dark:hover:bg-zinc-900/60'
                   }`}
                 >
                   <span className="flex items-center min-w-0">
@@ -309,7 +308,7 @@ export default function DashboardLayout({
                   </span>
                   {item.name === 'Notifications' && unreadCount > 0 && (
                     <span className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full shrink-0 transition-all duration-300 opacity-0 group-hover:opacity-100 md:opacity-100 ${
-                      isActive ? 'bg-[#0B0B0B] text-gold-primary' : 'bg-red-500 text-white'
+                      isActive ? 'bg-black text-[#F5C400]' : 'bg-red-500 text-white'
                     }`}>
                       {unreadCount}
                     </span>
@@ -321,10 +320,10 @@ export default function DashboardLayout({
         </div>
 
         {/* Footer Actions */}
-        <div className="space-y-2 pt-4 border-t border-border overflow-hidden">
+        <div className="space-y-2 pt-4 border-t border-border/30 overflow-hidden">
           <button 
             onClick={toggleTheme}
-            className="flex items-center justify-between w-full p-2.5 md:px-3 md:py-2 rounded-xl text-xs font-bold text-muted hover:text-foreground hover:bg-muted-background transition-colors"
+            className="flex items-center justify-between w-full p-2.5 md:px-3 md:py-2.5 rounded-xl text-xs font-bold text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-150 dark:hover:bg-zinc-900/60 transition-colors cursor-pointer"
           >
             <span className="flex items-center min-w-0">
               {theme === 'dark' ? <Sun className="w-4 h-4 shrink-0" /> : <Moon className="w-4 h-4 shrink-0" />}
@@ -336,7 +335,7 @@ export default function DashboardLayout({
           
           <button
             onClick={logout}
-            className="flex items-center p-2.5 md:px-3 md:py-2 rounded-xl text-xs font-bold text-red-500 hover:bg-red-500/10 transition-colors w-full text-left"
+            className="flex items-center p-2.5 md:px-3 md:py-2.5 rounded-xl text-xs font-bold text-red-500 hover:bg-red-500/10 transition-colors w-full text-left cursor-pointer"
           >
             <LogOut className="w-4 h-4 shrink-0" />
             <span className="ml-3 transition-all duration-300 opacity-0 group-hover:opacity-100 md:opacity-100 whitespace-nowrap">
@@ -347,11 +346,13 @@ export default function DashboardLayout({
       </aside>
 
       {/* Main content wrapper */}
-      <div className="flex-1 flex flex-col min-h-screen pl-14 md:pl-0 transition-all duration-300">
-
+      <div className="flex-1 flex flex-col min-h-screen pl-14 md:pl-0 transition-all duration-300 relative bg-zinc-50 dark:bg-zinc-950">
+        {/* Dashboard visual background decorations */}
+        <div className="absolute inset-0 grid-pattern opacity-[0.25] pointer-events-none z-0" />
+        <div className="absolute top-0 right-1/4 w-[400px] h-[400px] bg-[#F5C400]/3 dark:bg-[#F5C400]/2 rounded-full blur-[110px] pointer-events-none z-0" />
         
         {/* Mobile Header Bar */}
-        <header className="md:hidden flex items-center justify-between px-4 h-16 glass border-b border-border sticky top-0 z-30">
+        <header className="md:hidden flex items-center justify-between px-4 h-16 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md border-b border-border/30 sticky top-0 z-30">
           <div className="flex items-center">
             <Link href="/" className="flex items-center group">
               <Logo size="sm" variant="auto" />
@@ -359,7 +360,7 @@ export default function DashboardLayout({
           </div>
 
           <div className="flex items-center space-x-3">
-            <Link href="/dashboard/notifications" className="relative p-1.5 text-muted hover:text-foreground transition-colors mr-1">
+            <Link href="/dashboard/notifications" className="relative p-1.5 text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors mr-1">
               <Bell className="w-5 h-5" />
               {unreadCount > 0 && (
                 <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-red-500 text-white text-[9px] font-extrabold flex items-center justify-center rounded-full animate-pulse">
@@ -374,7 +375,7 @@ export default function DashboardLayout({
         </header>
 
         {/* Main Dashboard Pages Slot */}
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto">
+        <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto relative z-10">
           {children}
         </main>
       </div>

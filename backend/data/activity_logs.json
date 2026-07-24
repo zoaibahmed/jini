@@ -565,5 +565,47 @@
     "action": "UPLOAD",
     "fileName": "scan_1781636307140.jpg",
     "timestamp": "2026-06-16T18:58:27.300Z"
+  },
+  {
+    "id": "5b4677df-aad9-4e05-920c-900fd59bfb0e",
+    "userId": "8cf49719-7a58-4aba-a7cd-2dfe748fdbfa",
+    "action": "UPLOAD",
+    "fileName": "unrecognized_test_doc.txt",
+    "timestamp": "2026-07-09T06:00:33.611Z"
+  },
+  {
+    "id": "1d024f14-4461-4521-8111-bad1669107d1",
+    "userId": "8cf49719-7a58-4aba-a7cd-2dfe748fdbfa",
+    "action": "UPLOAD",
+    "fileName": "tlc_license_test_doc.txt",
+    "timestamp": "2026-07-09T06:00:33.641Z"
+  },
+  {
+    "id": "3157353d-7ac7-4bde-9289-904b17fa7afb",
+    "userId": "8cf49719-7a58-4aba-a7cd-2dfe748fdbfa",
+    "action": "UPLOAD",
+    "fileName": "unrecognized_test_doc.txt",
+    "timestamp": "2026-07-09T06:00:50.853Z"
+  },
+  {
+    "id": "c099c893-76cb-4b31-9ef6-9659c7bb194e",
+    "userId": "8cf49719-7a58-4aba-a7cd-2dfe748fdbfa",
+    "action": "UPLOAD",
+    "fileName": "tlc_license_test_doc.txt",
+    "timestamp": "2026-07-09T06:00:50.943Z"
+  },
+  {
+    "id": "4e1de1f8-3828-404b-9e8c-80ae173bc5a7",
+    "userId": "8cf49719-7a58-4aba-a7cd-2dfe748fdbfa",
+    "action": "UPLOAD",
+    "fileName": "unrecognized_test_doc.txt",
+    "timestamp": "2026-07-09T06:33:02.006Z"
+  },
+  {
+    "id": "f88c665a-4b11-4f1f-bcce-b5bccf9f98de",
+    "userId": "8cf49719-7a58-4aba-a7cd-2dfe748fdbfa",
+    "action": "UPLOAD",
+    "fileName": "tlc_license_test_doc.txt",
+    "timestamp": "2026-07-09T06:33:02.040Z"
   }
 ]

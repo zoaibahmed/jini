@@ -54,9 +54,9 @@ export function Navbar() {
   ];
 
   return (
-    <header className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled
-        ? 'bg-white/95 dark:bg-[#141414]/95 backdrop-blur-md border-b border-slate-200/80 dark:border-zinc-800/80 shadow-md'
-        : 'bg-transparent border-b border-transparent'
+    <header className={`sticky top-0 z-50 transition-all duration-500 ${isScrolled
+        ? 'bg-white/95 dark:bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-zinc-200/60 dark:border-zinc-800/60 shadow-lg shadow-black/5'
+        : 'bg-transparent border-b border-white/5'
       }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
 
@@ -69,12 +69,18 @@ export function Navbar() {
         <nav className="hidden md:flex items-center space-x-8 text-sm font-semibold">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
+            const isHome = pathname === '/';
             return (
               <Link
                 key={link.name}
                 href={link.href}
-                className={`relative py-1 transition-colors ${isActive ? 'text-[#F5C400]' : 'text-slate-600 dark:text-slate-300 hover:text-[#F5C400] dark:hover:text-[#F5C400]'
-                  } group`}
+                className={`relative py-1 transition-colors ${
+                  isActive
+                    ? 'text-[#F5C400]'
+                    : isHome && !isScrolled && theme === 'dark'
+                    ? 'text-white/70 hover:text-white'
+                    : 'text-slate-600 dark:text-slate-350 hover:text-[#F5C400] dark:hover:text-[#F5C400]'
+                } group`}
               >
                 <span>{link.name}</span>
                 <span className={`absolute bottom-0 left-0 h-0.5 bg-[#F5C400] transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'
@@ -91,11 +97,15 @@ export function Navbar() {
             <button
               type="button"
               onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-              className="flex items-center space-x-1 p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-[#F5C400] dark:hover:text-[#F5C400] hover:bg-slate-100 dark:hover:bg-zinc-800/50 transition-all duration-205 cursor-pointer"
+              className={`flex items-center space-x-1 p-2 rounded-lg transition-all duration-200 cursor-pointer ${
+                pathname === '/' && !isScrolled && theme === 'dark'
+                  ? 'text-white/70 hover:text-white hover:bg-white/10'
+                  : 'text-slate-600 dark:text-slate-350 hover:text-[#F5C400] dark:hover:text-[#F5C400] hover:bg-slate-100 dark:hover:bg-zinc-800/50'
+              }`}
               aria-label="Select Language"
             >
               <Globe className="w-4 h-4" />
-              <ChevronDown className="w-3.5 h-3.5 text-zinc-400" />
+              <ChevronDown className="w-3.5 h-3.5" />
             </button>
 
             <AnimatePresence>
@@ -134,13 +144,24 @@ export function Navbar() {
 
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-[#F5C400] dark:hover:text-[#F5C400] hover:bg-slate-100 dark:hover:bg-zinc-800/50 transition-all duration-200 cursor-pointer"
+            className={`p-2 rounded-lg transition-all duration-200 cursor-pointer ${
+              pathname === '/' && !isScrolled && theme === 'dark'
+                ? 'text-white/70 hover:text-white hover:bg-white/10'
+                : 'text-slate-600 dark:text-slate-300 hover:text-[#F5C400] dark:hover:text-[#F5C400] hover:bg-slate-100 dark:hover:bg-zinc-800/50'
+            }`}
             aria-label="Toggle Theme"
           >
             {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
           </button>
 
-          <Link href="/auth/login" className="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-[#F5C400] dark:hover:text-[#F5C400] transition-colors">
+          <Link
+            href="/auth/login"
+            className={`text-sm font-semibold transition-colors ${
+              pathname === '/' && !isScrolled && theme === 'dark'
+                ? 'text-white/70 hover:text-white'
+                : 'text-slate-600 dark:text-slate-300 hover:text-[#F5C400] dark:hover:text-[#F5C400]'
+            }`}
+          >
             Login
           </Link>
           <Link href="/auth/login">

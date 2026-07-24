@@ -1069,5 +1069,12 @@
     "eventType": "SUBSCRIBE",
     "metadata": "{\"planName\":\"Basic Support\",\"price\":0,\"billingPeriod\":\"monthly\"}",
     "createdAt": "2026-06-25T19:06:53.359Z"
+  },
+  {
+    "id": "EVT-6036",
+    "subscriptionId": "sub-ap2f4qi",
+    "eventType": "SUBSCRIBE",
+    "metadata": "{\"planName\":\"Enterprise Team\",\"price\":99,\"billingPeriod\":\"monthly\"}",
+    "createdAt": "2026-07-09T05:49:03.935Z"
   }
 ]

@@ -21,9 +21,11 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 import { useLanguage } from '@/app/language-provider';
+import { useTheme } from '@/app/theme-provider';
 
 export default function ServicesPage() {
   const { language: selectedLanguage } = useLanguage();
+  const { theme } = useTheme();
 
   const title = selectedLanguage === 'Spanish' ? 'Servicios de Soporte Diseñados'
     : selectedLanguage === 'Urdu' ? 'سپورٹ سروسز جو آپ کے لیے ہیں'
@@ -264,16 +266,23 @@ export default function ServicesPage() {
 
       <main className="flex-1">
         {/* Header Hero Banner */}
-        <section className="relative py-20 bg-[radial-gradient(#f5c400_1px,transparent_1px)] [background-size:32px_32px] bg-opacity-[0.03] dark:bg-opacity-[0.015] border-b border-slate-100 dark:border-zinc-800 transition-colors duration-300">
-          <div className="absolute inset-0 bg-gradient-to-b from-[#F5C400]/5 to-transparent pointer-events-none" />
+        <section className="relative py-24 lg:py-32 overflow-hidden border-b border-slate-200 dark:border-zinc-900 bg-slate-50 dark:bg-black transition-colors duration-300">
+          {/* NYC Background overlay */}
+          <div
+            className="absolute inset-0 bg-cover bg-center opacity-15 dark:opacity-30 mix-blend-luminosity transition-all duration-300"
+            style={{ backgroundImage: "url('/compliance-phone-app.png')" }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/80 to-slate-50 dark:from-zinc-950 dark:via-zinc-950/80 dark:to-zinc-950 transition-colors duration-300" />
+          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#F5C400]/40 to-transparent" />
+          
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4 }}
-              className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full border border-[#F5C400]/20 bg-[#F5C400]/5 text-[#D9A300] dark:text-[#F5C400] text-xs font-bold uppercase tracking-wider"
+              className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border border-[#F5C400]/25 bg-[#F5C400]/8 text-[#D9A300] dark:text-[#F5C400] text-xs font-bold uppercase tracking-widest"
             >
-              <ShieldCheck className="w-4 h-4 text-[#F5C400]" />
+              <ShieldCheck className="w-4 h-4" />
               <span>Full compliance & optimization suite</span>
             </motion.div>
             
@@ -281,20 +290,17 @@ export default function ServicesPage() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-[#111111] dark:text-white leading-tight"
+              className="font-heading font-extrabold text-5xl sm:text-6xl tracking-tight text-slate-900 dark:text-white leading-[1.1]"
             >
               {title} <br />
-              <span className="relative inline-block mt-2">
-                <span className="relative z-10 px-2 text-[#0B0B0B] dark:text-[#F5C400]">{subtitle}</span>
-                <span className="absolute inset-x-0 bottom-1 h-3 bg-[#F5C400]/80 dark:bg-[#F5C400]/20 -rotate-1 z-0 rounded-sm" />
-              </span>
+              <span className="text-gold-gradient mt-2 inline-block font-black">{subtitle}</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-slate-500 dark:text-slate-400 text-base sm:text-lg max-w-3xl mx-auto font-medium leading-relaxed"
+              className="text-slate-650 dark:text-zinc-400 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed font-medium"
             >
               {desc}
             </motion.p>
@@ -302,14 +308,14 @@ export default function ServicesPage() {
         </section>
 
         {/* Services Matrix Grid */}
-        <section className="py-20 bg-background">
+        <section className="py-24 lg:py-32 bg-zinc-50 dark:bg-[#080808]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-100px' }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
             >
               {services.map((service, idx) => {
                 const Icon = service.icon;
@@ -317,22 +323,22 @@ export default function ServicesPage() {
                   <motion.div
                     key={idx}
                     variants={cardVariants}
-                    className="bg-slate-50/50 dark:bg-zinc-900/30 border border-[#E5E5E5] dark:border-zinc-800 p-8 rounded-2xl flex flex-col justify-between hover:shadow-lg hover:border-[#F5C400]/40 dark:hover:border-[#F5C400]/20 transition-all duration-300 group"
+                    className="card-premium p-8 flex flex-col justify-between group h-full"
                   >
                     <div className="space-y-6">
-                      <div className="w-12 h-12 rounded-xl bg-[#F5C400]/10 border border-[#F5C400]/25 text-[#D9A300] flex items-center justify-center group-hover:bg-[#F5C400] group-hover:text-[#0B0B0B] transition-all duration-300">
-                        <Icon className="w-6 h-6" />
+                      <div className="w-12 h-12 rounded-2xl bg-[#F5C400]/10 border border-[#F5C400]/20 text-[#D9A300] flex items-center justify-center group-hover:bg-[#F5C400] group-hover:text-black transition-all duration-300">
+                        <Icon className="w-5 h-5" />
                       </div>
                       
                       <div className="space-y-3">
-                        <h3 className="font-heading font-extrabold text-xl text-[#0B0B0B] dark:text-white">{service.title}</h3>
-                        <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-medium">{service.description}</p>
+                        <h3 className="font-heading font-bold text-lg text-zinc-900 dark:text-white leading-tight">{service.title}</h3>
+                        <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">{service.description}</p>
                       </div>
 
-                      <ul className="space-y-2.5 pt-2">
+                      <ul className="space-y-2.5 pt-2 border-t border-zinc-100 dark:border-zinc-800">
                         {service.bullets.map((bullet, bIdx) => (
-                          <li key={bIdx} className="flex items-center text-xs font-semibold text-[#111111] dark:text-zinc-200">
-                            <CheckCircle2 className="w-4 h-4 text-[#F5C400] mr-2 flex-shrink-0" />
+                          <li key={bIdx} className="flex items-start text-xs text-zinc-700 dark:text-zinc-300">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-[#F5C400] mr-2.5 mt-0.5 shrink-0" />
                             <span>{bullet}</span>
                           </li>
                         ))}
@@ -341,9 +347,9 @@ export default function ServicesPage() {
 
                     <div className="pt-8">
                       <Link href="/auth/login" className="w-full">
-                        <Button className="w-full bg-[#0B0B0B] dark:bg-zinc-800 text-white hover:bg-[#F5C400] dark:hover:bg-[#F5C400] hover:text-[#0B0B0B] dark:hover:text-[#0B0B0B] border-0 transition-colors font-bold text-xs">
+                        <button className="w-full font-bold text-xs py-3 rounded-xl bg-zinc-900 dark:bg-zinc-800 text-white hover:bg-[#F5C400] hover:text-black transition-all duration-200">
                           Activate Service
-                        </Button>
+                        </button>
                       </Link>
                     </div>
                   </motion.div>
@@ -354,17 +360,18 @@ export default function ServicesPage() {
         </section>
 
         {/* Smart Renewal Alerts Section */}
-        <section className="py-20 bg-slate-50/50 dark:bg-zinc-900/10 border-t border-b border-[#E5E5E5] dark:border-zinc-800 relative overflow-hidden transition-colors duration-300">
-          <div className="absolute left-0 bottom-0 w-80 h-80 bg-gold-primary/5 rounded-full blur-[100px] pointer-events-none" />
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-              <span className="text-[#D9A300] dark:text-[#F5C400] text-xs font-bold uppercase tracking-wider block">
+        <section className="py-24 lg:py-32 bg-white dark:bg-zinc-950 border-t border-b border-zinc-100 dark:border-zinc-900 relative overflow-hidden">
+          <div className="absolute inset-0 grid-pattern opacity-30" />
+          <div className="absolute left-0 bottom-0 w-80 h-80 bg-[#F5C400]/4 rounded-full blur-[100px] pointer-events-none" />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="text-center max-w-2xl mx-auto mb-16 space-y-5">
+              <span className="inline-block text-[11px] font-semibold uppercase tracking-widest text-[#D9A300] dark:text-[#F5C400] border border-[#F5C400]/25 bg-[#F5C400]/5 px-4 py-1.5 rounded-full">
                 {selectedLanguage === 'Spanish' ? 'Plazos Inteligentes' : selectedLanguage === 'Urdu' ? 'ذہین وقت کی حدود' : selectedLanguage === 'Bengali' ? 'বুদ্ধিমান সময়সীমা' : selectedLanguage === 'French' ? 'Délais Intelligents' : selectedLanguage === 'Mandarin' ? '智能截止日期' : 'Intelligent Deadlines'}
               </span>
-              <h2 className="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight text-[#111111] dark:text-white">
+              <h2 className="font-heading font-extrabold text-4xl sm:text-5xl tracking-tight text-zinc-900 dark:text-white">
                 {selectedLanguage === 'Spanish' ? 'Alertas de Renovación Inteligentes' : selectedLanguage === 'Urdu' ? 'ذہین تجدید کے الرٹس' : selectedLanguage === 'Bengali' ? 'স্মার্ট পুনর্নবীকরণ অ্যালার্ট' : selectedLanguage === 'French' ? 'Alertes de Renouvellement Intelligentes' : selectedLanguage === 'Mandarin' ? '智能更新警报' : 'Smart Renewal Alerts'}
               </h2>
-              <p className="text-slate-500 dark:text-slate-400 text-sm sm:text-base leading-relaxed font-medium">
+              <p className="text-zinc-500 dark:text-zinc-400 text-sm sm:text-base leading-relaxed">
                 {selectedLanguage === 'Spanish' ? 'JNI Solutions separa los documentos normales válidos de los plazos urgentes reales. Si su documento vence dentro de años, se marca como seguro. Cuando se acerca un plazo, el sistema actualiza el estado a próximo, advertencia, urgente o crítico.' 
                  : selectedLanguage === 'Urdu' ? 'جے این آئی سلوشنز عام درست دستاویزات کو حقیقی فوری آخری تاریخوں سے الگ کرتا ہے۔ اگر آپ کا دستاویز سالوں بعد ختم ہوتا ہے تو یہ محفوظ نشان زد رہتا ہے۔ جیسے جیسے کوئی آخری تاریخ قریب آتی ہے، نظام اسٹیٹس کو اپ گریڈ کرتا ہے۔'
                  : selectedLanguage === 'Bengali' ? 'JNI সলিউশন সাধারণ বৈধ নথিকে প্রকৃত জরুরি সময়সীমা থেকে আলাদা করে। আপনার নথির মেয়াদ যদি কয়েক বছর পর শেষ হয়, তবে এটি নিরাপদ থাকে। সময়সীমা কাছে এলে সিস্টেমটি আসন্ন, সতর্কতা, জরুরি বা গুরুত্বর অবস্থায় উন্নীত করে।'
@@ -374,57 +381,51 @@ export default function ServicesPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-xs">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {[
                 {
                   badge: selectedLanguage === 'Spanish' ? 'Seguro / Info' : selectedLanguage === 'Urdu' ? 'محفوظ / معلومات' : selectedLanguage === 'Bengali' ? 'নিরাপদ / তথ্য' : selectedLanguage === 'French' ? 'Sécurisé / Info' : selectedLanguage === 'Mandarin' ? '安全 / 信息' : 'Safe / Info',
                   badgeClass: 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20',
-                  borderClass: 'border-emerald-500/20',
                   title: selectedLanguage === 'Spanish' ? 'Licencia TLC vence en 4 años' : selectedLanguage === 'Urdu' ? 'TLC لائسنس 4 سال میں ختم ہو رہا ہے' : selectedLanguage === 'Bengali' ? 'TLC লাইসেন্স ৪ বছরে শেষ হচ্ছে' : selectedLanguage === 'French' ? 'Licence TLC expirant dans 4 ans' : selectedLanguage === 'Mandarin' ? 'TLC 执照将在 4 年后过期' : 'TLC License expiring in 4 years',
                   desc: selectedLanguage === 'Spanish' ? 'El estado sigue siendo Seguro/Info. Placa verde, solo en el tablero de control, sin alertas de SMS/WhatsApp/correo.' : selectedLanguage === 'Urdu' ? 'حیثیت محفوظ/معلومات رہے گی۔ سبز بیج، صرف ڈیش بورڈ پر، کوئی ایس ایم ایس/واٹس ایپ/ای میل الرٹ نہیں کیا جائے گا۔' : selectedLanguage === 'Bengali' ? 'স্থিতি নিরাপদ/তথ্য থাকবে। সবুজ ব্যাজ, শুধুমাত্র ড্যাশবোর্ডে, কোন এসএমএস/হোয়াটসঅ্যাপ/ইমেল অ্যালার্ট থাকবে না।' : selectedLanguage === 'French' ? 'Le statut reste Sécurisé/Info. Badge vert, tableau de bord uniquement, pas d\'alertes SMS/WhatsApp/e-mail.' : selectedLanguage === 'Mandarin' ? '状态保持“安全/信息”。绿色徽章，仅仪表板显示，无短信/WhatsApp/电子邮件警报。' : 'Status remains Safe/Info. Green badge, dashboard only, no SMS/WhatsApp/email alerts.'
                 },
                 {
                   badge: selectedLanguage === 'Spanish' ? 'Próximo' : selectedLanguage === 'Urdu' ? 'آنے والا' : selectedLanguage === 'Bengali' ? 'আসন্ন' : selectedLanguage === 'French' ? 'À venir' : selectedLanguage === 'Mandarin' ? '即将到来' : 'Upcoming',
                   badgeClass: 'bg-blue-500/10 text-blue-500 border-blue-500/20',
-                  borderClass: 'border-blue-500/20',
                   title: selectedLanguage === 'Spanish' ? 'Registro DMV vence en 45 días' : selectedLanguage === 'Urdu' ? 'DMV رجسٹریشن 45 دن میں ختم ہو رہی ہے' : selectedLanguage === 'Bengali' ? 'DMV রেজিস্ট্রেশন ৪৫ দিনে শেষ হচ্ছে' : selectedLanguage === 'French' ? 'Enregistrement DMV expirant dans 45 jours' : selectedLanguage === 'Mandarin' ? 'DMV 注册将在 45 天后过期' : 'DMV Registration expiring in 45 days',
                   desc: selectedLanguage === 'Spanish' ? 'El estado pasa a ser Próximo. Placa azul, recordatorio solo en el tablero, correo opcional si está activado.' : selectedLanguage === 'Urdu' ? 'حیثیت آنے والا ہو جائے گی۔ نیلا بیج، صرف ڈیش بورڈ پر یاد دہانی، فعال ہونے پر ای میل کی جا سکتی ہے۔' : selectedLanguage === 'Bengali' ? 'স্থিতি আসন্ন হবে। নীল ব্যাজ, শুধুমাত্র ড্যাশবোর্ডে অনুস্মারক, সক্রিয় থাকলে ঐচ্ছিক ইমেল।' : selectedLanguage === 'French' ? 'Le statut devient À venir. Badge bleu, rappel sur tableau de bord uniquement, e-mail facultatif si activé.' : selectedLanguage === 'Mandarin' ? '状态变为“即将到来”。蓝色徽章，仅仪表板提醒，如果启用则发送可选电子邮件。' : 'Status becomes Upcoming. Blue badge, dashboard reminder only, optional email if enabled.'
                 },
                 {
                   badge: selectedLanguage === 'Spanish' ? 'Advertencia' : selectedLanguage === 'Urdu' ? 'انتباہ' : selectedLanguage === 'Bengali' ? 'সতর্কতা' : selectedLanguage === 'French' ? 'Avertissement' : selectedLanguage === 'Mandarin' ? '警告' : 'Warning',
                   badgeClass: 'bg-amber-500/10 text-amber-500 border-amber-500/20',
-                  borderClass: 'border-amber-500/20',
                   title: selectedLanguage === 'Spanish' ? 'Seguro vence en 20 días' : selectedLanguage === 'Urdu' ? 'انشورنس 20 دن میں ختم ہو رہی ہے' : selectedLanguage === 'Bengali' ? 'বীমা ২০ দিনে শেষ হচ্ছে' : selectedLanguage === 'French' ? 'Assurance expirant dans 20 jours' : selectedLanguage === 'Mandarin' ? '保险将在 20 天后过期' : 'Insurance expiring in 20 days',
                   desc: selectedLanguage === 'Spanish' ? 'El estado pasa a ser Advertencia. Placa amarilla, recordatorio en el tablero + alerta proactiva por correo.' : selectedLanguage === 'Urdu' ? 'حیثیت انتباہ ہو جائے گی۔ پیلا بیج، ڈیش بورڈ یاد دہانی + فعال ای میل الرٹ۔' : selectedLanguage === 'Bengali' ? 'স্থিতি সতর্কতা হবে। হলুদ ব্যাজ, ড্যাশবোর্ড অনুস্মারক + সক্রিয় ইমেল অ্যালার্ট।' : selectedLanguage === 'French' ? 'Le statut devient Avertissement. Badge jaune, rappel sur tableau de bord + alerte e-mail proactive.' : selectedLanguage === 'Mandarin' ? '状态变为“警告”。黄色徽章，仪表板提醒 + 主动电子邮件警报。' : 'Status becomes Warning. Yellow badge, dashboard reminder + proactive email alert.'
                 },
                 {
                   badge: selectedLanguage === 'Spanish' ? 'Urgente' : selectedLanguage === 'Urdu' ? 'فوری' : selectedLanguage === 'Bengali' ? 'জরুরী' : selectedLanguage === 'French' ? 'Urgent' : selectedLanguage === 'Mandarin' ? '紧急' : 'Urgent',
                   badgeClass: 'bg-orange-500/10 text-orange-500 border-orange-500/20',
-                  borderClass: 'border-orange-500/20',
                   title: selectedLanguage === 'Spanish' ? 'Prueba de drogas vence en 5 días' : selectedLanguage === 'Urdu' ? 'ڈرگ ٹیسٹ 5 دن میں ختم ہو رہا ہے' : selectedLanguage === 'Bengali' ? 'ড্রাগ টেস্ট ৫ দিনে শেষ হচ্ছে' : selectedLanguage === 'French' ? 'Dépistage de drogues expirant dans 5 jours' : selectedLanguage === 'Mandarin' ? '药检将在 5 天后过期' : 'Drug test expiring in 5 days',
                   desc: selectedLanguage === 'Spanish' ? 'El estado pasa a ser Urgente. Placa naranja, tablero + correo + mensajes de SMS/WhatsApp de Twilio.' : selectedLanguage === 'Urdu' ? 'حیثیت فوری ہو جائے گی۔ نارنجی بیج، ڈیش بورڈ + ای میل + ٹویلیو ایس ایم ایس/واٹس ایپ الرٹس۔' : selectedLanguage === 'Bengali' ? 'স্থিতি জরুরী হবে। কমলা ব্যাজ, ড্যাশবোর্ড + ইমেল + টুইলিও এসএমএস/হোয়াটসঅ্যাপ বার্তা।' : selectedLanguage === 'French' ? 'Le statut devient Urgent. Badge orange, tableau de bord + e-mail + messages SMS/WhatsApp Twilio.' : selectedLanguage === 'Mandarin' ? '状态变为“紧急”。橙色徽章，仪表板 + 电子邮件 + Twilio 短信/WhatsApp 消息。' : 'Status becomes Urgent. Orange badge, dashboard + email + Twilio SMS/WhatsApp messages.'
                 },
                 {
                   badge: selectedLanguage === 'Spanish' ? 'Crítico' : selectedLanguage === 'Urdu' ? 'انتہائی اہم' : selectedLanguage === 'Bengali' ? 'গুরুতর' : selectedLanguage === 'French' ? 'Critique' : selectedLanguage === 'Mandarin' ? '关键/严重' : 'Critical',
                   badgeClass: 'bg-red-500/10 text-red-500 border-red-500/20',
-                  borderClass: 'border-red-500/20',
                   title: selectedLanguage === 'Spanish' ? 'Documento vencido' : selectedLanguage === 'Urdu' ? 'میعاد ختم دستاویز' : selectedLanguage === 'Bengali' ? 'মেয়াদোত্তীর্ণ নথি' : selectedLanguage === 'French' ? 'Document expiré' : selectedLanguage === 'Mandarin' ? '证件已过期' : 'Expired document',
                   desc: selectedLanguage === 'Spanish' ? 'El estado pasa a ser Crítico. Placa roja, tablero + correo + alertas de SMS/WhatsApp, bandera de revisión de administrador.' : selectedLanguage === 'Urdu' ? 'حیثیت انتہائی اہم ہو جائے گی۔ لال بیج، ڈیش بورڈ + ای میل + ایس ایم ایس/واٹس ایپ الرٹس، ایڈمن ریویو فلیگ۔' : selectedLanguage === 'Bengali' ? 'স্থিতি গুরুতর হবে। লাল ব্যাজ, ড্যাশবোর্ড + ইমেল + এসএমএস/হোয়াটসঅ্যাপ অ্যালার্ট, অ্যাডমিন পর্যালোচনা ফ্ল্যাগ।' : selectedLanguage === 'French' ? 'Le statut devient Critique. Badge rouge, tableau de bord + e-mail + alertes SMS/WhatsApp, drapeau de révision administrateur.' : selectedLanguage === 'Mandarin' ? '状态变为“关键”。红色徽章，仪表板 + 电子邮件 + 短信/WhatsApp 警报，管理员人工审查队列标志。' : 'Status becomes Critical. Red badge, dashboard + email + SMS/WhatsApp alerts, admin review queue flag.'
                 },
                 {
                   badge: selectedLanguage === 'Spanish' ? 'Requiere Revisión' : selectedLanguage === 'Urdu' ? 'جائزے کی ضرورت ہے' : selectedLanguage === 'Bengali' ? 'পর্যালোচনা প্রয়োজন' : selectedLanguage === 'French' ? 'À réviser' : selectedLanguage === 'Mandarin' ? '需要审查' : 'Needs Review',
                   badgeClass: 'bg-purple-500/10 text-purple-500 border-purple-500/20',
-                  borderClass: 'border-purple-500/20',
                   title: selectedLanguage === 'Spanish' ? 'Documento desconocido / Baja confianza de OCR' : selectedLanguage === 'Urdu' ? 'نامعلوم دستاویز / کم او سی آر اعتماد' : selectedLanguage === 'Bengali' ? 'অজানা নথি / কম ওসিআর আত্মবিশ্বাস' : selectedLanguage === 'French' ? 'Document inconnu / Confiance OCR faible' : selectedLanguage === 'Mandarin' ? '未知 / 低 OCR 置信度文件' : 'Unknown / Low OCR Confidence document',
                   desc: selectedLanguage === 'Spanish' ? 'El estado pasa a ser Requiere Revisión. Placa morada, se requiere revisión manual del administrador.' : selectedLanguage === 'Urdu' ? 'حیثیت جائزے کی ضرورت ہو جائے گی۔ جامنی بیج، ایڈمن کا دستی جائزہ لازمی ہو گا۔' : selectedLanguage === 'Bengali' ? 'স্থিতি পর্যালোচনা প্রয়োজন হবে। বেগুনি ব্যাজ, অ্যাডমিন ম্যানুয়াল পর্যালোচনা আবশ্যক।' : selectedLanguage === 'French' ? 'Le statut devient À réviser. Badge violet, révision manuelle de l\'administrateur requise.' : selectedLanguage === 'Mandarin' ? '状态变为“需要审查”。灰色/紫色徽章，在安排提醒前需要管理员进行人工审查。' : 'Status becomes Needs Review. Gray/purple badge, admin manual review required before reminder scheduling.'
                 }
               ].map((card, cIdx) => (
-                <div key={cIdx} className={`bg-white dark:bg-zinc-900 border ${card.borderClass} rounded-2xl p-6 flex flex-col justify-start items-start gap-2 h-full`}>
-                  <span className={`px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded border self-start ${card.badgeClass}`}>
+                <div key={cIdx} className="card-premium p-6 flex flex-col justify-start items-start gap-3 h-full">
+                  <span className={`px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider rounded-md border self-start ${card.badgeClass}`}>
                     {card.badge}
                   </span>
-                  <h4 className="font-bold text-foreground min-h-[2.5rem] flex items-center">{card.title}</h4>
-                  <p className="text-muted leading-relaxed">{card.desc}</p>
+                  <h4 className="font-heading font-bold text-sm text-zinc-900 dark:text-zinc-100 min-h-[2.5rem] flex items-center leading-tight">{card.title}</h4>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">{card.desc}</p>
                 </div>
               ))}
             </div>
@@ -432,25 +433,28 @@ export default function ServicesPage() {
         </section>
 
         {/* Support Banner Info Section */}
-        <section className="py-16 bg-[#0B0B0B] text-white overflow-hidden relative">
-          <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#F5C400]/5 rounded-full blur-[100px] pointer-events-none" />
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-8">
-            <h2 className="font-heading font-extrabold text-3xl sm:text-4xl">
-              Failing TLC Compliance Audits Costs Over $1,200 Annually
+        <section className="relative py-28 overflow-hidden text-center">
+          <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/hero-bg.png')" }} />
+          <div className="absolute inset-0 bg-black/85" />
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#F5C400]/8 rounded-full blur-[130px] pointer-events-none" />
+
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6">
+            <h2 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white leading-tight">
+              Failing TLC Compliance Audits Costs Over <span className="text-[#F5C400]">$1,200 Annually</span>
             </h2>
-            <p className="text-slate-400 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed font-medium">
+            <p className="text-zinc-400 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
               City rules are constantly updated, and late renewal fees pile up. JNI helps you track your checkpoints and sends proactive reminders straight to your smartphone.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 pt-4">
               <Link href="/auth/login">
-                <Button size="lg" className="w-full sm:w-auto bg-[#F5C400] text-[#0B0B0B] hover:bg-[#D9A300] font-bold border-0 px-8">
+                <button className="inline-flex items-center gap-2 bg-[#F5C400] text-black font-bold text-sm px-8 py-3.5 rounded-xl hover:bg-[#D9A300] transition-all duration-200">
                   Sign Up & Secure License
-                </Button>
+                </button>
               </Link>
               <Link href="/contact">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto border-2 border-white text-white hover:bg-white/10 font-bold px-8">
+                <button className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white font-bold text-sm px-8 py-3.5 rounded-xl hover:bg-white/25 transition-all duration-200">
                   Speak to an Expert
-                </Button>
+                </button>
               </Link>
             </div>
           </div>

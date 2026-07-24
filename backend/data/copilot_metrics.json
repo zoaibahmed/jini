@@ -504,5 +504,16 @@
     "cost": 0.0037400000000000003,
     "id": "40313245-2557-4ff2-be95-c58944e6d1a5",
     "createdAt": "2026-06-17T15:28:28.336Z"
+  },
+  {
+    "userId": "4d77a72b-2cc2-434d-8285-b4fe3366ac6f",
+    "provider": "OpenAI",
+    "modelName": "gpt-4o",
+    "promptTokens": 212,
+    "completionTokens": 37,
+    "durationMs": 2906,
+    "cost": 0.0016150000000000001,
+    "id": "a6b5502e-d884-4b8a-83b2-fe5037290f2d",
+    "createdAt": "2026-07-09T05:44:05.626Z"
   }
 ]

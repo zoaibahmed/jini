@@ -9,10 +9,12 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
 import { useLanguage } from '@/app/language-provider';
+import { useTheme } from '@/app/theme-provider';
 
 export default function PricingPage() {
   const [billingPeriod, setBillingPeriod] = useState<'monthly' | 'yearly'>('monthly');
   const { language: selectedLanguage } = useLanguage();
+  const { theme } = useTheme();
 
   const title = selectedLanguage === 'Spanish' ? 'Precios Simples y Transparentes'
     : selectedLanguage === 'Urdu' ? 'سادہ اور شفاف قیمتیں'
@@ -148,29 +150,33 @@ export default function PricingPage() {
 
       <main className="flex-1">
         {/* Intro */}
-        <section className="relative py-20 bg-[radial-gradient(#f5c400_1px,transparent_1px)] [background-size:32px_32px] bg-opacity-[0.03] dark:bg-opacity-[0.015] border-b border-slate-100 dark:border-zinc-800 transition-colors duration-300">
-          <div className="absolute inset-0 bg-gradient-to-b from-[#F5C400]/5 to-transparent pointer-events-none" />
+        <section className="relative py-24 lg:py-32 overflow-hidden border-b border-slate-200 dark:border-zinc-900 bg-slate-50 dark:bg-black transition-colors duration-300">
+          {/* NYC Background overlay */}
+          <div
+            className="absolute inset-0 bg-cover bg-center opacity-15 dark:opacity-30 mix-blend-luminosity transition-all duration-300"
+            style={{ backgroundImage: "url('/section-bg.png')" }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/80 to-slate-50 dark:from-zinc-950 dark:via-zinc-950/80 dark:to-zinc-950 transition-colors duration-300" />
+          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#F5C400]/40 to-transparent" />
+
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
             <motion.h1
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-[#111111] dark:text-white leading-tight"
+              className="font-heading font-extrabold text-5xl sm:text-6xl tracking-tight text-slate-900 dark:text-white leading-[1.1]"
             >
-              Simple, Transparent Pricing <br />
-              <span className="relative inline-block mt-2">
-                <span className="relative z-10 px-2 text-[#0B0B0B] dark:text-[#F5C400]">No Hidden Costs</span>
-                <span className="absolute inset-x-0 bottom-1 h-3 bg-[#F5C400]/80 dark:bg-[#F5C400]/20 -rotate-1 z-0 rounded-sm" />
-              </span>
+              {title} <br />
+              <span className="text-gold-gradient mt-2 inline-block font-black">{subtitle}</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-slate-500 dark:text-slate-400 text-base sm:text-lg max-w-2xl mx-auto font-medium"
+              className="text-slate-650 dark:text-zinc-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed font-medium"
             >
-              Get started with our free tier or upgrade to Premium for complete AI support, real-time surge tools, and push warning systems.
+              {desc}
             </motion.p>
 
             {/* Toggle Billing */}
@@ -180,27 +186,29 @@ export default function PricingPage() {
               transition={{ duration: 0.3, delay: 0.2 }}
               className="flex justify-center items-center pt-4"
             >
-              <div className="bg-slate-100 dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 p-1 rounded-xl flex items-center space-x-1">
+              <div className="bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-1 rounded-xl flex items-center space-x-1">
                 <button
                   onClick={() => setBillingPeriod('monthly')}
-                  className={`px-4 py-2 text-xs font-bold rounded-lg transition-all ${
+                  className={`px-5 py-2 text-xs font-bold rounded-lg transition-all cursor-pointer ${
                     billingPeriod === 'monthly'
-                      ? 'bg-white dark:bg-zinc-800 text-[#0B0B0B] dark:text-white shadow-sm'
-                      : 'text-slate-500 dark:text-slate-400 hover:text-[#0B0B0B] dark:hover:text-white'
+                      ? 'bg-[#F5C400] text-black shadow-md'
+                      : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white'
                   }`}
                 >
                   Monthly billing
                 </button>
                 <button
                   onClick={() => setBillingPeriod('yearly')}
-                  className={`px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 ${
+                  className={`px-5 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 cursor-pointer ${
                     billingPeriod === 'yearly'
-                      ? 'bg-white dark:bg-zinc-800 text-[#0B0B0B] dark:text-white shadow-sm'
-                      : 'text-slate-500 dark:text-slate-400 hover:text-[#0B0B0B] dark:hover:text-white'
+                      ? 'bg-[#F5C400] text-black shadow-md'
+                      : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white'
                   }`}
                 >
                   <span>Yearly billing</span>
-                  <span className="bg-[#F5C400] text-[#0B0B0B] text-[9px] font-extrabold px-1.5 py-0.5 rounded-md uppercase tracking-wider">
+                  <span className={`text-[8px] font-extrabold px-1.5 py-0.5 rounded uppercase tracking-wider ${
+                    billingPeriod === 'yearly' ? 'bg-black text-[#F5C400]' : 'bg-[#F5C400] text-black'
+                  }`}>
                     Save ~20%
                   </span>
                 </button>
@@ -210,9 +218,9 @@ export default function PricingPage() {
         </section>
 
         {/* Pricing Cards */}
-        <section className="py-20 bg-background">
+        <section className="py-24 lg:py-32 bg-zinc-50 dark:bg-[#080808]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
               {plans.map((plan, idx) => (
                 <motion.div
                   key={idx}
@@ -222,62 +230,77 @@ export default function PricingPage() {
                   transition={{ duration: 0.4, delay: idx * 0.1 }}
                   className={`rounded-2xl p-8 border flex flex-col justify-between relative transition-all duration-300 ${
                     plan.popular
-                      ? 'border-2 border-[#F5C400] dark:border-[#F5C400] bg-white dark:bg-zinc-900 shadow-xl shadow-black/5 dark:shadow-black/20 scale-105 z-10'
-                      : 'border-slate-200 dark:border-zinc-800 bg-slate-50/50 dark:bg-zinc-900/20 hover:border-[#F5C400]/40'
+                      ? 'bg-zinc-950 border-[#F5C400]/40 shadow-2xl shadow-[#F5C400]/5 glow-gold-sm z-10'
+                      : 'card-premium'
                   }`}
                 >
                   {plan.popular && (
-                    <span className="absolute top-0 right-8 -translate-y-1/2 bg-[#F5C400] text-[#0B0B0B] text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-[#D9A300]">
-                      Popular Option
-                    </span>
+                    <>
+                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#F5C400]/8 via-transparent to-transparent pointer-events-none" />
+                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#F5C400] text-black text-[9px] font-extrabold px-4 py-1 rounded-full uppercase tracking-widest whitespace-nowrap shadow-lg">⚡ Most Popular</span>
+                    </>
                   )}
 
-                  <div className="space-y-6">
+                  <div className="space-y-6 relative z-10">
                     <div>
-                      <h3 className="font-heading font-extrabold text-lg text-[#0B0B0B] dark:text-white">{plan.name}</h3>
-                      <p className="text-xs text-slate-500 dark:text-slate-400 font-semibold mt-1">{plan.description}</p>
+                      <h3 className={`font-heading font-bold text-base mb-1 ${
+                        plan.popular ? 'text-[#F5C400]' : 'text-zinc-500 dark:text-zinc-400'
+                      }`}>{plan.name}</h3>
+                      <p className={`text-xs ${
+                        plan.popular ? 'text-zinc-400' : 'text-zinc-500 dark:text-zinc-500'
+                      }`}>{plan.description}</p>
                     </div>
 
                     <div className="flex items-baseline space-x-1 py-2">
-                      <span className="text-4xl font-heading font-extrabold text-[#0B0B0B] dark:text-white">${plan.price}</span>
-                      <span className="text-slate-400 dark:text-slate-500 text-xs font-semibold">{plan.period}</span>
+                      <span className={`text-5xl font-heading font-extrabold ${
+                        plan.popular ? 'text-white' : 'text-zinc-900 dark:text-white'
+                      }`}>${plan.price}</span>
+                      <span className={`text-xs ${
+                        plan.popular ? 'text-zinc-500' : 'text-zinc-400'
+                      }`}>{plan.period}</span>
                     </div>
 
                     {plan.savings && (
-                      <p className="text-[10px] text-emerald-600 dark:text-emerald-400 font-extrabold uppercase tracking-wide bg-emerald-50 dark:bg-emerald-950/20 px-2 py-0.5 rounded border border-emerald-100 dark:border-emerald-900/30 inline-block">
+                      <p className={`text-[10px] font-extrabold uppercase tracking-wide px-2 py-0.5 rounded border inline-block ${
+                        plan.popular
+                          ? 'bg-[#F5C400]/10 border-[#F5C400]/20 text-[#F5C400]'
+                          : 'bg-emerald-500/10 border-emerald-500/20 text-emerald-500'
+                      }`}>
                         {plan.savings}
                       </p>
                     )}
 
-                    <hr className="border-slate-200 dark:border-zinc-850" />
+                    <hr className={plan.popular ? 'border-zinc-800' : 'border-zinc-100 dark:border-zinc-800'} />
 
                     <ul className="space-y-3.5">
                       {plan.features.map((feature, fIdx) => (
-                        <li key={fIdx} className="flex items-center text-xs font-semibold text-[#111111] dark:text-zinc-200">
-                          <Check className="w-4 h-4 text-[#F5C400] mr-2.5 flex-shrink-0" />
-                          <span>{feature}</span>
+                        <li key={fIdx} className="flex items-start text-xs font-medium">
+                          <div className={`w-4 h-4 rounded-full shrink-0 flex items-center justify-center mt-0.5 mr-2.5 ${
+                            plan.popular ? 'bg-[#F5C400]/15 text-[#F5C400]' : 'bg-emerald-500/10 text-emerald-500'
+                          }`}>
+                            <Check className="w-2.5 h-2.5" strokeWidth={3} />
+                          </div>
+                          <span className={plan.popular ? 'text-zinc-300' : 'text-zinc-700 dark:text-zinc-300'}>{feature}</span>
                         </li>
                       ))}
                       {plan.notIncluded.map((feature, fIdx) => (
-                        <li key={fIdx} className="flex items-center text-xs font-semibold text-slate-400 line-through">
-                          <X className="w-4 h-4 text-slate-300 mr-2.5 flex-shrink-0" />
+                        <li key={fIdx} className="flex items-start text-xs font-medium text-zinc-400/50 line-through">
+                          <X className="w-4 h-4 text-zinc-400/30 mr-2.5 mt-0.5 shrink-0" />
                           <span>{feature}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  <div className="pt-8">
-                    <Link href="/auth/login" className="w-full">
-                      <Button
-                        className={`w-full font-bold text-xs py-3 rounded-xl border-0 transition-colors ${
-                          plan.popular
-                            ? 'bg-[#F5C400] text-[#0B0B0B] hover:bg-[#D9A300]'
-                            : 'bg-[#0B0B0B] dark:bg-zinc-800 text-white hover:bg-[#F5C400] dark:hover:bg-[#F5C400] hover:text-[#0B0B0B] dark:hover:text-[#0B0B0B]'
-                        }`}
-                      >
+                  <div className="pt-8 relative z-10">
+                    <Link href="/auth/login" className="block w-full">
+                      <button className={`w-full font-bold text-sm py-3.5 rounded-xl transition-all duration-200 ${
+                        plan.popular
+                          ? 'bg-[#F5C400] text-black hover:bg-[#D9A300] shadow-lg shadow-[#F5C400]/20'
+                          : 'bg-zinc-900 dark:bg-zinc-800 text-white hover:bg-[#F5C400] hover:text-black border border-zinc-200 dark:border-zinc-700'
+                      }`}>
                         {plan.cta}
-                      </Button>
+                      </button>
                     </Link>
                   </div>
                 </motion.div>
@@ -287,43 +310,43 @@ export default function PricingPage() {
         </section>
 
         {/* Feature Comparison Matrix Table */}
-        <section className="py-20 bg-[#F5F5F5]/40 dark:bg-zinc-900/10 border-t border-slate-200 dark:border-zinc-800 transition-colors duration-300">
+        <section className="py-24 lg:py-32 bg-white dark:bg-zinc-950 border-t border-zinc-100 dark:border-zinc-900">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16 space-y-4">
-              <h2 className="font-heading font-extrabold text-2xl sm:text-3xl text-[#0B0B0B] dark:text-white">Compare Plan Features</h2>
-              <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-medium">Deep dive comparisons of feature access levels.</p>
+              <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-zinc-900 dark:text-white">Compare Plan Features</h2>
+              <p className="text-zinc-500 dark:text-zinc-400 text-sm">Deep dive comparisons of feature access levels.</p>
             </div>
 
-            <div className="overflow-x-auto border border-slate-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900 shadow-sm transition-colors duration-300">
-              <table className="w-full text-left border-collapse text-xs font-semibold">
+            <div className="overflow-x-auto border border-zinc-200 dark:border-zinc-800 rounded-2xl bg-[#0b0b0b] dark:bg-zinc-950 shadow-xl overflow-hidden">
+              <table className="w-full text-left border-collapse text-xs font-medium">
                 <thead>
-                  <tr className="bg-[#0B0B0B] text-white">
-                    <th className="p-4 font-bold">Feature Name</th>
-                    <th className="p-4 font-bold text-center w-1/4">Basic</th>
-                    <th className="p-4 font-bold text-center w-1/4">Premium Pro</th>
-                    <th className="p-4 font-bold text-center w-1/4">Enterprise</th>
+                  <tr className="bg-zinc-900 border-b border-zinc-800 text-zinc-400">
+                    <th className="p-5 font-bold uppercase tracking-wider text-[10px]">Feature Name</th>
+                    <th className="p-5 font-bold text-center w-1/4 uppercase tracking-wider text-[10px]">Basic</th>
+                    <th className="p-5 font-bold text-center w-1/4 uppercase tracking-wider text-[10px] text-[#F5C400]">Premium Pro</th>
+                    <th className="p-5 font-bold text-center w-1/4 uppercase tracking-wider text-[10px]">Enterprise</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-200 dark:divide-zinc-800">
+                <tbody className="divide-y divide-zinc-800/60 bg-zinc-950/40 text-zinc-300">
                   {featuresComparison.map((feat, idx) => (
-                    <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-zinc-800/50">
-                      <td className="p-4">
-                        <span className="block font-bold text-[#111111] dark:text-zinc-200">{feat.name}</span>
-                        <span className="text-[9px] text-slate-400 font-medium">{feat.category}</span>
+                    <tr key={idx} className="hover:bg-zinc-900/40 transition-colors">
+                      <td className="p-5">
+                        <span className="block font-bold text-white mb-0.5">{feat.name}</span>
+                        <span className="text-[9px] text-zinc-500 font-bold uppercase tracking-wider">{feat.category}</span>
                       </td>
-                      <td className="p-4 text-center text-slate-500 dark:text-slate-400">
+                      <td className="p-5 text-center text-zinc-400">
                         {typeof feat.basic === 'boolean' ? (
-                          feat.basic ? <Check className="w-4 h-4 text-emerald-500 mx-auto" /> : <X className="w-4 h-4 text-slate-300 mx-auto" />
+                          feat.basic ? <Check className="w-4 h-4 text-emerald-400 mx-auto" /> : <X className="w-4 h-4 text-zinc-700 mx-auto" />
                         ) : feat.basic}
                       </td>
-                      <td className="p-4 text-center text-[#0B0B0B] dark:text-white font-bold">
+                      <td className="p-5 text-center text-[#F5C400] font-bold">
                         {typeof feat.premium === 'boolean' ? (
-                          feat.premium ? <Check className="w-4 h-4 text-[#D9A300] mx-auto" /> : <X className="w-4 h-4 text-slate-300 mx-auto" />
+                          feat.premium ? <Check className="w-4 h-4 text-[#F5C400] mx-auto" /> : <X className="w-4 h-4 text-zinc-700 mx-auto" />
                         ) : feat.premium}
                       </td>
-                      <td className="p-4 text-center text-slate-700 dark:text-slate-300">
+                      <td className="p-5 text-center text-zinc-400">
                         {typeof feat.enterprise === 'boolean' ? (
-                          feat.enterprise ? <Check className="w-4 h-4 text-slate-600 dark:text-slate-400 mx-auto" /> : <X className="w-4 h-4 text-slate-300 mx-auto" />
+                          feat.enterprise ? <Check className="w-4 h-4 text-zinc-400 mx-auto" /> : <X className="w-4 h-4 text-zinc-700 mx-auto" />
                         ) : feat.enterprise}
                       </td>
                     </tr>

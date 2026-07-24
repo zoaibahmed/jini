@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 
 import { useLanguage } from '@/app/language-provider';
+import { useTheme } from '@/app/theme-provider';
 
 export default function ContactPage() {
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -23,6 +24,7 @@ export default function ContactPage() {
     message: ''
   });
   const { language: selectedLanguage } = useLanguage();
+  const { theme } = useTheme();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -127,27 +129,31 @@ export default function ContactPage() {
 
       <main className="flex-1">
         {/* Banner Hero */}
-        <section className="relative py-20 bg-[radial-gradient(#f5c400_1px,transparent_1px)] [background-size:32px_32px] bg-opacity-[0.03] dark:bg-opacity-[0.015] border-b border-slate-100 dark:border-zinc-800 transition-colors duration-300">
-          <div className="absolute inset-0 bg-gradient-to-b from-[#F5C400]/5 to-transparent pointer-events-none" />
+        <section className="relative py-24 lg:py-32 overflow-hidden border-b border-slate-200 dark:border-zinc-900 bg-slate-50 dark:bg-black transition-colors duration-300">
+          {/* NYC Background overlay */}
+          <div
+            className="absolute inset-0 bg-cover bg-center opacity-15 dark:opacity-30 mix-blend-luminosity transition-all duration-300"
+            style={{ backgroundImage: "url('/section-bg.png')" }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/80 to-slate-50 dark:from-zinc-950 dark:via-zinc-950/80 dark:to-zinc-950 transition-colors duration-300" />
+          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#F5C400]/40 to-transparent" />
+
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
             <motion.h1
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-[#111111] dark:text-white leading-tight"
+              className="font-heading font-extrabold text-5xl sm:text-6xl tracking-tight text-slate-900 dark:text-white leading-[1.1]"
             >
               {title1} <br />
-              <span className="relative inline-block mt-2">
-                <span className="relative z-10 px-2 text-[#0B0B0B] dark:text-[#F5C400]">{titleHighlight}</span>
-                <span className="absolute inset-x-0 bottom-1 h-3 bg-[#F5C400]/80 dark:bg-[#F5C400]/20 -rotate-1 z-0 rounded-sm" />
-              </span>
+              <span className="text-gold-gradient mt-2 inline-block font-black">{titleHighlight}</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-slate-500 dark:text-slate-400 text-base sm:text-lg max-w-2xl mx-auto font-medium"
+              className="text-slate-650 dark:text-zinc-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed font-medium"
             >
               {subtitle1}
             </motion.p>
@@ -155,88 +161,70 @@ export default function ContactPage() {
         </section>
 
         {/* Content Panel */}
-        <section className="py-20 bg-background">
+        <section className="py-24 lg:py-32 bg-zinc-50 dark:bg-[#080808]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
               
               {/* Form Block (L) */}
               <div className="lg:col-span-7">
-                <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 p-8 rounded-2xl shadow-sm transition-colors duration-300">
+                <div className="card-premium p-8 bg-white dark:bg-zinc-950">
                   {formSubmitted ? (
                     <motion.div
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
                       className="text-center py-12 space-y-4"
                     >
-                      <div className="w-16 h-16 bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-900/30 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <div className="w-16 h-16 bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
                         <CheckCircle className="w-8 h-8" />
                       </div>
-                      <h3 className="text-xl font-heading font-extrabold text-[#0B0B0B] dark:text-white">Message Transmitted Successfully</h3>
-                      <p className="text-slate-500 dark:text-slate-400 text-xs font-semibold max-w-md mx-auto">
+                      <h3 className="text-xl font-heading font-extrabold text-zinc-900 dark:text-white">Message Transmitted Successfully</h3>
+                      <p className="text-zinc-500 dark:text-zinc-400 text-xs max-w-md mx-auto">
                         Thank you for contacting JNI Solutions. A driver support representative will review your message and reply via email or phone within 2 hours.
                       </p>
-                      <Button
+                      <button
                         onClick={() => setFormSubmitted(false)}
-                        className="bg-[#0B0B0B] text-white hover:bg-[#F5C400] hover:text-[#0B0B0B] border-0 mt-6 font-bold text-xs"
+                        className="px-5 py-2.5 rounded-xl bg-zinc-900 dark:bg-zinc-800 text-white hover:bg-[#F5C400] hover:text-black transition-all text-xs font-bold"
                       >
                         Submit another request
-                      </Button>
+                      </button>
                     </motion.div>
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-6">
-                      <h3 className="font-heading font-extrabold text-xl text-[#0B0B0B] dark:text-white mb-2">Submit Support Case</h3>
+                      <h3 className="font-heading font-bold text-xl text-zinc-900 dark:text-white mb-2">Submit Support Case</h3>
                       
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div className="space-y-2">
-                          <label className="text-xs font-bold text-slate-700 dark:text-slate-350 block" htmlFor="name">Full Name</label>
+                          <label className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 block" htmlFor="name">Full Name</label>
                           <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            required
-                            value={formData.name}
-                            onChange={handleChange}
-                            placeholder="John Doe"
-                            className="w-full bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 focus:border-[#F5C400] focus:ring-1 focus:ring-[#F5C400] text-xs font-semibold p-3.5 rounded-xl outline-none transition-all text-[#111111] dark:text-white"
+                            type="text" id="name" name="name" required
+                            value={formData.name} onChange={handleChange} placeholder="John Doe"
+                            className="w-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:border-[#F5C400] text-xs p-3.5 rounded-xl outline-none transition-all text-zinc-900 dark:text-white"
                           />
                         </div>
                         <div className="space-y-2">
-                          <label className="text-xs font-bold text-slate-700 dark:text-slate-350 block" htmlFor="email">Email Address</label>
+                          <label className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 block" htmlFor="email">Email Address</label>
                           <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            required
-                            value={formData.email}
-                            onChange={handleChange}
-                            placeholder="driver@example.com"
-                            className="w-full bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 focus:border-[#F5C400] focus:ring-1 focus:ring-[#F5C400] text-xs font-semibold p-3.5 rounded-xl outline-none transition-all text-[#111111] dark:text-white"
+                            type="email" id="email" name="email" required
+                            value={formData.email} onChange={handleChange} placeholder="driver@example.com"
+                            className="w-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:border-[#F5C400] text-xs p-3.5 rounded-xl outline-none transition-all text-zinc-900 dark:text-white"
                           />
                         </div>
                       </div>
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div className="space-y-2">
-                          <label className="text-xs font-bold text-slate-700 dark:text-slate-350 block" htmlFor="phone">Phone Number</label>
+                          <label className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 block" htmlFor="phone">Phone Number</label>
                           <input
-                            type="tel"
-                            id="phone"
-                            name="phone"
-                            required
-                            value={formData.phone}
-                            onChange={handleChange}
-                            placeholder="+1 (718) 555-0199"
-                            className="w-full bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 focus:border-[#F5C400] focus:ring-1 focus:ring-[#F5C400] text-xs font-semibold p-3.5 rounded-xl outline-none transition-all text-[#111111] dark:text-white"
+                            type="tel" id="phone" name="phone" required
+                            value={formData.phone} onChange={handleChange} placeholder="+1 (718) 555-0199"
+                            className="w-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:border-[#F5C400] text-xs p-3.5 rounded-xl outline-none transition-all text-zinc-900 dark:text-white"
                           />
                         </div>
                         <div className="space-y-2">
-                          <label className="text-xs font-bold text-slate-700 dark:text-slate-350 block" htmlFor="subject">Request Type</label>
+                          <label className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 block" htmlFor="subject">Request Type</label>
                           <select
-                            id="subject"
-                            name="subject"
-                            value={formData.subject}
-                            onChange={handleChange}
-                            className="w-full bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 focus:border-[#F5C400] focus:ring-1 focus:ring-[#F5C400] text-xs font-semibold p-3.5 rounded-xl outline-none transition-all text-[#111111] dark:text-white appearance-none"
+                            id="subject" name="subject" value={formData.subject} onChange={handleChange}
+                            className="w-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:border-[#F5C400] text-xs p-3.5 rounded-xl outline-none transition-all text-zinc-900 dark:text-white appearance-none"
                           >
                             <option>General Compliance Inquiry</option>
                             <option>TLC Woodside Booking Dispute</option>
@@ -248,26 +236,22 @@ export default function ContactPage() {
                       </div>
 
                       <div className="space-y-2">
-                        <label className="text-xs font-bold text-slate-700 dark:text-slate-350 block" htmlFor="message">Message</label>
+                        <label className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 block" htmlFor="message">Message</label>
                         <textarea
-                          id="message"
-                          name="message"
-                          required
-                          rows={5}
-                          value={formData.message}
-                          onChange={handleChange}
+                          id="message" name="message" required rows={5}
+                          value={formData.message} onChange={handleChange}
                           placeholder="Please provide details about your TLC ticket, vehicle vin, plate status, or DMV inquiry..."
-                          className="w-full bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 focus:border-[#F5C400] focus:ring-1 focus:ring-[#F5C400] text-xs font-semibold p-3.5 rounded-xl outline-none transition-all text-[#111111] dark:text-white resize-none"
+                          className="w-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:border-[#F5C400] text-xs p-3.5 rounded-xl outline-none transition-all text-zinc-900 dark:text-white resize-none"
                         />
                       </div>
 
-                      <Button
+                      <button
                         type="submit"
-                        className="w-full bg-[#F5C400] text-[#0B0B0B] hover:bg-[#D9A300] font-bold text-xs py-3.5 border-0 rounded-xl transition-colors flex items-center justify-center gap-2"
+                        className="w-full bg-[#F5C400] hover:bg-[#D9A300] text-black font-bold text-sm py-3.5 rounded-xl transition-all shadow-lg shadow-[#F5C400]/20 flex items-center justify-center gap-2"
                       >
                         <Send className="w-4 h-4" />
                         <span>Send Message</span>
-                      </Button>
+                      </button>
                     </form>
                   )}
                 </div>
@@ -277,77 +261,85 @@ export default function ContactPage() {
               <div className="lg:col-span-5 space-y-8">
                 
                 {/* Visual Location block */}
-                <div className="bg-[#0B0B0B] text-white p-8 rounded-2xl space-y-6 relative overflow-hidden">
+                <div className="bg-[#0b0b0b] text-white p-8 rounded-2xl space-y-6 relative overflow-hidden border border-zinc-800">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-[#F5C400]/10 rounded-full blur-2xl pointer-events-none" />
                   
-                  <h3 className="font-heading font-extrabold text-xl">Direct Coordinates</h3>
+                  <h3 className="font-heading font-bold text-xl">Direct Coordinates</h3>
                   
-                  <div className="space-y-4 font-semibold text-xs text-slate-300">
-                    <div className="flex items-start space-x-3">
+                  <div className="space-y-5 text-xs text-zinc-400">
+                    <div className="flex items-start space-x-3.5">
                       <MapPin className="w-5 h-5 text-[#F5C400] shrink-0" />
                       <div>
                         <strong className="text-white block font-bold text-sm">Queens Office Hub</strong>
-                        <span className="text-[11px] block mt-1 leading-relaxed">120 Woodside Ave, Queens, NY 11377</span>
+                        <span className="text-[11px] block mt-1 leading-relaxed text-zinc-400">120 Woodside Ave, Queens, NY 11377</span>
                       </div>
                     </div>
 
-                    <div className="flex items-start space-x-3">
+                    <div className="flex items-start space-x-3.5">
                       <PhoneCall className="w-5 h-5 text-[#F5C400] shrink-0" />
                       <div>
                         <strong className="text-white block font-bold text-sm">Phone Line Support</strong>
-                        <span className="text-[11px] block mt-1 text-slate-400">Phone support coming soon</span>
+                        <span className="text-[11px] block mt-1 text-zinc-500">Phone support coming soon</span>
                       </div>
                     </div>
 
-                    <div className="flex items-start space-x-3">
+                    <div className="flex items-start space-x-3.5">
                       <Mail className="w-5 h-5 text-[#F5C400] shrink-0" />
                       <div>
                         <strong className="text-white block font-bold text-sm">Email Mailbox</strong>
                         <span className="text-[11px] block mt-1 hover:text-[#F5C400] transition-colors">
-                          <a href="mailto:support@jnisolutionsllc.com" className="text-slate-300 hover:text-gold-primary transition-colors">support@jnisolutionsllc.com</a>
+                          <a href="mailto:support@jnisolutionsllc.com" className="text-zinc-400 hover:text-[#F5C400] transition-colors">support@jnisolutionsllc.com</a>
                         </span>
                       </div>
                     </div>
                   </div>
 
                   {/* Styled CSS Map Container */}
-                  <div className="border border-[#222222] rounded-xl overflow-hidden relative h-40 bg-[#161616] flex items-center justify-center">
+                  <div className="border border-[#222222] rounded-2xl overflow-hidden relative h-48 bg-zinc-950 flex items-center justify-center shadow-inner">
                     {/* Visual Vector Grid resembling Woodside Queens */}
-                    <div className="absolute inset-0 bg-[linear-gradient(rgba(245,196,0,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(245,196,0,0.05)_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none" />
+                    <div className="absolute inset-0 bg-[linear-gradient(rgba(245,196,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(245,196,0,0.03)_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
+                    
+                    {/* Radar Sweep Effect */}
+                    <div className="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_50%,rgba(245,196,0,0.08))] rounded-full animate-[spin_6s_linear_infinite] origin-center pointer-events-none scale-150" />
                     
                     {/* Simulated Map Streets */}
-                    <div className="absolute w-[2px] h-full bg-[#333333] left-1/3 rotate-12" />
-                    <div className="absolute w-[2px] h-full bg-[#333333] left-2/3 -rotate-12" />
-                    <div className="absolute w-full h-[2px] bg-[#333333] top-1/2" />
-                    <div className="absolute w-full h-[2px] bg-[#333333] top-1/4 -rotate-3" />
+                    <div className="absolute w-px h-full bg-zinc-900 left-1/3 rotate-12" />
+                    <div className="absolute w-px h-full bg-zinc-900 left-2/3 -rotate-12" />
+                    <div className="absolute w-full h-px bg-zinc-900 top-1/2" />
+                    <div className="absolute w-full h-px bg-zinc-900 top-1/4 -rotate-3" />
                     
+                    {/* Radar Circle Grid Rings */}
+                    <div className="absolute w-24 h-24 border border-zinc-900/60 rounded-full pointer-events-none" />
+                    <div className="absolute w-44 h-44 border border-zinc-900/40 rounded-full pointer-events-none" />
+                    <div className="absolute w-64 h-64 border border-zinc-900/20 rounded-full pointer-events-none" />
+
                     {/* Woodside TLC Marker */}
                     <div className="absolute top-1/4 left-1/3 flex flex-col items-center">
-                      <span className="w-2.5 h-2.5 rounded-full bg-slate-500 animate-ping absolute" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-slate-400 border border-white relative" />
-                      <span className="text-[7px] text-slate-400 font-bold bg-[#0B0B0B] border border-[#333333] px-1 py-0.5 rounded mt-1">Woodside TLC Depot</span>
+                      <span className="w-2.5 h-2.5 rounded-full bg-zinc-700 animate-ping absolute" />
+                      <span className="w-2 h-2 rounded-full bg-zinc-500 border border-zinc-700 relative z-10" />
+                      <span className="text-[7px] text-zinc-500 font-extrabold uppercase tracking-widest bg-black/85 border border-zinc-800 px-1.5 py-0.5 rounded mt-1 whitespace-nowrap">Woodside TLC Depot</span>
                     </div>
 
                     {/* JNI Solutions Marker */}
                     <div className="absolute top-1/2 left-2/3 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-                      <span className="w-4 h-4 rounded-full bg-[#F5C400]/40 animate-ping absolute" />
-                      <span className="w-3 h-3 rounded-full bg-[#F5C400] border border-white relative z-10" />
-                      <span className="text-[8px] text-[#0B0B0B] font-extrabold bg-[#F5C400] px-1.5 py-0.5 rounded mt-1 shadow-md">JNI Office Hub</span>
+                      <span className="w-4 h-4 rounded-full bg-[#F5C400]/30 animate-pulse absolute" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#F5C400] border border-white relative z-10" />
+                      <span className="text-[8px] text-black font-black uppercase tracking-wider bg-[#F5C400] px-2 py-0.5 rounded mt-1 shadow-lg whitespace-nowrap">JNI Office Hub</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Dispute FAQ list */}
-                <div className="space-y-4">
-                  <h4 className="font-heading font-extrabold text-base text-[#0B0B0B] dark:text-white flex items-center gap-1.5">
+                <div className="space-y-4 pt-2">
+                  <h4 className="font-heading font-bold text-base text-zinc-900 dark:text-white flex items-center gap-1.5">
                     <HelpCircle className="w-4 h-4 text-[#D9A300]" />
                     <span>Frequently Asked Questions</span>
                   </h4>
-                  <div className="divide-y divide-slate-200 dark:divide-zinc-800">
+                  <div className="divide-y divide-zinc-200 dark:divide-zinc-800 border-t border-zinc-200 dark:border-zinc-800">
                     {contactFaq.map((faq, idx) => (
-                      <div key={idx} className="py-3 space-y-1.5">
-                        <strong className="block text-xs font-bold text-[#0B0B0B] dark:text-white">{faq.q}</strong>
-                        <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed font-semibold">{faq.a}</p>
+                      <div key={idx} className="py-4 space-y-1.5">
+                        <strong className="block text-xs font-bold text-zinc-900 dark:text-white">{faq.q}</strong>
+                        <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">{faq.a}</p>
                       </div>
                     ))}
                   </div>

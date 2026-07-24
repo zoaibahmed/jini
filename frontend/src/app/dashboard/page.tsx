@@ -2592,7 +2592,7 @@ export default function DashboardOverview() {
                     </div>
                   ))
                 ) : (
-                  <div className="p-3 bg-muted-background/35 border border-border rounded-xl text-center text-[10px] text-muted">
+                  <div className="p-3 bg-muted-background/35 border border-border/30 rounded-xl text-center text-[10px] text-muted">
                     No active staff alerts broadcasted.
                   </div>
                 )}
@@ -2605,116 +2605,126 @@ export default function DashboardOverview() {
   }
 
   return (
-    <div className="space-y-6 animate-fade-in">
+    <div className="space-y-8 animate-fade-in relative z-10">
       
       {/* 1. Welcome Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-border pb-5">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-border/30 pb-6">
         <div>
-          <h1 className="font-heading font-extrabold text-2xl sm:text-3xl tracking-tight text-foreground">Driver Control Center</h1>
-          <p className="text-muted text-sm font-medium">Welcome back, {profile?.name || 'Driver'}. Track your compliance checks, booked appointments, and resources.</p>
+          <h1 className="font-heading font-black text-2xl sm:text-3xl tracking-tight text-zinc-900 dark:text-white">Driver Control Center</h1>
+          <p className="text-zinc-500 dark:text-zinc-400 text-xs sm:text-sm font-medium">Welcome back, {profile?.name || 'Driver'}. Manage your TLC profile status, upload documents, and track compliance tasks.</p>
         </div>
       </div>
 
-      {/* 2. Primary Compliance Status */}
+      {/* 2. Primary Compliance Status Grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         
         {/* TLC Status */}
-        <div className="bg-card border border-border p-4 rounded-2xl space-y-1 hover-card-glow transition-all">
-          <span className="text-[10px] text-muted font-bold uppercase tracking-wider block">TLC License</span>
-          <div className="flex items-center gap-1.5">
-            <span className={`w-2 h-2 rounded-full ${expiredChecks.length > 0 ? 'bg-red-500' : 'bg-emerald-500'}`} />
-            <strong className={`text-xs font-bold font-heading truncate ${expiredChecks.length > 0 ? 'text-red-500' : 'text-emerald-500'}`}>
-              {expiredChecks.length > 0 ? 'Action Required' : 'Compliant'}
-            </strong>
+        <div className="bg-white dark:bg-zinc-900/60 border border-border/30 p-5 rounded-2xl space-y-3 hover:border-zinc-350 dark:hover:border-zinc-800 transition-all duration-300 shadow-sm hover:scale-[1.01] relative overflow-hidden group">
+          <span className="text-[9px] text-zinc-450 dark:text-zinc-500 font-extrabold uppercase tracking-widest block">TLC License</span>
+          <div className="flex items-center">
+            {expiredChecks.length > 0 ? (
+              <span className="px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-wider bg-red-500/10 text-red-600 dark:text-red-400 flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" /> Action Required
+              </span>
+            ) : (
+              <span className="px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-wider bg-emerald-500/10 text-emerald-600 dark:text-emerald-450 flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> Compliant
+              </span>
+            )}
           </div>
         </div>
 
         {/* Insurance Status */}
-        <div className="bg-card border border-border p-4 rounded-2xl space-y-1 hover-card-glow transition-all">
-          <span className="text-[10px] text-muted font-bold uppercase tracking-wider block">Insurance</span>
-          <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-emerald-500" />
-            <strong className="text-xs font-bold font-heading text-emerald-500 truncate">Active</strong>
+        <div className="bg-white dark:bg-zinc-900/60 border border-border/30 p-5 rounded-2xl space-y-3 hover:border-zinc-350 dark:hover:border-zinc-800 transition-all duration-300 shadow-sm hover:scale-[1.01] relative overflow-hidden group">
+          <span className="text-[9px] text-zinc-450 dark:text-zinc-500 font-extrabold uppercase tracking-widest block">Insurance</span>
+          <div className="flex items-center">
+            <span className="px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-wider bg-emerald-500/10 text-emerald-600 dark:text-emerald-450 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> Active
+            </span>
           </div>
         </div>
 
         {/* Registration Status */}
-        <div className="bg-card border border-border p-4 rounded-2xl space-y-1 hover-card-glow transition-all">
-          <span className="text-[10px] text-muted font-bold uppercase tracking-wider block">Registration</span>
-          <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-emerald-500" />
-            <strong className="text-xs font-bold font-heading text-emerald-500 truncate">Valid</strong>
+        <div className="bg-white dark:bg-zinc-900/60 border border-border/30 p-5 rounded-2xl space-y-3 hover:border-zinc-350 dark:hover:border-zinc-800 transition-all duration-300 shadow-sm hover:scale-[1.01] relative overflow-hidden group">
+          <span className="text-[9px] text-zinc-450 dark:text-zinc-500 font-extrabold uppercase tracking-widest block">Registration</span>
+          <div className="flex items-center">
+            <span className="px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-wider bg-emerald-500/10 text-emerald-600 dark:text-emerald-450 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> Valid
+            </span>
           </div>
         </div>
 
         {/* Vehicle Inspection Status */}
-        <div className="bg-card border border-border p-4 rounded-2xl space-y-1 hover-card-glow transition-all">
-          <span className="text-[10px] text-muted font-bold uppercase tracking-wider block">Vehicle Inspection</span>
-          <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-emerald-500" />
-            <strong className="text-xs font-bold font-heading text-emerald-500 truncate">Passed</strong>
+        <div className="bg-white dark:bg-zinc-900/60 border border-border/30 p-5 rounded-2xl space-y-3 hover:border-zinc-350 dark:hover:border-zinc-800 transition-all duration-300 shadow-sm hover:scale-[1.01] relative overflow-hidden group">
+          <span className="text-[9px] text-zinc-450 dark:text-zinc-500 font-extrabold uppercase tracking-widest block">Inspection (COT)</span>
+          <div className="flex items-center">
+            <span className="px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-wider bg-emerald-500/10 text-emerald-600 dark:text-emerald-450 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> Passed
+            </span>
           </div>
         </div>
 
         {/* Drug Test Status */}
-        <div className="bg-card border border-border p-4 rounded-2xl space-y-1 hover-card-glow transition-all">
-          <span className="text-[10px] text-muted font-bold uppercase tracking-wider block">Drug Test</span>
-          <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-amber-500" />
-            <strong className="text-xs font-bold font-heading text-amber-500 truncate">Due Soon</strong>
+        <div className="bg-white dark:bg-zinc-900/60 border border-border/30 p-5 rounded-2xl space-y-3 hover:border-zinc-350 dark:hover:border-zinc-800 transition-all duration-300 shadow-sm hover:scale-[1.01] relative overflow-hidden group">
+          <span className="text-[9px] text-zinc-450 dark:text-zinc-500 font-extrabold uppercase tracking-widest block">Drug Test</span>
+          <div className="flex items-center">
+            <span className="px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-wider bg-amber-500/10 text-amber-600 dark:text-amber-450 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" /> Due Soon
+            </span>
           </div>
         </div>
 
       </div>
 
-      {/* 2.5 Secondary Overview */}
+      {/* 2.5 Secondary Overview Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {/* Support Tickets */}
-        <div className="bg-card border border-border p-4 rounded-2xl space-y-1 hover-card-glow transition-all">
-          <span className="text-[10px] text-muted font-bold uppercase tracking-wider block">Open Support Tickets</span>
-          <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-amber-500" />
-            <strong className="text-xs font-bold font-heading text-foreground truncate">{statsSummary.supportTickets}</strong>
+        <div className="bg-white dark:bg-zinc-900/40 border border-border/20 p-5 rounded-2xl space-y-1.5 shadow-sm hover:border-zinc-350 dark:hover:border-zinc-800 transition-all">
+          <span className="text-[9px] text-zinc-450 dark:text-zinc-500 font-bold uppercase tracking-wider block">Open Tickets</span>
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+            <strong className="text-xs font-extrabold text-zinc-800 dark:text-zinc-250 truncate">{statsSummary.supportTickets} Open</strong>
           </div>
         </div>
 
         {/* Documents Count */}
-        <div className="bg-card border border-border p-4 rounded-2xl space-y-1 hover-card-glow transition-all">
-          <span className="text-[10px] text-muted font-bold uppercase tracking-wider block">Recent Uploads</span>
-          <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-gold-primary" />
-            <strong className="text-xs font-bold font-heading text-foreground truncate">{statsSummary.documentsCount} documents</strong>
+        <div className="bg-white dark:bg-zinc-900/40 border border-border/20 p-5 rounded-2xl space-y-1.5 shadow-sm hover:border-zinc-350 dark:hover:border-zinc-800 transition-all">
+          <span className="text-[9px] text-zinc-450 dark:text-zinc-500 font-bold uppercase tracking-wider block">Vault Uploads</span>
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-gold-primary" />
+            <strong className="text-xs font-extrabold text-zinc-800 dark:text-zinc-250 truncate">{statsSummary.documentsCount} Active Documents</strong>
           </div>
         </div>
 
         {/* Upcoming Deadlines */}
-        <div className="bg-card border border-border p-4 rounded-2xl space-y-1 hover-card-glow transition-all">
-          <span className="text-[10px] text-muted font-bold uppercase tracking-wider block">Upcoming Deadlines</span>
-          <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-red-500" />
-            <strong className="text-xs font-bold font-heading text-foreground truncate">{pendingChecks.length} action(s) needed</strong>
+        <div className="bg-white dark:bg-zinc-900/40 border border-border/20 p-5 rounded-2xl space-y-1.5 shadow-sm hover:border-zinc-350 dark:hover:border-zinc-800 transition-all">
+          <span className="text-[9px] text-zinc-450 dark:text-zinc-500 font-bold uppercase tracking-wider block">Action Items</span>
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+            <strong className="text-xs font-extrabold text-zinc-800 dark:text-zinc-250 truncate">{pendingChecks.length} Requirements</strong>
           </div>
         </div>
 
         {/* Subscription Plan */}
-        <div className="bg-card border border-border p-4 rounded-2xl space-y-1 hover-card-glow transition-all">
-          <span className="text-[10px] text-muted font-bold uppercase tracking-wider block">Subscription Status</span>
-          <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-gold-primary" />
-            <strong className="text-xs font-bold font-heading text-foreground truncate">{statsSummary.subscriptionPlan}</strong>
+        <div className="bg-white dark:bg-zinc-900/40 border border-border/20 p-5 rounded-2xl space-y-1.5 shadow-sm hover:border-zinc-350 dark:hover:border-zinc-800 transition-all">
+          <span className="text-[9px] text-zinc-450 dark:text-zinc-500 font-bold uppercase tracking-wider block">Subscription Plan</span>
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-gold-primary" />
+            <strong className="text-xs font-extrabold text-zinc-800 dark:text-zinc-250 truncate">{statsSummary.subscriptionPlan} Tier</strong>
           </div>
         </div>
       </div>
 
-      {/* 3. Analytics Highlights */}
+      {/* 3. Analytics Highlights Row */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         
         {/* Compliance Warning Card */}
-        <div className="bg-card border border-border rounded-2xl p-5 flex flex-col justify-between hover-card-glow transition-all">
+        <div className="bg-white dark:bg-zinc-900/60 border border-border/30 rounded-2xl p-6 flex flex-col justify-between hover:shadow-md transition-all hover:scale-[1.005] group relative overflow-hidden">
+          <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-[#F5C400]/25 to-transparent" />
           <div className="flex justify-between items-start">
-            <div>
-              <p className="text-[10px] text-muted font-bold uppercase tracking-wider">Compliance Items</p>
-              <h3 className="text-3xl font-heading font-extrabold mt-1 text-foreground">
+            <div className="space-y-1.5">
+              <p className="text-[9px] text-zinc-450 dark:text-zinc-500 font-bold uppercase tracking-wider">Compliance Items</p>
+              <h3 className="text-2xl sm:text-3xl font-heading font-black text-zinc-900 dark:text-white leading-none pt-1">
                 {pendingChecks.length} Pending
               </h3>
             </div>
@@ -2722,74 +2732,85 @@ export default function DashboardOverview() {
               <ShieldAlert className="w-5 h-5" />
             </div>
           </div>
-          <div className="mt-4 pt-4 border-t border-border flex items-center justify-between text-xs">
-            <span className={`font-bold flex items-center gap-0.5 ${expiredChecks.length > 0 ? 'text-red-500' : 'text-[#D9A300]'}`}>
-              <AlertTriangle className="w-3.5 h-3.5" /> {expiredChecks.length} expired requirement{expiredChecks.length !== 1 ? 's' : ''}
+          
+          <div className="mt-4 space-y-2">
+            <div className="w-full bg-zinc-100 dark:bg-zinc-800 h-1.5 rounded-full overflow-hidden">
+              <div className="bg-[#F5C400] h-full rounded-full transition-all" style={{ width: `${(pendingChecks.length / 5) * 100}%` }} />
+            </div>
+          </div>
+
+          <div className="mt-6 pt-4 border-t border-border/30 flex items-center justify-between text-xs font-bold">
+            <span className={`flex items-center gap-1 ${expiredChecks.length > 0 ? 'text-red-500' : 'text-[#D9A300]'}`}>
+              <AlertTriangle className="w-4 h-4" /> {expiredChecks.length} Expired
             </span>
-            <Link href="/dashboard/documents" className="text-muted hover:text-foreground flex items-center font-semibold">
-              Upload Vault <ArrowUpRight className="w-3 h-3 ml-0.5" />
+            <Link href="/dashboard/documents" className="text-zinc-550 dark:text-zinc-400 hover:text-[#F5C400] flex items-center transition-colors">
+              Upload Vault <ArrowUpRight className="w-3.5 h-3.5 ml-0.5" />
             </Link>
           </div>
         </div>
 
         {/* Premium Status Card */}
-        <div className="bg-card border border-border rounded-2xl p-5 flex flex-col justify-between hover-card-glow transition-all">
+        <div className="bg-white dark:bg-zinc-900/60 border border-border/30 rounded-2xl p-6 flex flex-col justify-between hover:shadow-md transition-all hover:scale-[1.005] group relative overflow-hidden">
+          <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-[#F5C400]/25 to-transparent" />
           <div className="flex justify-between items-start">
-            <div>
-              <p className="text-[10px] text-muted font-bold uppercase tracking-wider">Membership Status</p>
-              <h3 className="text-xl font-heading font-extrabold mt-1 text-foreground flex items-center gap-2">
+            <div className="space-y-1.5">
+              <p className="text-[9px] text-zinc-450 dark:text-zinc-500 font-bold uppercase tracking-wider">Membership Status</p>
+              <h3 className="text-lg sm:text-xl font-heading font-black text-zinc-900 dark:text-white pt-1">
                 {statsSummary.subscriptionPlan.toLowerCase() === 'premium' || statsSummary.subscriptionPlan.toLowerCase() === 'premium pro' ? (
-                  <>⭐ Premium Driver</>
+                  <>⭐ Premium Support</>
                 ) : (
                   <>Basic Driver</>
                 )}
               </h3>
             </div>
-            <div className="w-10 h-10 rounded-xl bg-gold-glow border border-gold-primary/20 text-gold-primary flex items-center justify-center">
-              <Star className="w-5 h-5 fill-current text-gold-primary" />
+            <div className="w-10 h-10 rounded-xl bg-[#F5C400]/10 border border-[#F5C400]/25 text-[#F5C400] flex items-center justify-center">
+              <Star className="w-5 h-5 fill-current text-[#F5C400]" />
             </div>
           </div>
-          <div className="mt-4 pt-4 border-t border-border flex flex-col gap-2 text-[10px] font-semibold">
+          <div className="mt-6 pt-4 border-t border-border/30 flex flex-col gap-1.5 text-[10px] font-bold">
             {statsSummary.subscriptionPlan.toLowerCase() === 'premium' || statsSummary.subscriptionPlan.toLowerCase() === 'premium pro' ? (
               <>
-                <div className="text-xs font-bold text-foreground mb-1">Premium Benefits Active:</div>
-                <div className="text-muted flex items-center gap-1.5">✓ AI Voice Assistant</div>
-                <div className="text-muted flex items-center gap-1.5">✓ Priority Support</div>
-                <div className="text-muted flex items-center gap-1.5">✓ Faster Compliance Assistance</div>
-                <div className="text-muted flex items-center gap-1.5">✓ Smart AI Guidance</div>
+                <div className="text-zinc-400 flex items-center gap-1.5">✓ AI Voice Support Enabled</div>
+                <div className="text-zinc-400 flex items-center gap-1.5">✓ Priority Summons Dispatch</div>
               </>
             ) : (
-              <>
-                <div className="text-xs font-bold text-foreground mb-1">Unlock Premium Features:</div>
-                <div className="text-muted flex items-center gap-1.5">✦ AI Voice Assistant</div>
-                <div className="text-muted flex items-center gap-1.5">✦ Priority Support</div>
-                <Link href="/dashboard/billing" className="text-gold-primary hover:text-gold-hover font-bold flex items-center mt-1">
-                  Upgrade Now <ArrowUpRight className="w-3 h-3 ml-0.5" />
+              <div className="flex items-center justify-between w-full">
+                <span className="text-zinc-400">Unlock Voice Dialer</span>
+                <Link href="/dashboard/billing" className="text-[#F5C400] hover:text-[#D9A300] flex items-center transition-colors">
+                  Upgrade <ArrowUpRight className="w-3.5 h-3.5 ml-0.5" />
                 </Link>
-              </>
+              </div>
             )}
           </div>
         </div>
 
         {/* Compliance Rating Card */}
-        <div className="bg-card border border-border rounded-2xl p-5 flex flex-col justify-between hover-card-glow transition-all">
+        <div className="bg-white dark:bg-zinc-900/60 border border-border/30 rounded-2xl p-6 flex flex-col justify-between hover:shadow-md transition-all hover:scale-[1.005] group relative overflow-hidden">
+          <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-[#F5C400]/25 to-transparent" />
           <div className="flex justify-between items-start">
-            <div>
-              <p className="text-[10px] text-muted font-bold uppercase tracking-wider">Compliance Rating</p>
-              <h3 className="text-3xl font-heading font-extrabold mt-1 text-foreground">
+            <div className="space-y-1.5">
+              <p className="text-[9px] text-zinc-450 dark:text-zinc-500 font-bold uppercase tracking-wider">Compliance Rating</p>
+              <h3 className="text-2xl sm:text-3xl font-heading font-black text-zinc-900 dark:text-white leading-none pt-1">
                 {expiredChecks.length > 0 ? '92%' : '100%'}
               </h3>
             </div>
-            <div className="w-10 h-10 rounded-xl bg-gold-glow border border-gold-primary/20 text-gold-primary flex items-center justify-center">
-              <Shield className="w-5 h-5 text-gold-primary" />
+            <div className="w-10 h-10 rounded-xl bg-[#F5C400]/10 border border-[#F5C400]/25 text-[#F5C400] flex items-center justify-center">
+              <Shield className="w-5 h-5 text-[#F5C400]" />
             </div>
           </div>
-          <div className="mt-4 pt-4 border-t border-border flex items-center justify-between text-xs">
-            <span className="text-muted font-semibold">
-              {expiredChecks.length > 0 ? '1 document needs renewal' : 'All checkpoints secured'}
+
+          <div className="mt-4 space-y-2">
+            <div className="w-full bg-zinc-100 dark:bg-zinc-800 h-1.5 rounded-full overflow-hidden">
+              <div className="bg-emerald-500 h-full rounded-full transition-all" style={{ width: expiredChecks.length > 0 ? '92%' : '100%' }} />
+            </div>
+          </div>
+
+          <div className="mt-6 pt-4 border-t border-border/30 flex items-center justify-between text-xs font-bold">
+            <span className="text-zinc-500 dark:text-zinc-400 font-medium">
+              {expiredChecks.length > 0 ? '1 item needs renewal' : 'All checkpoints secured'}
             </span>
-            <Link href="/dashboard/renewals" className="text-gold-primary hover:text-gold-hover font-bold flex items-center">
-              Track Renewals <ArrowUpRight className="w-3 h-3 ml-0.5" />
+            <Link href="/dashboard/renewals" className="text-zinc-550 dark:text-zinc-400 hover:text-[#F5C400] flex items-center transition-colors">
+              Track <ArrowUpRight className="w-3.5 h-3.5 ml-0.5" />
             </Link>
           </div>
         </div>
@@ -2797,29 +2818,34 @@ export default function DashboardOverview() {
       </div>
 
       {/* 4. Welcome Card and Timeline Matrix */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 pb-6">
         
         {/* Left: Quick Actions & Renewal checklist */}
         <div className="lg:col-span-8 space-y-6">
           
           {/* Quick Actions Widget */}
-          <div className="bg-card border border-border p-6 rounded-2xl">
-            <h3 className="font-heading font-extrabold text-sm uppercase tracking-wider mb-4 text-foreground">Quick Action Console</h3>
+          <div className="bg-white dark:bg-zinc-900/60 border border-border/30 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+            <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-[#F5C400]/25 to-transparent" />
+            <h3 className="font-heading font-black text-xs uppercase tracking-wider mb-4 text-zinc-800 dark:text-zinc-200">Quick Action Console</h3>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               
-              <Link href="/dashboard/documents" className="flex flex-col items-center justify-center p-4 bg-muted-background/30 hover:bg-gold-primary/10 border border-border hover:border-gold-primary/45 rounded-xl text-center group transition-all">
-                <Upload className="w-6 h-6 text-slate-500 group-hover:text-gold-primary mb-2 transition-colors" />
-                <span className="text-xs font-bold text-foreground">Upload File</span>
+              <Link href="/dashboard/documents" className="flex flex-col items-center justify-center p-5 bg-zinc-50 dark:bg-zinc-950/40 hover:bg-[#F5C400]/10 border border-border/20 rounded-2xl text-center group transition-all duration-300">
+                <Upload className="w-6 h-6 text-zinc-500 group-hover:text-[#F5C400] mb-2.5 transition-colors" />
+                <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200">Upload File</span>
               </Link>
 
-              <Link href="/dashboard/support" className="flex flex-col items-center justify-center p-4 bg-muted-background/30 hover:bg-gold-primary/10 border border-border hover:border-gold-primary/45 rounded-xl text-center group transition-all">
-                <Ticket className="w-6 h-6 text-slate-500 group-hover:text-gold-primary mb-2 transition-colors" />
-                <span className="text-xs font-bold text-foreground">Raise Ticket</span>
+              <Link href="/dashboard/support" className="flex flex-col items-center justify-center p-5 bg-zinc-50 dark:bg-zinc-950/40 hover:bg-[#F5C400]/10 border border-border/20 rounded-2xl text-center group transition-all duration-300">
+                <Ticket className="w-6 h-6 text-zinc-500 group-hover:text-[#F5C400] mb-2.5 transition-colors" />
+                <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200">Raise Ticket</span>
               </Link>
 
-              <Link href="/dashboard/copilot" className="flex flex-col items-center justify-center p-4 bg-muted-background/30 hover:bg-[#F5C400]/10 border border-border hover:border-[#F5C400]/45 rounded-xl text-center group transition-all animate-pulse">
-                <MessageSquare className="w-6 h-6 text-[#F5C400] mb-2 transition-colors" />
-                <span className="text-xs font-bold text-foreground">Ask AI Assistant</span>
+              <Link href="/dashboard/copilot" className="flex flex-col items-center justify-center p-5 bg-zinc-50 dark:bg-zinc-950/40 hover:bg-[#F5C400]/10 border border-border/20 rounded-2xl text-center group transition-all duration-300 relative overflow-hidden">
+                <span className="absolute top-1 right-2 flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F5C400] opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#F5C400]"></span>
+                </span>
+                <MessageSquare className="w-6 h-6 text-[#F5C400] mb-2.5 transition-colors" />
+                <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200">Ask AI</span>
               </Link>
 
               <button
@@ -2832,40 +2858,41 @@ export default function DashboardOverview() {
                     }
                   }
                 }}
-                className="flex flex-col items-center justify-center p-4 bg-muted-background/30 hover:bg-gold-primary/10 border border-border hover:border-gold-primary/45 rounded-xl text-center group transition-all cursor-pointer w-full"
+                className="flex flex-col items-center justify-center p-5 bg-zinc-50 dark:bg-zinc-950/40 hover:bg-[#F5C400]/10 border border-border/20 rounded-2xl text-center group transition-all duration-300 cursor-pointer w-full"
               >
-                <Phone className="w-6 h-6 text-slate-500 group-hover:text-gold-primary mb-2 transition-colors" />
-                <span className="text-xs font-bold text-foreground">Call AI Assistant</span>
+                <Phone className="w-6 h-6 text-zinc-500 group-hover:text-[#F5C400] mb-2.5 transition-colors" />
+                <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200">Call AI</span>
               </button>
 
             </div>
           </div>
 
           {/* Recent Uploaded Documents list */}
-          <div className="bg-card border border-border rounded-2xl p-6">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="font-heading font-extrabold text-sm uppercase tracking-wider text-foreground">Recent Document Uploads</h3>
-              <Link href="/dashboard/documents" className="text-xs font-bold text-gold-primary hover:text-gold-hover">
-                Document Intelligence &rarr;
+          <div className="bg-white dark:bg-zinc-900/60 border border-border/30 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+            <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-[#F5C400]/25 to-transparent" />
+            <div className="flex justify-between items-center mb-5">
+              <h3 className="font-heading font-black text-xs uppercase tracking-wider text-zinc-800 dark:text-zinc-200">Recent Document Uploads</h3>
+              <Link href="/dashboard/documents" className="text-xs font-bold text-[#F5C400] hover:text-[#D9A300] transition-colors">
+                Vault Panel &rarr;
               </Link>
             </div>
 
-            <div className="divide-y divide-border">
+            <div className="divide-y divide-border/20">
               {recentUploads.length > 0 ? recentUploads.map((file, idx) => (
-                <div key={idx} className="py-3 flex items-center justify-between text-xs">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 rounded-lg bg-[#F5C400]/10 border border-[#F5C400]/25 text-[#D9A300] flex items-center justify-center">
-                      <FileText className="w-4 h-4" />
+                <div key={idx} className="py-4 flex items-center justify-between text-xs transition-colors hover:bg-zinc-50/50 dark:hover:bg-zinc-950/20 px-2 rounded-xl">
+                  <div className="flex items-center space-x-3.5">
+                    <div className="w-9 h-9 rounded-xl bg-[#F5C400]/10 border border-[#F5C400]/20 text-[#D9A300] flex items-center justify-center">
+                      <FileText className="w-4.5 h-4.5" />
                     </div>
                     <div>
-                      <strong className="block text-foreground font-bold">{file.name}</strong>
-                      <span className="text-[10px] text-muted font-medium">{file.category} • {file.size}</span>
+                      <strong className="block text-zinc-800 dark:text-zinc-250 font-bold">{file.name}</strong>
+                      <span className="text-[10px] text-zinc-450 dark:text-zinc-500 font-medium">{file.category} • {file.size}</span>
                     </div>
                   </div>
 
                   <div className="flex items-center space-x-4">
-                    <span className="text-[10px] text-muted font-medium">{file.date}</span>
-                    <span className={`px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider ${
+                    <span className="text-[10px] text-zinc-450 dark:text-zinc-500 font-medium">{file.date}</span>
+                    <span className={`px-2 py-0.5 rounded text-[9px] font-black uppercase tracking-wider ${
                       file.status === 'Verified' ? 'text-emerald-500 bg-emerald-500/10' : 'text-amber-500 bg-amber-500/10'
                     }`}>
                       {file.status}
@@ -2873,7 +2900,7 @@ export default function DashboardOverview() {
                   </div>
                 </div>
               )) : (
-                <div className="py-6 text-center text-muted text-xs">No data available yet.</div>
+                <div className="py-6 text-center text-zinc-400 text-xs">No documents uploaded yet.</div>
               )}
             </div>
           </div>
@@ -2883,26 +2910,30 @@ export default function DashboardOverview() {
         <div className="lg:col-span-4 space-y-6">
           
           {/* Timeline of upcoming renewals */}
-          <div className="bg-card border border-border rounded-2xl p-6">
-            <h3 className="font-heading font-extrabold text-sm uppercase tracking-wider mb-4 text-foreground">Upcoming Expiration Dates</h3>
-            <div className="space-y-4">
+          <div className="bg-white dark:bg-zinc-900/60 border border-border/30 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+            <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-[#F5C400]/25 to-transparent" />
+            <h3 className="font-heading font-black text-xs uppercase tracking-wider mb-5 text-zinc-800 dark:text-zinc-200">Upcoming Expiration Dates</h3>
+            <div className="space-y-5 relative">
+              {/* Vertical connecting line */}
+              <div className="absolute left-[5px] top-2 bottom-2 w-px bg-zinc-200 dark:bg-zinc-850 pointer-events-none" />
+
               {pendingChecks.map((check) => {
                 const isExpired = check.status === 'EXPIRED';
                 const daysLeft = Math.ceil((new Date(check.dueDate).getTime() - Date.now()) / (1000 * 60 * 60 * 24));
                 return (
-                  <div key={check.id} className="relative pl-6 border-l-2 border-border pb-1">
+                  <div key={check.id} className="relative pl-6 pb-1">
                     {/* Circle Indicator */}
-                    <span className={`absolute -left-[6px] top-1.5 w-2.5 h-2.5 rounded-full border-2 border-card ${
+                    <span className={`absolute left-0 top-1.5 w-2.5 h-2.5 rounded-full border border-white dark:border-zinc-950 ${
                       isExpired ? 'bg-red-500' : daysLeft <= 15 ? 'bg-amber-500' : 'bg-emerald-500'
                     }`} />
                     
-                    <div className="flex justify-between items-start text-xs">
+                    <div className="flex justify-between items-start text-xs gap-2">
                       <div>
-                        <strong className="block text-foreground font-bold leading-tight">{check.title}</strong>
-                        <span className="text-[10px] text-muted font-medium">Due: {new Date(check.dueDate).toLocaleDateString()}</span>
+                        <strong className="block text-zinc-800 dark:text-zinc-200 font-bold leading-tight">{check.title}</strong>
+                        <span className="text-[9px] text-zinc-450 dark:text-zinc-550 font-medium">Due: {new Date(check.dueDate).toLocaleDateString()}</span>
                       </div>
                       
-                      <span className={`px-2 py-0.5 rounded text-[8px] font-extrabold uppercase tracking-wide shrink-0 ${
+                      <span className={`px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-wide shrink-0 ${
                         isExpired 
                           ? 'text-red-500 bg-red-500/10' 
                           : daysLeft <= 15 
@@ -2919,15 +2950,16 @@ export default function DashboardOverview() {
           </div>
 
           {/* Ticket Status summary widget */}
-          <div className="bg-card border border-border rounded-2xl p-6">
-            <h3 className="font-heading font-extrabold text-sm uppercase tracking-wider mb-3 text-foreground">Active Disputes</h3>
-            <div className="p-4 bg-muted-background/30 border border-border rounded-xl space-y-3">
+          <div className="bg-white dark:bg-zinc-900/60 border border-border/30 p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+            <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-transparent via-[#F5C400]/25 to-transparent" />
+            <h3 className="font-heading font-black text-xs uppercase tracking-wider mb-4 text-zinc-800 dark:text-zinc-200">Active Disputes</h3>
+            <div className="p-4 bg-zinc-50 dark:bg-zinc-950/60 border border-border/20 rounded-2xl space-y-3">
               <div className="flex justify-between items-center text-xs">
-                <span className="font-bold text-foreground">TLC Summon #2940</span>
-                <span className="px-2 py-0.5 rounded text-[9px] font-bold bg-amber-500/10 text-amber-500 uppercase">In Progress</span>
+                <span className="font-bold text-zinc-850 dark:text-zinc-100">TLC Summon #2940</span>
+                <span className="px-2 py-0.5 rounded text-[8px] font-black tracking-wider bg-amber-500/10 text-amber-500 uppercase">In Progress</span>
               </div>
-              <p className="text-[11px] text-slate-500 font-medium">Summon dispute files uploaded. Support agent has forwarded documents to legal team review.</p>
-              <Link href="/dashboard/support" className="block text-[11px] font-bold text-gold-primary hover:text-gold-hover pt-1">
+              <p className="text-[11px] text-zinc-500 dark:text-zinc-450 leading-relaxed font-medium">Summon dispute files uploaded. Support agent has forwarded documents to legal team review.</p>
+              <Link href="/dashboard/support" className="block text-[11px] font-bold text-[#F5C400] hover:text-[#D9A300] transition-colors pt-1">
                 View Chat Thread &rarr;
               </Link>
             </div>

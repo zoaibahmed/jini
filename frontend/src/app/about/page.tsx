@@ -6,9 +6,11 @@ import { Calendar, Users, MapPin, Award, ShieldCheck, Heart } from 'lucide-react
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { useLanguage } from '@/app/language-provider';
+import { useTheme } from '@/app/theme-provider';
 
 export default function AboutPage() {
   const { language: selectedLanguage } = useLanguage();
+  const { theme } = useTheme();
 
   const stats = [
     { 
@@ -194,16 +196,23 @@ export default function AboutPage() {
 
       <main className="flex-1">
         {/* Banner Hero */}
-        <section className="relative py-24 bg-[radial-gradient(#f5c400_1px,transparent_1px)] [background-size:32px_32px] bg-opacity-[0.03] dark:bg-opacity-[0.015] border-b border-slate-100 dark:border-zinc-800 transition-colors duration-300">
-          <div className="absolute inset-0 bg-gradient-to-b from-[#F5C400]/5 to-transparent pointer-events-none" />
+        <section className="relative py-24 lg:py-32 overflow-hidden border-b border-slate-200 dark:border-zinc-900 bg-slate-50 dark:bg-black transition-colors duration-300">
+          {/* NYC Background overlay */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center opacity-15 dark:opacity-30 mix-blend-luminosity transition-all duration-300" 
+            style={{ backgroundImage: "url('/driver-yellow-cab.png')" }} 
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/80 to-slate-50 dark:from-zinc-950 dark:via-zinc-950/80 dark:to-zinc-950 transition-colors duration-300" />
+          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#F5C400]/40 to-transparent" />
+
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4 }}
-              className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full border border-[#F5C400]/20 bg-[#F5C400]/5 text-[#D9A300] dark:text-[#F5C400] text-xs font-bold uppercase tracking-wider"
+              className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border border-[#F5C400]/25 bg-[#F5C400]/8 text-[#D9A300] dark:text-[#F5C400] text-xs font-bold uppercase tracking-widest"
             >
-              <Heart className="w-4 h-4 text-[#F5C400]" />
+              <Heart className="w-4 h-4" />
               <span>{badgeText}</span>
             </motion.div>
 
@@ -211,20 +220,17 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-[#111111] dark:text-white leading-tight"
+              className="font-heading font-extrabold text-5xl sm:text-6xl tracking-tight text-slate-900 dark:text-white leading-[1.1]"
             >
               {heading1} <br />
-              <span className="relative inline-block mt-2">
-                <span className="relative z-10 px-2 text-[#0B0B0B] dark:text-[#F5C400]">{headingHighlight}</span>
-                <span className="absolute inset-x-0 bottom-1 h-3 bg-[#F5C400]/80 dark:bg-[#F5C400]/20 -rotate-1 z-0 rounded-sm" />
-              </span>
+              <span className="text-gold-gradient mt-2 inline-block font-black">{headingHighlight}</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-slate-500 dark:text-slate-400 text-base sm:text-lg max-w-3xl mx-auto font-medium leading-relaxed"
+              className="text-slate-650 dark:text-zinc-400 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed font-medium"
             >
               {aboutText}
             </motion.p>
@@ -232,25 +238,25 @@ export default function AboutPage() {
         </section>
 
         {/* Corporate Mission */}
-        <section className="py-20 bg-background">
+        <section className="py-24 lg:py-32 bg-zinc-50 dark:bg-[#080808]">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
               <div className="space-y-6">
-                <h2 className="font-heading font-extrabold text-3xl text-[#0B0B0B] dark:text-white">{missionTitle}</h2>
-                <p className="text-sm text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
+                <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-zinc-900 dark:text-white">{missionTitle}</h2>
+                <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed">
                   {missionP1}
                 </p>
-                <p className="text-sm text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
+                <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed">
                   {missionP2}
                 </p>
               </div>
 
               {/* Stats Block */}
-              <div className="grid grid-cols-2 gap-4 bg-slate-100/50 dark:bg-zinc-900/40 p-8 border border-slate-200 dark:border-zinc-800 rounded-2xl">
+              <div className="grid grid-cols-2 gap-4 bg-white dark:bg-zinc-900/50 p-6 border border-zinc-200 dark:border-zinc-800 rounded-2xl">
                 {stats.map((stat, idx) => (
-                  <div key={idx} className="bg-white dark:bg-zinc-955 border border-slate-200 dark:border-zinc-800 p-5 rounded-xl text-center space-y-1">
-                    <strong className="text-sm font-heading font-extrabold text-[#0B0B0B] dark:text-white block">{stat.value}</strong>
-                    <span className="text-[9px] text-slate-400 dark:text-slate-500 font-bold uppercase tracking-wider block leading-tight">{stat.label}</span>
+                  <div key={idx} className="card-premium p-5 text-center space-y-1.5 bg-zinc-50 dark:bg-zinc-950">
+                    <strong className="text-base font-heading font-bold text-zinc-900 dark:text-white block">{stat.value}</strong>
+                    <span className="text-[9px] text-zinc-400 dark:text-zinc-500 font-bold uppercase tracking-wider block leading-tight">{stat.label}</span>
                   </div>
                 ))}
               </div>
@@ -259,36 +265,42 @@ export default function AboutPage() {
         </section>
 
         {/* Corporate Milestones Timeline */}
-        <section className="py-20 bg-slate-50/50 dark:bg-zinc-900/20 border-t border-b border-slate-200 dark:border-zinc-800 transition-colors duration-300">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-24 lg:py-32 bg-white dark:bg-zinc-950 border-t border-b border-zinc-100 dark:border-zinc-900 relative overflow-hidden">
+          <div className="absolute inset-0 grid-pattern opacity-30" />
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center mb-16 space-y-3">
-              <h2 className="font-heading font-extrabold text-3xl text-[#0B0B0B] dark:text-white">{journeyTitle}</h2>
-              <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-semibold">{journeySubtitle}</p>
+              <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-zinc-900 dark:text-white">{journeyTitle}</h2>
+              <p className="text-zinc-500 dark:text-zinc-400 text-xs sm:text-sm font-medium">{journeySubtitle}</p>
             </div>
 
-            <div className="relative border-l-2 border-slate-200 dark:border-zinc-800 ml-4 md:ml-32 pl-8 space-y-12">
+            <div className="relative ml-4 md:ml-32 pl-8 space-y-12">
+              {/* Vertical timeline trace line with gold gradient glow */}
+              <div className="absolute left-0 top-2 bottom-2 w-0.5 bg-gradient-to-b from-[#F5C400] via-zinc-200 dark:via-zinc-800 to-transparent pointer-events-none" />
+
               {milestones.map((milestone, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: idx * 0.1 }}
+                  transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
                   className="relative group"
                 >
-                  {/* Timeline point */}
-                  <span className="absolute -left-12 top-1.5 w-6 h-6 rounded-full bg-[#0B0B0B] dark:bg-zinc-800 border-4 border-white dark:border-zinc-950 flex items-center justify-center group-hover:bg-[#F5C400] transition-colors z-10" />
+                  {/* Timeline point indicator */}
+                  <span className="absolute -left-11.5 top-1.5 w-7 h-7 rounded-full bg-zinc-950 border border-zinc-800 flex items-center justify-center group-hover:border-[#F5C400] transition-colors z-10 shadow-lg shadow-black">
+                    <span className="w-1.5 h-1.5 rounded-full bg-zinc-600 group-hover:bg-[#F5C400] transition-colors" />
+                  </span>
                   
-                  <span className="absolute -left-28 top-2 text-xs font-bold text-slate-400 dark:text-slate-500 hidden md:block w-20 text-right">
+                  <span className="absolute -left-28 top-2 text-xs font-bold text-zinc-400 dark:text-zinc-500 hidden md:block w-20 text-right">
                     {milestone.year}
                   </span>
 
-                  <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 p-6 rounded-xl space-y-2 hover:shadow-md transition-shadow">
-                    <span className="text-[10px] font-bold text-[#D9A300] uppercase tracking-widest md:hidden block">
+                  <div className="card-premium p-7 space-y-2.5 bg-zinc-50/50 dark:bg-zinc-900/40 hover:shadow-xl hover:shadow-[#F5C400]/5 hover:border-[#F5C400]/30 transition-all duration-300">
+                    <span className="text-[10px] font-extrabold text-[#D9A300] uppercase tracking-widest md:hidden block">
                       {milestone.year}
                     </span>
-                    <h4 className="font-heading font-extrabold text-lg text-[#0B0B0B] dark:text-white">{milestone.title}</h4>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-semibold">{milestone.description}</p>
+                    <h4 className="font-heading font-bold text-lg text-zinc-900 dark:text-white leading-tight">{milestone.title}</h4>
+                    <p className="text-xs text-zinc-550 dark:text-zinc-450 leading-relaxed">{milestone.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -297,31 +309,31 @@ export default function AboutPage() {
         </section>
 
         {/* Location Queens Hub */}
-        <section className="py-20 bg-background">
+        <section className="py-24 lg:py-32 bg-zinc-50 dark:bg-[#080808]">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div className="border border-slate-200 dark:border-zinc-800 bg-slate-50/50 dark:bg-zinc-900/30 p-8 rounded-2xl space-y-6">
-                <div className="w-10 h-10 rounded-lg bg-[#0B0B0B] dark:bg-zinc-800 text-[#F5C400] flex items-center justify-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+              <div className="card-premium p-8 space-y-6 bg-white dark:bg-zinc-950">
+                <div className="w-12 h-12 rounded-2xl bg-zinc-900 dark:bg-zinc-900 text-[#F5C400] flex items-center justify-center">
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div className="space-y-2">
-                  <h3 className="font-heading font-extrabold text-xl text-[#0B0B0B] dark:text-white">{hubTitle}</h3>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-bold">
+                  <h3 className="font-heading font-bold text-lg text-zinc-900 dark:text-white leading-tight">{hubTitle}</h3>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed font-bold">
                     JNI Solutions LLC <br />
                     120 Woodside Ave, Queens, NY 11377
                   </p>
                 </div>
-                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-semibold">
+                <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
                   {hubDesc}
                 </p>
               </div>
 
               <div className="space-y-6">
-                <div className="w-10 h-10 rounded-lg bg-[#F5C400]/10 border border-[#F5C400]/20 text-[#D9A300] dark:text-[#F5C400] flex items-center justify-center">
+                <div className="w-12 h-12 rounded-2xl bg-[#F5C400]/10 border border-[#F5C400]/25 text-[#D9A300] dark:text-[#F5C400] flex items-center justify-center">
                   <Award className="w-5 h-5" />
                 </div>
-                <h3 className="font-heading font-extrabold text-2xl text-[#0B0B0B] dark:text-white">{partnerTitle}</h3>
-                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-medium">
+                <h3 className="font-heading font-extrabold text-3xl text-zinc-900 dark:text-white">{partnerTitle}</h3>
+                <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
                   {partnerDesc}
                 </p>
               </div>
